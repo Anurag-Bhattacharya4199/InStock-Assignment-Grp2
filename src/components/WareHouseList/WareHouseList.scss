@@ -16,6 +16,7 @@
         &--title {
             text-align: start;
             font-family: $font-regular;
+            font-size: 28px;
             margin: 0 0 16px 0;
         }
 
@@ -54,12 +55,44 @@
     }
 
     &__body {
+
         &--container {
             border-top: 1px solid $slate;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
+            padding: 8px 24px 24px 24px;
+
+        }
+
+        &--subcontainer {
+            width: 50%;
+            padding-right: 16px;
+        
+        }
+
+        &--info {
+            text-align: start;
+            padding-top: 16px;
+        }
+
+        &--icon-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 24px 24px 24px;
         }
 
        
+
+       
     }
+}
+
+.p-medium {
+    margin: 0;
+  
+}
+
+h4 {
+    margin: 0;
+    padding-bottom: 8px;
 }

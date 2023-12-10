@@ -1,5 +1,6 @@
 import './SearchHeader.scss'
 import searchIcon from '../../assets/icons/search-24px.svg'
+import { Link } from 'react-router-dom';
 
 // This header can be used for the WareHouseList component and the WareHouseInventoryList component
 function SearchHeader(props) {

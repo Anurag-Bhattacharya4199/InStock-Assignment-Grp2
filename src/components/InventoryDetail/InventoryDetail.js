@@ -7,9 +7,7 @@ function InventoryDetail(props) {
     const deleteItem = () => {
 
     }
-
-
-
+console.log(props.itemName)
     return (
         <>
             <div className="inv-card--divider"></div>

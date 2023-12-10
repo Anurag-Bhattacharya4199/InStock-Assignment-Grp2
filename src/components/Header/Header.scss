@@ -1,0 +1,64 @@
+@use "../../styles/partials/fonts";
+@use "../../styles/partials/global";
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/variables";
+.header {
+  background-color: variables.$graphite;
+  padding: 24px 16px;
+
+  &__content {
+    .header-logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__logo {
+        height: 28px;
+      }
+    }
+
+    .header-links-container {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 16px;
+      gap: 16px;
+
+      &__link {
+        color: variables.$cloud;
+        border-radius: 20px;
+        background-color: variables.$instock-black;
+        padding: 0px 16px;
+        width: 100%;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        text-transform: capitalize;
+        text-decoration: none;
+      }
+
+      &__link {
+        @include mixins.tablet {
+          font-size: 14px;
+        }
+      }
+      &__link:hover {
+        background-color: variables.$instock-black;
+      }
+    }
+  }
+  &__content {
+    @include mixins.tablet {
+      display: flex;
+      justify-content: space-between;
+      padding: 32px;
+    }
+  }
+  &__content {
+    @include mixins.desktop {
+      max-width: 1040px;
+      margin: auto;
+    }
+  }
+}

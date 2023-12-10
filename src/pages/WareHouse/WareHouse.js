@@ -1,8 +1,10 @@
-function WareHouse () {
+import WareHouseList from "../../components/WareHouseList/WareHouseList";
+
+function WareHouse() {
 
     return (
-        <div>warehouse route test</div>
+        <WareHouseList/>
     )
 }
 
-export default WareHouse
+export default WareHouseList

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import WarehouseList from "../../components/WareHouseList/WareHouseList";
+import WareHouseList from "../../components/WareHouseList/WareHouseList";
 
 
 
@@ -26,7 +26,7 @@ function WareHouse() {
 
     return (
         <div>
-            <WarehouseList />
+            <WareHouseList />
         </div>
     );
 }

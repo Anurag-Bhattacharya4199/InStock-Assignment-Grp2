@@ -3,20 +3,10 @@ import searchIcon from '../../assets/icons/search-24px.svg'
 
 // This header can be used for the WareHouseList component and the WareHouseInventoryList component
 function SearchHeader(props) {
-    const [searchTitle, setSearchTitle] = useState('Inventory')
-    let addNewItem = 'Item'
-
-    if (props.title) {
-        setSearchTitle(props.title)
-    }
-    if (searchTitle === 'Warehouses') {
-        addNewItem = 'Warehouse'
-    }
-
 
     return (
         <header className="search">
-            <h1 className="search--title">{searchTitle}</h1>
+            <h1 className="search--title">{props.title}</h1>
 
 
             <div className="search__content">
@@ -33,7 +23,7 @@ function SearchHeader(props) {
                     <Link to="/upload" className="search__content__button--link">
                         <button type="submit" className="search__content__button">
                             <div className="search__content__button--text">
-                                + Add New {addNewItem}
+                                + Add New {props.addNewItem}
                             </div>
                         </button>
                     </Link>

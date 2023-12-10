@@ -1,4 +1,9 @@
+import axios from 'axios';
 import './InventoryList.scss'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:3000/'
 
 /**INVENTORY TABLE:
 id
@@ -13,7 +18,19 @@ updated_at
  */
 
 
+
+
 function InventoryList(props) {
+const [inventory, setInventory] = useState();
+
+const getInventory = () => {
+    axios
+    .get(`${API_URL}inventory/${props.selectedWarehouse}`)
+    .then((res) => {
+        setInventory(res.data)
+    })
+}
+
   return (
     <section className="inventory-list">
       {props.warehouse.inventory.map((inventoryCard, index) => (
@@ -21,6 +38,7 @@ function InventoryList(props) {
                         key={index}
                         itemId={inventoryCard.id}
                         warehouseId={inventoryCard.warehouse_id}
+                        warehouseName={props.warehouse_name}
                         itemName={inventoryCard.item_name}
                         itemDescription={inventoryCard.description}
                         itemCategory={inventoryCard.category}

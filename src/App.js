@@ -13,6 +13,7 @@ function App() {
           <Route path='/' element={<WareHouse/>}/>
           <Route path='/warehouse/:id/' element={<WareHouse/>}/>
           <Route path='/inventory' element={<Inventory/>}/>
+          <Route path='/inventory/:id' element={<Inventory/>}/>
         </Routes>
       </BrowserRouter>
     </div>

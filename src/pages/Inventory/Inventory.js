@@ -1,12 +1,16 @@
 import './Inventory.scss'
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
-function Inventory(props) {
+function Inventory() {
     const [hasLoaded, setHasLoaded] = useState(false);
-    const [headTitle, setHeadTitle] = useState(`InStock - ${props.warehouse_name}`);
-    const [selectedWarehouse, setSelectedWarehouse] = useState(props);
+    let { warehouse_id } = useParams();
+
+    // the initial state will need to be the warehouse_id from useParams
+    // For now, it will be defaulted as 1
+    const [selectedWarehouse, setSelectedWarehouse] = useState("1");
 
     useEffect(() => {
         document.title = headTitle;
@@ -19,7 +23,7 @@ function Inventory(props) {
     } else {
         return (
             <section>
-                <SearchHeader />
+                <SearchHeader title="Inventory" addNewItem= "Item" />
                 <InventoryList selectedWarehouse={selectedWarehouse}/>
             </section>
         )

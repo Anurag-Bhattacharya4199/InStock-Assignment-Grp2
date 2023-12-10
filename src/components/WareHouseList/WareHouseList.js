@@ -1,6 +1,7 @@
 import './WareHouseList.scss'
 
-function WareHouseList() {
+function WareHouseList(props) {
+    const { warehouses } = props
 
     return (
         <div className='warehouseList'>
@@ -11,7 +12,27 @@ function WareHouseList() {
                     <button className='warehouseList__header--AddWarehouse-Button'>+ Add New Warehouse</button>
                 </div>
             </div>
-            <div>This will be thwe warehosue card</div>
+
+            {warehouses.map((item) =>
+                <div key={item.id} className='warehouseList__body--container'>
+                    <div className='warehouseList__body--subcontainer'>
+                        <p>WAREHOUSE</p>
+                        <p>{item.warehouse_name}</p>
+                        <p>ADDRESS</p>
+                        <p>{item.address}</p>
+                        <p>{item.city}, {item.country}</p>
+                    </div>
+                    <div className='warehouseList__body--subcontainer'>
+                        <p>CONTACT NAME</p>
+                        <p>{item.contact_name}</p>
+                        <p>Contact Information</p>
+                        <p>{item.contact_phone}</p>
+                        <p>{item.contact_email}</p>
+                    </div>
+                </div>
+            )}
+
+
         </div>
     )
 }

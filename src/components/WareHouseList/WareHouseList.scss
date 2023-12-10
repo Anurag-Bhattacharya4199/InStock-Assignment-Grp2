@@ -3,7 +3,7 @@
 
 .warehouseList {
     margin: $mobile-margin;
-    border: 1px solid $light-grey;
+    border: 1px solid $slate;
     border-radius: 5px;
 
     &__header {
@@ -51,5 +51,15 @@
         }
 
 
+    }
+
+    &__body {
+        &--container {
+            border-top: 1px solid $slate;
+            display: flex;
+            justify-content: center;
+        }
+
+       
     }
 }

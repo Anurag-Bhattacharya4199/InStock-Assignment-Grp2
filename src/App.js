@@ -2,6 +2,9 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import WareHouse from './pages/WareHouse/WareHouse';
 import Inventory from './pages/Inventory/Inventory';
+import logo from './logo.svg';
+import './App.scss';
+import './styles/partials/_global.scss';
 
 function App() {
   return (

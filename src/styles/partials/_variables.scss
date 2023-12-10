@@ -1,20 +1,21 @@
-@use './fonts' as *;
+@use "./fonts" as *;
 
 // Colors
-$instock-black: #13182C;
-$slate: #5C667E;
+$instock-black: #13182c;
+$slate: #5c667e;
 $graphite: #232940;
 $green: #158463;
-$instock-indigo: #2E66E5;
-$cloud: #BDC5D5;
-$light-grey:#F7F8F9;
-$red: #C94515;
-$white: #FFFFFF;
-
+$instock-indigo: #2e66e5;
+$cloud: #bdc5d5;
+$light-grey: #f7f8f9;
+$red: #c94515;
+$white: #ffffff;
 
 // breakpoints and margins
 $mobile-margin: 16px;
 $mobile-column: auto;
+
+$mobile-width: 320px;
 
 $tablet-width: 767px;
 $tablet-margin: 32px;
@@ -30,5 +31,5 @@ $desktop-column: 63px;
 $font-regular: "TitilliumWeb";
 $font-regular-italics: "TitilliumWeb";
 
-$font-bold:"TitilliumWeb-SemiBoldItalics";
-$font-bold-italics:"TitilliumWeb-SemiBoldItalics";
+$font-bold: "TitilliumWeb-SemiBoldItalics";
+$font-bold-italics: "TitilliumWeb-SemiBoldItalics";

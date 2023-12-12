@@ -6,6 +6,7 @@
     border: 1px solid $slate;
     border-radius: 5px;
 
+
     &__header {
         margin: $mobile-margin;
 
@@ -52,38 +53,6 @@
         }
 
 
-    }
-
-    &__body {
-
-        &--container {
-            border-top: 1px solid $slate;
-            display: flex;
-            justify-content: flex-start;
-            padding: 8px 24px 24px 24px;
-
-        }
-
-        &--subcontainer {
-            width: 50%;
-            padding-right: 16px;
-        
-        }
-
-        &--info {
-            text-align: start;
-            padding-top: 16px;
-        }
-
-        &--icon-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 24px 24px 24px;
-        }
-
-       
-
-       
     }
 }
 

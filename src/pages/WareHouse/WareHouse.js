@@ -5,7 +5,6 @@ import axios from 'axios';
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 
 
-
 function WareHouse() {
 
     const API_BASE_URL = 'http://localhost:8080/warehouses';
@@ -29,6 +28,17 @@ function WareHouse() {
             <WareHouseList warehouses={warehouses}/>
         </div>
     );
+
+// import { Link } from 'react-router-dom';
+
+//         <Link to="/inventory/1">
+//         <button type="submit">
+//         Inventory
+//         </button>
+//         </Link>
+      
+ 
+
 }
 
 export default WareHouse;

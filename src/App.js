@@ -1,24 +1,24 @@
-
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import WareHouse from './pages/WareHouse/WareHouse';
-import Inventory from './pages/Inventory/Inventory';
-import './App.scss';
-import './styles/partials/_global.scss';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WareHouse from "./pages/WareHouse/WareHouse";
+import Inventory from "./pages/Inventory/Inventory";
+import "./App.scss";
+import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header";
-
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-         <Header />
+        <Header />
         <Routes>
-          <Route path='/' element={<WareHouse/>}/>
-          <Route path='/warehouse/:id/' element={<WareHouse/>}/>
-          <Route path='/inventory' element={<Inventory/>}/>
-          <Route path='/inventory/:id' element={<Inventory/>}/>
+          <Route path="/" element={<WareHouse />} />
+          <Route path="/warehouse/:id/" element={<WareHouse />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/inventory/:id" element={<Inventory />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

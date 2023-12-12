@@ -1,17 +1,44 @@
-import { Link } from 'react-router-dom';
 
-function WareHouse () {
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import WareHouseList from "../../components/WareHouseList/WareHouseList";
+
+
+function WareHouse() {
+
+    const API_BASE_URL = 'http://localhost:8080/warehouses';
+    const [warehouses, setWarehouses] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(API_BASE_URL)
+            .then((response) => {
+                const warehouseData = response.data;
+                setWarehouses(warehouseData);
+                console.log(warehouseData);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, []);
 
     return (
-        <>
-        <div>warehouse route test</div>
-        <Link to="/inventory/1">
-        <button type="submit">
-        Inventory
-        </button>
-        </Link>
-        </>
-    )
+        <div>
+            <WareHouseList warehouses={warehouses}/>
+        </div>
+    );
+
+// import { Link } from 'react-router-dom';
+
+//         <Link to="/inventory/1">
+//         <button type="submit">
+//         Inventory
+//         </button>
+//         </Link>
+      
+ 
+
 }
 
-export default WareHouse
+export default WareHouse;

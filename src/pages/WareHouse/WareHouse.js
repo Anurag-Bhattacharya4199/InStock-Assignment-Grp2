@@ -1,15 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
+import SearchHeader from '../../components/SearchHeader/SearchHeader';
 
 
 function WareHouse() {
 
     const API_BASE_URL = 'http://localhost:8080/warehouses';
     const [warehouses, setWarehouses] = useState([]);
-
+    
     useEffect(() => {
         axios
             .get(API_BASE_URL)
@@ -25,9 +25,11 @@ function WareHouse() {
 
     return (
         <div>
+            <SearchHeader title="Warehouse" addNewItem="Warehouse"/>
             <WareHouseList warehouses={warehouses}/>
         </div>
     );
+}
 
 // import { Link } from 'react-router-dom';
 
@@ -36,9 +38,6 @@ function WareHouse() {
 //         Inventory
 //         </button>
 //         </Link>
-      
- 
 
-}
 
 export default WareHouse;

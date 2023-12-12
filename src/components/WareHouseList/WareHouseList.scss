@@ -6,53 +6,53 @@
     border: 1px solid $slate;
     border-radius: 5px;
 
-    &__header {
-        margin: $mobile-margin;
+    // &__header {
+    //     margin: $mobile-margin;
 
-        &--container {
-            margin: 24px;
-        }
+    //     &--container {
+    //         margin: 24px;
+    //     }
 
-        &--title {
-            text-align: start;
-            font-family: $font-regular;
-            font-size: 28px;
-            margin: 0 0 16px 0;
-        }
-
-
-        &--subcontainer {
-            display: flex;
-            flex-direction: column;
-        }
-
-        &--searchBar {
-            height: 36px;
-            border: 1px solid $slate;
-            border-radius: 2rem;
-        }
-
-        &--searchBar::placeholder {
-            padding-left: 12px;
-        }
-
-        &--searchBar:focus {
-            outline-color: $instock-indigo;
-        }
-
-        &--AddWarehouse-Button {
-            color: $white;
-            font-family: $font-regular;
-            background-color: $instock-indigo;
-            height: 36px;
-            border: none;
-            border-radius: 2rem;
-            margin: 16px 0;
-
-        }
+    //     &--title {
+    //         text-align: start;
+    //         font-family: $font-regular;
+    //         font-size: 28px;
+    //         margin: 0 0 16px 0;
+    //     }
 
 
-    }
+    //     &--subcontainer {
+    //         display: flex;
+    //         flex-direction: column;
+    //     }
+
+    //     &--searchBar {
+    //         height: 36px;
+    //         border: 1px solid $slate;
+    //         border-radius: 2rem;
+    //     }
+
+    //     &--searchBar::placeholder {
+    //         padding-left: 12px;
+    //     }
+
+    //     &--searchBar:focus {
+    //         outline-color: $instock-indigo;
+    //     }
+
+    //     &--AddWarehouse-Button {
+    //         color: $white;
+    //         font-family: $font-regular;
+    //         background-color: $instock-indigo;
+    //         height: 36px;
+    //         border: none;
+    //         border-radius: 2rem;
+    //         margin: 16px 0;
+
+    //     }
+
+
+    // }
 
     &__body {
 

@@ -1,0 +1,46 @@
+@import '../../styles/partials/_mixins.scss';
+@import '../../styles/partials/variables';
+
+.Mobile-WarehouseList {
+  margin: $mobile-margin;
+  // border: 1px solid $slate;
+  border-radius: 5px;
+
+
+  &__body {
+
+      &--container {
+          border-top: 1px solid $slate;
+          display: flex;
+          justify-content: flex-start;
+          padding: 8px 24px 24px 24px;
+
+      }
+
+      &--subcontainer {
+          width: 50%;
+          padding-right: 16px;
+      
+      }
+
+      &--info {
+          text-align: start;
+          padding-top: 16px;
+      }
+
+      &--icon-container {
+          display: flex;
+          justify-content: space-between;
+          padding: 0 24px 24px 24px;
+      } 
+  }
+}
+
+.p-medium {
+    margin: 0;  
+}
+
+h4 {
+    margin: 0;
+    padding-bottom: 8px;
+}

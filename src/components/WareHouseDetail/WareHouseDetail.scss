@@ -1,0 +1,24 @@
+@import '../../styles/partials/_mixins.scss';
+@import '../../styles/partials/variables';
+
+.warehouseDetails {
+  border-radius: 5px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin: $mobile-margin;
+  }
+
+  &__subHeader {
+    display: flex;
+  }
+
+  &__specificInfo {
+    border-top: 1px solid $slate;
+    border-bottom: 1px solid $slate;
+    padding-top: $mobile-margin;
+    padding-bottom: $mobile-margin;
+
+  }
+}

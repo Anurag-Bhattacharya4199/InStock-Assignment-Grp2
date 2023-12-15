@@ -1,34 +1,36 @@
-import './Inventory.scss'
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
-import InventoryList from '../../components/InventoryList/InventoryList';
+import "./Inventory.scss";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import InventoryList from "../../components/InventoryList/InventoryList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import axios from "axios";
 
-function Inventory() {
-    const [hasLoaded, setHasLoaded] = useState(false);
-    let { warehouse_id } = useParams();
-    let headTitle = "Manhattan"
+const Inventory = () => {
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [inventoryList, setInventoryList] = useState([]);
+  const API_BASE_URL = "http://localhost:8080";
 
-    // the initial state will need to be the warehouse_id from useParams
-    // For now, it will be defaulted as 1
-    const [selectedWarehouse, setSelectedWarehouse] = useState("1");
+  useEffect(() => {
+    axios
+      .get(`${API_BASE_URL}/inventories`)
+      .then((response) => {
+        setInventoryList(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setHasLoaded(true);
+  }, []);
 
-    useEffect(() => {
-        document.title = headTitle;
-        setHasLoaded(true)
-    }, [headTitle]);
+  if (!hasLoaded) {
+    return null;
+  } else {
+    return (
+      <section>
+        <InventoryList inventoryList={inventoryList} />
+      </section>
+    );
+  }
+};
 
-
-    if (!hasLoaded) {
-        return null
-    } else {
-        return (
-            <section>
-                <SearchHeader title="Inventory" addNewItem= "Item" />
-                <InventoryList selectedWarehouse={selectedWarehouse}/>
-            </section>
-        )
-    }
-}
-
-export default Inventory
+export default Inventory;

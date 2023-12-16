@@ -2,9 +2,14 @@ import "./WareHouseDetailPage.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+
 import { Link } from "react-router-dom";
+
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import InventoryList from "../../components/InventoryList/InventoryList";
+
 
 function WareHouseDetailPage(props) {
   let { id } = useParams();
@@ -34,11 +39,13 @@ function WareHouseDetailPage(props) {
     });
   }, []);
 
-  if (!hasLoaded && !hasLoaded2) {
-    return null;
-  } else {
-    return (
-      <main className="warehouseDetails">
+if (!hasLoaded && !hasLoaded2){
+  return null;
+}else {
+  return (
+    <>
+    <SearchHeader title="Warehouse" addNewItem="Warehouse" />
+    <main className="warehouseDetails">
         <section className="warehouseDetails__header">
           <div className="warehouseDetails__header-info">
             <Link to="/">
@@ -87,8 +94,10 @@ function WareHouseDetailPage(props) {
           </div>
         </section>
       </main>
+
     );
   }
+
 }
 
 export default WareHouseDetailPage;

@@ -22,6 +22,7 @@ function WareHouse() {
   }, []);
 
   if (!hasLoaded) {
+
     return null;
   } else {
     return (
@@ -31,6 +32,10 @@ function WareHouse() {
       </div>
     );
   }
+
+}
+
+// import { Link } from 'react-router-dom';
 
   // import { Link } from 'react-router-dom';
 

@@ -1,84 +1,141 @@
-import './InventoryList.scss'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import InventoryDetail from '../InventoryDetail/InventoryDetail';
-
-const API_URL = 'http://localhost:3000/'
-
-/**INVENTORY TABLE:
-id
-warehouse_id
-item_name
-description
-category
-status
-quantity
-created_at
-updated_at
- */
-
-function InventoryList(props) {
-    // const [inventory, setInventory] = useState();
-
-    // temporary code until inventory backend is done
-    let inventoryCard = {
-        index: "5",
-        itemId: '1',
-        warehouseId: '1',
-        warehouseName: 'Manhattan',
-        itemName: "printer",
-        itemDescription: "prints stuff",
-        itemCategory: "electronics",
-        itemStatus: "in stock",
-        itemQuantity: 55,
-        itemCreated: "yesterday",
-        itemUpdated: "in the future"
-    }
-
-    // const getInventory = () => {
-    //     axios
-    //         .get(`${API_URL}inventory/${props.selectedWarehouse}`)
-    //         .then((res) => {
-    //             console.log(res.data)
-    //              setInventory(res.data)
-    //         })
-    // }
-
-
-    // see bottom of page for code once inventory backend is set up
-    return (
-        <section className="inventory-list">
-
-            <InventoryDetail
-                key={inventoryCard.index}
-                itemId={inventoryCard.id}
-                warehouseId={inventoryCard.warehouseId}
-                warehouseName={props.warehouse_name}
-                itemName={inventoryCard.itemName}
-                itemDescription={inventoryCard.description}
-                itemCategory={inventoryCard.category}
-                itemStatus={inventoryCard.itemStatus}
-                itemQuantity={inventoryCard.quantity}
-                itemCreated={inventoryCard.created_at}
-                itemUpdated={inventoryCard.updated_at} />
-
-        </section>
-    );
-}
+import "./InventoryList.scss";
+import { NavLink } from "react-router-dom";
+import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
+import EditIcon from "../../assets/icons/edit-24px.svg";
+import Chevron from "../../assets/icons/chevron_right-24px.svg";
+import SortDefault from "../../assets/icons/sort-24px.svg";
+import SearchHeader from "../SearchHeader/SearchHeader";
+const InventoryList = (props) => {
+  return (
+    <div className="inventoryList">
+      {/* SEARCH COMPONENT */}
+      <SearchHeader title="Inventory" addNewItem="Item" />
+      {/* INVENTORY-LIST TABLET && DESKTOP HEADER CONTAINER  */}
+      <div className="inventoryList-headers">
+        <div className="inventoryList-headers__header-container">
+          <h4 className="inventoryList-headers__header-container--header">
+            INVENTORY ITEM
+          </h4>
+          <img
+            className="inventoryList-headers__header-container--sort-icon"
+            src={SortDefault}
+            alt="sort"
+          />
+        </div>
+        <div className="inventoryList-headers__header-container">
+          <h4 className="inventoryList-headers__header-container--header">
+            CATEGORY
+          </h4>
+          <img
+            className="inventoryList-headers__header-container--sort-icon"
+            src={SortDefault}
+            alt="sort"
+          />
+        </div>
+        <div className="inventoryList-headers__header-container">
+          <h4 className="inventoryList-headers__header-container--header">
+            STATUS
+          </h4>
+          <img
+            className="inventoryList-headers__header-container--sort-icon"
+            src={SortDefault}
+            alt="sort"
+          />
+        </div>
+        <div className="inventoryList-headers__header-container">
+          <h4 className="inventoryList-headers__header-container--header">
+            QTY
+          </h4>
+          <img
+            className="inventoryList-headers__header-container--sort-icon"
+            src={SortDefault}
+            alt="sort"
+          />
+        </div>
+        <div className="inventoryList-headers__header-container">
+          <h4 className="inventoryList-headers__header-container--header">
+            WAREHOUSE
+          </h4>
+          <img
+            className="inventoryList-headers__header-container--sort-icon"
+            src={SortDefault}
+            alt="sort"
+          />
+        </div>
+        <div key="06" className="inventoryList-headers__header-container">
+          <h4 className="inventoryList-headers__header-container--header">
+            ACTIONS
+          </h4>
+        </div>
+      </div>
+      {props.inventoryList.map((item) => (
+        <div key={item.id} className="inventoryList-card">
+          {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
+          <div className="inventoryList-card__inventory-and-category-container">
+            <div className="inventory-container">
+              <h4 className="inventory-container__header">INVENTORY</h4>
+              <NavLink className="inventory-container__link">
+                <p className="p-medium inventory-container__link--inventory-item">
+                  {item.item_name}
+                </p>
+                <img
+                  src={Chevron}
+                  alt="chevron"
+                  className="inventory-container__link--icon"
+                />
+              </NavLink>
+            </div>
+            <div className="category-container">
+              <h4 className="category-container__header">CATEGORY</h4>
+              <p className="p-medium category-container__category">
+                {item.category}
+              </p>
+            </div>
+          </div>
+          {/* STATUS, QUANTITY && WAREHOUSE CONTAINER */}
+          <div className="inventoryList-card__status-quatity-warehouse-container">
+            <div className="status-container">
+              <h4 className="status-container__header">STATUS</h4>
+              <p
+                className={`p-medium  ${
+                  item.status === "In Stock"
+                    ? "status-container__in-stock"
+                    : "status-container__out-of-stock"
+                }`}
+              >
+                {item.status}
+              </p>
+            </div>
+            <div className="quantity-container">
+              <h4 className="quantity-container__header">QTY</h4>
+              <p className="p-medium quantity-container__quantity">
+                {item.quantity}
+              </p>
+            </div>
+            <div className="int-warehouse-container">
+              <h4 className="int-warehouse-container__header">WAREHOUSE</h4>
+              <p className="p-medium int-warehouse-container__warehouse-name">
+                {item.warehouse_name}
+              </p>
+            </div>
+          </div>
+          {/* ICONS CONTAINER */}
+          <div className="inventoryList-card__icon-container">
+            <img
+              src={DeleteButton}
+              alt="delete icon"
+              className="inventoryList__icon-container--delete-button"
+            ></img>
+            <img
+              src={EditIcon}
+              alt="edit icon"
+              className="inventoryList__icon-container--edit-button"
+            ></img>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default InventoryList;
-
-// Inventory detail:
-// {props.warehouse.inventory.map((inventoryCard, index) => (
-// key={index}
-//                     itemId={inventoryCard.id}
-//                     warehouseId={inventoryCard.warehouse_id}
-//                     warehouseName={props.warehouse_name}
-//                     itemName={inventoryCard.item_name}
-//                     itemDescription={inventoryCard.description}
-//                     itemCategory={inventoryCard.category}
-//                     itemStatus={inventoryCard.status}
-//                     itemQuantity={inventoryCard.quantity}
-//                     itemCreated={inventoryCard.created_at}
-//                     itemUpdated={inventoryCard.updated_at}
-// ))}

@@ -1,0 +1,121 @@
+@import '../../styles/partials/_mixins.scss';
+@import '../../styles/partials/variables';
+
+.warehouseDetails {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $mobile-margin;
+    border-bottom: 1px solid $slate;
+
+    &-info {
+      display: flex;
+      align-items: center;
+    }
+
+    &-title {
+      padding-left: 0.5rem;
+      padding-right: 4.5rem;
+    }
+
+    &-edit {
+      border-radius: 50%;
+      background-color: $instock-indigo;
+      height: 2rem;
+      width: 2rem;
+      text-align: center;
+    }
+
+    &-editImg {
+      filter: brightness(0 ) invert(1);
+      margin-top: 0.25rem;
+    }
+
+    &-editTxt {
+      display: none;
+      color: $white;
+    }
+  }
+
+  &__info {
+    padding: $mobile-margin;
+    border-bottom: 1.5px solid $slate;
+
+    &-headers {
+      color: $slate;
+      margin-bottom: 0;
+      text-transform: uppercase ;
+    }
+
+    &-contact{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+  }
+}
+
+@include tablet {
+  .warehouseDetails {
+    &__header {
+      padding: $tablet-margin;
+
+      &-edit {
+        height: auto;
+        width: auto;
+        border-radius: 1.5rem;
+        padding: 0.25rem 1rem;
+        display: flex;
+      }
+
+      &-editImg {
+        margin-top: 0;
+        margin-right: 0.25rem;
+      }
+
+      &-editTxt {
+        display: inline;
+      }
+    }
+
+    &__info {
+      padding: $tablet-margin;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: none;
+
+      &-contact {
+        padding-top: 0;
+      }
+
+      &-column {
+        padding: 0 $tablet-margin;
+
+        &--left {
+          padding-left: $tablet-margin;
+          border-left: 1px solid $slate;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .warehouseDetails {
+    &__info {
+      &-column {
+        &--left {
+          padding-left: $desktop-margin;
+        }
+
+        &--right {
+          margin-right: $tablet-margin;
+        }
+      }
+    }
+  }
+}

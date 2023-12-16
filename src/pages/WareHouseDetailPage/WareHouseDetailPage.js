@@ -2,7 +2,7 @@ import "./WareHouseDetailPage.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import InventoryList from "../../components/InventoryList/InventoryList";
@@ -41,51 +41,55 @@ if (!hasLoaded && !hasLoaded2){
   return (
     <>
     <SearchHeader title="Warehouse" addNewItem="Warehouse" />
-    <section className="warehouseDetails">
-      <article className="warehouseDetails__overallInfo">
-        <div className="warehouseDetails__header">
-          <div className="warehouseDetails__subHeader">
-            <img
-              src={ArroWBack}
-              alt="Arrow Back"
-              className="warehouseDetails__back"
-            />
-            <h1 className="warehouseDetails__name">{warehouse.warehouse_name}</h1>
+    <main className="warehouseDetails">
+        <section className="warehouseDetails__header">
+          <div className="warehouseDetails__header-info">
+            <Link to="/">
+              <img
+                src={ArroWBack}
+                alt="Go Back"
+                className="warehouseDetails__header-arrowback"
+              />
+            </Link>
+            <h2 className="warehouseDetails__header-title">
+              {warehouse.warehouse_name}
+            </h2>
           </div>
-          <img
-            src={EditButton}
-            alt="Edit Button"
-            className="warehouseDetails__edit"
-          />
-        </div>
-        <div className="warehouseDetails__specificInfo">
-          <article className="warehouseDetails__addressInfo">
-            <h4 className="warehouseDetails__title">WAREHOUSE ADDRESS</h4>
+          <Link
+            to={`/warehouses/:id/edit`}
+            className="warehouseDetails__header-edit"
+          >
+            <img
+              src={EditButton}
+              className="warehouseDetails__header-editImg"
+              alt="Edit Warehouse"
+            />
+            <span className="warehouseDetails__header-editTxt">Edit</span>
+          </Link>
+        </section>
+        <section className="warehouseDetails__info">
+          <div className="warehouseDetails__info-address">
+            <h4 className="warehouseDetails__info-headers">
+              Warehouse Address:
+            </h4>
             <p className="p-medium">{warehouse.address}</p>
-          </article>
-          <section className="warehouseDetails__contacts">
-            <article className="warehouseDetails__contactDetails">
-              <h4 className="warehouseDetails__title">CONTACT NAME:</h4>
-              <p className="warehouseDetails__contactName p-medium">
-              {warehouse.contact_name}
-              </p>
-              <p className="warehouseDetails__contactPosition p-medium">
-              {warehouse.contact_position}
-              </p>
-            </article>
-            <article className="warehouseDetails__contactInfo">
-              <h4 className="warehouseDetails__title">CONTACT INFORMATION</h4>
-              <p className="warehouseDetails__phoneNum p-medium">
-              {warehouse.contact_phone}
-              </p>
-              <p className="warehouseDetails__email p-medium">
-              {warehouse.contact_email}
-              </p>
-            </article>
-          </section>
-        </div>
-      </article>
-    </section>
+          </div>
+          <div className="warehouseDetails__info-contact">
+            <div className="warehouseDetails__info-column warehouseDetails__info-column--left">
+              <h4 className="warehouseDetails__info-headers">CONTACT NAME:</h4>
+              <p className="p-medium">{warehouse.contact_name}</p>
+              <p className="p-medium">{warehouse.contact_position}</p>
+            </div>
+            <div className="warehouseDetails__info-column warehouseDetails__info-column--right">
+              <h4 className="warehouseDetails__info-headers">
+                CONTACT INFORMATION:
+              </h4>
+              <p className="p-medium">{warehouse.contact_phone}</p>
+              <p className="p-medium">{warehouse.contact_email}</p>
+            </div>
+          </div>
+        </section>
+      </main>
     <InventoryList inventoryCard= {warehouseInventory}/>
     </>
   );

@@ -18,49 +18,24 @@ updated_at
  */
 
 function InventoryList(props) {
-    // const [inventory, setInventory] = useState();
 
-    // temporary code until inventory backend is done
-    let inventoryCard = {
-        index: "5",
-        itemId: '1',
-        warehouseId: '1',
-        warehouseName: 'Manhattan',
-        itemName: "printer",
-        itemDescription: "prints stuff",
-        itemCategory: "electronics",
-        itemStatus: "in stock",
-        itemQuantity: 55,
-        itemCreated: "yesterday",
-        itemUpdated: "in the future"
-    }
-
-    // const getInventory = () => {
-    //     axios
-    //         .get(`${API_URL}inventory/${props.selectedWarehouse}`)
-    //         .then((res) => {
-    //             console.log(res.data)
-    //              setInventory(res.data)
-    //         })
-    // }
-
-
+    
     // see bottom of page for code once inventory backend is set up
     return (
         <section className="inventory-list">
-
-            <InventoryDetail
-                key={inventoryCard.index}
-                itemId={inventoryCard.id}
-                warehouseId={inventoryCard.warehouseId}
-                warehouseName={props.warehouse_name}
-                itemName={inventoryCard.itemName}
-                itemDescription={inventoryCard.description}
-                itemCategory={inventoryCard.category}
-                itemStatus={inventoryCard.itemStatus}
-                itemQuantity={inventoryCard.quantity}
-                itemCreated={inventoryCard.created_at}
-                itemUpdated={inventoryCard.updated_at} />
+{props.inventoryCard.map((item) => (
+        <InventoryDetail
+          key={item.id}
+          id={item.id}
+          warehouse_name={item.warehouse_name}
+          address={item.address}
+          city={item.city}
+          country={item.country}
+          contact_name={item.contact_name}
+          contact_phone={item.contact_phone}
+          contact_email={item.contact_email}
+        />
+      ))}
 
         </section>
     );

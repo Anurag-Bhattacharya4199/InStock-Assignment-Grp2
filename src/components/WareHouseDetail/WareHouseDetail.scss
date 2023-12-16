@@ -9,31 +9,32 @@
     padding: $mobile-margin;
     border-bottom: 1px solid $slate;
 
+    &-info {
+      display: flex;
+      align-items: center;
+    }
+
     &-title {
-      padding-left: $mobile-margin;
-      padding-right: $mobile-margin;
+      padding-left: 0.5rem;
+      padding-right: 4.5rem;
     }
 
     &-edit {
       border-radius: 50%;
       background-color: $instock-indigo;
-      height: 36px;
-      width: 36px;
+      height: 2rem;
+      width: 2rem;
       text-align: center;
     }
 
     &-editImg {
-      filter: brightness(0) invert(1);
+      filter: brightness(0 ) invert(1);
       margin-top: 0.25rem;
     }
 
     &-editTxt {
       display: none;
-    }
-
-    &-info {
-      display: flex;
-      align-items: center;
+      color: $white;
     }
   }
 
@@ -42,34 +43,19 @@
     border-bottom: 1.5px solid $slate;
 
     &-headers {
+      color: $slate;
       margin-bottom: 0;
-      text-transform: uppercase;
+      text-transform: uppercase ;
     }
 
-    &-address {
-      text-align: start;
-    }
-
-    &-contact {
+    &-contact{
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      padding-top: $mobile-margin;
-    }
-
-    &-column {
-      text-align: start;
-
-      &--right {
-        padding-right: $mobile-margin;
-      }
+      padding-top: 2rem;
     }
   }
-}
-
-.p-medium {
-  margin: 0;
 }
 
 @include tablet {
@@ -77,18 +63,12 @@
     &__header {
       padding: $tablet-margin;
 
-      &-title {
-        padding-left: $tablet-margin;
-        padding-right: $tablet-margin;
-      }
-
       &-edit {
         height: auto;
         width: auto;
         border-radius: 1.5rem;
         padding: 0.25rem 1rem;
         display: flex;
-        text-decoration: none;
       }
 
       &-editImg {
@@ -98,7 +78,6 @@
 
       &-editTxt {
         display: inline;
-        color: $white;
       }
     }
 
@@ -119,6 +98,22 @@
         &--left {
           padding-left: $tablet-margin;
           border-left: 1px solid $slate;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .warehouseDetails {
+    &__info {
+      &-column {
+        &--left {
+          padding-left: $desktop-margin;
+        }
+
+        &--right {
+          margin-right: $tablet-margin;
         }
       }
     }

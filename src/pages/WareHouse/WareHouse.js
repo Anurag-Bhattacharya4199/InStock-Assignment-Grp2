@@ -12,7 +12,6 @@ function WareHouse() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasLoaded2, setHasLoaded2] = useState(false);
   let { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     axios
@@ -21,7 +20,6 @@ function WareHouse() {
         const warehouseData = response.data;
         setWarehouses(warehouseData);
         setHasLoaded(true);
-        console.log(warehouseData);
       })
       .catch((error) => {
         console.error(error);
@@ -30,9 +28,10 @@ function WareHouse() {
 
   function getWareHouseInfo(id) {
     axios.get(`${API_BASE_URL}/${id}`).then((response) => {
-      console.log(response.data);
-      setCurrentWarehouse(response.data);
-      //console.log(currentWarehouse);
+      const warehouseInfo = response.data;
+      setCurrentWarehouse(warehouseInfo);
+      console.log(warehouseInfo);
+      console.log(currentWarehouse);
     });
     setHasLoaded2(true);
     //return;

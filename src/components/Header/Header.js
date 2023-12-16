@@ -1,6 +1,5 @@
 import brandLogo1 from "../../assets/logos/InStock-Logo_1x.png";
-import brandLogo2 from "../../assets/logos/InStock-Logo_2x.png";
-
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 const Header = () => {
   return (
@@ -14,12 +13,12 @@ const Header = () => {
           />
         </div>
         <nav className="header-links-container">
-          <a href="/" className="header-links-container__link">
+          <NavLink to="/" className="header-links-container__link">
             warehouse
-          </a>
-          <a href="/" className="header-links-container__link">
+          </NavLink>
+          <NavLink to="/inventories" className="header-links-container__link">
             Inventory
-          </a>
+          </NavLink>
         </nav>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './WareHouse.scss'
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
@@ -25,8 +26,8 @@ function WareHouse() {
     return null;
   } else {
     return (
-      <div>
-        <SearchHeader title="Warehouse" addNewItem="Warehouse" />
+      <div className="warehouse-list">
+        <SearchHeader title="Warehouse" addNewItem="Warehouse" />  
         <WareHouseList warehouses={warehouses} />
       </div>
     );

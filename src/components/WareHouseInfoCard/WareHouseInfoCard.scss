@@ -1,43 +1,127 @@
 @import '../../styles/partials/_mixins.scss';
 @import '../../styles/partials/variables';
 
-.Mobile-WarehouseList {
-  margin: $mobile-margin;
-  // border: 1px solid $slate;
-  border-radius: 5px;
+// TABLET && DESKTOP HEADERS***
+.warehouseList-headers {
+    display: none;
+}
+
+@include tablet {
+
+    .warehouseList-headers{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px 32px;
+
+        &__header-container {
+            display: flex;
+
+            &--header {
+                display: flex;
+                font-weight: 600;
+            }
+
+            &--sort-icon {
+                height: 16px;
+            }
+        }
+    }
+}
+
+//WAREHOUSE CARD 
+
+.WarehouseList {
+    &__body {
+        border-top: 1px solid #bdc5d5;
+
+        @include tablet {
+            display: flex;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+        }
+
+        &--container {
+            
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 8px 24px 24px 24px;
+
+            @include tablet {
+                padding: 8px 0 0 32px;
+            }
 
 
-  &__body {
+        }
 
-      &--container {
-          border-top: 1px solid $slate;
-          display: flex;
-          justify-content: flex-start;
-          padding: 8px 24px 24px 24px;
+        &--subcontainer {
+            width: 50%;
+            padding-right: 16px;
 
-      }
+            @include tablet {
+                display: flex;
+                flex-direction: row;
+                padding: 0;
+                width: 47%;
+                
+            }
 
-      &--subcontainer {
-          width: 50%;
-          padding-right: 16px;
-      
-      }
+        }
 
-      &--info {
-          text-align: start;
-          padding-top: 16px;
-      }
+        &--info {
+            text-align: start;
+            padding-top: 16px;
 
-      &--icon-container {
-          display: flex;
-          justify-content: space-between;
-          padding: 0 24px 24px 24px;
-      } 
-  }
+            @include tablet {
+                width:35%;
+                padding: 0 50px 0 0;
+                align-items: center;
+
+            }
+
+            &--warehouse-link-container {
+
+                text-decoration: none;
+
+                @include tablet {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+            
+
+
+            &--header {
+                @include tablet {
+                    display: none;
+                }
+            }
+
+
+        }
+
+        &--icon-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 24px 24px 24px;
+
+            @include tablet {
+                flex: unset;
+                width: 12%;
+                padding: 0 16px 0 0;
+                align-items: center;
+
+
+            }
+        }
+    }
 }
 
 .p-medium {
-    margin: 0;  
+    margin: 0;
 }
 
 h4 {

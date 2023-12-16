@@ -23,7 +23,7 @@
     }
 
     &-editImg {
-      filter: brightness(0 ) invert(1);
+      filter: brightness(0) invert(1);
       margin-top: 0.25rem;
     }
 
@@ -50,7 +50,7 @@
       text-align: start;
     }
 
-    &-contact{
+    &-contact {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -98,28 +98,27 @@
       &-editTxt {
         display: inline;
       }
-  }
-
-  &__info {
-    padding: $tablet-margin;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    border-bottom: none;
-
-    &-contact {
-      padding-top: 0;
     }
 
-    &-column {
-      padding: 0 $tablet-margin;
+    &__info {
+      padding: $tablet-margin;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: none;
 
-      &--left {
-        padding-left: $tablet-margin;
-        border-left: 1px solid $slate;
+      &-contact {
+        padding-top: 0;
+      }
+
+      &-column {
+        padding: 0 $tablet-margin;
+
+        &--left {
+          padding-left: $tablet-margin;
+          border-left: 1px solid $slate;
+        }
       }
     }
-  }
-
   }
 }

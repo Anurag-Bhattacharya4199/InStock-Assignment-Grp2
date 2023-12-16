@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WareHouseDetailPage from "./pages/WareHouseDetailPage/WareHouseDetailPage";
 import WareHouse from "./pages/WareHouse/WareHouse";
 import Inventory from "./pages/Inventory/Inventory";
 import "./App.scss";
@@ -15,9 +16,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<WareHouse />} />
-          <Route path="/warehouse/:id/" element={<WareHouse />} />
-          <Route path="/inventories" element={<Inventory />} />
-          <Route path="/inventories/:id" element={<Inventory />} />
+          <Route path="/warehouses/:id/" element={<WareHouseDetailPage />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/inventory/:id" element={<Inventory />} />
         </Routes>
         <Footer />
       </BrowserRouter>

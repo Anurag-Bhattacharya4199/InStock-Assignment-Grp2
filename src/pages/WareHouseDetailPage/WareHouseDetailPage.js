@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 function WareHouseDetailPage(props) {
   let { id } = useParams();
@@ -85,6 +86,7 @@ if (!hasLoaded && !hasLoaded2){
         </div>
       </article>
     </section>
+    <InventoryList inventoryCard= {warehouseInventory}/>
     </>
   );
 }

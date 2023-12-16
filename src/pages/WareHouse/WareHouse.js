@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
-import WareHouseDetail from "../../components/WareHouseDetail/WareHouseDetail";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function WareHouse() {

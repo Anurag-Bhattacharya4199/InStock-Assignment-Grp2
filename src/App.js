@@ -7,7 +7,6 @@ import "./App.scss";
 import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import WareHouseDetail from "./components/WareHouseDetail/WareHouseDetail";
 
 function App() {
   return (

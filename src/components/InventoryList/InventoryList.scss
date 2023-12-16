@@ -9,7 +9,6 @@
   // TABLET && DESKTOP HEADERS***
   .inventoryList-headers {
     display: none;
-    padding: 16px 0px;
   }
   @include mixins.tablet {
     .inventoryList-headers {
@@ -17,6 +16,8 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      box-sizing: border-box;
+      padding: 16px 32px;
       &__header-container {
         display: flex;
         &--header {
@@ -34,8 +35,9 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 16px 0px 24px 0px;
+    padding: 16px 16px 24px 16px;
     width: 100%;
+    box-sizing: border-box;
     border-top: 1px solid #bdc5d5;
 
     // INVENTORY-ITEM && CATEGORY CONTAINER
@@ -111,6 +113,7 @@
 
       .status-container {
         width: 100%;
+
         &__header {
           color: variables.$slate;
         }
@@ -127,8 +130,10 @@
           background-color: rgba(21, 132, 99, 0.07);
           width: 61px;
           border-radius: 20px;
-          text-align: center;
+          font-size: 12px;
           font-weight: 600;
+          text-align: center;
+          text-transform: uppercase;
         }
         // DYNAMIC CLASSES - IF OUT OF STOCK**
         &__out-of-stock {
@@ -136,8 +141,10 @@
           background-color: rgba(201, 69, 21, 0.07);
           width: 86px;
           border-radius: 20px;
-          text-align: center;
           font-weight: 600;
+          font-size: 12px;
+          text-align: center;
+          text-transform: uppercase;
         }
       }
 
@@ -199,10 +206,19 @@
         display: flex;
         justify-content: space-between;
         flex: unset;
-        width: 60%;
+        width: 55%;
       }
     }
 
+    // MEDIA - DESKTOP
+    @include mixins.desktop {
+      &__status-quatity-warehouse-container {
+        display: flex;
+        justify-content: space-between;
+        flex: unset;
+        width: 58%;
+      }
+    }
     // MEDIA - TABLET
     @include mixins.tablet {
       .inventoryList-body {
@@ -226,7 +242,14 @@
       .inventoryList-card__icon-container {
         flex: unset;
         padding-top: 0px;
-        width: 11%;
+        width: 12%;
+      }
+    }
+    @include mixins.desktop {
+      .inventoryList-card__icon-container {
+        flex: unset;
+        padding-top: 0px;
+        width: 9%;
       }
     }
   }
@@ -236,6 +259,9 @@
     .inventoryList-card {
       width: 100%;
       flex-wrap: nowrap;
+      box-sizing: border-box;
+      padding-left: 32px;
+      padding-right: 32px;
     }
   }
 }

@@ -44,5 +44,5 @@ function WareHouse() {
   //         Inventory
   //         </button>
   //         </Link>
-}
+
 export default WareHouse;

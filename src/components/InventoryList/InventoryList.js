@@ -44,7 +44,7 @@ const InventoryList = (props) => {
         </div>
         <div className="inventoryList-headers__header-container">
           <h4 className="inventoryList-headers__header-container--header">
-            QUANTITY
+            QTY
           </h4>
           <img
             className="inventoryList-headers__header-container--sort-icon"
@@ -107,7 +107,7 @@ const InventoryList = (props) => {
               </p>
             </div>
             <div className="quantity-container">
-              <h4 className="quantity-container__header">QUANTITY</h4>
+              <h4 className="quantity-container__header">QTY</h4>
               <p className="p-medium quantity-container__quantity">
                 {item.quantity}
               </p>

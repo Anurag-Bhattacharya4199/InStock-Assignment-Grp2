@@ -4,8 +4,12 @@ import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+
+import { Link } from "react-router-dom";
+
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import InventoryList from "../../components/InventoryList/InventoryList";
+
 
 function WareHouseDetailPage(props) {
   let { id } = useParams();
@@ -29,10 +33,10 @@ function WareHouseDetailPage(props) {
         console.error(error);
       });
 
-      axios.get(`${API_BASE_URL}${id}/inventories`).then((response) => {
-        setWarehouseInventory(response.data);
-        setHasLoaded2(true);
-      });
+    axios.get(`${API_BASE_URL}${id}/inventories`).then((response) => {
+      setWarehouseInventory(response.data);
+      setHasLoaded2(true);
+    });
   }, []);
 
 if (!hasLoaded && !hasLoaded2){
@@ -90,10 +94,10 @@ if (!hasLoaded && !hasLoaded2){
           </div>
         </section>
       </main>
-    <InventoryList inventoryCard= {warehouseInventory}/>
-    </>
-  );
-}
+
+    );
+  }
+
 }
 
 export default WareHouseDetailPage;

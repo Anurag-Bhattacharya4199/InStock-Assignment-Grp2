@@ -22,7 +22,8 @@ function WareHouse() {
   }, []);
 
   if (!hasLoaded) {
-return null
+
+    return null;
   } else {
     return (
       <div>
@@ -31,14 +32,17 @@ return null
       </div>
     );
   }
+
 }
 
 // import { Link } from 'react-router-dom';
 
-//         <Link to="/inventory/1">
-//         <button type="submit">
-//         Inventory
-//         </button>
-//         </Link>
+  // import { Link } from 'react-router-dom';
 
+  //         <Link to="/inventory/1">
+  //         <button type="submit">
+  //         Inventory
+  //         </button>
+  //         </Link>
+}
 export default WareHouse;

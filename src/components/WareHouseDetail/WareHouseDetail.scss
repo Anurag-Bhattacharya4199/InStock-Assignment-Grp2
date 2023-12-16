@@ -88,6 +88,7 @@
         border-radius: 1.5rem;
         padding: 0.25rem 1rem;
         display: flex;
+        text-decoration: none;
       }
 
       &-editImg {
@@ -97,6 +98,7 @@
 
       &-editTxt {
         display: inline;
+        color: $white;
       }
     }
 

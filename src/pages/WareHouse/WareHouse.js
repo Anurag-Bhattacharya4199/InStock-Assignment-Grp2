@@ -30,27 +30,17 @@ function WareHouse() {
     axios.get(`${API_BASE_URL}/${id}`).then((response) => {
       const warehouseInfo = response.data;
       setCurrentWarehouse(warehouseInfo);
-      console.log(warehouseInfo);
-      console.log(currentWarehouse);
+      setCurrentWarehouse(response.data);
     });
     setHasLoaded2(true);
     //return;
   }
-
-  if (id && !hasLoaded2) {
-    getWareHouseInfo(id);
-    return <WareHouseDetail currentWarehouse={currentWarehouse} />;
-  } else if (hasLoaded) {
     return (
       <div>
         <SearchHeader title="Warehouse" addNewItem="Warehouse" />
         <WareHouseList warehouses={warehouses} />
       </div>
     );
-  } else {
-    return null;
-  }
-}
 
 // import { Link } from 'react-router-dom';
 

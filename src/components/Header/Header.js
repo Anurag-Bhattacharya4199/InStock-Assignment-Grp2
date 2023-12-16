@@ -15,7 +15,7 @@ const Header = () => {
         </div>
         <nav className="header-links-container">
           <a href="/" className="header-links-container__link">
-            warehouse
+            Warehouse
           </a>
           <a href="/" className="header-links-container__link">
             Inventory

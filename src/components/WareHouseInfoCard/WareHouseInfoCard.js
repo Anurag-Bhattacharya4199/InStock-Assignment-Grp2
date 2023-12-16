@@ -4,8 +4,8 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import "./WareHouseInfoCard.scss";
 
 function WareHouseInfoCard(props) {
-  const currentWarehouse = props.currentWarehouse
-  const isWarehouseSelected = props.isWarehouseSelected
+  const currentWarehouse = props.currentWarehouse;
+  const isWarehouseSelected = props.isWarehouseSelected;
 
   const {
     warehouse_name,
@@ -24,7 +24,7 @@ function WareHouseInfoCard(props) {
         <div className="Mobile-WarehouseList__body--subcontainer">
           <div className="Mobile-WarehouseList__body--info">
             <h4>WAREHOUSE</h4>
-            <Link to={`/warehouses/${id}`} state={{warehouse: props}}>
+            <Link to={`/warehouses/${id}`} state={{ warehouse: props }}>
               <p className="p-medium">{warehouse_name}</p>
             </Link>
           </div>

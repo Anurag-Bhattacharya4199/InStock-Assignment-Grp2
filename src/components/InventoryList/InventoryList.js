@@ -4,12 +4,12 @@ import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
-import SearchHeader from "../SearchHeader/SearchHeader";
+
 const InventoryList = (props) => {
   return (
     <div className="inventoryList">
       {/* SEARCH COMPONENT */}
-      <SearchHeader title="Inventory" addNewItem="Item" />
+      
       {/* INVENTORY-LIST TABLET && DESKTOP HEADER CONTAINER  */}
       <div className="inventoryList-headers">
         <div className="inventoryList-headers__header-container">

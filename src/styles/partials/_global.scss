@@ -47,6 +47,7 @@ button {
     font-size: 13px;
     line-height: 20px;
     font-family: $font-bold;
+    text-decoration: none;
 
     @include tablet {
         font-size: 14px;

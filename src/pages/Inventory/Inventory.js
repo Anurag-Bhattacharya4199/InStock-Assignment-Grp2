@@ -27,6 +27,7 @@ const Inventory = () => {
   } else {
     return (
       <section>
+        <SearchHeader title="Inventory" addNewItem="Item" />
         <InventoryList inventoryList={inventoryList} />
       </section>
     );

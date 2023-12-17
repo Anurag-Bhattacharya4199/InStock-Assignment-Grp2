@@ -48,9 +48,9 @@ function WareHouseDetailPage(props) {
                 className="warehouseDetails__header-arrowback"
               />
             </Link>
-            <h2 className="warehouseDetails__header-title">
+            <h1 className="warehouseDetails__header-title">
               {warehouse.warehouse_name}
-            </h2>
+            </h1>
           </div>
           <Link
             to={`/warehouses/:id/edit`}

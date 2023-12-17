@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import InventoryList from "../../components/InventoryList/InventoryList";
 
 function WareHouseDetailPage(props) {
   let { id } = useParams();
@@ -86,6 +87,7 @@ function WareHouseDetailPage(props) {
             </div>
           </div>
         </section>
+        <InventoryList  inventoryList={warehouseInventory}/>
       </main>
     );
   }

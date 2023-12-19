@@ -1,0 +1,62 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.inventoryList {
+  margin: $mobile-margin;
+  padding: 0 $mobile-margin;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+  display: grid;
+  grid-template-columns: repeat (6, 116px);
+  gap: 10px;
+  // grid-auto-rows: minmax(100px, auto);
+
+  
+  &__width{
+    width: 50px;
+  }
+
+&__header{
+width: 116px;
+&__item{
+  display:flex;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+&__category{
+  display:flex;
+  grid-column: 2;
+  grid-row: 1;
+}
+&__status{
+  display:flex;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+&__quantity{
+  display:flex;
+  grid-column: 4;
+  grid-row: 1;
+}
+
+&__warehouse{
+  display:flex;
+  grid-column: 5;
+  grid-row: 1;
+}
+
+&__actions{
+  grid-column: 6;
+  grid-row: 1;
+}
+
+&--sort-icon {
+  height: 16px;
+}
+
+}
+
+}
+

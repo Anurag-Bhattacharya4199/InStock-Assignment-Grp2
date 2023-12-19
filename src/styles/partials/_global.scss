@@ -17,7 +17,6 @@ h1 {
     font-size: 28px;
     line-height: 36px;
     font-family: $font-bold;
-    //color: $instock-indigo;
 
     @include tablet {
         font-size: 32px;
@@ -103,3 +102,29 @@ h6,
         line-height: 18px;
     }
 }
+
+// .inventory-width{
+//     width: 116px;
+
+    // &--item-name{
+    //     width: 116px;
+    // }
+    // &--category{
+    //     width: 71px;
+    // }
+
+    // &--status{
+    //     width: 86px;
+    // }
+
+    // &--quantity{
+    //     width: 70px;
+    // }
+
+    // &--warehouse-name{
+    //     width: 85px;
+    // }
+    // &--actions{
+    //     width: 75px;
+    // }
+// }

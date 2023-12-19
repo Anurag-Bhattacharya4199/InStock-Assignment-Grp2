@@ -49,9 +49,9 @@ function WareHouseDetailPage(props) {
                 className="warehouseDetails__header-arrowback"
               />
             </Link>
-            <h2 className="warehouseDetails__header-title">
+            <h1 className="warehouseDetails__header-title">
               {warehouse.warehouse_name}
-            </h2>
+            </h1>
           </div>
           <Link
             to={`/warehouses/:id/edit`}
@@ -71,6 +71,7 @@ function WareHouseDetailPage(props) {
               Warehouse Address:
             </h4>
             <p className="p-medium">{warehouse.address}</p>
+            <p className="p-medium">{warehouse.city}, {warehouse.country}</p>
           </div>
           <div className="warehouseDetails__info-contact">
             <div className="warehouseDetails__info-column warehouseDetails__info-column--left">
@@ -87,7 +88,7 @@ function WareHouseDetailPage(props) {
             </div>
           </div>
         </section>
-        <InventoryList  inventoryList={warehouseInventory}/>
+        <InventoryList inventoryList={warehouseInventory}/>
       </main>
     );
   }

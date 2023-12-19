@@ -11,10 +11,13 @@ function WareHouse() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
+  const [warehouseToDelete, setWarehouseToDelete] = useState(null);
 
-  const handleDeleteClick = (warehouseId) => {
+  const handleDeleteClick = (warehouseId, warehouseName) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(warehouseId);
+    setWarehouseToDelete(warehouseName);
+    console.log(warehouseId)
   };
 
   // const handleDeleteConfirmation = () => {
@@ -56,6 +59,7 @@ function WareHouse() {
           <div className="overlay">
             <div className="delete-popup">
               <DeleteWarehouse
+                warehouseName={warehouseToDelete}
                 handleCloseDeleteComponent={handleCloseDeleteComponent}
               />
             </div>

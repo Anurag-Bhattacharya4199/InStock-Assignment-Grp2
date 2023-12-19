@@ -13,11 +13,11 @@ function WareHouse() {
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
 
-  const handleDeleteClick = (warehouseId, warehouseName) => {
+  const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
-    setDeleteWarhouseID(warehouseId);
-    setWarehouseToDelete(warehouseName);
-    console.log(warehouseId)
+    setDeleteWarhouseID(String(id));
+    setWarehouseToDelete(warehouse_name.toString());
+    console.log(id)
   };
 
   // const handleDeleteConfirmation = () => {

@@ -21,9 +21,9 @@ function WareHouseInfoCard(props) {
 
   return (
     <div className="warehouseList">
-   
+
       {/* warehouse card - all displays*/}
-    
+
       <div className="WarehouseList__body">
         <div className="WarehouseList__body--container">
           <div className="WarehouseList__body--subcontainer">
@@ -59,13 +59,13 @@ function WareHouseInfoCard(props) {
           </div>
         </div>
         <div className="WarehouseList__body--icon-container">
-          <Link>
-            <img
-              src={DeleteButton}
-              alt="delete icon"
-              className="WarehouseList_body--delete-icon"
-            ></img>
-          </Link>
+
+          <button onClick={() => props.onDeleteClick(id)}><img
+            src={DeleteButton}
+            alt="delete icon"
+            className="WarehouseList_body--delete-icon"
+          ></img>
+          </button>
           <Link>
             <img
               src={EditIcon}

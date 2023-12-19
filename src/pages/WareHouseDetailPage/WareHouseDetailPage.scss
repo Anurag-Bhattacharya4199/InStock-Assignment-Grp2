@@ -1,5 +1,5 @@
-@import '../../styles/partials/_mixins.scss';
-@import '../../styles/partials/variables';
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
 
 .warehouseDetails {
   &__header {
@@ -29,7 +29,7 @@
     }
 
     &-editImg {
-      filter: brightness(0 ) invert(1);
+      filter: brightness(0) invert(1);
       margin-top: 0.25rem;
     }
 
@@ -46,10 +46,10 @@
     &-headers {
       color: $slate;
       margin-bottom: 0;
-      text-transform: uppercase ;
+      text-transform: uppercase;
     }
 
-    &-contact{
+    &-contact {
       display: flex;
       flex-direction: row;
       align-items: center;

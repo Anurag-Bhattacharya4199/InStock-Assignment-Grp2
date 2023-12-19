@@ -1,0 +1,45 @@
+@import '../../styles/partials/_mixins.scss';
+@import '../../styles/partials/variables';
+
+.DeleteWarehouseCard {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        width: 60%;
+        align-self: center;
+    }
+
+    &__exit {
+        align-self: flex-end;
+        padding: 16px;
+    }
+
+    &__header {
+        margin: 0;
+    }
+
+    &__body  {
+        margin: 0;
+    }
+
+    &__buttons{
+        align-self: flex-end;
+
+        &--cancel {
+            background-color: white;
+            border-radius: 20px;
+            border: 1px solid $cloud;
+
+        }
+
+        &--delete {
+            background-color: $red;
+            border-radius: 20px;
+            border: 1px solid $cloud;
+        }
+
+    }
+
+    
+}

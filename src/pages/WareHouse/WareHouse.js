@@ -3,6 +3,7 @@ import axios from "axios";
 import './WareHouse.scss'
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import DeleteWarehouse from "../../components/DeleteWarehouse/DeleteWarehouse";
 
 function WareHouse() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
@@ -29,6 +30,7 @@ function WareHouse() {
       <div className="warehouse-list">
         <SearchHeader title="Warehouse" addNewItem="Warehouse" />  
         <WareHouseList warehouses={warehouses} />
+        <DeleteWarehouse/>
       </div>
     );
   }

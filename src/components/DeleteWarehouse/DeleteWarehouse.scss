@@ -12,6 +12,8 @@
     &__exit {
         align-self: flex-end;
         padding: 16px;
+        background-color: white;
+        border: none;
     }
 
     &__header {
@@ -34,8 +36,10 @@
 
         &--delete {
             background-color: $red;
+            color: white;
             border-radius: 20px;
             border: 1px solid $cloud;
+            margin-left: 16px;
         }
 
     }

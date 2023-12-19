@@ -59,12 +59,12 @@ function WareHouseInfoCard(props) {
           </div>
         </div>
         <div className="WarehouseList__body--icon-container">
-
-          <button onClick={() => props.onDeleteClick(id, warehouse_name)}><img
-            src={DeleteButton}
-            alt="delete icon"
-            className="WarehouseList_body--delete-icon"
-          ></img>
+          <button className="WarehouseList__body--delete-button" onClick={() => props.onDeleteClick(id, warehouse_name)}>
+            <img
+              src={DeleteButton}
+              alt="delete icon"
+              className="WarehouseList__body--delete-icon"
+            ></img>
           </button>
           <Link>
             <img

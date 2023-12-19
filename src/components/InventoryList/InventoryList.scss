@@ -5,21 +5,25 @@
   margin: variables.$mobile-margin;
   border-radius: 5px;
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
-
   // TABLET && DESKTOP HEADERS***
   .inventoryList-headers {
     display: none;
   }
   @include mixins.tablet {
     .inventoryList-headers {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      padding: 16px 24px;
+
+      // display: flex;
+      // justify-content: space-between;
+      // width: 100%;
       box-sizing: border-box;
-      padding: 16px 32px;
+
       &__header-container {
         display: flex;
+        // width: 100%;
+        box-sizing: border-box;
         &--header {
           font-weight: 600;
         }
@@ -27,24 +31,38 @@
           height: 16px;
         }
       }
+      //  HEADER ACTIONS
+      .header-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+      // HEADER WAREHOUSE
+      .header-warehouse {
+        padding-left: 24px;
+      }
+      // HEADER QUANTITY
+      .header-quantity {
+        padding-left: 50px;
+      }
+      // HEADER STATUS
+      .header-status {
+        padding-left: 30px;
+      }
+      .header-category {
+        padding-left: 35px;
+      }
     }
   }
 
   // INVENTORY-LIST CARD***
   .inventoryList-card {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    padding: 16px 16px 24px 16px;
-    width: 100%;
+    padding: 16px;
     box-sizing: border-box;
-    border-top: 1px solid #bdc5d5;
-
     // INVENTORY-ITEM && CATEGORY CONTAINER
     &__inventory-and-category-container {
-      width: 100%;
       flex: 50%;
-
       // INVENTORY ITEM***
       .inventory-container {
         width: 100%;
@@ -61,13 +79,15 @@
           text-decoration: none;
           color: variables.$instock-indigo;
           display: flex;
-          align-items: flex-end;
-
+          align-items: center;
           &--inventory-item {
             font-weight: 600;
+            padding-right: 2px;
           }
           &--icon {
-            display: block;
+            height: 20px;
+            width: 20px;
+            display: inline;
           }
         }
       }
@@ -75,7 +95,6 @@
       // CATEGORY***
       .category-container {
         padding-top: 16px;
-        width: 100%;
 
         &__header {
           color: variables.$slate;
@@ -89,31 +108,31 @@
           color: variables.$instock-black;
           font-weight: 600;
         }
+        @include mixins.tablet {
+          &__category {
+            padding-left: 35px;
+          }
+        }
       }
       @include mixins.tablet {
         .category-container {
           padding-top: 0px;
+          width: 100%;
         }
       }
     }
 
     @include mixins.tablet {
       &__inventory-and-category-container {
-        display: flex;
-        justify-content: space-between;
         flex: unset;
-        width: 49%;
-        gap: 24px;
+        grid-column: 1 / span 2;
+        display: flex;
       }
     }
     // STATUS, QUANTITY & WAREHOUSE CONTAINER***
     &__status-quatity-warehouse-container {
-      width: 100%;
       flex: 50%;
-
       .status-container {
-        width: 100%;
-
         &__header {
           color: variables.$slate;
         }
@@ -124,33 +143,45 @@
             display: none;
           }
         }
+
         // DYNAMIC CLASSES - IF IN STOCK**
         &__in-stock {
           color: variables.$green;
           background-color: rgba(21, 132, 99, 0.07);
-          width: 61px;
+          max-width: 65px;
           border-radius: 20px;
-          font-size: 12px;
-          font-weight: 600;
+          padding: 4px;
           text-align: center;
-          text-transform: uppercase;
+        }
+        @include mixins.tablet {
+          &__in-stock {
+            max-width: 61px;
+          }
         }
         // DYNAMIC CLASSES - IF OUT OF STOCK**
         &__out-of-stock {
           color: variables.$red;
           background-color: rgba(201, 69, 21, 0.07);
-          width: 86px;
+          max-width: 95px;
           border-radius: 20px;
-          font-weight: 600;
-          font-size: 12px;
+          padding: 4px;
           text-align: center;
-          text-transform: uppercase;
+        }
+        @include mixins.tablet {
+          &__out-of-stock {
+            max-width: 86px;
+          }
+        }
+
+        @include mixins.tablet {
+          &__status {
+            margin-left: 20px;
+          }
         }
       }
 
       .quantity-container {
         padding-top: 16px;
-        width: 100%;
         &__header {
           color: variables.$slate;
         }
@@ -164,6 +195,11 @@
         &__quantity {
           color: variables.$instock-black;
           font-weight: 400;
+        }
+        @include mixins.tablet {
+          &__quantity {
+            padding-left: 50px;
+          }
         }
       }
       @include mixins.tablet {
@@ -195,6 +231,7 @@
       // MEDIA - TABLET
       @include mixins.tablet {
         .int-warehouse-container {
+          padding-left: 24px;
           padding-top: 0px;
         }
       }
@@ -203,28 +240,9 @@
     // MEDIA - TABLET
     @include mixins.tablet {
       &__status-quatity-warehouse-container {
-        display: flex;
-        justify-content: space-between;
-        flex: unset;
-        width: 55%;
-      }
-    }
-
-    // MEDIA - DESKTOP
-    @include mixins.desktop {
-      &__status-quatity-warehouse-container {
-        display: flex;
-        justify-content: space-between;
-        flex: unset;
-        width: 58%;
-      }
-    }
-    // MEDIA - TABLET
-    @include mixins.tablet {
-      .inventoryList-body {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+        grid-column: 3 / span 3;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -232,36 +250,37 @@
     .inventoryList-card__icon-container {
       display: flex;
       justify-content: space-between;
-      padding-top: 16px;
-      flex: 100%;
       flex-wrap: wrap;
+      width: 100%;
+      box-sizing: border-box;
+      padding-top: 16px;
     }
 
     // MEDIA - TABLET
     @include mixins.tablet {
       .inventoryList-card__icon-container {
-        flex: unset;
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
         padding-top: 0px;
-        width: 12%;
+        // ICONS
+        .action-icon {
+          height: 24px;
+          width: 24px;
+        }
       }
     }
-    @include mixins.desktop {
-      .inventoryList-card__icon-container {
-        flex: unset;
-        padding-top: 0px;
-        width: 9%;
-      }
-    }
+  }
+  .inventoryList-card:hover {
+    background-color: rgba(46, 102, 229, 0.07);
   }
 
   // MEDIA - TABLET
   @include mixins.tablet {
     .inventoryList-card {
-      width: 100%;
-      flex-wrap: nowrap;
-      box-sizing: border-box;
-      padding-left: 32px;
-      padding-right: 32px;
+      padding: 16px 24px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
     }
   }
 }
@@ -269,7 +288,7 @@
 // MEDIA - TABLET
 @include mixins.tablet {
   .inventoryList {
-    margin: variables.$tablet-margin;
+    margin: 0px 32px;
   }
 }
 

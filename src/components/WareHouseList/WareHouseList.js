@@ -71,6 +71,7 @@ function WareHouseList(props) {
           contact_phone={item.contact_phone}
           contact_email={item.contact_email}
           id={item.id}
+          onDeleteClick={props.onDeleteClick} 
         />
       ))}
     </div>

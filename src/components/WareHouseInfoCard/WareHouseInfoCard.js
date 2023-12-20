@@ -30,7 +30,7 @@ function WareHouseInfoCard(props) {
           <div className="WarehouseList__body--subcontainer">
             <div className="WarehouseList__body--info">
               <h4 className="WarehouseList__body--info--header">WAREHOUSE</h4>
-              <Link className="WarehouseList__body--info--warehouse-link-container" to={`/warehouses/${id}`}>
+              <Link className="WarehouseList__body--info--warehouse-link-container" to={`/warehouses/${id}`}  >
                 <p className="p-medium">{warehouse_name}</p>
                 <img
                   src={Chevron}

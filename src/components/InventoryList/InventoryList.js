@@ -9,7 +9,7 @@ const InventoryList = (props) => {
   return (
     <div className="inventoryList">
       {/* SEARCH COMPONENT */}
-      
+
       {/* INVENTORY-LIST TABLET && DESKTOP HEADER CONTAINER  */}
       <div className="inventoryList-headers">
         <div className="inventoryList-headers__header-container">
@@ -22,7 +22,7 @@ const InventoryList = (props) => {
             alt="sort"
           />
         </div>
-        <div className="inventoryList-headers__header-container">
+        <div className="inventoryList-headers__header-container header-category">
           <h4 className="inventoryList-headers__header-container--header">
             CATEGORY
           </h4>
@@ -32,7 +32,7 @@ const InventoryList = (props) => {
             alt="sort"
           />
         </div>
-        <div className="inventoryList-headers__header-container">
+        <div className="inventoryList-headers__header-container header-status">
           <h4 className="inventoryList-headers__header-container--header">
             STATUS
           </h4>
@@ -42,7 +42,7 @@ const InventoryList = (props) => {
             alt="sort"
           />
         </div>
-        <div className="inventoryList-headers__header-container">
+        <div className="inventoryList-headers__header-container header-quantity">
           <h4 className="inventoryList-headers__header-container--header">
             QTY
           </h4>
@@ -52,7 +52,7 @@ const InventoryList = (props) => {
             alt="sort"
           />
         </div>
-        <div className="inventoryList-headers__header-container">
+        <div className="inventoryList-headers__header-container header-warehouse">
           <h4 className="inventoryList-headers__header-container--header">
             WAREHOUSE
           </h4>
@@ -62,7 +62,10 @@ const InventoryList = (props) => {
             alt="sort"
           />
         </div>
-        <div key="06" className="inventoryList-headers__header-container">
+        <div
+          key="06"
+          className="inventoryList-headers__header-container header-actions"
+        >
           <h4 className="inventoryList-headers__header-container--header">
             ACTIONS
           </h4>
@@ -97,11 +100,11 @@ const InventoryList = (props) => {
             <div className="status-container">
               <h4 className="status-container__header">STATUS</h4>
               <p
-                className={`p-medium  ${
+                className={`p-medium status-container__status ${
                   item.status === "In Stock"
                     ? "status-container__in-stock"
                     : "status-container__out-of-stock"
-                }`}
+                } `}
               >
                 {item.status}
               </p>
@@ -124,12 +127,12 @@ const InventoryList = (props) => {
             <img
               src={DeleteButton}
               alt="delete icon"
-              className="inventoryList__icon-container--delete-button"
+              className="inventoryList__icon-container--delete-button action-icon"
             ></img>
             <img
               src={EditIcon}
               alt="edit icon"
-              className="inventoryList__icon-container--edit-button"
+              className="inventoryList__icon-container--edit-button action-icon"
             ></img>
           </div>
         </div>

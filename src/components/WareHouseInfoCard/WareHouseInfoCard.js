@@ -31,7 +31,6 @@ function WareHouseInfoCard(props) {
               <Link
                 className="WarehouseList__body--info--warehouse-link-container"
                 to={`/warehouses/${id}`}
-                state={{ warehouse: props }}
               >
                 <p className="p-medium">{warehouse_name}</p>
                 <img
@@ -66,13 +65,16 @@ function WareHouseInfoCard(props) {
           </div>
         </div>
         <div className="WarehouseList__body--icon-container">
-          <Link>
+          <button
+            className="WarehouseList__body--delete-button"
+            onClick={() => props.onDeleteClick(id, warehouse_name)}
+          >
             <img
               src={DeleteButton}
               alt="delete icon"
-              className="WarehouseList_body--delete-icon"
+              className="WarehouseList__body--delete-icon"
             ></img>
-          </Link>
+          </button>
           <Link>
             <img
               src={EditIcon}

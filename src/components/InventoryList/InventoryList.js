@@ -1,17 +1,29 @@
 import "./InventoryList.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
 
 const InventoryList = (props) => {
+  let { id } = useParams();
+  const [checkData, setCheckData] = useState("flex");
+  const [checkCol, setcheckCol] = useState("");
+
+  useEffect(() => {
+    if (id) {
+      setCheckData("none");
+      setcheckCol("five-columns")
+    }
+  }, []);
+
   return (
     <div className="inventoryList">
       {/* SEARCH COMPONENT */}
 
       {/* INVENTORY-LIST TABLET && DESKTOP HEADER CONTAINER  */}
-      <div className="inventoryList-headers">
+      <div className={`inventoryList-headers ${checkCol}`}>
         <div className="inventoryList-headers__header-container">
           <h4 className="inventoryList-headers__header-container--header">
             INVENTORY ITEM
@@ -52,7 +64,7 @@ const InventoryList = (props) => {
             alt="sort"
           />
         </div>
-        <div className="inventoryList-headers__header-container header-warehouse">
+        <div style={{ display: checkData }} className="inventoryList-headers__header-container header-warehouse">
           <h4 className="inventoryList-headers__header-container--header">
             WAREHOUSE
           </h4>
@@ -72,7 +84,7 @@ const InventoryList = (props) => {
         </div>
       </div>
       {props.inventoryList.map((item) => (
-        <div key={item.id} className="inventoryList-card">
+        <div key={item.id} className= {`inventoryList-card ${checkCol}`}>
           {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
           <div className="inventoryList-card__inventory-and-category-container">
             <div className="inventory-container">
@@ -115,7 +127,7 @@ const InventoryList = (props) => {
                 {item.quantity}
               </p>
             </div>
-            <div className="int-warehouse-container">
+            <div style={{ display: checkData }} className="int-warehouse-container">
               <h4 className="int-warehouse-container__header">WAREHOUSE</h4>
               <p className="p-medium int-warehouse-container__warehouse-name">
                 {item.warehouse_name}

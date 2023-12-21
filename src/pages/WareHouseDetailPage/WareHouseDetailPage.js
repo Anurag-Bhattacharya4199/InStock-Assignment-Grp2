@@ -16,8 +16,6 @@ function WareHouseDetailPage(props) {
   const [warehouse, setWarehouse] = useState([]);
   const [warehouseInventory, setWarehouseInventory] = useState([]);
 
-  // console.log(props.warehouse)
-
   useEffect(() => {
     axios
       .get(`${API_BASE_URL}${id}`)
@@ -49,9 +47,9 @@ function WareHouseDetailPage(props) {
                 className="warehouseDetails__header-arrowback"
               />
             </Link>
-            <h2 className="warehouseDetails__header-title">
+            <h1 className="warehouseDetails__header-title">
               {warehouse.warehouse_name}
-            </h2>
+            </h1>
           </div>
           <Link
             to={`/warehouses/:id/edit`}
@@ -87,7 +85,7 @@ function WareHouseDetailPage(props) {
             </div>
           </div>
         </section>
-        <InventoryList  inventoryList={warehouseInventory}/>
+        <InventoryList inventoryList={warehouseInventory} />
       </main>
     );
   }

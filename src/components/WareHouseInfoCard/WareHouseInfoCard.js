@@ -5,9 +5,8 @@ import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import "./WareHouseInfoCard.scss";
 
 function WareHouseInfoCard(props) {
-  const currentWarehouse = props.currentWarehouse
-  const isWarehouseSelected = props.isWarehouseSelected
-
+  const currentWarehouse = props.currentWarehouse;
+  const isWarehouseSelected = props.isWarehouseSelected;
 
   const {
     warehouse_name,
@@ -17,12 +16,11 @@ function WareHouseInfoCard(props) {
     contact_name,
     contact_phone,
     contact_email,
-    id
+    id,
   } = props;
 
   return (
     <div className="warehouseList">
-
       {/* warehouse card - all displays*/}
 
       <div className="WarehouseList__body">
@@ -30,7 +28,10 @@ function WareHouseInfoCard(props) {
           <div className="WarehouseList__body--subcontainer">
             <div className="WarehouseList__body--info">
               <h4 className="WarehouseList__body--info--header">WAREHOUSE</h4>
-              <Link className="WarehouseList__body--info--warehouse-link-container" to={`/warehouses/${id}`}  >
+              <Link
+                className="WarehouseList__body--info--warehouse-link-container"
+                to={`/warehouses/${id}`}
+              >
                 <p className="p-medium">{warehouse_name}</p>
                 <img
                   src={Chevron}
@@ -49,18 +50,25 @@ function WareHouseInfoCard(props) {
           </div>
           <div className="WarehouseList__body--subcontainer">
             <div className="WarehouseList__body--info">
-              <h4 className="WarehouseList__body--info--header">CONTACT NAME</h4>
+              <h4 className="WarehouseList__body--info--header">
+                CONTACT NAME
+              </h4>
               <p className="p-medium">{contact_name}</p>
             </div>
             <div className="WarehouseList__body--info">
-              <h4 className="WarehouseList__body--info--header">CONTACT INFORMATION</h4>
+              <h4 className="WarehouseList__body--info--header">
+                CONTACT INFORMATION
+              </h4>
               <p className="p-medium">{contact_phone}</p>
               <p className="p-medium">{contact_email}</p>
             </div>
           </div>
         </div>
         <div className="WarehouseList__body--icon-container">
-          <button className="WarehouseList__body--delete-button" onClick={() => props.onDeleteClick(id, warehouse_name)}>
+          <button
+            className="WarehouseList__body--delete-button"
+            onClick={() => props.onDeleteClick(id, warehouse_name)}
+          >
             <img
               src={DeleteButton}
               alt="delete icon"

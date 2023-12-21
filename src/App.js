@@ -7,6 +7,7 @@ import "./App.scss";
 import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import WareHouseAdd from "./pages/WareHouseAdd/WareHouseAdd";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/warehouses/:id/" element={<WareHouseDetailPage />} />
           <Route path="/inventories" element={<Inventory />} />
           <Route path="/inventories/:id" element={<Inventory />} />
+          <Route path="/upload" element={<WareHouseAdd />} />
         </Routes>
         <Footer />
       </BrowserRouter>

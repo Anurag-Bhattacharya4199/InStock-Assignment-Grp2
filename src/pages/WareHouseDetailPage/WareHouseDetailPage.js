@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
+import "../../styles/partials/_global.scss";
 
 function WareHouseDetailPage(props) {
   let { id } = useParams();

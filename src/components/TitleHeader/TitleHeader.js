@@ -15,7 +15,8 @@ function TitleHeader(props) {
     return (
         <section className="header">
           <div className="header--info">
-            <Link to={`{}`}>
+            
+            <Link to={`${props.origin}`}>
               <img
                 src={ArroWBack}
                 alt="Go Back"
@@ -27,7 +28,7 @@ function TitleHeader(props) {
             </h1>
           </div>
           <Link
-            to={`/warehouses/:id/edit`}
+            to={`/${props.table}/${props.id}/edit`}
             className="header--edit"
           >
             <img

@@ -1,0 +1,42 @@
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
+
+.details {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    &--left-wrapper {
+        width: 45%;
+        
+        @include tablet {
+            padding-left: $tablet-margin;
+        }
+    }
+
+    &--right-wrapper {
+        display:flex;
+        flex-direction: row;
+
+        @include tablet {
+            border-left: 1px solid $slate;
+            padding-left: $tablet-margin;
+
+        }
+    }
+
+    &__status-warehouse {
+        display: flex;
+        flex-direction: column;
+        padding-right:$tablet-margin;
+
+    }
+
+    &__quantity{
+        padding-left: $desktop-column;
+    }
+
+}

@@ -7,43 +7,49 @@ function InventoryDetail(props) {
     const deleteItem = () => {
 
     }
-    console.log(props.itemName)
+    // console.log(props.description)
     return (
         <>
-            <section className="inventoryDetails__info">
-                <div className="inventoryDetails__info-description">
-                    <h4 className="inventoryDetails__info-headers">
+            <section className="details">
+                <div className="details--left-wrapper">
+                <div className="details__description">
+                    <h4 className="details__headers">
                         ITEM DESCRIPTION:
                     </h4>
-                    <p className="p-medium">{inventory.description}</p>
+                    <p className="p-medium">{props.description}</p>
                 </div>
-                <div className="inventoryDetails__info-category">
-                    <h4 className="inventoryDetails__info-headers">
+                <div className="details-category">
+                    <h4 className="details__headers">
                         CATEGORY:
                     </h4>
-                    <p className="p-medium">{inventory.category}</p>
+                    <p className="p-medium">{props.category}</p>
                 </div>
-                <div className="inventoryDetails__info-contact">
-                    <div>
-                        <div className="inventoryDetails__info-column inventoryDetails__info-column--left">
-                            <h4 className="inventoryDetails__info-headers">STATUS:</h4>
-                            <p className="p-medium">{inventory.contact_name}</p>
-                            <p className="p-medium">{inventory.contact_position}</p>
+                </div>
+                <div className="details--right-wrapper">
+                    <div className="details__status-warehouse">
+                        <div className="details__status-warehouse--status">
+                            <h4 className="details__headers">STATUS:</h4>
+                            <p
+                                className={`p-medium status-container__status ${props.status === "In Stock"
+                                        ? "status-container__in-stock"
+                                        : "status-container__out-of-stock"
+                                    } `}
+                            >
+                                {props.status}
+                            </p>
                         </div>
-                        <div className="inventoryDetails__info-column inventoryDetails__info-column--right">
-                            <h4 className="inventoryDetails__info-headers">
-                                QUANTITY:
+                        <div className="details__status-warehouse--warehouse">
+                            <h4 className="details__headers">
+                                WAREHOUSE:
                             </h4>
-                            <p className="p-medium">{inventory.contact_phone}</p>
-                            <p className="p-medium">{inventory.contact_email}</p>
+                            <p className="p-medium">{props.warehouse_name}</p>
                         </div>
                     </div>
-                    <div className="inventoryDetails__info-column inventoryDetails__info-column--right">
-                        <h4 className="inventoryDetails__info-headers">
-                            WAREHOUSE:
+                    <div className="details__quantity">
+                        <h4 className="details__headers">
+                        QUANTITY:
                         </h4>
-                        <p className="p-medium">{inventory.contact_phone}</p>
-                        <p className="p-medium">{inventory.contact_email}</p>
+                        <p className="p-medium">{props.quantity}</p>
                     </div>
                 </div>
 

@@ -1,15 +1,15 @@
-@use "../../styles/partials/mixins";
-@use "../../styles/partials/variables";
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 .inventoryList {
-  margin: variables.$mobile-margin;
+  margin: $mobile-margin;
   border-radius: 5px;
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   // TABLET && DESKTOP HEADERS***
   .inventoryList-headers {
     display: none;
   }
-  @include mixins.tablet {
+  @include tablet {
     .inventoryList-headers {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -67,9 +67,9 @@
       .inventory-container {
         width: 100%;
         &__header {
-          color: variables.$slate;
+          color: $slate;
         }
-        @include mixins.tablet {
+        @include tablet {
           &__header {
             display: none;
           }
@@ -77,9 +77,15 @@
 
         &__link {
           text-decoration: none;
-          color: variables.$instock-indigo;
+          color: $instock-indigo;
           display: flex;
           align-items: center;
+          background-color: white;
+          border:none;
+          &:hover{
+            cursor: pointer;
+          }
+          
           &--inventory-item {
             font-weight: 600;
             padding-right: 2px;
@@ -97,24 +103,24 @@
         padding-top: 16px;
 
         &__header {
-          color: variables.$slate;
+          color: $slate;
         }
-        @include mixins.tablet {
+        @include tablet {
           &__header {
             display: none;
           }
         }
         &__category {
-          color: variables.$instock-black;
+          color: $instock-black;
           font-weight: 600;
         }
-        @include mixins.tablet {
+        @include tablet {
           &__category {
             padding-left: 35px;
           }
         }
       }
-      @include mixins.tablet {
+      @include tablet {
         .category-container {
           padding-top: 0px;
           width: 100%;
@@ -122,7 +128,7 @@
       }
     }
 
-    @include mixins.tablet {
+    @include tablet {
       &__inventory-and-category-container {
         flex: unset;
         grid-column: 1 / span 2;
@@ -134,11 +140,11 @@
       flex: 50%;
       .status-container {
         &__header {
-          color: variables.$slate;
+          color: $slate;
         }
 
         // MEDIA - TABLET
-        @include mixins.tablet {
+        @include tablet {
           &__header {
             display: none;
           }
@@ -146,34 +152,34 @@
 
         // DYNAMIC CLASSES - IF IN STOCK**
         &__in-stock {
-          color: variables.$green;
+          color: $green;
           background-color: rgba(21, 132, 99, 0.07);
           max-width: 65px;
           border-radius: 20px;
           padding: 4px;
           text-align: center;
         }
-        @include mixins.tablet {
+        @include tablet {
           &__in-stock {
             max-width: 61px;
           }
         }
         // DYNAMIC CLASSES - IF OUT OF STOCK**
         &__out-of-stock {
-          color: variables.$red;
+          color: $red;
           background-color: rgba(201, 69, 21, 0.07);
           max-width: 95px;
           border-radius: 20px;
           padding: 4px;
           text-align: center;
         }
-        @include mixins.tablet {
+        @include tablet {
           &__out-of-stock {
             max-width: 86px;
           }
         }
 
-        @include mixins.tablet {
+        @include tablet {
           &__status {
             margin-left: 20px;
           }
@@ -183,26 +189,26 @@
       .quantity-container {
         padding-top: 16px;
         &__header {
-          color: variables.$slate;
+          color: $slate;
         }
 
         // MEDIA - TABLET
-        @include mixins.tablet {
+        @include tablet {
           &__header {
             display: none;
           }
         }
         &__quantity {
-          color: variables.$instock-black;
+          color: $instock-black;
           font-weight: 400;
         }
-        @include mixins.tablet {
+        @include tablet {
           &__quantity {
             padding-left: 50px;
           }
         }
       }
-      @include mixins.tablet {
+      @include tablet {
         .quantity-container {
           padding-top: 0px;
         }
@@ -213,23 +219,23 @@
         width: 100%;
 
         &__header {
-          color: variables.$slate;
+          color: $slate;
         }
 
         // MEDIA - TABLET
-        @include mixins.tablet {
+        @include tablet {
           &__header {
             display: none;
           }
         }
         &__warehouse-name {
-          color: variables.$instock-black;
+          color: $instock-black;
           font-weight: 400;
         }
       }
 
       // MEDIA - TABLET
-      @include mixins.tablet {
+      @include tablet {
         .int-warehouse-container {
           padding-left: 24px;
           padding-top: 0px;
@@ -238,7 +244,7 @@
     }
 
     // MEDIA - TABLET
-    @include mixins.tablet {
+    @include tablet {
       &__status-quatity-warehouse-container {
         grid-column: 3 / span 3;
         display: grid;
@@ -257,7 +263,7 @@
     }
 
     // MEDIA - TABLET
-    @include mixins.tablet {
+    @include tablet {
       .inventoryList-card__icon-container {
         display: flex;
         justify-content: flex-end;
@@ -272,11 +278,15 @@
     }
   }
   .inventoryList-card:hover {
-    background-color: rgba(46, 102, 229, 0.07);
+    //background-color: rgba(46, 102, 229, 0.07);
+    background-color:$light-grey;
+    .inventory-container__link{
+      background-color:$light-grey;
+    }
   }
 
   // MEDIA - TABLET
-  @include mixins.tablet {
+  @include tablet {
     .inventoryList-card {
       padding: 16px 24px;
       display: grid;
@@ -286,14 +296,14 @@
 }
 
 // MEDIA - TABLET
-@include mixins.tablet {
+@include tablet {
   .inventoryList {
     margin: 0px 32px;
   }
 }
 
 // MEDIA - DESKTOP
-@include mixins.desktop {
+@include desktop {
   .inventoryList {
     width: 1040px;
     margin: auto;

@@ -9,12 +9,18 @@ import SortDefault from "../../assets/icons/sort-24px.svg";
 const InventoryList = (props) => {
   let { id } = useParams();
   const [checkData, setCheckData] = useState("flex");
-  const [checkCol, setcheckCol] = useState("");
+  const [columnHeader, setColumnHeader] = useState("six-columns--header");
+  const [columnTable, setColmunTable] = useState("six-columns--table");
 
   useEffect(() => {
     if (id) {
       setCheckData("none");
-      setcheckCol("five-columns")
+      setColumnHeader("five-columns--header")
+      setColmunTable("five-columns--table")
+    } else {
+      setCheckData("flex");
+      setColumnHeader("six-columns--header")
+      setColmunTable("six-columns--table")
     }
   }, []);
 
@@ -23,7 +29,7 @@ const InventoryList = (props) => {
       {/* SEARCH COMPONENT */}
 
       {/* INVENTORY-LIST TABLET && DESKTOP HEADER CONTAINER  */}
-      <div className={`inventoryList-headers ${checkCol}`}>
+      <div className={`inventoryList-headers ${columnHeader}`}>
         <div className="inventoryList-headers__header-container">
           <h4 className="inventoryList-headers__header-container--header">
             INVENTORY ITEM
@@ -84,7 +90,7 @@ const InventoryList = (props) => {
         </div>
       </div>
       {props.inventoryList.map((item) => (
-        <div key={item.id} className= {`inventoryList-card ${checkCol}`}>
+        <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
           {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
           <div className="inventoryList-card__inventory-and-category-container">
             <div className="inventory-container">
@@ -108,15 +114,14 @@ const InventoryList = (props) => {
             </div>
           </div>
           {/* STATUS, QUANTITY && WAREHOUSE CONTAINER */}
-          <div className="inventoryList-card__status-quatity-warehouse-container">
+          <div className={`inventoryList-card__status-quatity-warehouse-container ${columnTable}`}>
             <div className="status-container">
               <h4 className="status-container__header">STATUS</h4>
               <p
-                className={`p-medium status-container__status ${
-                  item.status === "In Stock"
+                className={`p-medium status-container__status ${item.status === "In Stock"
                     ? "status-container__in-stock"
                     : "status-container__out-of-stock"
-                } `}
+                  } `}
               >
                 {item.status}
               </p>

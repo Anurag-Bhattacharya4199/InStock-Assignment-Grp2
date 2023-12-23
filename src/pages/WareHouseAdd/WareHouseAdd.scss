@@ -52,6 +52,9 @@
       border-radius: 20px;
       border-color: $slate;
       width: 47%;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &-cancelBtn {
@@ -61,6 +64,11 @@
     &-addBtn {
       background-color: $instock-indigo;
       color: $white;
+    }
+
+    &-invalidInput {
+      border: 1px solid $red
+      ;
     }
   }
 }

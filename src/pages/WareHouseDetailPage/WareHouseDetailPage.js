@@ -85,7 +85,7 @@ function WareHouseDetailPage(props) {
             </div>
           </div>
         </section>
-        <InventoryList inventoryList={warehouseInventory} />
+        <InventoryList inventoryList={warehouseInventory} warehouseName={warehouse.warehouse_name} />
       </main>
     );
   }

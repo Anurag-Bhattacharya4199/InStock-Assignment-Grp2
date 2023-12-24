@@ -2,17 +2,17 @@ import './InventoryDetail.scss'
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg"
 import editIcon from "../../assets/icons/edit-24px.svg"
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
+
 function InventoryDetail(props) {
 
-    const deleteItem = () => {
-
-    }
-    // console.log(props.description)
+    const location = useLocation()
+    // const test = location.state?.test;
+    console.log("location: ", location)
     return (
         <>
         <SearchHeader title="Warehouse" addNewItem="Warehouse" />

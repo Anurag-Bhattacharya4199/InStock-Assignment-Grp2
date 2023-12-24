@@ -4,6 +4,7 @@ import './WareHouse.scss'
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import DeleteWarehouse from "../../components/DeleteWarehouse/DeleteWarehouse";
+import { useParams } from "react-router-dom";
 
 function WareHouse() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
@@ -12,30 +13,12 @@ function WareHouse() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
+  const { id } = useParams();
 
-  const handleDeleteClick = (id, warehouse_name) => {
-    setShowDeletePopup(true);
-    setDeleteWarhouseID(String(id));
-    setWarehouseToDelete(warehouse_name.toString());
-    console.log(id)
-  };
 
-  // const handleDeleteConfirmation = () => {
-  //   // make an axios call to delete the warehouse using deleteWarehouseID
-  //   console.log(`Deleting warehouse with ID: ${deleteWarehouseID}`);
 
-  //   // to close popup afer delete
-  //   setShowDeletePopup(false);
-  //   setDeleteWarhouseID(null);
-  // };
-
-  // to  close delete component using cancel or X
-  const handleCloseDeleteComponent = () => {
-    setShowDeletePopup(false);
-    setDeleteWarhouseID(null);
-  };
-
-  useEffect(() => {
+ 
+  const fetchWarehouseList = () => {
     axios
       .get(API_BASE_URL)
       .then((response) => {
@@ -46,7 +29,45 @@ function WareHouse() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    fetchWarehouseList(); // Fetch warehouse list when component mounts
+  }, []); // Empty dependency array to trigger effect only on mount
+
+
+
+
+  const handleDeleteClick = (id, warehouse_name) => {
+    setShowDeletePopup(true);
+    setDeleteWarhouseID(String(id));
+    setWarehouseToDelete(warehouse_name.toString());
+    console.log(id)
+  };
+
+  const handleDeleteConfirmation = () => {
+    // Make a DELETE request to delete the warehouse
+    axios.delete(`${API_BASE_URL}/${deleteWarehouseID}`)
+      .then(() => {
+        console.log(`Successfully deleted warehouse with ID: ${deleteWarehouseID}`);
+        // Now, make another DELETE request to delete the warehouse inventory
+        setShowDeletePopup(false);
+        setDeleteWarhouseID(null);
+        fetchWarehouseList();
+
+      })
+      .catch((error) => {
+        console.error(`Error deleting warehouse: ${error}`);
+
+      });
+  };
+
+  // to  close delete component using cancel or X
+  const handleCloseDeleteComponent = () => {
+    setShowDeletePopup(false);
+    setDeleteWarhouseID(null);
+  };
+
 
   if (!hasLoaded) {
     return null;
@@ -61,6 +82,7 @@ function WareHouse() {
               <DeleteWarehouse
                 warehouseName={warehouseToDelete}
                 handleCloseDeleteComponent={handleCloseDeleteComponent}
+                handleDeleteConfirmation={handleDeleteConfirmation}
               />
             </div>
           </div>

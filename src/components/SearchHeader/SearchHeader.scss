@@ -1,9 +1,17 @@
 @import '../../styles/partials/_mixins.scss';
 @import '../../styles/partials/variables';
 
-.search {
+.main {
     margin: $mobile-margin;
     border-radius: 5px;
+
+    &--edit {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $mobile-margin;
+        border-bottom: 1px solid $slate;
+    }
 
     &--title {
         text-align: start;
@@ -49,9 +57,32 @@
             border-radius: 2rem;
             margin: 16px 0;
             width: 100%;
-           
         }
+    }
+}
 
+.display-none {
+    display: none;
+}
 
+.header-button {
+
+    &--edit {
+        border-radius: 50%;
+        background-color: $instock-indigo;
+        height: 2rem;
+        width: 2rem;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    &--editImg {
+        filter: brightness(0) invert(1);
+        margin-top: 0.25rem;
+    }
+
+    &--editTxt {
+        display: none;
+        color: $white;
     }
 }

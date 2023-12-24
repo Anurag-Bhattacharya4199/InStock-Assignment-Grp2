@@ -156,7 +156,6 @@ const EditWarehouse = (props) => {
             className={`editWarehouse__form-addBtn ${props.disableButtonClass}`}
             onClick={() => {
               props.handleEditWarehouse();
-              //   props.handleWarehouseEditClass();
             }}
           >
             Save
@@ -167,59 +166,3 @@ const EditWarehouse = (props) => {
   );
 };
 export default EditWarehouse;
-// let { warehouse } = props;
-//   console.log(warehouse);
-//   const handleFormInput = (id, event) => {
-//     console.log(props.warehouse.warehouse_name);
-//     switch (id) {
-//       case "warehouse-name":
-//         warehouse.warehouse_name = event.target.value;
-//         // props.setWarehouse(warehouse);
-//         props.setWarehouseName(event.target.value);
-
-//         break;
-//       case "address":
-//         warehouse.address = event.target.value;
-//         console.log(id);
-//         props.setWarehouse(warehouse);
-
-//         break;
-//       case "city":
-//         warehouse.city = event.target.value;
-//         console.log(id);
-//         props.setWarehouse(warehouse);
-
-//         break;
-//       case "country":
-//         warehouse.country = event.target.value;
-//         console.log(id);
-//         // props.setWarehouse(warehouse);
-//         break;
-//       case "contact-name":
-//         warehouse.contact_name = event.target.value;
-//         console.log(id);
-//         // props.setWarehouse(warehouse);
-
-//         break;
-//       case "position":
-//         warehouse.contact_position = event.target.value;
-//         console.log(id);
-//         // props.setWarehouse(warehouse);
-
-//         break;
-//       case "phone-number":
-//         warehouse.contact_phone = event.target.value;
-//         console.log(id);
-//         // props.setWarehouse(warehouse);
-//         break;
-//       case "email":
-//         warehouse.contact_email = event.target.value;
-//         console.log(id);
-//         // props.setWarehouse(warehouse);
-
-//         break;
-//       default:
-//         break;
-//     }
-//     console.log(props.warehouseName);
-//   };

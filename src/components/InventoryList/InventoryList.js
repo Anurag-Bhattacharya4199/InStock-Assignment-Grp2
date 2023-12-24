@@ -5,12 +5,24 @@ import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
+import InventoryDetail from "../InventoryDetail/InventoryDetail";
 
 const InventoryList = (props) => {
   let { id } = useParams();
   const [checkData, setCheckData] = useState("flex");
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
+  const [showItemDetails, setShowItemDetails] = useState(false);
+
+  const handleItemDetailClick = (id, warehouse_name, category) => {
+    setShowItemDetails(true);
+console.log("item ID: ", id)
+console.log("warehouse name: ", warehouse_name)
+console.log("category: ", category)
+    // setDeleteWarhouseID(String(id));
+    // setWarehouseToDelete(warehouse_name.toString());
+    // console.log(id)
+  };
 
   useEffect(() => {
     if (id) {
@@ -25,7 +37,9 @@ const InventoryList = (props) => {
   }, []);
 
   return (
-    <div className="inventoryList">
+    <>
+    {!showItemDetails && (
+      <div className="inventoryList">
       {/* SEARCH COMPONENT */}
 
       {/* INVENTORY-LIST TABLET && DESKTOP HEADER CONTAINER  */}
@@ -95,16 +109,16 @@ const InventoryList = (props) => {
           <div className="inventoryList-card__inventory-and-category-container">
             <div className="inventory-container">
               <h4 className="inventory-container__header">INVENTORY</h4>
-              <NavLink className="inventory-container__link">
-                <p className="p-medium inventory-container__link--inventory-item">
-                  {item.item_name}
-                </p>
-                <img
-                  src={Chevron}
-                  alt="chevron"
-                  className="inventory-container__link--icon"
-                />
-              </NavLink>
+              <button onClick={() => handleItemDetailClick(item.id, item.warehouse_name, item.category)} className="inventory-container__link">
+                  <p className="p-medium inventory-container__link--inventory-item">
+                    {item.item_name}
+                  </p>
+                  <img
+                    src={Chevron}
+                    alt="chevron"
+                    className="inventory-container__link--icon"
+                  />
+                </button>
             </div>
             <div className="category-container">
               <h4 className="category-container__header">CATEGORY</h4>
@@ -154,7 +168,19 @@ const InventoryList = (props) => {
           </div>
         </div>
       ))}
-    </div>
+          </div>)}
+      {showItemDetails && (
+        <InventoryDetail
+          // item_name={item.item_name}
+          description={props.description}
+          category={props.category}
+          status={props.status}
+          quantity={props.quantity}
+          warehouse_name={props.warehouse_name}
+        />
+
+      )}
+    </>
   );
 };
 

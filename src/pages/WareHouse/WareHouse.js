@@ -42,7 +42,7 @@ function WareHouse() {
     setShowDeletePopup(true);
     setDeleteWarhouseID(String(id));
     setWarehouseToDelete(warehouse_name.toString());
-    console.log(id)
+    //console.log(id)
   };
 
   const handleDeleteConfirmation = () => {

@@ -8,7 +8,6 @@ import SortDefault from "../../assets/icons/sort-24px.svg";
 
 const InventoryList = (props) => {
   let { id } = useParams();
-  //const navigate = useNavigate();
   const [checkData, setCheckData] = useState("flex");
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
@@ -106,7 +105,7 @@ const InventoryList = (props) => {
               <div className="inventory-container">
                 <h4 className="inventory-container__header">INVENTORY</h4>
                 <Link 
-              to={`/inventories/${id}/detail`} 
+              to={`/inventories/${item.id}/detail`} 
               state= {{
                 itemId: item.id,
                 itemCategory: item.category,

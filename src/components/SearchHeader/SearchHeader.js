@@ -21,12 +21,6 @@ function SearchHeader(props) {
             setCheckTitle("--edit")
         }
     }, []);
-    console.log("checkSearch: ", checkSearch)
-    console.log("props.addNewItem: ", props.addNewItem)
-
-    console.log("checkEdit: ", checkEdit)
-    console.log("props.headerButton: ", props.headerButton)
-    
 
     return (
         <header className={`main${checkTitle}`}>

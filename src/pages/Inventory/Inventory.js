@@ -15,11 +15,13 @@ const Inventory = () => {
       .get(`${API_BASE_URL}/inventories`)
       .then((response) => {
         setInventoryList(response.data);
+        console.log(inventoryList);
       })
       .catch((err) => {
         console.log(err);
       });
     setHasLoaded(true);
+    
   }, []);
 
   if (!hasLoaded) {

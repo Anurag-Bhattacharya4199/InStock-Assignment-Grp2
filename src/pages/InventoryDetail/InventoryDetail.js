@@ -1,6 +1,11 @@
 import './InventoryDetail.scss'
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg"
 import editIcon from "../../assets/icons/edit-24px.svg"
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function InventoryDetail(props) {
 
@@ -10,6 +15,7 @@ function InventoryDetail(props) {
     // console.log(props.description)
     return (
         <>
+        <SearchHeader title="Warehouse" addNewItem="Warehouse" />
             <section className="details">
                 <div className="details--left-wrapper">
                 <div className="details__description">

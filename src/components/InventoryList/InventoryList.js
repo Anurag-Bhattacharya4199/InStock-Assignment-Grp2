@@ -1,11 +1,10 @@
 import "./InventoryList.scss";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
-import InventoryDetail from "../InventoryDetail/InventoryDetail";
 
 const InventoryList = (props) => {
   let { id } = useParams();
@@ -38,7 +37,6 @@ console.log("category: ", category)
 
   return (
     <>
-    {!showItemDetails && (
       <div className="inventoryList">
       {/* SEARCH COMPONENT */}
 
@@ -109,7 +107,14 @@ console.log("category: ", category)
           <div className="inventoryList-card__inventory-and-category-container">
             <div className="inventory-container">
               <h4 className="inventory-container__header">INVENTORY</h4>
-              <button onClick={() => handleItemDetailClick(item.id, item.warehouse_name, item.category)} className="inventory-container__link">
+              <Link to={`/warehouses/${id}`}
+              className="inventory-container__link"
+              // onClick={() => handleItemDetailClick(
+              //   item.id, 
+              //   item.warehouse_name, 
+              //   item.category)} 
+                
+                >
                   <p className="p-medium inventory-container__link--inventory-item">
                     {item.item_name}
                   </p>
@@ -118,7 +123,7 @@ console.log("category: ", category)
                     alt="chevron"
                     className="inventory-container__link--icon"
                   />
-                </button>
+                </Link>
             </div>
             <div className="category-container">
               <h4 className="category-container__header">CATEGORY</h4>
@@ -168,18 +173,7 @@ console.log("category: ", category)
           </div>
         </div>
       ))}
-          </div>)}
-      {showItemDetails && (
-        <InventoryDetail
-          // item_name={item.item_name}
-          description={props.description}
-          category={props.category}
-          status={props.status}
-          quantity={props.quantity}
-          warehouse_name={props.warehouse_name}
-        />
-
-      )}
+          </div>
     </>
   );
 };

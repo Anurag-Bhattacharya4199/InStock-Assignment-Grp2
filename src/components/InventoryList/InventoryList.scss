@@ -93,6 +93,11 @@
           color: $instock-indigo;
           display: flex;
           align-items: center;
+          background-color: $white;
+          border:none;
+          &:hover{
+            cursor: pointer;
+          }
 
           &--inventory-item {
             font-weight: 600;
@@ -303,7 +308,11 @@
   }
 
   .inventoryList-card:hover {
-    background-color: rgba(46, 102, 229, 0.07);
+    //background-color: rgba(46, 102, 229, 0.07);
+    background-color:$light-grey;
+    .inventory-container__link{
+      background-color:$light-grey;
+    }
   }
 
   // MEDIA - TABLET

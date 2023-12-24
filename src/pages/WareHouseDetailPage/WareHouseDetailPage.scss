@@ -26,6 +26,7 @@
       width: 2rem;
       text-align: center;
       text-decoration: none;
+      cursor: pointer;
     }
 
     &-editImg {
@@ -119,4 +120,9 @@
       }
     }
   }
+}
+
+// DYNAMIC CLASS
+.display-hidden {
+  display: none;
 }

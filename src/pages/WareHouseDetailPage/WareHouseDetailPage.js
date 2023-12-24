@@ -156,6 +156,7 @@ function WareHouseDetailPage(props) {
           warehouseEditClass={warehouseEditClass}
           handleWarehouseEditClass={handleWarehouseEditClass}
           handleRestoreData={handleRestoreData}
+          disableButton={disableButton}
           disableButtonClass={disableButtonClass}
           handleInputValidation={handleInputValidation}
         />

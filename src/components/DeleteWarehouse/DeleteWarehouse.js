@@ -1,10 +1,14 @@
 import './DeleteWarehouse.scss';
 
-function DeleteWarehouse({handleCloseDeleteComponent,warehouseName}) {
+function DeleteWarehouse({handleCloseDeleteComponent,warehouseName,handleDeleteConfirmation}) {
 
     const handleCancel = () => {
         handleCloseDeleteComponent(); // Close the delete component on cancel and x
       };
+
+      const handleDelete = () => {
+        handleDeleteConfirmation()
+      }; 
 
 
     return (
@@ -15,7 +19,7 @@ function DeleteWarehouse({handleCloseDeleteComponent,warehouseName}) {
                 from the list of warehouses. You wno't be able to undo this action</p>
             <div className="DeleteWarehouseCard__buttons">
                 <button onClick={handleCancel} className="DeleteWarehouseCard__buttons--cancel">Cancel</button>
-                <button className="DeleteWarehouseCard__buttons--delete">Delete</button>
+                <button onClick={handleDelete} className="DeleteWarehouseCard__buttons--delete">Delete</button>
             </div>
 
         </div>

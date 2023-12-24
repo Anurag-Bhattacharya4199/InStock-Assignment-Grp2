@@ -2,13 +2,14 @@ import "./WareHouseDetailPage.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 
 function WareHouseDetailPage(props) {
   let { id } = useParams();
+  const navigate = useNavigate();
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasLoaded2, setHasLoaded2] = useState(false);
   const API_BASE_URL = "http://localhost:8080/warehouses/";

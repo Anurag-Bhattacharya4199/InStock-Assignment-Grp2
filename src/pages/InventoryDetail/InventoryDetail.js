@@ -9,26 +9,24 @@ import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 
 function InventoryDetail(props) {
-
     const location = useLocation()
-    // const test = location.state?.test;
-    console.log("location: ", location)
+
     return (
         <>
-        <SearchHeader title="Warehouse" addNewItem="Warehouse" />
+        <SearchHeader title={location.state.itemName} headerButton="inventories" />
             <section className="details">
                 <div className="details--left-wrapper">
                 <div className="details__description">
                     <h4 className="details__headers">
                         ITEM DESCRIPTION:
                     </h4>
-                    <p className="p-medium">{props.description}</p>
+                    <p className="p-medium">{location.state.itemDescription}</p>
                 </div>
                 <div className="details-category">
                     <h4 className="details__headers">
                         CATEGORY:
                     </h4>
-                    <p className="p-medium">{props.category}</p>
+                    <p className="p-medium">{location.state.itemCategory}</p>
                 </div>
                 </div>
                 <div className="details--right-wrapper">
@@ -36,7 +34,7 @@ function InventoryDetail(props) {
                         <div className="details__status-warehouse--status">
                             <h4 className="details__headers">STATUS:</h4>
                             <p
-                                className={`p-medium status-container__status ${props.status === "In Stock"
+                                className={`p-medium status-container__status ${location.state.itemStatus === "In Stock"
                                         ? "status-container__in-stock"
                                         : "status-container__out-of-stock"
                                     } `}
@@ -48,14 +46,14 @@ function InventoryDetail(props) {
                             <h4 className="details__headers">
                                 WAREHOUSE:
                             </h4>
-                            <p className="p-medium">{props.warehouse_name}</p>
+                            <p className="p-medium">{location.state.warehouseName}</p>
                         </div>
                     </div>
                     <div className="details__quantity">
                         <h4 className="details__headers">
                         QUANTITY:
                         </h4>
-                        <p className="p-medium">{props.quantity}</p>
+                        <p className="p-medium">{location.state.itemQuantity}</p>
                     </div>
                 </div>
 

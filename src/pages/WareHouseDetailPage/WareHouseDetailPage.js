@@ -10,9 +10,6 @@ import EditWarehouse from "../../components/EditWareHouse/EditWareHouse";
 function WareHouseDetailPage(props) {
   let { id } = useParams();
   const navigate = useNavigate();
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [hasLoaded2, setHasLoaded2] = useState(false);
-
   const API_BASE_URL = "http://localhost:8080/warehouses/";
 
   // TRUTHY CHECK
@@ -218,10 +215,11 @@ function WareHouseDetailPage(props) {
                 <p className="p-medium">{email}</p>
               </div>
             </div>
-          </div>
+          
         </section>
         <InventoryList inventoryList={warehouseInventory} warehouseName={warehouse.warehouse_name} />
       </main>
+      </>
     );
   }
 }

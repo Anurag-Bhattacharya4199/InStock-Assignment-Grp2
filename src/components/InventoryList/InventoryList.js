@@ -162,7 +162,7 @@ const InventoryList = (props, onDeleteClick) => {
             </div>
             {/* ICONS CONTAINER */}
             <div className="inventoryList-card__icon-container">
-              <button  className="inventoryList-card__delete-button" Click={() => props.onDeleteClick(item.id, item.item_name)}>
+              <button  className="inventoryList-card__delete-button" onClick={() => props.onDeleteClick(item.id, item.item_name)}>
               <img
                 src={DeleteButton}
                 alt="delete icon"

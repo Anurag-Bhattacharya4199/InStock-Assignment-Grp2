@@ -16,6 +16,24 @@ const Inventory = () => {
 
   const API_BASE_URL = "http://localhost:8080";
 
+  const fetchInventorylist = () => {
+    axios
+      .get(`${API_BASE_URL}/inventories`)
+      .then((response) => {
+        setInventoryList(response.data);
+        // console.log(inventoryList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setHasLoaded(true);
+
+  }
+
+  useEffect(() => {
+    fetchInventorylist();
+  }, []);
+
 
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);
@@ -32,6 +50,7 @@ const Inventory = () => {
         // Now, make another DELETE request to delete the warehouse inventory
         setShowDeletePopup(false);
         setDeleteInventoryID(null);
+        fetchInventorylist();
 
       })
       .catch((error) => {
@@ -46,19 +65,7 @@ const Inventory = () => {
     setDeleteInventoryID(null);
   };
 
-  useEffect(() => {
-    axios
-      .get(`${API_BASE_URL}/inventories`)
-      .then((response) => {
-        setInventoryList(response.data);
-        console.log(inventoryList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setHasLoaded(true);
 
-  }, []);
 
   if (!hasLoaded) {
     return null;

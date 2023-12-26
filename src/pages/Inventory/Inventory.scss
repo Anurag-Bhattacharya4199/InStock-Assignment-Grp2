@@ -1,19 +1,19 @@
 @import '../../styles/partials/_mixins.scss';
 @import '../../styles/partials/_variables.scss';
 
-.inventory-list {
-    margin: $mobile-margin;
-    border-radius: 5px;
-    box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+// .inventory-list {
+//     margin: $mobile-margin;
+//     border-radius: 5px;
+//     box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
 
-    @include tablet {
-        margin: $tablet-margin;
-    }
+//     @include tablet {
+//         margin: $tablet-margin;
+//     }
 
-    @include desktop {
-        margin: $desktop-margin;
-    }
-}
+//     @include desktop {
+//         margin: $desktop-margin;
+//     }
+// }
 
 .overlay {
     position: fixed;

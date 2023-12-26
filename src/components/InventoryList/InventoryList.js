@@ -6,7 +6,7 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
 
-const InventoryList = (props) => {
+const InventoryList = (props, onDeleteClick) => {
   let { id } = useParams();
   const [checkData, setCheckData] = useState("flex");
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
@@ -162,11 +162,13 @@ const InventoryList = (props) => {
             </div>
             {/* ICONS CONTAINER */}
             <div className="inventoryList-card__icon-container">
+              <button  className="inventoryList-card__delete-button" onClick={() => props.onDeleteClick(item.id, item.item_name)}>
               <img
                 src={DeleteButton}
                 alt="delete icon"
                 className="inventoryList__icon-container--delete-button action-icon"
               ></img>
+              </button>
               <img
                 src={EditIcon}
                 alt="edit icon"

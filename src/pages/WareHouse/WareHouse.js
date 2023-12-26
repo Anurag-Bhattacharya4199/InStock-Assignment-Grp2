@@ -3,8 +3,8 @@ import axios from "axios";
 import './WareHouse.scss'
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-import DeleteWarehouse from "../../components/DeleteWarehouse/DeleteWarehouse";
 import { useParams } from "react-router-dom";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 
 function WareHouse() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
@@ -79,8 +79,9 @@ function WareHouse() {
         {showDeletePopup && (
           <div className="overlay">
             <div className="delete-popup">
-              <DeleteWarehouse
+              <DeleteModal
                 warehouseName={warehouseToDelete}
+                itemType="warehouse"
                 handleCloseDeleteComponent={handleCloseDeleteComponent}
                 handleDeleteConfirmation={handleDeleteConfirmation}
               />

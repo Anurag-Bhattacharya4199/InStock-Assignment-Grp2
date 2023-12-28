@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./WareHouseAdd.scss";
 import { useState } from "react";
 import axios from "axios";
+import validator from "validator";
 
 function WareHouseAdd() {
   const [warehouseName, setWarehouseName] = useState("");
@@ -141,12 +142,12 @@ function WareHouseAdd() {
       formComplete = false;
     }
 
-    if (phoneNum.length === 0) {
+    if (!validator.isMobilePhone(phoneNum)) {
       errorState.phoneNumError = true;
       formComplete = false;
     }
 
-    if (email.length === 0) {
+    if (!validator.isEmail(email)) {
       errorState.emailError = true;
       formComplete = false;
     }

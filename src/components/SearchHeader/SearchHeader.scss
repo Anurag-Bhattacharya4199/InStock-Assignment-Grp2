@@ -10,7 +10,7 @@
         align-items: center;
         justify-content: space-between;
         padding: $mobile-margin;
-        border-bottom: 1px solid $slate;
+        //border-bottom: 1px solid $slate;
     }
 
     &--title {
@@ -63,6 +63,19 @@
             }
         }
     }
+}
+
+.divider{
+    width: 100%;
+    height: 1px;
+    background-color: $cloud;
+
+    @include tablet{
+        &--display-none{
+            display: none;
+        }
+    }
+
 }
 
 .display-none {

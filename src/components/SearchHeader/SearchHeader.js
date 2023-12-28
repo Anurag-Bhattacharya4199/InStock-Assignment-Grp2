@@ -16,55 +16,56 @@ function SearchHeader(props) {
     useEffect(() => {
         if (props.addNewItem) {
             setCheckSearch("");
-            setCheckBackArrow(" display-none");
-        }else {
+            setCheckBackArrow("display-none");
+        } else {
             setCheckBackArrow("");
         }
-        if (props.headerButton){
+        if (props.headerButton) {
             setCheckEdit("");
             setCheckTitle("--edit");
         }
     }, []);
 
     return (
-        <header className={`main${checkTitle}`}>
-            
-            <Link to={'..'}
-            className={`${checkBackArrow}`}
-            onClick={(e) => {
-                e.preventDefault();
-                navigate(-1);
-              }}
-            >
-              <img
-                src={backArrow}
-                alt="Go Back"
-                className="warehouseDetails__header-backArrow"
-              />
-            </Link>
-            <h1 className="main--title">{props.title}</h1>
-            <div className={`main__content ${checkSearch}`}>
-                <div className="main__content__input">
-                    <input className="main__content__input--box"
-                        type="text"
-                        placeholder="Search" />
-                    <img className="main__content__input--icon"
-                        src={searchIcon}
-                        alt="search icon" />
-                </div>
+        <>
+            <header className={`main${checkTitle}`}>
 
-                <div className={`main__content__button--wrapper ${checkSearch}`}>
-                    <Link to="/upload" className="main__content__button--link">
-                        <button type="submit" className="main__content__button">
-                            <div className="main__content__button--text">
-                                + Add New {props.addNewItem}
-                            </div>
-                        </button>
-                    </Link>
+                <Link to={'..'}
+                    className={`${checkBackArrow}`}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        navigate(-1);
+                    }}
+                >
+                    <img
+                        src={backArrow}
+                        alt="Go Back"
+                        className="warehouseDetails__header-backArrow"
+                    />
+                </Link>
+                <h1 className="main--title">{props.title}</h1>
+                <div className={`main__content ${checkSearch}`}>
+                    <div className="main__content__input">
+                        <input className="main__content__input--box"
+                            type="text"
+                            placeholder="Search" />
+                        <img className="main__content__input--icon"
+                            src={searchIcon}
+                            alt="search icon" />
+                    </div>
+
+                    <div className={`main__content__button--wrapper ${checkSearch}`}>
+                        <Link to="/upload" className="main__content__button--link">
+                            <button type="submit" className="main__content__button">
+                                <div className="main__content__button--text">
+                                    + Add New {props.addNewItem}
+                                </div>
+                            </button>
+                        </Link>
+                    </div>
+
                 </div>
-                
-            </div>
-            <Link
+                <Link
                     to={`/${props.headerButton}/:id/edit`}
                     className={`header-button--edit ${checkEdit}`}
                 >
@@ -75,7 +76,10 @@ function SearchHeader(props) {
                     />
                     <span className="header-button--editTxt">Edit</span>
                 </Link>
-        </header>
+                
+            </header>
+            <div className={`divider divider--${checkBackArrow}`}></div>
+        </>
     )
 }
 

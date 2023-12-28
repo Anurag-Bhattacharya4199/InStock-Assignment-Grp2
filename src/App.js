@@ -9,6 +9,7 @@ import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WareHouseAdd from "./pages/WareHouseAdd/WareHouseAdd";
+import InventoryAdd from "./pages/InventoryAdd/InventoryAdd";
 
 function App() {
   return (
@@ -20,8 +21,13 @@ function App() {
           <Route path="/warehouses/:id/" element={<WareHouseDetailPage />} />
           <Route path="/inventories" element={<Inventory />} />
           <Route path="/inventories/:id" element={<Inventory />} />
-          <Route name="DETAILS" path="/inventories/:id/detail" element={<InventoryDetail />} />
+          <Route
+            name="DETAILS"
+            path="/inventories/:id/detail"
+            element={<InventoryDetail />}
+          />
           <Route path="/upload" element={<WareHouseAdd />} />
+          <Route path="/uploadInventory" element={<InventoryAdd />} />
         </Routes>
         <Footer />
       </BrowserRouter>

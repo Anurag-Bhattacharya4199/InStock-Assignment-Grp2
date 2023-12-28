@@ -1,33 +1,36 @@
 @import "../../styles/partials/_mixins.scss";
 @import "../../styles/partials/variables";
 
-.addWarehouse {
+.addInventoryItem {
   &__header {
     &-info {
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 1px solid $slate;
+      padding: $mobile-margin;
     }
 
     &-title {
       padding-left: $mobile-margin;
     }
   }
+
   &__form {
-    &-warehouseDetails {
+    &-itemDetails {
       border-bottom: 1px solid $slate;
     }
-    &-warehouseDetails, &-contactDetails {
+
+    &-itemDetails, &-itemAvailability {
       padding: $mobile-margin;
     }
 
-    &-warehouseName, &-streetAddress, &-city, &-country, &-contactName, &-position, &-phoneNum, &-email {
+    &-itemName, &-description, &-category, &-status, &-qty, &-warehouse {
       display: flex;
       flex-direction: column;
     }
 
-    &-warehouse_nameInp, &-warehouse_streetaddressInp, &-warehouse_cityInp, &-warehouse_countryInp, &-warehouse_contactNameInp, &-warehouse_positionInp, &-warehouse_phonenumInp, &-warehouse_emailInp {
+    &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
       height: 36px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
@@ -37,6 +40,11 @@
       &:active {
         border-color: $instock-indigo;  
       }
+    }
+
+    &-statusOptions {
+      display: flex;
+      justify-content: space-between;
     }
 
     &-buttons {
@@ -73,6 +81,10 @@
     &-invalidInput {
       border: 1px solid $red;
     }
+
+    &-displayNone {
+      display: none;
+    }
   }
 }
 
@@ -83,7 +95,7 @@
 }
 
 @include tablet {
-  .addWarehouse {
+  .addInventoryItem {
     &__header{
       &-info {
         justify-content: start;
@@ -103,7 +115,7 @@
         padding-bottom: $tablet-margin;
       }
 
-      &-warehouseDetails {
+      &-itemDetails {
         width: 50%;
         border-bottom: none;
         border-right: 1px solid $slate;
@@ -112,14 +124,14 @@
         padding-bottom: $tablet-margin;
       }
 
-      &-contactDetails {
+      &-itemAvailability {
         width: 50%;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
       }
 
-      &-warehouse_nameInp, &-warehouse_streetaddressInp, &-warehouse_cityInp, &-warehouse_countryInp, &-warehouse_contactNameInp, &-warehouse_positionInp, &-warehouse_phonenumInp, &-warehouse_emailInp {
+      &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
         height: 38px;
         width: auto;
       }

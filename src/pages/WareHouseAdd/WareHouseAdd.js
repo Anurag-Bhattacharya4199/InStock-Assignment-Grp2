@@ -4,6 +4,7 @@ import "./WareHouseAdd.scss";
 import { useState } from "react";
 import axios from "axios";
 import validator from "validator";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function WareHouseAdd() {
   const [warehouseName, setWarehouseName] = useState("");
@@ -191,18 +192,7 @@ function WareHouseAdd() {
   };
   return (
     <main className="addWarehouse">
-      <section className="addWarehouse__header">
-        <div className="addWarehouse__header-info">
-          <Link to="/">
-            <img
-              src={ArroWBack}
-              alt="Go Back"
-              className="addWarehouse__header-arrowback"
-            />
-          </Link>
-          <h1 className="addWarehouse__header-title">Add New Warehouse</h1>
-        </div>
-      </section>
+      <SearchHeader title="Add New Warehouse" />
       <form className="addWarehouse__form" onSubmit={handleSubmit}>
         <div className="addWarehouse__form-mainInfo">
           <div className="addWarehouse__form-warehouseDetails">

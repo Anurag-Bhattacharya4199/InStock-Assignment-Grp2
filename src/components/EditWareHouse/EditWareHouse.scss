@@ -52,6 +52,18 @@
       border-color: $slate;
     }
 
+    // DYNAMIC ERROR MESSAGE CLASES
+    .warehouse-error,
+    .address-error,
+    .city-error,
+    .country-error,
+    .contact-name-error,
+    .position-error,
+    .phone-number-error,
+    .email-error {
+      color: red;
+      display: inline-block;
+    }
     &-buttons {
       height: 68.32px;
       overflow: hidden;

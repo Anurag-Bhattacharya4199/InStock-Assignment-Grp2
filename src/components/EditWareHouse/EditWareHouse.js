@@ -1,8 +1,6 @@
 import "./EditWareHouse.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
-import { Link } from "react-router-dom";
 const EditWarehouse = (props) => {
-  //
   return (
     <main className={`editWarehouse ${props.warehouseEditClass}`}>
       <section className="editWarehouse__header">
@@ -42,6 +40,10 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className={`${props.warehouseError} warehouse-error`}>
+                Please enter warehouse name
+              </span>
             </article>
             <article className="editWarehouse__form-streetAddress">
               <label className="p-medium">Street Address</label>
@@ -55,6 +57,10 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className={`${props.addressError}address-error`}>
+                Please enter address
+              </span>
             </article>
             <article className="editWarehouse__form-city">
               <label className="p-medium">City</label>
@@ -68,6 +74,8 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className="city-error">Please provide City</span>
             </article>
             <article className="editWarehouse__form-country">
               <label className="p-medium">Country</label>
@@ -81,6 +89,8 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className="country-error">Please provide country name</span>
             </article>
           </div>
           <div className="editWarehouse__form-contactDetails">
@@ -97,6 +107,10 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className="contact-name-error">
+                Please enter contact name
+              </span>
             </article>
             <article className="editWarehouse__form-position">
               <label className="p-medium">Position</label>
@@ -110,6 +124,8 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className="position-error">Please provide position</span>
             </article>
             <article className="editWarehouse__form-phoneNum">
               <label className="p-medium">Phone Number</label>
@@ -123,6 +139,10 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className="phone-number-error">
+                Please enter phone number
+              </span>
             </article>
             <article className="editWarehouse__form-email">
               <label className="p-medium">Email</label>
@@ -136,6 +156,8 @@ const EditWarehouse = (props) => {
                   props.handleInputValidation();
                 }}
               />
+              {/* ERROR MESSAGE */}
+              <span className="email-error">Please enter email</span>
             </article>
           </div>
         </div>
@@ -155,7 +177,7 @@ const EditWarehouse = (props) => {
             disabled={props.disableButton}
             className={`editWarehouse__form-addBtn ${props.disableButtonClass}`}
             onClick={() => {
-              props.handleEditWarehouse();
+              props.handleEditWarehousePost();
             }}
           >
             Save

@@ -2,20 +2,20 @@ import "./WareHouseDetailPage.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import EditWarehouse from "../../components/EditWareHouse/EditWareHouse";
+import axios from "axios";
+import validator from "validator";
 function WareHouseDetailPage(props) {
   let { id } = useParams();
-  const navigate = useNavigate();
   const API_BASE_URL = "http://localhost:8080/warehouses/";
 
   // TRUTHY CHECK
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasLoaded2, setHasLoaded2] = useState(false);
-  // WAREHOUSE INFO
+
+  // WAREHOUSE DATA
   const [warehouse, setWarehouse] = useState([]);
   const [warehouseName, setWarehouseName] = useState([]);
   const [address, setAddress] = useState([]);
@@ -26,6 +26,16 @@ function WareHouseDetailPage(props) {
   const [phoneNumber, setPhoneNumber] = useState([]);
   const [email, setEmail] = useState([]);
 
+  // EDIT-WAREHOUSE FORM ERROR CLASSES
+  const [warehouseError, setWarehouseError] = useState("");
+  const [addressError, setAddressError] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [countryError, setCountryError] = useState("");
+  const [contactNameError, setContactNameError] = useState("");
+  const [positionError, setPositionError] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
   // DYNAMIC CLASSES
   const [warehouseDetailClass, setWarehouseDetailClass] = useState("");
   const [warehouseEditClass, setWarehouseEditClass] =
@@ -34,6 +44,7 @@ function WareHouseDetailPage(props) {
   // DISABLE SAVE BUTTON IN EDIT WAREHOUSE-COMPONENT
   const [disableButton, setDisableButton] = useState(true);
   const [disableButtonClass, setDisableButtonClass] = useState("disabled");
+
   // WAREHOUSE INVENTORY LISTS
   const [warehouseInventory, setWarehouseInventory] = useState([]);
 
@@ -66,7 +77,7 @@ function WareHouseDetailPage(props) {
   }, []);
 
   // UPDATE WAREHOUSE
-  const handleEditWarehouse = () => {
+  const handleEditWarehousePost = () => {
     axios
       .patch(`${API_BASE_URL}${id}`, {
         warehouse_name: warehouseName,
@@ -128,6 +139,7 @@ function WareHouseDetailPage(props) {
     setDisableButton(false);
     setDisableButtonClass("");
   };
+
   // RENDERING
   if (!hasLoaded && !hasLoaded2) {
     return null;
@@ -138,13 +150,24 @@ function WareHouseDetailPage(props) {
         <EditWarehouse
           id={id}
           warehouseName={warehouseName}
+          warehouseError={warehouseError}
           address={address}
+          addressError={addressError}
           city={city}
+          cityError={cityError}
           country={country}
+          countryError={countryError}
           contactName={contactName}
+          contactNameError={contactNameError}
           position={position}
+          positionError={positionError}
           phoneNumber={phoneNumber}
+          phoneNumberError={phoneNumberError}
           email={email}
+          emailError={emailError}
+          disableButton={disableButton}
+          disableButtonClass={disableButtonClass}
+          warehouseEditClass={warehouseEditClass}
           setWarehouseName={setWarehouseName}
           setAddress={setAddress}
           setCity={setCity}
@@ -153,12 +176,9 @@ function WareHouseDetailPage(props) {
           setPosition={setPosition}
           setPhoneNumber={setPhoneNumber}
           setEmail={setEmail}
-          handleEditWarehouse={handleEditWarehouse}
-          warehouseEditClass={warehouseEditClass}
+          handleEditWarehousePost={handleEditWarehousePost}
           handleWarehouseEditClass={handleWarehouseEditClass}
           handleRestoreData={handleRestoreData}
-          disableButton={disableButton}
-          disableButtonClass={disableButtonClass}
           handleInputValidation={handleInputValidation}
         />
         <main className={`warehouseDetails ${warehouseDetailClass}`}>
@@ -215,10 +235,12 @@ function WareHouseDetailPage(props) {
                 <p className="p-medium">{email}</p>
               </div>
             </div>
-          
-        </section>
-        <InventoryList inventoryList={warehouseInventory} warehouseName={warehouse.warehouse_name} />
-      </main>
+          </section>
+          <InventoryList
+            inventoryList={warehouseInventory}
+            warehouseName={warehouse.warehouse_name}
+          />
+        </main>
       </>
     );
   }

@@ -12,10 +12,10 @@ const InventoryList = (props, onDeleteClick) => {
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
 
-  function checkWarehouseName(wh){
-    if (!wh){
+  function checkWarehouseName(wh) {
+    if (!wh) {
       return props.warehouseName;
-    }else{
+    } else {
       return wh;
     }
   }
@@ -104,18 +104,18 @@ const InventoryList = (props, onDeleteClick) => {
             <div className="inventoryList-card__inventory-and-category-container">
               <div className="inventory-container">
                 <h4 className="inventory-container__header">INVENTORY</h4>
-                <Link 
-              to={`/inventories/${item.id}/detail`} 
-              state= {{
-                itemId: item.id,
-                itemCategory: item.category,
-                itemName: item.item_name,
-                itemDescription: item.description,
-                itemStatus: item.status,
-                warehouseName: checkWarehouseName(item.warehouse_name),
-                itemQuantity: item.quantity 
-              }}
-              className="inventory-container__link"
+                <Link
+                  to={`/inventories/${item.id}/detail`}
+                  state={{
+                    itemId: item.id,
+                    itemCategory: item.category,
+                    itemName: item.item_name,
+                    itemDescription: item.description,
+                    itemStatus: item.status,
+                    warehouseName: checkWarehouseName(item.warehouse_name),
+                    itemQuantity: item.quantity
+                  }}
+                  className="inventory-container__link"
                 >
                   <p className="p-medium inventory-container__link--inventory-item">
                     {item.item_name}
@@ -162,18 +162,30 @@ const InventoryList = (props, onDeleteClick) => {
             </div>
             {/* ICONS CONTAINER */}
             <div className="inventoryList-card__icon-container">
-              <button  className="inventoryList-card__delete-button" onClick={() => props.onDeleteClick(item.id, item.item_name)}>
-              <img
-                src={DeleteButton}
-                alt="delete icon"
-                className="inventoryList__icon-container--delete-button action-icon"
-              ></img>
+              <button className="inventoryList-card__delete-button" onClick={() => props.onDeleteClick(item.id, item.item_name)}>
+                <img
+                  src={DeleteButton}
+                  alt="delete icon"
+                  className="inventoryList__icon-container--delete-button action-icon"
+                ></img>
               </button>
-              <img
-                src={EditIcon}
-                alt="edit icon"
-                className="inventoryList__icon-container--edit-button action-icon"
-              ></img>
+              <Link to={`/inventories/${item.id}/edit`}
+                state={{
+                  itemId: item.id,
+                  itemCategory: item.category,
+                  itemName: item.item_name,
+                  itemDescription: item.description,
+                  itemStatus: item.status,
+                  warehouseName: checkWarehouseName(item.warehouse_name),
+                  itemQuantity: item.quantity
+                }}
+              >
+                <img
+                  src={EditIcon}
+                  alt="edit icon"
+                  className="inventoryList__icon-container--edit-button action-icon"
+                ></img>
+              </Link>
             </div>
           </div>
         ))}

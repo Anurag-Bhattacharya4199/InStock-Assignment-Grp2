@@ -10,15 +10,19 @@ function SearchHeader(props) {
     const [checkSearch, setCheckSearch] = useState("display-none");
     const [checkEdit, setCheckEdit] = useState("display-none");
     const [checkTitle, setCheckTitle] = useState("")
+    const [checkBackArrow, setCheckBackArrow] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
         if (props.addNewItem) {
             setCheckSearch("");
+            setCheckBackArrow(" display-none");
+        }else {
+            setCheckBackArrow("");
         }
         if (props.headerButton){
             setCheckEdit("");
-            setCheckTitle("--edit")
+            setCheckTitle("--edit");
         }
     }, []);
 
@@ -26,7 +30,7 @@ function SearchHeader(props) {
         <header className={`main${checkTitle}`}>
             
             <Link to={'..'}
-            className={`${checkEdit}`}
+            className={`${checkBackArrow}`}
             onClick={(e) => {
                 e.preventDefault();
                 navigate(-1);

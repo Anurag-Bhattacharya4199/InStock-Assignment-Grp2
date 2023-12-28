@@ -41,7 +41,9 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className={`${props.warehouseError} warehouse-error`}>
+              <span
+                className={`${props.warehouseError} editWarehouse__form-warehouse_error-msg`}
+              >
                 Please enter warehouse name
               </span>
             </article>
@@ -58,7 +60,9 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className={`${props.addressError}address-error`}>
+              <span
+                className={`${props.addressError} editWarehouse__form-warehouse_error-msg`}
+              >
                 Please enter address
               </span>
             </article>
@@ -75,7 +79,11 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className="city-error">Please provide City</span>
+              <span
+                className={`${props.cityError} editWarehouse__form-warehouse_error-msg`}
+              >
+                Please provide City
+              </span>
             </article>
             <article className="editWarehouse__form-country">
               <label className="p-medium">Country</label>
@@ -90,7 +98,11 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className="country-error">Please provide country name</span>
+              <span
+                className={`${props.countryError} editWarehouse__form-warehouse_error-msg`}
+              >
+                Please provide country name
+              </span>
             </article>
           </div>
           <div className="editWarehouse__form-contactDetails">
@@ -108,7 +120,9 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className="contact-name-error">
+              <span
+                className={`${props.contactNameError} editWarehouse__form-warehouse_error-msg`}
+              >
                 Please enter contact name
               </span>
             </article>
@@ -125,7 +139,11 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className="position-error">Please provide position</span>
+              <span
+                className={`${props.positionError} editWarehouse__form-warehouse_error-msg`}
+              >
+                Please provide position
+              </span>
             </article>
             <article className="editWarehouse__form-phoneNum">
               <label className="p-medium">Phone Number</label>
@@ -140,7 +158,9 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className="phone-number-error">
+              <span
+                className={`${props.phoneNumberError} editWarehouse__form-warehouse_error-msg`}
+              >
                 Please enter phone number
               </span>
             </article>
@@ -157,7 +177,11 @@ const EditWarehouse = (props) => {
                 }}
               />
               {/* ERROR MESSAGE */}
-              <span className="email-error">Please enter email</span>
+              <span
+                className={`${props.emailError} editWarehouse__form-warehouse_error-msg`}
+              >
+                Please enter email
+              </span>
             </article>
           </div>
         </div>

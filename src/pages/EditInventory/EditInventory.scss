@@ -9,6 +9,7 @@
 
     &__form {
         display: flex;
+        flex-direction: column;
 
 
         &--invalidInput {}
@@ -16,19 +17,24 @@
         &__content {
             display: flex;
             width: 100%;
+            flex-direction: column;
 
+            @include tablet {
+                flex-direction: row;
+            }
 
             &__details {
                 display: flex;
                 flex-direction: column;
-                border-bottom: solid 1px $slate;
-                width: 45%;
+                border-bottom: solid 1px $cloud;
+                
                 padding: $mobile-margin;
 
 
                 @include tablet {
                     border: none;
-                    border-right: solid 1px $slate;
+                    border-right: solid 1px $cloud;
+                    width: 48%;
                 }
 
                 &--title {
@@ -52,15 +58,23 @@
             }
 
             &__avail {
-                width: 45%;
+                display: flex;
+                flex-direction: column;
+
                 padding: $mobile-margin;
 
-                @include tablet {}
+                @include tablet {
+                    width: 48%;
+                }
 
-                &--title {}
+                &--title {
+                    margin-bottom: 0;
+                }
 
                 &__stock-status {
                     display: flex;
+                    align-items: center;
+                    height: 38px;
 
                     &--in-stock {
                         padding-right: 30%;
@@ -69,6 +83,27 @@
                     &--out-of-stock {}
 
                 }
+            }
+        }
+        &__buttons{
+            width:auto;
+            display: flex;
+            justify-content: space-evenly;
+            background-color: $light-grey;
+            padding: $mobile-margin 0;
+            
+            &--cancel, &--add{
+                height: 38px;
+                padding-left: $mobile-margin;
+                padding-right: $mobile-margin;
+                border-radius: 20px;
+                border: 1px solid $cloud;
+                width: 139px;
+                background-color: $white;
+            }
+            &--add{
+                background-color: $instock-indigo;
+                color:$white;
             }
         }
     }

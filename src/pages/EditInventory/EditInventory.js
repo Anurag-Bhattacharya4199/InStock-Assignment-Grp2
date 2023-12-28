@@ -28,12 +28,21 @@ function EditInventory() {
     const handleChangeItemName = (event) => {
         setItemName(event.target.value);
     };
-    //handleChangeItemDescription
+
+
     const handleChangeItemDescription = (event) => {
-        const itemName = event.target.value;
-        setItemName(itemName);
+        setItemName(event.target.value);
+    };
+
+    const handleChangeItemQuantity = (event) => {
+        setItemQuantity(event.target.value);
     };
     const handleSubmit = (event) => {
+        event.preventDefault();
+
+    };
+
+    const handleCancel = (event) => {
         event.preventDefault();
 
     };
@@ -83,25 +92,53 @@ function EditInventory() {
 
                     <article className='editInv__form__content__avail'>
                         <h2 className='editInv__form__content__avail--title'>Item Availability</h2>
-                        <label className="p-medium">Status</label><br></br>
+                        <label className="p-medium">Status</label>
                         <div className='editInv__form__content__avail__stock-status'>
                             <div className='editInv__form__content__avail__stock-status--in-stock'>
                                 <input type="radio" id="inStock" name="inStock" value="In Stock" />
                                 <label for="inStock"> In Stock</label>
                             </div>
                             <div className='editInv__form__content__avail__stock-status--out-of-stock'>
-                                <input type="radio" id="outOfStock" name="outOfStock" value="Out of Stock" />
-                                <label for="outOfStock"> Out of Stock</label>
+                                <input type="radio" id="inStock" name="inStock" value="Out of Stock" />
+                                <label for="inStock"> Out of Stock</label>
                             </div>
                         </div>
+                        <label className="p-medium">Quantity</label>
+                        <input
+                            className={`editInv__form__content__details__input ${error.warehouseNameError
+                                ? "editInv__form--invalidInput"
+                                : ""
+                                }`}
+                            placeholder={itemQuantity}
+                            name={itemQuantity}
+                            for={itemQuantity}
+                            value={itemQuantity}
+                            onChange={handleChangeItemQuantity}
+                        />
+
+                        <label className="p-medium">Warehouse</label>
+                        <select name='category' className="editInv__form__content__details__input">
+                            <option value="">Please Select</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Apparel">Apparel</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Gear">Gear</option>
+                            <option value="Health">Health</option>
+                        </select>
 
                     </article>
 
                 </section>
-
+                <div className="editInv__form__buttons">
+                    <button
+                        className="editInv__form__buttons--cancel"
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </button>
+                    <button className="editInv__form__buttons--add">+ Add Item</button>
+                </div>
             </form>
-
-
         </main>
 
     )

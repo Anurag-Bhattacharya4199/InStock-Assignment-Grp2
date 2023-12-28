@@ -26,6 +26,7 @@ function SearchHeader(props) {
         <header className={`main${checkTitle}`}>
             
             <Link to={'..'}
+            className={`${checkEdit}`}
             onClick={(e) => {
                 e.preventDefault();
                 navigate(-1);

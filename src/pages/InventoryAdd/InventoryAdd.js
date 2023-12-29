@@ -1,13 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import "./InventoryAdd.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 function InventoryAdd() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
   const [warehouses, setWarehouses] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [inStock, setInstock] = useState(false);
+  // const warehouseOptionsRef = useRef(null);
+  // const warehouseOptionLRef = warehouseOptionsRef.current;
 
   const fetchWarehouseList = () => {
     axios
@@ -15,26 +18,38 @@ function InventoryAdd() {
       .then((response) => {
         const warehouseData = response.data;
         setWarehouses(warehouseData);
+        setHasLoaded(true);
       })
+      // .then(() => {
+      //   PopulateOptions();
+      // })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  const PopulateOptions = () => {
-    let select = document.getElementById("warehouseOptions");
-    warehouses.map((item) => {
-      let option = document.createElement("option");
-      option.value = item.warehouse_name;
-      option.text = item.warehouse_name;
-      select.appendChild(option);
-    });
-  };
+  // const PopulateOptions = () => {
+  //   let select = warehouseOptionsLRef;
+  //   //console.log(warehouses);
+  //   warehouses.map((item) => {
+  //     let option = warehouseOptionLRef;
+  //     //console.log(option);
+  //     option.value = item.warehouse_name;
+  //     option.text = item.warehouse_name;
+  //     select.appendChild(option);
+  //   });
+  // };
 
   useEffect(() => {
     fetchWarehouseList();
-    PopulateOptions();
+    //PopulateOptions();
   }, []);
+
+  // if (hasLoaded) {
+  //   useEffect(() => {
+  //     PopulateOptions();
+  //   });
+  // }
 
   const handleInStockAvailabilityFalse = () => {
     setInstock(false);
@@ -81,10 +96,9 @@ function InventoryAdd() {
               <select
                 className="addInventoryItem__form-categoryOptions"
                 placeholder="Please select"
+                defaultValue="Please select"
               >
-                <option value="" disabled selected>
-                  Please Select
-                </option>
+                <option value="Please Select">Please Select</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Apparel">Apparel</option>
                 <option value="Accessories">Accessories</option>
@@ -101,6 +115,8 @@ function InventoryAdd() {
                   <input
                     type="radio"
                     className="addInventoryItem__form-inStockInp"
+                    id="In Stock"
+                    name="status"
                     onClick={handleInStockAvailabilityTrue}
                   />
                   In stock
@@ -109,6 +125,8 @@ function InventoryAdd() {
                   <input
                     type="radio"
                     className="addInventoryItem__form-outofStockInp"
+                    id="Out of Stock"
+                    name="status"
                     onClick={handleInStockAvailabilityFalse}
                   />
                   Out of stock
@@ -120,7 +138,7 @@ function InventoryAdd() {
               <input
                 placeholder="0"
                 className={`addInventoryItem__form-qtyInput ${
-                  !inStock ? "addInventoryItem__form-displayNone" : ""
+                  inStock ? "" : "addInventoryItem__form-displayNone"
                 }`}
               />
             </article>
@@ -130,10 +148,13 @@ function InventoryAdd() {
                 className="addInventoryItem__form-warehouseOptions"
                 placeholder="Please select"
                 id="warehouseOptions"
+                //defaultValue="Please select"
+                //ref={warehouseOptionsRef}
               >
-                <option value="" disabled selected>
-                  Please Select
-                </option>
+                <option value="Please Select">Please Select</option>
+                {warehouses.map((item) => {
+                  return <option key={item.id}>{item.warehouse_name}</option>;
+                })}
               </select>
             </article>
           </div>

@@ -22,7 +22,7 @@
         flex-direction: row;
 
         @include tablet {
-            border-left: 1px solid $slate;
+            border-left: 1px solid $cloud;
             padding-left: $tablet-margin;
 
         }

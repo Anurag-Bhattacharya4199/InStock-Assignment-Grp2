@@ -74,7 +74,7 @@ const Inventory = () => {
 
     return (
       <section className="inventory-list">
-        <SearchHeader title="Inventory" addNewItem="Item" />
+        <SearchHeader title="Inventory" addNewItem="Item" addURL="inventories" />
 
         {showDeletePopup && (
           <div className="overlay">

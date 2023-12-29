@@ -74,7 +74,7 @@ function WareHouse() {
   } else {
     return (
       <div className="warehouse-list">
-        <SearchHeader title="Warehouse" addNewItem="Warehouse" />
+        <SearchHeader title="Warehouse" addNewItem="Warehouse" addURL="warehouses" />
 
         {showDeletePopup && (
           <div className="overlay">

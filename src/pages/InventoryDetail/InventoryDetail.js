@@ -20,13 +20,13 @@ function InventoryDetail(props) {
                     <h4 className="details__headers">
                         ITEM DESCRIPTION:
                     </h4>
-                    <p className="p-medium">{location.state.itemDescription}</p>
+                    <p className="details--text">{location.state.itemDescription}</p>
                 </div>
-                <div className="details-category">
+                <div>
                     <h4 className="details__headers">
                         CATEGORY:
                     </h4>
-                    <p className="p-medium">{location.state.itemCategory}</p>
+                    <p className="details--text">{location.state.itemCategory}</p>
                 </div>
                 </div>
                 <div className="details--right-wrapper">
@@ -34,7 +34,7 @@ function InventoryDetail(props) {
                         <div className="details__status-warehouse--status">
                             <h4 className="details__headers">STATUS:</h4>
                             <p
-                                className={`p-medium status-container__status ${location.state.itemStatus === "In Stock"
+                                className={`details--text status-container__status ${location.state.itemStatus === "In Stock"
                                         ? "status-container__in-stock"
                                         : "status-container__out-of-stock"
                                     } `}
@@ -46,14 +46,14 @@ function InventoryDetail(props) {
                             <h4 className="details__headers">
                                 WAREHOUSE:
                             </h4>
-                            <p className="p-medium">{location.state.warehouseName}</p>
+                            <p className="details--text">{location.state.warehouseName}</p>
                         </div>
                     </div>
                     <div className="details__quantity">
                         <h4 className="details__headers">
                         QUANTITY:
                         </h4>
-                        <p className="p-medium">{location.state.itemQuantity}</p>
+                        <p className="details--text">{location.state.itemQuantity}</p>
                     </div>
                 </div>
 

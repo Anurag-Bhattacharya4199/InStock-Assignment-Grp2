@@ -6,6 +6,7 @@ import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import { postInventory } from '../../data/utils';
 
 function EditInventory() {
     const location = useLocation()
@@ -15,6 +16,7 @@ function EditInventory() {
     const [itemDescription, setItemDescription] = useState(location.state.itemDescription)
     const [itemStatus, setItemStatus] = useState(location.state.itemStatus)
     const [warehouseName, setWarehouseName] = useState(location.state.warehouseName)
+    const [warehouseId, setWarehouseId] = useState("")
     const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity)
     const [warehouses, setWarehouses] = useState([]);
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -42,7 +44,7 @@ function EditInventory() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        postInventory()
     };
 
     const handleCancel = (event) => {
@@ -54,28 +56,35 @@ function EditInventory() {
         axios
             .get(API_BASE_URL)
             .then((response) => {
-                const warehouseData = response.data;
-                setWarehouses(warehouseData);
+                setWarehouses(response.data);
                 setHasLoaded(true);
             })
             .catch((error) => {
                 console.error(error);
             });
     };
+
+    const selectedWarehouseId = (nameThing) => {
+        const result = nameThing.filter((array) => array.warehouse_name === warehouseName)
+        setWarehouseId(result[0].id)
+    };
+
     useEffect(() => {
         fetchWarehouseList(); // Fetch warehouse list when component mounts
     }, []); // Empty dependency array to trigger effect only on mount
 
-    function optionSelected (whName){
-        if (warehouseName === whName){
-            console.log(whName)
-            return "selected"
-        } else{
-            return ""
-        }
-    }
+    // function optionSelected (whName){
+    //     if (warehouseName === whName){
+    //         console.log(whName)
+    //         return "selected"
+    //     } else{
+    //         return ""
+    //     }
+    // }
 
-    if (hasLoaded){
+
+
+    if (hasLoaded) {
         return (
             <main className='editInv'>
                 <SearchHeader title="Edit Inventory Item" />
@@ -118,7 +127,7 @@ function EditInventory() {
                                 <option value="Health">Health</option>
                             </select>
                         </article>
-    
+
                         <article className='editInv__form__content__avail'>
                             <h2 className='editInv__form__content__avail--title'>Item Availability</h2>
                             <label className="p-medium">Status</label>
@@ -144,22 +153,22 @@ function EditInventory() {
                                 value={itemQuantity}
                                 onChange={handleChangeItemQuantity}
                             />
-    
+
                             <label className="p-medium">Warehouse</label>
-                            <select 
-                            name='category' 
-                            className="editInv__form__content__details__input"
+                            <select
+                                name='warehouse'
+                                className="editInv__form__content__details__input"
                             >
                                 {warehouses.map((item) => (
-                                    <option 
-                                    key={item.id} 
-                                    value="item.warehouse_name" 
+                                    <option
+                                        key={item.id}
+                                        value={item.warehouse_name}
                                     >{item.warehouse_name}</option>
                                 ))}
                             </select>
-    
+
                         </article>
-    
+
                     </section>
                     <div className="editInv__form__buttons">
                         <button
@@ -172,7 +181,7 @@ function EditInventory() {
                     </div>
                 </form>
             </main>
-    
+
         )
     }
 }

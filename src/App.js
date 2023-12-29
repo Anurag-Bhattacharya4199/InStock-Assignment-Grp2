@@ -10,6 +10,7 @@ import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WareHouseAdd from "./pages/WareHouseAdd/WareHouseAdd";
+import InventoryAdd from "./pages/InventoryAdd/InventoryAdd";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/inventories/:id/detail" element={<InventoryDetail />} />
           <Route path="/inventories/:id/edit" element={<EditInventory />} />
           <Route path="/warehouses/add" element={<WareHouseAdd />} />
+          <Route path="/inventories/add" element={<InventoryAdd />} />
         </Routes>
         <Footer />
       </BrowserRouter>

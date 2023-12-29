@@ -52,6 +52,35 @@
       border-color: $slate;
     }
 
+    // DYNAMIC ERROR STATE CLASSES
+    .warehouse-error-state,
+    .address-error-state,
+    .city-error-state,
+    .country-error-state,
+    .contact-name-error-state,
+    .position-error-state,
+    .phone-number-error-state,
+    .email-error-state {
+      border: 1px solid red;
+      outline-width: 0;
+    }
+    &-warehouse_error-msg {
+      display: none;
+    }
+
+    // DYNAMIC ERROR MESSAGE CLASSES
+    .warehouse-error,
+    .address-error,
+    .city-error,
+    .country-error,
+    .contact-name-error,
+    .position-error,
+    .phone-number-error,
+    .email-error {
+      color: red;
+      display: inline-block;
+      font-size: 13px;
+    }
     &-buttons {
       height: 68.32px;
       overflow: hidden;

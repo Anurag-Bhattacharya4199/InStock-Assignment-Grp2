@@ -17,13 +17,13 @@ function InventoryDetail(props) {
             <section className="details">
                 <div className="details--left-wrapper">
                 <div className="details__description">
-                    <h4 className="details__headers">
+                    <h4 className="details__headers--description">
                         ITEM DESCRIPTION:
                     </h4>
                     <p className="details--text">{location.state.itemDescription}</p>
                 </div>
                 <div>
-                    <h4 className="details__headers">
+                    <h4 className="details__headers--category">
                         CATEGORY:
                     </h4>
                     <p className="details--text">{location.state.itemCategory}</p>
@@ -32,25 +32,25 @@ function InventoryDetail(props) {
                 <div className="details--right-wrapper">
                     <div className="details__status-warehouse">
                         <div className="details__status-warehouse--status">
-                            <h4 className="details__headers">STATUS:</h4>
+                            <h4 className="details__headers--status">STATUS:</h4>
                             <p
                                 className={`details--text status-container__status ${location.state.itemStatus === "In Stock"
                                         ? "status-container__in-stock"
                                         : "status-container__out-of-stock"
                                     } `}
                             >
-                                {props.status}
+                                {location.state.itemStatus}
                             </p>
                         </div>
                         <div className="details__status-warehouse--warehouse">
-                            <h4 className="details__headers">
+                            <h4 className="details__headers--warehouse">
                                 WAREHOUSE:
                             </h4>
                             <p className="details--text">{location.state.warehouseName}</p>
                         </div>
                     </div>
                     <div className="details__quantity">
-                        <h4 className="details__headers">
+                        <h4 className="details__headers--status">
                         QUANTITY:
                         </h4>
                         <p className="details--text">{location.state.itemQuantity}</p>

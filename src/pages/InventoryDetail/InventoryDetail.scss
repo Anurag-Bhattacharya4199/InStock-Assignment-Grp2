@@ -4,15 +4,30 @@
 .details {
     display: flex;
     flex-direction: column;
-    
+    margin: $tablet-margin;
 
     @include tablet {
         flex-direction: row;
     }
 
     &__headers{
-        padding-top: $mobile-margin;
-        color: $slate;
+        //padding-top: $mobile-margin;
+
+
+        &--description{
+
+        }
+        &--category{
+            padding-top: $mobile-margin;
+        }
+
+        &--status{
+            padding-top: $mobile-margin;
+        }
+        &--warehouse{
+            padding-top: $mobile-margin;
+        }
+
     }
 
     &--text{
@@ -20,10 +35,11 @@
     }
 
     &--left-wrapper {
-        width: 45%;
+        
         
         @include tablet {
-            padding-left: $tablet-margin;
+            padding-right: $tablet-margin;
+            width: 45%;
         }
     }
 
@@ -50,3 +66,49 @@
     }
 
 }
+
+.status-container {
+    &__header {
+      color: $slate;
+    }
+
+    // MEDIA - TABLET
+    @include tablet {
+      &__header {
+        display: none;
+      }
+    }
+
+    // DYNAMIC CLASSES - IF IN STOCK**
+    &__in-stock {
+      color: $green;
+      background-color: rgba(21, 132, 99, 0.07);
+      max-width: 65px;
+      border-radius: 20px;
+      padding: 4px;
+      text-align: center;
+    }
+
+    @include tablet {
+      &__in-stock {
+        max-width: 61px;
+      }
+    }
+
+    // DYNAMIC CLASSES - IF OUT OF STOCK**
+    &__out-of-stock {
+      color: $red;
+      background-color: rgba(201, 69, 21, 0.07);
+      max-width: 95px;
+      border-radius: 20px;
+      padding: 4px;
+      text-align: center;
+    }
+
+    @include tablet {
+      &__out-of-stock {
+        max-width: 86px;
+      }
+    }
+
+  }

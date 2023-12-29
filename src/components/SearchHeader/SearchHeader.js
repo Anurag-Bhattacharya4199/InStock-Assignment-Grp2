@@ -55,7 +55,7 @@ function SearchHeader(props) {
                     </div>
 
                     <div className={`main__content__button--wrapper ${checkSearch}`}>
-                        <Link to="/upload" className="main__content__button--link">
+                        <Link to={`/${props.addURL}/add`} className="main__content__button--link">
                             <button type="submit" className="main__content__button">
                                 <div className="main__content__button--text">
                                     + Add New {props.addNewItem}

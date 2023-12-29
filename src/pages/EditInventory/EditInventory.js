@@ -66,7 +66,15 @@ function EditInventory() {
         fetchWarehouseList(); // Fetch warehouse list when component mounts
     }, []); // Empty dependency array to trigger effect only on mount
 
-    
+    function optionSelected (whName){
+        if (warehouseName === whName){
+            console.log(whName)
+            return "selected"
+        } else{
+            return ""
+        }
+    }
+
     if (hasLoaded){
         return (
             <main className='editInv'>
@@ -83,7 +91,7 @@ function EditInventory() {
                                     }`}
                                 placeholder={itemName}
                                 name={itemName}
-                                for={itemName}
+                                form={itemName}
                                 value={itemName}
                                 onChange={handleChangeItemName}
                             />
@@ -96,7 +104,7 @@ function EditInventory() {
                                     }`}
                                 placeholder={itemDescription}
                                 name={itemDescription}
-                                for={itemDescription}
+                                form={itemDescription}
                                 value={itemDescription}
                                 onChange={handleChangeItemDescription}
                             />
@@ -117,11 +125,11 @@ function EditInventory() {
                             <div className='editInv__form__content__avail__stock-status'>
                                 <div className='editInv__form__content__avail__stock-status--in-stock'>
                                     <input type="radio" id="inStock" name="inStock" value="In Stock" />
-                                    <label for="inStock"> In Stock</label>
+                                    <label form="inStock"> In Stock</label>
                                 </div>
                                 <div className='editInv__form__content__avail__stock-status--out-of-stock'>
                                     <input type="radio" id="inStock" name="inStock" value="Out of Stock" />
-                                    <label for="inStock"> Out of Stock</label>
+                                    <label form="inStock"> Out of Stock</label>
                                 </div>
                             </div>
                             <label className="p-medium">Quantity</label>
@@ -132,15 +140,21 @@ function EditInventory() {
                                     }`}
                                 placeholder={itemQuantity}
                                 name={itemQuantity}
-                                for={itemQuantity}
+                                form={itemQuantity}
                                 value={itemQuantity}
                                 onChange={handleChangeItemQuantity}
                             />
     
                             <label className="p-medium">Warehouse</label>
-                            <select name='category' className="editInv__form__content__details__input">
+                            <select 
+                            name='category' 
+                            className="editInv__form__content__details__input"
+                            >
                                 {warehouses.map((item) => (
-                                    <option value="">{item.warehouse_name}</option>
+                                    <option 
+                                    key={item.id} 
+                                    value="item.warehouse_name" 
+                                    >{item.warehouse_name}</option>
                                 ))}
                             </select>
     

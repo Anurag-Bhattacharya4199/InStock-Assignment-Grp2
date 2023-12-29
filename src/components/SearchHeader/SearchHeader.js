@@ -29,21 +29,22 @@ function SearchHeader(props) {
     return (
         <>
             <header className={`main${checkTitle}`}>
-
-                <Link to={'..'}
-                    className={`${checkBackArrow}`}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate(-1);
-                    }}
-                >
-                    <img
-                        src={backArrow}
-                        alt="Go Back"
-                        className="warehouseDetails__header-backArrow"
-                    />
-                </Link>
-                <h1 className="main--title">{props.title}</h1>
+                <div className='main__title--wrapper'>
+                    <Link to={'..'}
+                        className={`main__title--arrow ${checkBackArrow}`}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigate(-1);
+                        }}
+                    >
+                        <img
+                            src={backArrow}
+                            alt="Go Back"
+                            className="warehouseDetails__header-backArrow"
+                        />
+                    </Link>
+                    <h1 className="main__title">{props.title}</h1>
+                </div>
                 <div className={`main__content ${checkSearch}`}>
                     <div className="main__content__input">
                         <input className="main__content__input--box"
@@ -76,7 +77,7 @@ function SearchHeader(props) {
                     />
                     <span className="header-button--editTxt">Edit</span>
                 </Link>
-                
+
             </header>
             <div className={`divider divider--${checkBackArrow}`}></div>
         </>

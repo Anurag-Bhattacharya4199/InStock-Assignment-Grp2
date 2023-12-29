@@ -16,17 +16,27 @@ function WareHouseDetailPage(props) {
   const [hasLoaded2, setHasLoaded2] = useState(false);
 
   // WAREHOUSE DATA
-  const [warehouse, setWarehouse] = useState([]);
-  const [warehouseName, setWarehouseName] = useState([]);
-  const [address, setAddress] = useState([]);
-  const [city, setCity] = useState([]);
-  const [country, setCountry] = useState([]);
-  const [contactName, setContactName] = useState([]);
-  const [position, setPosition] = useState([]);
-  const [phoneNumber, setPhoneNumber] = useState([]);
-  const [email, setEmail] = useState([]);
+  const [warehouse, setWarehouse] = useState("");
+  const [warehouseName, setWarehouseName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [position, setPosition] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
 
-  // EDIT-WAREHOUSE FORM ERROR CLASSES
+  // FORM INPUT ERROR STATE CLASESS
+  const [warehouseErrorState, setWarehouseErrorState] = useState("");
+  const [addressErrorState, setAddressErrorState] = useState("");
+  const [cityErrorState, setCityErrorState] = useState("");
+  const [countryErrorState, setCountryErrorState] = useState("");
+  const [contactNameErrorState, setContactNameErrorState] = useState("");
+  const [positionErrorState, setPositionErrorState] = useState("");
+  const [phoneNumberErrorState, setPhoneNumberErrorState] = useState("");
+  const [emailErrorState, setEmailErrorState] = useState("");
+
+  // FORM ERROR-MESSAGE CLASSES
   const [warehouseError, setWarehouseError] = useState("");
   const [addressError, setAddressError] = useState("");
   const [cityError, setCityError] = useState("");
@@ -134,10 +144,135 @@ function WareHouseDetailPage(props) {
     setEmail(warehouse.contact_email);
   };
 
+  // ENABLE SAVE BUTTON IN EDIT WAREHOUSE COMPONENT
+  const handleSaveButton = () => {
+    if (validator.isMobilePhone(phoneNumber) && validator.isEmail(email)) {
+      setDisableButton(false);
+      setDisableButtonClass("");
+    } else {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      return;
+    }
+
+    if (
+      !warehouse ||
+      !address ||
+      !country ||
+      !city ||
+      !contactName ||
+      !position ||
+      !phoneNumber ||
+      !email
+    ) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      return;
+    } else {
+      setDisableButton(false);
+      setDisableButtonClass("");
+    }
+    // DIS/ENABLE SAVE BUTTON
+  };
   // VALIDATE INPUT
-  const handleInputValidation = () => {
-    setDisableButton(false);
-    setDisableButtonClass("");
+  const handleInputValidation = (event) => {
+    if (event.target.id === "warehouse-name") {
+      if (!event.target.value) {
+        setWarehouseError("warehouse-error");
+        setWarehouseErrorState("warehouse-error-state");
+      } else {
+        setWarehouseError(" ");
+        setWarehouseErrorState(" ");
+      }
+    }
+
+    if (event.target.id === "address") {
+      if (!event.target.value) {
+        setAddressError("address-error");
+        setAddressErrorState("address-error-state");
+      } else {
+        setAddressError(" ");
+        setAddressErrorState("");
+      }
+    }
+
+    if (event.target.id === "city") {
+      if (!event.target.value) {
+        setCityError("warehouse-error");
+        setCityErrorState("city-error-state");
+      } else {
+        setCityError("");
+        setCityErrorState("");
+      }
+    }
+
+    if (event.target.id === "country") {
+      if (!event.target.value) {
+        setCountryError("country-error");
+        setCountryErrorState("country-error-state");
+      } else {
+        setCountryError("");
+        setCountryErrorState("");
+      }
+    }
+
+    if (event.target.id === "contact-name") {
+      if (!event.target.value) {
+        setContactNameError("contact-name-error");
+        setContactNameErrorState("contact-name-error-state");
+      } else {
+        setContactNameError("");
+        setContactNameErrorState("");
+      }
+    }
+
+    if (event.target.id === "position") {
+      if (!event.target.value) {
+        setPositionError("position-error");
+        setPositionErrorState("position-error-state");
+      } else {
+        setPositionError("");
+        setPositionErrorState("");
+      }
+    }
+
+    if (event.target.id === "phone-number") {
+      let eventVal = event.target.value;
+      // CHECK PHONE-NUMBER VALUE
+      if (!eventVal) {
+        setPhoneNumberError("phone-number-error");
+        setPhoneNumberErrorState("phone-number-error-state");
+      }
+      if (eventVal) {
+        // VALIDATE PHONE NUMBER
+        if (validator.isMobilePhone(eventVal)) {
+          setPhoneNumberError("");
+          setPhoneNumberErrorState("");
+        } else {
+          setPhoneNumberError("phone-number-error");
+          setPhoneNumberErrorState("phone-number-error-state");
+        }
+      }
+    }
+
+    if (event.target.id === "email") {
+      let eventVal = event.target.value;
+      // CHECK PHONE-NUMBER VALUE
+      if (!eventVal) {
+        setEmailError("email-error");
+        setEmailErrorState("email-error-state");
+      }
+      if (eventVal) {
+        // VALIDATE PHONE NUMBER
+        if (validator.isEmail(eventVal)) {
+          setEmailError(" ");
+          setEmailErrorState(" ");
+        } else {
+          setEmailError("email-error");
+          setEmailErrorState("email-error-state");
+        }
+      }
+    }
   };
 
   // RENDERING
@@ -168,6 +303,14 @@ function WareHouseDetailPage(props) {
           disableButton={disableButton}
           disableButtonClass={disableButtonClass}
           warehouseEditClass={warehouseEditClass}
+          warehouseErrorState={warehouseErrorState}
+          addressErrorState={addressErrorState}
+          cityErrorState={cityErrorState}
+          countryErrorState={countryErrorState}
+          contactNameErrorState={contactNameErrorState}
+          positionErrorState={positionErrorState}
+          phoneNumberErrorState={phoneNumberErrorState}
+          emailErrorState={emailErrorState}
           setWarehouseName={setWarehouseName}
           setAddress={setAddress}
           setCity={setCity}
@@ -180,6 +323,7 @@ function WareHouseDetailPage(props) {
           handleWarehouseEditClass={handleWarehouseEditClass}
           handleRestoreData={handleRestoreData}
           handleInputValidation={handleInputValidation}
+          handleSaveButton={handleSaveButton}
         />
         <main className={`warehouseDetails ${warehouseDetailClass}`}>
           <section className="warehouseDetails__header">

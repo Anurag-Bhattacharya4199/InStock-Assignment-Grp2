@@ -33,9 +33,7 @@ export function isInventoryValid() {
         };
         console.log(editItem);
         try {
-          axios.post(`http://localhost:8080/inventories/${editItem.id}`, editItem, {
-            "Content-Type": "application/json",
-          });
+          axios.patch(`http://localhost:8080/inventories/${editItem.id}`, editItem);
         } catch (e) {
           console.log(e);
         }

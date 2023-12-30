@@ -18,8 +18,6 @@ function EditInventory() {
     const [itemStatus, setItemStatus] = useState(location.state.itemStatus)
     const [itemStatusTF, setItemStatusTF] = useState(true)
     const [warehouseName, setWarehouseName] = useState(location.state.warehouseName)
-    const [warehouseNameTF, setWarehouseNameTF] = useState(true)
-    const [warehouseId, setWarehouseId] = useState("")
     const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity)
     const [warehouses, setWarehouses] = useState([]);
     let { itemIdParam } = useParams();
@@ -37,20 +35,6 @@ function EditInventory() {
 
     }, [])
 
-    function defaultWarehouse(defaultCheck) {
-        if (defaultCheck === warehouseName) {
-            console.log("warehouseName true ", defaultCheck)
-            return true
-        }
-        else {
-            console.log("warehouseName FALSE ", defaultCheck)
-            return false
-        }
-    }
-
-    useEffect(() => {
-
-    })
 
     // const fetchInventorylist = () => {
     //     axios
@@ -98,7 +82,19 @@ function EditInventory() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        postInventory()
+        // write code here to find warehouseId from selected warehouse using filter
+        let warehouseId = warehouses.filter((wh)=>{
+            return wh.warehouse_name === warehouseName
+        })[0].id
+
+        postInventory(
+            itemId, 
+            warehouseId, 
+            itemName, 
+            itemDescription, 
+            itemCategory, 
+            itemStatus, 
+            itemQuantity)
     };
 
     const handleCancel = (event) => {
@@ -118,25 +114,10 @@ function EditInventory() {
             });
     };
 
-    const selectedWarehouseId = (nameThing) => {
-        const result = nameThing.filter((array) => array.warehouse_name === warehouseName)
-        setWarehouseId(result[0].id)
-    };
 
     useEffect(() => {
         fetchWarehouseList(); // Fetch warehouse list when component mounts
     }, []); // Empty dependency array to trigger effect only on mount
-
-    // function optionSelected (whName){
-    //     if (warehouseName === whName){
-    //         console.log(whName)
-    //         return "selected"
-    //     } else{
-    //         return ""
-    //     }
-    // }
-
-
 
     if (hasLoaded) {
         return (
@@ -250,7 +231,10 @@ function EditInventory() {
                         >
                             Cancel
                         </button>
-                        <button className="editInv__form__buttons--add">Save</button>
+                        <button 
+                        className="editInv__form__buttons--add"
+                        type='submit'
+                        >Save</button>
                     </div>
                 </form>
             </main>

@@ -103,6 +103,7 @@ function InventoryAdd() {
                 <option value="Apparel">Apparel</option>
                 <option value="Accessories">Accessories</option>
                 <option value="Health">Health</option>
+                <option value="Gear">Gear</option>
               </select>
             </article>
           </div>

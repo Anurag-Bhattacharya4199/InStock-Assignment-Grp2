@@ -85,12 +85,8 @@
 
 }
 
-.display-none {
-    display: none;
-}
-
 .header-button {
-
+display: flex;
     &--edit {
         border-radius: 50%;
         background-color: $instock-indigo;
@@ -98,15 +94,37 @@
         width: 2rem;
         text-align: center;
         text-decoration: none;
+        display: flex;
+
+        @include tablet{
+            height: auto;
+        width: auto;
+        border-radius: 1.5rem;
+        padding: 0.25rem 1rem;
+        display: flex;
+        }
+
+        &--text{
+            display: none;
+
+            @include tablet {
+                display: inline;
+                color: $white;
+            }
+        }
     }
 
     &--editImg {
         filter: brightness(0) invert(1);
         margin-top: 0.25rem;
-    }
 
-    &--editTxt {
-        display: none;
-        color: $white;
+        @include tablet{
+            margin-top: 0;
+        margin-right: 0.25rem;
+        }
     }
+}
+
+.display-none {
+    display: none;
 }

@@ -1,135 +1,125 @@
-@import '../../styles/partials/_mixins.scss';
-@import '../../styles/partials/variables';
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
 
 // TABLET && DESKTOP HEADERS***
 .warehouseList-headers {
-    display: none;
+  display: none;
 }
 
 @include tablet {
+  .warehouseList-headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 32px;
 
-    .warehouseList-headers{
+    &__header-container {
+      display: flex;
+
+      &--header {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 16px 32px;
+        font-weight: 600;
+      }
 
-        &__header-container {
-            display: flex;
-
-            &--header {
-                display: flex;
-                font-weight: 600;
-            }
-
-            &--sort-icon {
-                height: 16px;
-            }
-        }
+      &--sort-icon {
+        height: 16px;
+      }
     }
+  }
 }
 
-//WAREHOUSE CARD 
+//WAREHOUSE CARD
 
 .WarehouseList {
-    &__body {
-        border-top: 1px solid #bdc5d5;
+  &__body {
+    border-top: 1px solid #bdc5d5;
+
+    @include tablet {
+      display: flex;
+      flex-wrap: nowrap;
+      box-sizing: border-box;
+    }
+
+    &--container {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 8px 24px 24px 24px;
+
+      @include tablet {
+        padding: 8px 0 0 32px;
+      }
+    }
+
+    &--subcontainer {
+      width: 50%;
+      padding-right: 16px;
+
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        width: 47%;
+      }
+    }
+
+    &--info {
+      text-align: start;
+      padding-top: 16px;
+
+      @include tablet {
+        width: 35%;
+        padding: 0 50px 0 0;
+        align-items: center;
+      }
+
+      &--warehouse-link-container {
+        text-decoration: none;
 
         @include tablet {
-            display: flex;
-            flex-wrap: nowrap;
-            box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
         }
+      }
 
-        &--container {
-            
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            padding: 8px 24px 24px 24px;
-
-            @include tablet {
-                padding: 8px 0 0 32px;
-            }
-
-
+      &--header {
+        @include tablet {
+          display: none;
         }
-
-        &--subcontainer {
-            width: 50%;
-            padding-right: 16px;
-
-            @include tablet {
-                display: flex;
-                flex-direction: row;
-                padding: 0;
-                width: 47%;
-                
-            }
-
-        }
-
-        &--info {
-            text-align: start;
-            padding-top: 16px;
-
-            @include tablet {
-                width:35%;
-                padding: 0 50px 0 0;
-                align-items: center;
-
-            }
-
-            &--warehouse-link-container {
-
-                text-decoration: none;
-
-                @include tablet {
-                    display: flex;
-                    flex-direction: row;
-                }
-            }
-            
-
-
-            &--header {
-                @include tablet {
-                    display: none;
-                }
-            }
-
-
-        }
-
-        &--icon-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 24px 24px 24px;
-
-            @include tablet {
-                flex: unset;
-                width: 12%;
-                padding: 0 16px 0 0;
-                align-items: center;
-
-
-            }
-        }
-
-        &--delete-button {
-            background-color: white;
-            border:none;
-        }
+      }
     }
+
+    &--icon-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px 24px 24px;
+
+      @include tablet {
+        flex: unset;
+        width: 12%;
+        padding: 0 16px 0 0;
+        align-items: center;
+      }
+    }
+
+    &--delete-button {
+      background-color: white;
+      border: none;
+    }
+    // DYNAMIC CLASS
+    .edit-warehouse-display-none {
+      display: none;
+    }
+  }
 }
 
 .p-medium {
-    margin: 0;
+  margin: 0;
 }
 
 h4 {
-    margin: 0;
-    padding-bottom: 8px;
+  margin: 0;
+  padding-bottom: 8px;
 }

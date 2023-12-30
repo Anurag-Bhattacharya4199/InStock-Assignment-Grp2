@@ -283,7 +283,7 @@ function WareHouseDetailPage(props) {
       <>
         {/* EDIT WAREHOUSE */}
         <EditWarehouse
-          id={id}
+          // id={id}
           warehouseName={warehouseName}
           warehouseError={warehouseError}
           address={address}

@@ -77,9 +77,14 @@ function WareHouseInfoCard(props) {
           </button>
           <Link>
             <img
+              id={id}
               src={EditIcon}
               alt="edit icon"
-              className="WarehouseList__body--edit-icon"
+              className={`${props.editWarehouseClass} WarehouseList__body--edit-icon`}
+              onClick={(event) => {
+                console.log(event.target.id);
+                props.handleCurrentWarehouseData(event);
+              }}
             ></img>
           </Link>
         </div>

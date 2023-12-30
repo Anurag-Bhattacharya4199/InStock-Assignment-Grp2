@@ -15,12 +15,58 @@ function EditInventory() {
     const [itemName, setItemName] = useState(location.state.itemName)
     const [itemDescription, setItemDescription] = useState(location.state.itemDescription)
     const [itemStatus, setItemStatus] = useState(location.state.itemStatus)
+    const [itemStatusTF, setItemStatusTF] = useState(true)
     const [warehouseName, setWarehouseName] = useState(location.state.warehouseName)
+    const [warehouseNameTF, setWarehouseNameTF] = useState(true)
     const [warehouseId, setWarehouseId] = useState("")
     const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity)
     const [warehouses, setWarehouses] = useState([]);
+    let { itemIdParam } = useParams();
     const [hasLoaded, setHasLoaded] = useState(false);
-    const API_BASE_URL = "http://localhost:8080/warehouses";
+    const API_BASE_URL = "http://localhost:8080/";
+
+    useEffect(() => {
+        //selects the proper default radio button
+        if (itemStatus === "In Stock") {
+            setItemStatusTF(true)
+        } else {
+            setItemStatusTF(false)
+        }
+    }, [])
+
+    function defaultWarehouse(defaultCheck) {
+        if (defaultCheck === warehouseName) {
+            console.log("warehouseName true ", defaultCheck)
+            return true
+        }
+        else {
+            console.log("warehouseName FALSE ", defaultCheck)
+            return false
+        }
+    }
+
+    useEffect(() => {
+
+    })
+
+    // const fetchInventorylist = () => {
+    //     axios
+    //       .get(`${API_BASE_URL}/inventories`)
+    //       .then((response) => {
+    //         setInventoryList(response.data);
+    //         // console.log(inventoryList);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //     setHasLoaded(true);
+
+    //   }
+
+    //   useEffect(() => {
+    //     fetchInventorylist();
+    //   }, []);
+
 
     const [error, setError] = useState({
         itemNameError: false,
@@ -42,6 +88,11 @@ function EditInventory() {
     const handleChangeItemQuantity = (event) => {
         setItemQuantity(event.target.value);
     };
+
+    const handleChangeWarehouse = (event) => {
+        setWarehouseName(event.target.value);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         postInventory()
@@ -54,7 +105,7 @@ function EditInventory() {
 
     const fetchWarehouseList = () => {
         axios
-            .get(API_BASE_URL)
+            .get(`${API_BASE_URL}warehouses`)
             .then((response) => {
                 setWarehouses(response.data);
                 setHasLoaded(true);
@@ -133,20 +184,34 @@ function EditInventory() {
                             <label className="p-medium">Status</label>
                             <div className='editInv__form__content__avail__stock-status'>
                                 <div className='editInv__form__content__avail__stock-status--in-stock'>
-                                    <input type="radio" id="inStock" name="inStock" value="In Stock" />
+                                    <input
+                                        type="radio"
+                                        id="inStock"
+                                        name="inStock"
+                                        value="In Stock"
+                                        defaultChecked={itemStatusTF}
+                                        onClick={() => setItemStatus("In Stock")}
+                                    />
                                     <label form="inStock"> In Stock</label>
                                 </div>
                                 <div className='editInv__form__content__avail__stock-status--out-of-stock'>
-                                    <input type="radio" id="inStock" name="inStock" value="Out of Stock" />
+                                    <input
+                                        type="radio"
+                                        id="outOfStock"
+                                        name="inStock"
+                                        value="Out of Stock"
+                                        defaultChecked={!itemStatusTF}
+                                        onClick={() => setItemStatus("Out of Stock")}
+                                    />
                                     <label form="inStock"> Out of Stock</label>
                                 </div>
                             </div>
-                            <label className="p-medium">Quantity</label>
+                            <label className={`p-medium ${itemStatusTF}`}>Quantity</label>
                             <input
                                 className={`editInv__form__content__details__input ${error.warehouseNameError
                                     ? "editInv__form--invalidInput"
                                     : ""
-                                    }`}
+                                    } ${itemStatusTF}`}
                                 placeholder={itemQuantity}
                                 name={itemQuantity}
                                 form={itemQuantity}
@@ -158,11 +223,22 @@ function EditInventory() {
                             <select
                                 name='warehouse'
                                 className="editInv__form__content__details__input"
+                                onChange={handleChangeWarehouse}
                             >
-                                {warehouses.map((item) => (
+                                <option
+                                    value={warehouseName}
+                                    defaultValue={warehouseName}
+                                >{warehouseName}</option>
+
+                                {warehouses.filter((wh) => {
+                                    return wh !== warehouseName
+                                }).map((item) => (
                                     <option
                                         key={item.id}
                                         value={item.warehouse_name}
+                                    // defaultValue={warehouseName}
+                                    // selected={()=>defaultWarehouse(item.warehouse_name)}
+                                    // onChange={handleChangeItemQuantity}
                                     >{item.warehouse_name}</option>
                                 ))}
                             </select>

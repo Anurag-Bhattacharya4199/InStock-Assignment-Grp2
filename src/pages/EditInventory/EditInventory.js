@@ -32,6 +32,8 @@ function EditInventory() {
         } else {
             setItemStatusTF(false)
         }
+
+
     }, [])
 
     function defaultWarehouse(defaultCheck) {
@@ -169,9 +171,12 @@ function EditInventory() {
                                 onChange={handleChangeItemDescription}
                             />
                             <label className="p-medium">Category</label>
-                            <select name='category' className="editInv__form__content__details__input">
-                                <option value="">Please Select</option>
-                                <option value="Accessories">Accessories</option>
+                            <select 
+                            name='category' 
+                            className="editInv__form__content__details__input"
+                            defaultValue={itemCategory}
+                            >
+                                <option value="Accessories" >Accessories</option>
                                 <option value="Apparel">Apparel</option>
                                 <option value="Electronics">Electronics</option>
                                 <option value="Gear">Gear</option>
@@ -224,21 +229,12 @@ function EditInventory() {
                                 name='warehouse'
                                 className="editInv__form__content__details__input"
                                 onChange={handleChangeWarehouse}
+                                defaultValue={warehouseName}
                             >
-                                <option
-                                    value={warehouseName}
-                                    defaultValue={warehouseName}
-                                >{warehouseName}</option>
-
-                                {warehouses.filter((wh) => {
-                                    return wh !== warehouseName
-                                }).map((item) => (
+                                {warehouses.map((item) => (
                                     <option
                                         key={item.id}
                                         value={item.warehouse_name}
-                                    // defaultValue={warehouseName}
-                                    // selected={()=>defaultWarehouse(item.warehouse_name)}
-                                    // onChange={handleChangeItemQuantity}
                                     >{item.warehouse_name}</option>
                                 ))}
                             </select>
@@ -253,7 +249,7 @@ function EditInventory() {
                         >
                             Cancel
                         </button>
-                        <button className="editInv__form__buttons--add">+ Add Item</button>
+                        <button className="editInv__form__buttons--add">Save</button>
                     </div>
                 </form>
             </main>

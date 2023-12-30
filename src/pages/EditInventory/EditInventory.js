@@ -4,12 +4,13 @@ import editIcon from "../../assets/icons/edit-24px.svg"
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { postInventory } from '../../data/utils';
 
 function EditInventory() {
     const location = useLocation()
+    const navigate = useNavigate();
     const [itemId, setItemId] = useState(location.state.itemId)
     const [itemCategory, setItemCategory] = useState(location.state.itemCategory)
     const [itemName, setItemName] = useState(location.state.itemName)
@@ -102,7 +103,7 @@ function EditInventory() {
 
     const handleCancel = (event) => {
         event.preventDefault();
-
+        navigate(-1);
     };
 
     const fetchWarehouseList = () => {
@@ -171,10 +172,10 @@ function EditInventory() {
                                 onChange={handleChangeItemDescription}
                             />
                             <label className="p-medium">Category</label>
-                            <select 
-                            name='category' 
-                            className="editInv__form__content__details__input"
-                            defaultValue={itemCategory}
+                            <select
+                                name='category'
+                                className="editInv__form__content__details__input"
+                                defaultValue={itemCategory}
                             >
                                 <option value="Accessories" >Accessories</option>
                                 <option value="Apparel">Apparel</option>

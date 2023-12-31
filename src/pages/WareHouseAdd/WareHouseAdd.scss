@@ -72,6 +72,17 @@
 
     &-invalidInput {
       border: 1px solid $red;
+      outline-width: 0;
+    }
+
+    &-errorMsg {
+      display: none;
+      font-size: 13px;
+    }
+
+    &-errorMsgInvalidInput {
+      display: inline-block;
+      color: $red;
     }
   }
 }

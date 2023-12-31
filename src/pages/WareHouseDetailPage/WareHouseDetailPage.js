@@ -339,10 +339,6 @@ function WareHouseDetailPage(props) {
                 {warehouseName}
               </h1>
             </div>
-            {/* <Link
-              to={`/warehouses/:id/edit`}
-              className="warehouseDetails__header-edit"
-            > */}
             <div
               className="warehouseDetails__header-edit"
               onClick={handleWarehouseDetailClass}
@@ -354,8 +350,8 @@ function WareHouseDetailPage(props) {
               />
               <span className="warehouseDetails__header-editTxt">Edit</span>
             </div>
-            {/* </Link> */}
           </section>
+
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">
               <h4 className="warehouseDetails__info-headers">

@@ -299,9 +299,9 @@
       line-height: 0;
     }
 
-    .inventoryList-card__delete-button:hover {
-      background-color:$light-grey;
-    }
+    // .inventoryList-card__delete-button:hover {
+    //   background-color:$light-grey;
+    // }
 
     // MEDIA - TABLET
     @include tablet {
@@ -326,6 +326,10 @@
     .inventory-container__link{
       background-color:$light-grey;
     }
+    .inventoryList-card__delete-button{
+      background-color:$light-grey;
+    }
+
   }
 
   // MEDIA - TABLET

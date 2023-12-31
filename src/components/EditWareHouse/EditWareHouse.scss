@@ -188,11 +188,19 @@
       &-addBtn {
         margin-left: $tablet-margin;
       }
+      // DYNAMIC CLASS
+      // .disabled {
+      //   background-color: green;
+      // }
     }
   }
 }
 
 // DYNAMIC CLASS
 .display-hidden {
+  display: none;
+}
+// DYNAMIC CLASS
+.display-none {
   display: none;
 }

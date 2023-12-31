@@ -82,8 +82,8 @@ function WareHouseInfoCard(props) {
               alt="edit icon"
               className={`${props.editWarehouseClass} WarehouseList__body--edit-icon`}
               onClick={(event) => {
-                console.log(event.target.id);
-                props.handleCurrentWarehouseData(event);
+                props.getCurrentWarehouseData(event);
+                props.handleWarehouseListClass();
               }}
             ></img>
           </Link>

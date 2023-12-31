@@ -22,7 +22,10 @@
         display: flex;
         font-weight: 600;
       }
-
+      // DYNAMIC CLASS
+      .display-none {
+        display: none;
+      }
       &--sort-icon {
         height: 16px;
       }

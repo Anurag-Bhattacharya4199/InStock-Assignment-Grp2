@@ -4,12 +4,13 @@ import editIcon from "../../assets/icons/edit-24px.svg"
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { postInventory } from '../../data/utils';
 
 function EditInventory() {
     const location = useLocation()
+    const navigate = useNavigate();
     const [itemId, setItemId] = useState(location.state.itemId)
     const [itemCategory, setItemCategory] = useState(location.state.itemCategory)
     const [itemName, setItemName] = useState(location.state.itemName)
@@ -17,8 +18,6 @@ function EditInventory() {
     const [itemStatus, setItemStatus] = useState(location.state.itemStatus)
     const [itemStatusTF, setItemStatusTF] = useState(true)
     const [warehouseName, setWarehouseName] = useState(location.state.warehouseName)
-    const [warehouseNameTF, setWarehouseNameTF] = useState(true)
-    const [warehouseId, setWarehouseId] = useState("")
     const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity)
     const [warehouses, setWarehouses] = useState([]);
     let { itemIdParam } = useParams();
@@ -32,42 +31,11 @@ function EditInventory() {
         } else {
             setItemStatusTF(false)
         }
+        
 
 
     }, [])
 
-    function defaultWarehouse(defaultCheck) {
-        if (defaultCheck === warehouseName) {
-            console.log("warehouseName true ", defaultCheck)
-            return true
-        }
-        else {
-            console.log("warehouseName FALSE ", defaultCheck)
-            return false
-        }
-    }
-
-    useEffect(() => {
-
-    })
-
-    // const fetchInventorylist = () => {
-    //     axios
-    //       .get(`${API_BASE_URL}/inventories`)
-    //       .then((response) => {
-    //         setInventoryList(response.data);
-    //         // console.log(inventoryList);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //     setHasLoaded(true);
-
-    //   }
-
-    //   useEffect(() => {
-    //     fetchInventorylist();
-    //   }, []);
 
 
     const [error, setError] = useState({
@@ -97,12 +65,24 @@ function EditInventory() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        postInventory()
+        // write code here to find warehouseId from selected warehouse using filter
+        let warehouseId = warehouses.filter((wh)=>{
+            return wh.warehouse_name === warehouseName
+        })[0].id
+
+        postInventory(
+            itemId, 
+            warehouseId, 
+            itemName, 
+            itemDescription, 
+            itemCategory, 
+            itemStatus, 
+            itemQuantity)
     };
 
     const handleCancel = (event) => {
         event.preventDefault();
-
+        navigate(-1);
     };
 
     const fetchWarehouseList = () => {
@@ -117,25 +97,10 @@ function EditInventory() {
             });
     };
 
-    const selectedWarehouseId = (nameThing) => {
-        const result = nameThing.filter((array) => array.warehouse_name === warehouseName)
-        setWarehouseId(result[0].id)
-    };
 
     useEffect(() => {
         fetchWarehouseList(); // Fetch warehouse list when component mounts
     }, []); // Empty dependency array to trigger effect only on mount
-
-    // function optionSelected (whName){
-    //     if (warehouseName === whName){
-    //         console.log(whName)
-    //         return "selected"
-    //     } else{
-    //         return ""
-    //     }
-    // }
-
-
 
     if (hasLoaded) {
         return (
@@ -171,10 +136,10 @@ function EditInventory() {
                                 onChange={handleChangeItemDescription}
                             />
                             <label className="p-medium">Category</label>
-                            <select 
-                            name='category' 
-                            className="editInv__form__content__details__input"
-                            defaultValue={itemCategory}
+                            <select
+                                name='category'
+                                className="editInv__form__content__details__input"
+                                defaultValue={itemCategory}
                             >
                                 <option value="Accessories" >Accessories</option>
                                 <option value="Apparel">Apparel</option>
@@ -249,7 +214,10 @@ function EditInventory() {
                         >
                             Cancel
                         </button>
-                        <button className="editInv__form__buttons--add">Save</button>
+                        <button 
+                        className="editInv__form__buttons--add"
+                        type='submit'
+                        >Save</button>
                     </div>
                 </form>
             </main>

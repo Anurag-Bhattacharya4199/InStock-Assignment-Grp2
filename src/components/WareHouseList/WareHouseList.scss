@@ -18,7 +18,15 @@
 
         &__header-container {
             display: flex;
+            width: 25%;
+            margin-right: 8px;
 
+            @include desktop {
+                margin-right: 20px;
+
+            }
+
+        
             &--header {
                 display: flex;
                 font-weight: 600;
@@ -27,6 +35,12 @@
             &--sort-icon {
                 height: 16px;
             }
+        }
+
+        &__action-header-container {
+            display: flex;
+            justify-content: flex-end;
+            width: 20%;
         }
     }
 }

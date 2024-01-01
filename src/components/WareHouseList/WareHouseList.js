@@ -48,7 +48,7 @@ function WareHouseList(props) {
             alt="sort"
           />
         </div>
-        <div key="06" className="warehouseList-headers__header-container">
+        <div key="06" className="warehouseList-headers__action-header-container">
           <h4 className="warehouseList-headers__header-container--header">
             ACTIONS
           </h4>

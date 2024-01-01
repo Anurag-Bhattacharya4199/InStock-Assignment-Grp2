@@ -7,10 +7,17 @@ import axios from "axios";
 function InventoryAdd() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
   const [warehouses, setWarehouses] = useState([]);
-  const [hasLoaded, setHasLoaded] = useState(false);
   const [inStock, setInstock] = useState(false);
-  // const warehouseOptionsRef = useRef(null);
-  // const warehouseOptionLRef = warehouseOptionsRef.current;
+
+  const [itemName, setItemName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [qty, setQty] = useState("");
+  const [warehouse, setWarehouse] = useState("");
+
+  const [error, setError] = useState({
+    itemNameError: false,
+  });
 
   const fetchWarehouseList = () => {
     axios
@@ -18,38 +25,15 @@ function InventoryAdd() {
       .then((response) => {
         const warehouseData = response.data;
         setWarehouses(warehouseData);
-        setHasLoaded(true);
       })
-      // .then(() => {
-      //   PopulateOptions();
-      // })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  // const PopulateOptions = () => {
-  //   let select = warehouseOptionsLRef;
-  //   //console.log(warehouses);
-  //   warehouses.map((item) => {
-  //     let option = warehouseOptionLRef;
-  //     //console.log(option);
-  //     option.value = item.warehouse_name;
-  //     option.text = item.warehouse_name;
-  //     select.appendChild(option);
-  //   });
-  // };
-
   useEffect(() => {
     fetchWarehouseList();
-    //PopulateOptions();
   }, []);
-
-  // if (hasLoaded) {
-  //   useEffect(() => {
-  //     PopulateOptions();
-  //   });
-  // }
 
   const handleInStockAvailabilityFalse = () => {
     setInstock(false);
@@ -149,8 +133,6 @@ function InventoryAdd() {
                 className="addInventoryItem__form-warehouseOptions"
                 placeholder="Please select"
                 id="warehouseOptions"
-                //defaultValue="Please select"
-                //ref={warehouseOptionsRef}
               >
                 <option value="Please Select">Please Select</option>
                 {warehouses.map((item) => {

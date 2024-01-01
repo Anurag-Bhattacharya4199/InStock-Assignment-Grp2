@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './WareHouse.scss'
+import "./WareHouse.scss";
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { useParams } from "react-router-dom";
@@ -15,9 +15,6 @@ function WareHouse() {
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
   const { id } = useParams();
 
-
-
- 
   const fetchWarehouseList = () => {
     axios
       .get(API_BASE_URL)
@@ -35,9 +32,6 @@ function WareHouse() {
     fetchWarehouseList(); // Fetch warehouse list when component mounts
   }, []); // Empty dependency array to trigger effect only on mount
 
-
-
-
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(String(id));
@@ -47,18 +41,19 @@ function WareHouse() {
 
   const handleDeleteConfirmation = () => {
     // Make a DELETE request to delete the warehouse
-    axios.delete(`${API_BASE_URL}/${deleteWarehouseID}`)
+    axios
+      .delete(`${API_BASE_URL}/${deleteWarehouseID}`)
       .then(() => {
-        console.log(`Successfully deleted warehouse with ID: ${deleteWarehouseID}`);
+        console.log(
+          `Successfully deleted warehouse with ID: ${deleteWarehouseID}`
+        );
         // Now, make another DELETE request to delete the warehouse inventory
         setShowDeletePopup(false);
         setDeleteWarhouseID(null);
         fetchWarehouseList();
-
       })
       .catch((error) => {
         console.error(`Error deleting warehouse: ${error}`);
-
       });
   };
 
@@ -68,13 +63,16 @@ function WareHouse() {
     setDeleteWarhouseID(null);
   };
 
-
   if (!hasLoaded) {
     return null;
   } else {
     return (
       <div className="warehouse-list">
-        <SearchHeader title="Warehouse" addNewItem="Warehouse" addURL="warehouses" />
+        <SearchHeader
+          title="Warehouse"
+          addNewItem="Warehouse"
+          addURL="warehouses"
+        />
 
         {showDeletePopup && (
           <div className="overlay">
@@ -89,8 +87,11 @@ function WareHouse() {
           </div>
         )}
 
-        <WareHouseList warehouses={warehouses} onDeleteClick={handleDeleteClick} />
-
+        <WareHouseList
+          warehouses={warehouses}
+          onDeleteClick={handleDeleteClick}
+          fetchWarehouseList={fetchWarehouseList}
+        />
       </div>
     );
   }

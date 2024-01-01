@@ -1,32 +1,39 @@
-@import '../../styles/partials/mixins';
-@import '../../styles/partials/variables';
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
 
 // TABLET && DESKTOP HEADERS***
 .warehouseList-headers {
-    display: none;
+  display: none;
 }
 
 @include tablet {
+  .warehouseList-headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 32px;
 
-    .warehouseList-headers{
+    &__header-container {
+      display: flex;
+
+      &--header {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 16px 32px;
-
-        &__header-container {
-            display: flex;
-
-            &--header {
-                display: flex;
-                font-weight: 600;
-            }
-
-            &--sort-icon {
-                height: 16px;
-            }
-        }
+        font-weight: 600;
+      }
+      // DYNAMIC CLASS
+      .display-none {
+        display: none;
+      }
+      &--sort-icon {
+        height: 16px;
+      }
     }
+  }
+}
+
+// WAREHOUSE LISTS : DYNAMIC CLASS
+.display-none {
+  display: none;
 }

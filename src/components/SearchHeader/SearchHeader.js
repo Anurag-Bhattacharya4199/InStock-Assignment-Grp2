@@ -75,7 +75,7 @@ function SearchHeader(props) {
                         className="header-button--editImg"
                         alt={`Edit ${props.headerButton}`}
                     />
-                    <span className="header-button--editTxt">Edit</span>
+                    <span className="header-button--edit--text">Edit</span>
                 </Link>
 
             </header>

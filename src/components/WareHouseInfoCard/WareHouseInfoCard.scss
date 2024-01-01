@@ -1,37 +1,41 @@
-@import '../../styles/partials/_mixins.scss';
-@import '../../styles/partials/variables';
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
 
 // TABLET && DESKTOP HEADERS***
 .warehouseList-headers {
-    display: none;
+  display: none;
 }
 
 @include tablet {
+  .warehouseList-headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 32px;
 
-    .warehouseList-headers{
+    &__header-container {
+      display: flex;
+
+      &--header {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 16px 32px;
+        font-weight: 600;
+      }
 
-        &__header-container {
-            display: flex;
-
-            &--header {
-                display: flex;
-                font-weight: 600;
-            }
-
-            &--sort-icon {
-                height: 16px;
-            }
-        }
+      &--sort-icon {
+        height: 16px;
+      }
+    }
+  }
+  
+  // DYNAMIC CLASS
+  .edit-warehouse-display-none {
+      display: none;
     }
 }
 
-//WAREHOUSE CARD 
+//WAREHOUSE CARD
 
 .WarehouseList {
     &__body {
@@ -72,60 +76,54 @@
 
         }
 
-        &--info {
-            text-align: start;
-            padding-top: 24px;
 
-            @include tablet {
-                width:50%;
-                padding: 0;
-                align-self: center;
+    &--info {
+      text-align: start;
+      padding-top: 24px;
 
-            }
+      @include tablet {
+        width: 50%;
+        padding: 0;
+        align-items: center;
+      }
 
-            &--warehouse-link-container {
+      &--warehouse-link-container {
+        text-decoration: none;
+        display:flex;
 
-                text-decoration: none;
-                display: flex;
-
-                @include tablet {
-                    display: flex;
-                }
-            }
-
-            &--warehouse-link-icon {
+        @include tablet {
+          display: flex;
+        }
+      }
+      
+       &--warehouse-link-icon {
                 height: 20px;
 
                 @include tablet {
                     height:22px;
                 }
             }
-            
 
 
-            &--header {
-                @include tablet {
-                    display: none;
-                }
-            }
-
-
+      &--header {
+        @include tablet {
+          display: none;
         }
+      }
+    }
 
-        &--icon-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 24px 24px 24px;
+    &--icon-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px 24px 24px;
 
-            @include tablet {
-                justify-content: flex-end;
-                width: 12%;
-                padding: 0 32px 0 0;
-                align-items: center;
-
-
-            }
-        }
+      @include tablet {
+        justify-content: flex-end;
+        width: 12%;
+        padding: 0 32px 0 0;
+        align-items: center;
+      }
+    }
 
         &--delete-button {
             height: 24px;
@@ -139,8 +137,12 @@
             padding-left:24px;
         }
 
+
     }
+   
+  }
 }
+
 
 .text {
     margin: 0;
@@ -152,10 +154,9 @@
         font-size: 14px;
         line-height: 22px;
     }
-
 }
 
 h4 {
-    margin: 0;
-    padding-bottom: 8px;
+  margin: 0;
+  padding-bottom: 8px;
 }

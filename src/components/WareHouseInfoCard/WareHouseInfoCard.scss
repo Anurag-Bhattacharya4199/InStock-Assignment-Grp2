@@ -48,7 +48,7 @@
             display: flex;
             justify-content: flex-start;
             width: 100%;
-            padding: 8px 24px 24px 24px;
+            padding: 0 24px 24px 24px;
 
             @include tablet {
                 padding: 8px 0 0 32px;
@@ -73,7 +73,7 @@
 
         &--info {
             text-align: start;
-            padding-top: 16px;
+            padding-top: 24px;
 
             @include tablet {
                 width:35%;
@@ -85,11 +85,15 @@
             &--warehouse-link-container {
 
                 text-decoration: none;
+                display: flex;
 
                 @include tablet {
                     display: flex;
-                    flex-direction: row;
                 }
+            }
+
+            &--warehouse-link-icon {
+                height: 20px;
             }
             
 
@@ -119,14 +123,30 @@
         }
 
         &--delete-button {
+            height: 24px;
             background-color: white;
             border:none;
+            padding: 0;
         }
+
+        &--edit-button{
+            height:24px;
+        }
+
     }
 }
 
-.p-medium {
+.text {
     margin: 0;
+    font-size: 13px;
+    line-height: 20px;
+    font-family: $font-regular;
+
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
 }
 
 h4 {

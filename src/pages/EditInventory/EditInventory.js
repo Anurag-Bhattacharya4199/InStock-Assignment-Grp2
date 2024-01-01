@@ -31,28 +31,11 @@ function EditInventory() {
         } else {
             setItemStatusTF(false)
         }
+        
 
 
     }, [])
 
-
-    // const fetchInventorylist = () => {
-    //     axios
-    //       .get(`${API_BASE_URL}/inventories`)
-    //       .then((response) => {
-    //         setInventoryList(response.data);
-    //         // console.log(inventoryList);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //     setHasLoaded(true);
-
-    //   }
-
-    //   useEffect(() => {
-    //     fetchInventorylist();
-    //   }, []);
 
 
     const [error, setError] = useState({

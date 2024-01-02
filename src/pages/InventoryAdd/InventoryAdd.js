@@ -114,6 +114,10 @@ function InventoryAdd() {
     }
 
     //Qty Validation to be worked on
+    if (qty.length === 0 && inStock) {
+      errorState.qtyError = true;
+      formComplete = false;
+    }
 
     if (warehouse.length === 0) {
       errorState.warehouseError = true;
@@ -139,6 +143,11 @@ function InventoryAdd() {
       })[0].id;
       //console.log(warehouseId);
       //console.log(qty);
+      //My attempt for Out of Stock Functionality
+      // if (!inStock) {
+      //   itemStatus = "Out of Status";
+      //   qty = 0;
+      // }
       postWarehouse(
         warehouseId,
         itemName,
@@ -301,9 +310,7 @@ function InventoryAdd() {
               <label className="p-medium">Quantity</label>
               <input
                 className={`addInventoryItem__form-qtyInput ${
-                  error.categoryError
-                    ? "addInventoryItem__form-invalidInput"
-                    : ""
+                  error.qtyError ? "addInventoryItem__form-invalidInput" : ""
                 }`}
                 placeholder="0"
                 name="qty"

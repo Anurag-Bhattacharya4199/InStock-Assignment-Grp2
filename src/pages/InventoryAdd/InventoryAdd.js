@@ -3,6 +3,7 @@ import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import "./InventoryAdd.scss";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function InventoryAdd() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
@@ -61,18 +62,7 @@ function InventoryAdd() {
 
   return (
     <main className="addInventoryItem">
-      <section className="addInventoryItem__header">
-        <div className="addInventoryItem__header-info">
-          <Link to="/inventories">
-            <img
-              src={ArroWBack}
-              alt="Go Back"
-              className="addInventoryItem__header-arrowback"
-            />
-          </Link>
-          <h1 className="addWarehouse__header-title">Add New Inventory Item</h1>
-        </div>
-      </section>
+      <SearchHeader title="Add Inventory Item" />
       <form className="addInventoryItem__form">
         <div className="addInventoryItem__form-mainInfo">
           <div className="addInventoryItem__form-itemDetails">

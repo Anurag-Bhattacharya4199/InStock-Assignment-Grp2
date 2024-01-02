@@ -82,8 +82,14 @@
       border: 1px solid $red;
     }
 
-    &-displayNone {
+    &-errorMsg {
       display: none;
+      font-size: 13px;
+    }
+
+    &-errorMsgInvalidInput {
+      display: inline-block;
+      color: $red;
     }
   }
 }
@@ -92,6 +98,14 @@
   padding-top: $mobile-margin;
   font-weight: bold;
   padding-bottom: 4px;
+}
+
+.false {
+  display: none;
+}
+
+.true{
+  display: flex;
 }
 
 @include tablet {

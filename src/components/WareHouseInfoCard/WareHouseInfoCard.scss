@@ -28,61 +28,82 @@
       }
     }
   }
+  
+  // DYNAMIC CLASS
+  .edit-warehouse-display-none {
+      display: none;
+    }
 }
 
 //WAREHOUSE CARD
 
 .WarehouseList {
-  &__body {
-    border-top: 1px solid #bdc5d5;
+    &__body {
+        border-top: 1px solid #bdc5d5;
 
-    @include tablet {
-      display: flex;
-      flex-wrap: nowrap;
-      box-sizing: border-box;
-    }
+        @include tablet {
+            display: flex;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+        }
 
-    &--container {
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-      padding: 8px 24px 24px 24px;
+        &--container {
+            
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 0 24px 24px 24px;
 
-      @include tablet {
-        padding: 8px 0 0 32px;
-      }
-    }
+            @include tablet {
+                width: 88%;
+                padding: 16px 32px;
+            }
 
-    &--subcontainer {
-      width: 50%;
-      padding-right: 16px;
 
-      @include tablet {
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-        width: 47%;
-      }
-    }
+        }
+
+        &--subcontainer {
+            width: 50%;
+            padding-right: 16px;
+
+            @include tablet {
+                display: flex;
+                flex-direction: row;
+                padding: 0;
+                width: 50%;
+                
+            }
+
+        }
+
 
     &--info {
       text-align: start;
-      padding-top: 16px;
+      padding-top: 24px;
 
       @include tablet {
-        width: 35%;
-        padding: 0 50px 0 0;
+        width: 50%;
+        padding: 0;
         align-items: center;
       }
 
       &--warehouse-link-container {
         text-decoration: none;
+        display:flex;
 
         @include tablet {
           display: flex;
-          flex-direction: row;
         }
       }
+      
+       &--warehouse-link-icon {
+                height: 20px;
+
+                @include tablet {
+                    height:22px;
+                }
+            }
+
 
       &--header {
         @include tablet {
@@ -97,26 +118,42 @@
       padding: 0 24px 24px 24px;
 
       @include tablet {
-        flex: unset;
+        justify-content: flex-end;
         width: 12%;
-        padding: 0 16px 0 0;
+        padding: 0 32px 0 0;
         align-items: center;
       }
     }
 
-    &--delete-button {
-      background-color: white;
-      border: none;
+        &--delete-button {
+            height: 24px;
+            background-color: white;
+            border:none;
+            padding: 0;
+        }
+
+        &--edit-button{
+            height:24px;
+            padding-left:24px;
+        }
+
+
     }
-    // DYNAMIC CLASS
-    .edit-warehouse-display-none {
-      display: none;
-    }
+   
   }
 }
 
-.p-medium {
-  margin: 0;
+
+.text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 20px;
+    font-family: $font-regular;
+
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
 }
 
 h4 {

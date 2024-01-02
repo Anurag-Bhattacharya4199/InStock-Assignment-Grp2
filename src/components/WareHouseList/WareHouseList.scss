@@ -6,34 +6,48 @@
   display: none;
 }
 
-@include tablet {
-  .warehouseList-headers {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 16px 32px;
-
-    &__header-container {
-      display: flex;
-
-      &--header {
+@include tablet { 
+  
+    .warehouseList-headers{
         display: flex;
-        font-weight: 600;
-      }
-      // DYNAMIC CLASS
-      .display-none {
-        display: none;
-      }
-      &--sort-icon {
-        height: 16px;
-      }
-    }
-  }
-}
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px 32px;
 
-// WAREHOUSE LISTS : DYNAMIC CLASS
+        &__header-container {
+            display: flex;
+            width: 25%;
+            margin-right: 8px;
+
+            @include desktop {
+                margin-right: 20px;
+
+            }
+
+        
+            &--header {
+                display: flex;
+                font-weight: 600;
+            }
+
+            &--sort-icon {
+                height: 16px;
+            }
+        }
+
+        &__action-header-container {
+            display: flex;
+            justify-content: flex-end;
+            width: 20%;
+        }
+
+    }
+  // WAREHOUSE LISTS : DYNAMIC CLASS
 .display-none {
   display: none;
 }
+  
+  }
+

@@ -125,7 +125,9 @@ function WareHouseDetailPage(props) {
               <h4 className="warehouseDetails__info-headers">
                 Warehouse Address:
               </h4>
-              <p className="p-medium">{warehouse.address}</p>
+              <p className="p-medium">
+                {warehouse.address}, {warehouse.city}
+              </p>
             </div>
             <div className="warehouseDetails__info-contact">
               <div className="warehouseDetails__info-column warehouseDetails__info-column--left">

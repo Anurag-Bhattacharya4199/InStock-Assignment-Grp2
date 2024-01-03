@@ -2,10 +2,7 @@
 @use "../../styles/partials/variables" as *;
 
 .inventoryList {
-  margin: $mobile-margin;
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
-
+  margin:0;
   // TABLET && DESKTOP HEADERS***
   .inventoryList-headers {
     display: none;

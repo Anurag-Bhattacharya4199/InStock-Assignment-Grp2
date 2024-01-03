@@ -128,3 +128,22 @@ display: flex;
 .display-none {
     display: none;
 }
+
+.warehouseDetails__header-backArrow {
+     /* Define the animation */
+ @keyframes moveLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-4px); // Move 4 pixels to the left
+    }
+  }
+
+  /* Apply animation on hover */
+  &:hover {
+    animation: moveLeft 0.3s forwards; // Play the animation on hover
+  }
+
+}
+

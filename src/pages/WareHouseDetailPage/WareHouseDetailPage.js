@@ -6,6 +6,7 @@ import { useParams, Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import EditWarehouse from "../../components/EditWareHouse/EditWareHouse";
 import axios from "axios";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
 function WareHouseDetailPage(props) {
   let { id } = useParams();
   const API_BASE_URL = "http://localhost:8080/warehouses/";
@@ -94,39 +95,17 @@ function WareHouseDetailPage(props) {
           handleEditWarehouseClass={handleEditWarehouseClass}
         />
         <main className={`warehouseDetails ${warehouseDetailClass}`}>
-          <section className="warehouseDetails__header">
-            <div className="warehouseDetails__header-info">
-              <Link to="/">
-                <img
-                  src={ArroWBack}
-                  alt="Go Back"
-                  className="warehouseDetails__header-arrowback"
-                />
-              </Link>
-              <h1 className="warehouseDetails__header-title">
-                {warehouse.warehouse_name}
-              </h1>
-            </div>
-            <div
-              className="warehouseDetails__header-edit"
-              onClick={handleWarehouseDetailClass}
-            >
-              <img
-                src={EditButton}
-                className="warehouseDetails__header-editImg"
-                alt="Edit Warehouse"
-              />
-              <span className="warehouseDetails__header-editTxt">Edit</span>
-            </div>
-          </section>
-
+          <SearchHeader
+            title={warehouse.warehouse_name}
+            headerButton="warehouses"
+          />
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">
               <h4 className="warehouseDetails__info-headers">
                 Warehouse Address:
               </h4>
               <p className="p-medium">
-                {warehouse.address}, {warehouse.city}
+                {warehouse.address}, {warehouse.city}, {warehouse.country}
               </p>
             </div>
             <div className="warehouseDetails__info-contact">

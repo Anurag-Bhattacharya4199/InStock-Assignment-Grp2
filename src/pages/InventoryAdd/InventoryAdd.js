@@ -8,13 +8,13 @@ import SearchHeader from "../../components/SearchHeader/SearchHeader";
 function InventoryAdd() {
   const API_BASE_URL = "http://localhost:8080/warehouses";
   const [warehouses, setWarehouses] = useState([]);
-  const [inStock, setInstock] = useState("true");
+  const [inStock, setInstock] = useState(true);
 
   const [itemName, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [itemStatus, setItemStatus] = useState("In Stock");
-  const [qty, setQty] = useState("");
+  const [qty, setQty] = useState("0");
   const [warehouse, setWarehouse] = useState("");
 
   const [error, setError] = useState({
@@ -30,9 +30,9 @@ function InventoryAdd() {
   useEffect(() => {
     //console.log(itemStatus);
     if (itemStatus === "In Stock") {
-      setInstock("true");
+      setInstock(true);
     } else {
-      setInstock("false");
+      setInstock(false);
     }
   }, [itemStatus]);
 
@@ -52,7 +52,7 @@ function InventoryAdd() {
       status: statusVal,
       quantity: qtyVal,
     };
-    console.log(newItem);
+
     try {
       axios.post("http://localhost:8080/inventories", newItem, {
         "Content-Type": "application/json",
@@ -113,8 +113,12 @@ function InventoryAdd() {
       formComplete = false;
     }
 
-    //Qty Validation to be worked on
-    if (qty.length === 0 && inStock) {
+    if (qty === "0" && inStock) {
+      errorState.qtyError = true;
+      formComplete = false;
+    }
+
+    if (isNaN(parseInt(qty))) {
       errorState.qtyError = true;
       formComplete = false;
     }
@@ -141,13 +145,11 @@ function InventoryAdd() {
       let warehouseId = warehouses.filter((wh) => {
         return wh.warehouse_name === warehouse;
       })[0].id;
-      //console.log(warehouseId);
-      //console.log(qty);
-      //My attempt for Out of Stock Functionality
-      // if (!inStock) {
-      //   itemStatus = "Out of Status";
-      //   qty = 0;
-      // }
+
+      if (!inStock) {
+        setItemStatus("Out of Stock");
+        setQty("0");
+      }
       postWarehouse(
         warehouseId,
         itemName,
@@ -300,7 +302,7 @@ function InventoryAdd() {
                     name="status"
                     htmlFor="status"
                     value="Out of Stock"
-                    onClick={() => setItemStatus("")}
+                    onClick={() => setItemStatus("Out of Stock")}
                   />
                   Out of stock
                 </label>
@@ -312,7 +314,7 @@ function InventoryAdd() {
                 className={`addInventoryItem__form-qtyInput ${
                   error.qtyError ? "addInventoryItem__form-invalidInput" : ""
                 }`}
-                placeholder="0"
+                placeholder={qty}
                 name="qty"
                 htmlFor="qty"
                 value={qty}

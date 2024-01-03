@@ -14,6 +14,8 @@ function WareHouse() {
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
   const [sortedWarehouses, setSortedWarehouses] = useState([])
+  const [sortWarehouses, setSortWarehouses] = useState(false)
+
   const { id } = useParams();
 
   const fetchWarehouseList = () => {
@@ -46,6 +48,12 @@ function WareHouse() {
     fetchWarehouseList(); // Fetch warehouse list when component mounts
     fetchSortedWarehouseList();
   }, []); // Empty dependency array to trigger effect only on mount
+
+
+  const handleSortClick = () => {
+    setSortWarehouses(prevState => !prevState)
+    console.log(sortWarehouses)
+  };
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
@@ -106,6 +114,8 @@ function WareHouse() {
           warehouses={warehouses}
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
+          onSortClick={handleSortClick}
+
         />
       </div>
     );

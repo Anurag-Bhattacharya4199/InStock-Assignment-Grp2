@@ -4,7 +4,20 @@
 .addWarehouse {
   margin: $mobile-margin;
   border-radius: 5px;
-  box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
+  background-color: white;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+  position: relative;
+  top: -75px;
+
+  @include tablet {
+    margin: $tablet-margin;
+    top: -130px;
+  }
+
+  @include desktop {
+    margin: $desktop-margin;
+    top: -200px;
+  }
 
   &__header {
     &-info {
@@ -18,28 +31,45 @@
       padding-left: $mobile-margin;
     }
   }
+
   &__form {
     &-warehouseDetails {
       border-bottom: 1px solid $slate;
     }
-    &-warehouseDetails, &-contactDetails {
+
+    &-warehouseDetails,
+    &-contactDetails {
       padding: $mobile-margin;
     }
 
-    &-warehouseName, &-streetAddress, &-city, &-country, &-contactName, &-position, &-phoneNum, &-email {
+    &-warehouseName,
+    &-streetAddress,
+    &-city,
+    &-country,
+    &-contactName,
+    &-position,
+    &-phoneNum,
+    &-email {
       display: flex;
       flex-direction: column;
     }
 
-    &-warehouse_nameInp, &-warehouse_streetaddressInp, &-warehouse_cityInp, &-warehouse_countryInp, &-warehouse_contactNameInp, &-warehouse_positionInp, &-warehouse_phonenumInp, &-warehouse_emailInp {
+    &-warehouse_nameInp,
+    &-warehouse_streetaddressInp,
+    &-warehouse_cityInp,
+    &-warehouse_countryInp,
+    &-warehouse_contactNameInp,
+    &-warehouse_positionInp,
+    &-warehouse_phonenumInp,
+    &-warehouse_emailInp {
       height: 36px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
       border: 1px solid $cloud;
-      
+
       &:active {
-        border-color: $instock-indigo;  
+        border-color: $instock-indigo;
       }
     }
 
@@ -53,13 +83,15 @@
       padding: $mobile-margin;
     }
 
-    &-cancelBtn, &-addBtn {
+    &-cancelBtn,
+    &-addBtn {
       height: 36px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
       border-color: $slate;
       width: 47%;
+
       &:hover {
         cursor: pointer;
       }
@@ -100,7 +132,8 @@
 @include tablet {
   .addWarehouse {
     margin: $tablet-margin;
-    &__header{
+
+    &__header {
       &-info {
         justify-content: start;
         padding-left: $tablet-margin;
@@ -113,6 +146,7 @@
 
     &__form {
       padding-top: $tablet-margin;
+
       &-mainInfo {
         display: flex;
         justify-content: space-between;
@@ -135,7 +169,14 @@
         padding-bottom: $tablet-margin;
       }
 
-      &-warehouse_nameInp, &-warehouse_streetaddressInp, &-warehouse_cityInp, &-warehouse_countryInp, &-warehouse_contactNameInp, &-warehouse_positionInp, &-warehouse_phonenumInp, &-warehouse_emailInp {
+      &-warehouse_nameInp,
+      &-warehouse_streetaddressInp,
+      &-warehouse_cityInp,
+      &-warehouse_countryInp,
+      &-warehouse_contactNameInp,
+      &-warehouse_positionInp,
+      &-warehouse_phonenumInp,
+      &-warehouse_emailInp {
         height: 38px;
         width: auto;
       }
@@ -144,7 +185,8 @@
         justify-content: flex-end;
       }
 
-      &-cancelBtn, &-addBtn {
+      &-cancelBtn,
+      &-addBtn {
         height: 38px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;

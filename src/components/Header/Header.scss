@@ -5,12 +5,22 @@
 .header {
   background-color: variables.$graphite;
   padding: 24px 16px;
+  height: 150px;
+
+  @include mixins.tablet {
+    height:100px;
+    height:150px;
+  }
+  @include mixins.desktop {
+    height: 125px;
+  }
 
   &__content {
     .header-logo-container {
       display: flex;
       justify-content: center;
       align-items: center;
+      
 
       &__logo {
         height: 28px;
@@ -22,6 +32,10 @@
       justify-content: space-between;
       padding-top: 16px;
       gap: 16px;
+
+      @include mixins.tablet  {
+        padding-top: 0;
+      }
 
       &__link {
         color: variables.$cloud;
@@ -52,7 +66,7 @@
     @include mixins.tablet {
       display: flex;
       justify-content: space-between;
-      padding: 32px;
+      padding: 0 32px  32px 32px;
     }
   }
   &__content {

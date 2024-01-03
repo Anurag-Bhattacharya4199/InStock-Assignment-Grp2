@@ -1,21 +1,20 @@
 import "./WareHouseDetailPage.scss";
-import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
-import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import EditWarehouse from "../../components/EditWareHouse/EditWareHouse";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-function WareHouseDetailPage(props) {
+import { API_BASE_URL } from "../../utils/utils";
+
+function WareHouseDetailPage() {
   let { id } = useParams();
-  const API_BASE_URL = "http://localhost:8080/warehouses/";
 
   // TRUTHY CHECK
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasLoaded2, setHasLoaded2] = useState(false);
 
-  // // WAREHOUSE DATA
+  // WAREHOUSE DATA
   const [warehouse, setWarehouse] = useState("");
 
   // DYNAMIC CLASSES
@@ -68,10 +67,6 @@ function WareHouseDetailPage(props) {
   };
 
   // TOGGLE CLASSES (DISPLAY : NONE/BLOCK)
-  const handleWarehouseDetailClass = () => {
-    setWarehouseDetailClass("display-hidden");
-    setEditWarehouseClass("");
-  };
   const handleEditWarehouseClass = () => {
     setWarehouseDetailClass("");
     setEditWarehouseClass("display-hidden");
@@ -105,7 +100,10 @@ function WareHouseDetailPage(props) {
                 Warehouse Address:
               </h4>
               <p className="p-medium">
-                {warehouse.address}, {warehouse.city}, {warehouse.country}
+                {warehouse.address},
+                <p className="p-medium">
+                  {warehouse.city}, {warehouse.country}
+                </p>
               </p>
             </div>
             <div className="warehouseDetails__info-contact">

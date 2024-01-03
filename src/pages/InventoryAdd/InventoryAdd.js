@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import { API_BASE_URL, postInventory } from "../../utils/utils";
 
 function InventoryAdd() {
-  const API_BASE_URL = "http://localhost:8080/warehouses";
   const [warehouses, setWarehouses] = useState([]);
   const [inStock, setInstock] = useState(true);
 
@@ -35,32 +35,6 @@ function InventoryAdd() {
       setInstock(false);
     }
   }, [itemStatus]);
-
-  const postWarehouse = async (
-    warehouseIDVal,
-    itemNameVal,
-    descriptionVal,
-    categoryVal,
-    statusVal,
-    qtyVal
-  ) => {
-    const newItem = {
-      warehouse_id: warehouseIDVal,
-      item_name: itemNameVal,
-      description: descriptionVal,
-      category: categoryVal,
-      status: statusVal,
-      quantity: qtyVal,
-    };
-
-    try {
-      axios.post("http://localhost:8080/inventories", newItem, {
-        "Content-Type": "application/json",
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   const handleChangeItemName = (event) => {
     const itemName = event.target.value;
@@ -150,7 +124,7 @@ function InventoryAdd() {
         setItemStatus("Out of Stock");
         setQty("0");
       }
-      postWarehouse(
+      postInventory(
         warehouseId,
         itemName,
         description,

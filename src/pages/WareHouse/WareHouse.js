@@ -111,7 +111,7 @@ function WareHouse() {
         )}
 
         <WareHouseList
-          warehouses={warehouses}
+          warehouses={sortWarehouses ? sortedWarehouses : warehouses}
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
           onSortClick={handleSortClick}

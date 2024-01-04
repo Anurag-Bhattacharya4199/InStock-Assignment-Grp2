@@ -8,23 +8,13 @@
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   position: relative;
   top: -75px;
-
-  @include tablet {
-    margin: $tablet-margin;
-    top: -130px;
-  }
-
-  @include desktop {
-    margin: $desktop-margin;
-    top: -200px;
-  }
-
+  
   &__header {
     &-info {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid $slate;
+      border-bottom: 0.063rem solid $slate;
     }
 
     &-title {
@@ -34,7 +24,7 @@
 
   &__form {
     &-warehouseDetails {
-      border-bottom: 1px solid $slate;
+      border-bottom: 0.063rem solid $slate;
     }
 
     &-warehouseDetails,
@@ -71,10 +61,9 @@
       &:active {
         border-color: $instock-indigo;
       }
-    }
+}
 
     &-buttons {
-      height: 68.32px;
       overflow: hidden;
       display: flex;
       justify-content: space-between;
@@ -107,7 +96,7 @@
     }
 
     &-invalidInput {
-      border: 1px solid $red;
+      border: 0.063rem solid $red;
       outline-width: 0;
     }
 
@@ -126,12 +115,13 @@
 .p-medium {
   padding-top: $mobile-margin;
   font-weight: bold;
-  padding-bottom: 4px;
+  padding-bottom: 0.25rem;
 }
 
 @include tablet {
   .addWarehouse {
     margin: $tablet-margin;
+    top: -130px;
 
     &__header {
       &-info {
@@ -190,8 +180,8 @@
         height: 38px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
-        border-radius: 20px;
-        border-color: $slate;
+        border-radius: 1.25rem;
+        border-color: 0.063rem solid $slate;
         width: auto;
       }
 
@@ -205,5 +195,6 @@
 @include desktop {
   .addWarehouse {
     margin: $desktop-margin;
+    top: -200px;
   }
 }

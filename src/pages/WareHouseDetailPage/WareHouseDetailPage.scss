@@ -6,62 +6,13 @@
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
-
   position: relative;
-    top:-75px;
-
-    @include tablet {
-        margin: $tablet-margin;
-        top:-130px;
-    }
-
-    @include desktop {
-        margin: $desktop-margin;
-        top: -200px;
-    }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: $mobile-margin;
-    border-bottom: 1px solid $slate;
-
-    &-info {
-      display: flex;
-      align-items: center;
-    }
-
-    &-title {
-      padding-left: 0.5rem;
-      padding-right: 4.5rem;
-    }
-
-    &-edit {
-      border-radius: 50%;
-      background-color: $instock-indigo;
-      height: 2rem;
-      width: 2rem;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    &-editImg {
-      filter: brightness(0) invert(1);
-      margin-top: 0.25rem;
-    }
-
-    &-editTxt {
-      display: none;
-      color: $white;
-    }
-}
+  top:-75px;
 
   &__info {
     padding: $mobile-margin;
     border-bottom: 1.5px solid $slate;
-
+    
     &-headers {
       color: $slate;
       margin-bottom: 0;
@@ -78,30 +29,15 @@
   }
 }
 
+.p-medium {
+  margin: 0;
+}
+
 @include tablet {
   .warehouseDetails {
     margin: $tablet-margin;
-    &__header {
-      padding: $tablet-margin;
-
-      &-edit {
-        height: auto;
-        width: auto;
-        border-radius: 1.5rem;
-        padding: 0.25rem 1rem;
-        display: flex;
-      }
-
-      &-editImg {
-        margin-top: 0;
-        margin-right: 0.25rem;
-      }
-
-      &-editTxt {
-        display: inline;
-      }
-    }
-
+    top:-130px;
+    
     &__info {
       padding: $tablet-margin;
       display: flex;
@@ -128,6 +64,7 @@
 @include desktop {
   .warehouseDetails {
     margin: $desktop-margin;
+    top: -200px;
     &__info {
       &-column {
         &--left {

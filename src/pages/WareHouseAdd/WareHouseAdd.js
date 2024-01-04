@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./WareHouseAdd.scss";
 import { useState } from "react";
-import axios from "axios";
 import validator from "validator";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
+import { postWarehouse } from "../../utils/utils";
 
 function WareHouseAdd() {
   const [warehouseName, setWarehouseName] = useState("");
@@ -28,36 +28,6 @@ function WareHouseAdd() {
   });
 
   const navigate = useNavigate();
-
-  const postWarehouse = async (
-    warehouseNameVal,
-    streetAddressVal,
-    cityVal,
-    countryVal,
-    contactNameVal,
-    positionVal,
-    phoneNumVal,
-    emailVal
-  ) => {
-    const newWarehouse = {
-      warehouse_name: warehouseNameVal,
-      address: streetAddressVal,
-      city: cityVal,
-      country: countryVal,
-      contact_name: contactNameVal,
-      contact_position: positionVal,
-      contact_phone: phoneNumVal,
-      contact_email: emailVal,
-    };
-    console.log(newWarehouse);
-    try {
-      axios.post("http://localhost:8080/warehouses", newWarehouse, {
-        "Content-Type": "application/json",
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   const handleChangeWarehouseName = (event) => {
     const warehouseName = event.target.value;

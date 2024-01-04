@@ -1,8 +1,7 @@
 import "./WareHouseDetailPage.scss";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
-import EditWarehouse from "../../components/EditWareHouse/EditWareHouse";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { API_BASE_URL } from "../../utils/utils";
@@ -16,15 +15,6 @@ function WareHouseDetailPage() {
 
   // WAREHOUSE DATA
   const [warehouse, setWarehouse] = useState("");
-
-  // DYNAMIC CLASSES
-  const [warehouseDetailClass, setWarehouseDetailClass] = useState("");
-  const [editWarehouseClass, setEditWarehouseClass] =
-    useState("display-hidden");
-
-  // DISABLE SAVE BUTTON IN EDIT WAREHOUSE-COMPONENT
-  const [disableButton, setDisableButton] = useState(true);
-  const [disableButtonClass, setDisableButtonClass] = useState("disabled");
 
   // WAREHOUSE INVENTORY LISTS
   const [warehouseInventory, setWarehouseInventory] = useState([]);
@@ -48,52 +38,42 @@ function WareHouseDetailPage() {
     });
   }, []);
 
-  // UPDATE WAREHOUSE
-  const handleEditWarehousePost = (warehouseData) => {
-    axios
-      .patch(`${API_BASE_URL}${id}`, warehouseData)
-      .then((response) => {
-        setWarehouse(response.data);
-        setHasLoaded(true);
-      })
-      .then(() => {
-        handleEditWarehouseClass();
-        setDisableButton(true);
-        setDisableButtonClass("disabled");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  // TOGGLE CLASSES (DISPLAY : NONE/BLOCK)
-  const handleEditWarehouseClass = () => {
-    setWarehouseDetailClass("");
-    setEditWarehouseClass("display-hidden");
-  };
-
   // RENDERING
   if (!hasLoaded && !hasLoaded2) {
     return null;
   } else {
     return (
       <>
-        {/* EDIT WAREHOUSE */}
-        <EditWarehouse
-          warehouse={warehouse}
-          disableButton={disableButton}
-          disableButtonClass={disableButtonClass}
-          editWarehouseClass={editWarehouseClass}
-          setDisableButton={setDisableButton}
-          setDisableButtonClass={setDisableButtonClass}
-          handleEditWarehousePost={handleEditWarehousePost}
-          handleEditWarehouseClass={handleEditWarehouseClass}
-        />
-        <main className={`warehouseDetails ${warehouseDetailClass}`}>
-          <SearchHeader
-            title={warehouse.warehouse_name}
-            headerButton="warehouses"
-          />
+        <main className={`warehouseDetails`}>
+          <section className="warehouseDetails__header">
+            <div className="warehouseDetails__header-info">
+              <Link to="/">
+                <img
+                  src={ArroWBack}
+                  alt="Go Back"
+                  className="warehouseDetails__header-arrowback"
+                />
+              </Link>
+              <h1 className="warehouseDetails__header-title">
+                {warehouse.warehouse_name}
+              </h1>
+            </div>
+            <Link
+              to={`/warehouses/${id}/edit`}
+              state={{ sourcePage: `/warehouses/${id}/` }}
+              className="warehouseDetails__header-edit"
+            >
+              <img
+                src={EditButton}
+                className="warehouseDetails__header-editImg"
+                alt="Edit Warehouse"
+              />
+              <span className="warehouseDetails__header-editTxt">Edit</span>
+            </Link>
+          </section>
+
+       
+       
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">
               <h4 className="warehouseDetails__info-headers">

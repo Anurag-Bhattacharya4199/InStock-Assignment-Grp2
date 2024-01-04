@@ -13,6 +13,9 @@ function WareHouse() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
+  const [sortedWarehouses, setSortedWarehouses] = useState([])
+  const [sortWarehouses, setSortWarehouses] = useState(false)
+
   const { id } = useParams();
 
   const fetchWarehouseList = () => {
@@ -28,9 +31,29 @@ function WareHouse() {
       });
   };
 
+  const fetchSortedWarehouseList = () => {
+    axios
+    .get(`${API_BASE_URL}?sort_by=warehouse_name`)
+    .then((response) => {
+      const sortedWarehouseData = response.data;
+      setSortedWarehouses(sortedWarehouseData)
+      console.log(sortedWarehouseData)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+  };
+
   useEffect(() => {
     fetchWarehouseList(); // Fetch warehouse list when component mounts
+    fetchSortedWarehouseList();
   }, []); // Empty dependency array to trigger effect only on mount
+
+
+  const handleSortClick = () => {
+    setSortWarehouses(prevState => !prevState)
+    console.log(sortWarehouses)
+  };
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
@@ -88,9 +111,11 @@ function WareHouse() {
         )}
 
         <WareHouseList
-          warehouses={warehouses}
+          warehouses={sortWarehouses ? sortedWarehouses : warehouses}
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
+          onSortClick={handleSortClick}
+
         />
       </div>
     );

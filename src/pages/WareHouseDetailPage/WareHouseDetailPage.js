@@ -2,9 +2,8 @@ import "./WareHouseDetailPage.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import EditButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
-import EditWarehouse from "../../components/EditWareHouse/EditWareHouse";
 import axios from "axios";
 function WareHouseDetailPage(props) {
   let { id } = useParams();
@@ -16,15 +15,6 @@ function WareHouseDetailPage(props) {
 
   // // WAREHOUSE DATA
   const [warehouse, setWarehouse] = useState("");
-
-  // DYNAMIC CLASSES
-  const [warehouseDetailClass, setWarehouseDetailClass] = useState("");
-  const [editWarehouseClass, setEditWarehouseClass] =
-    useState("display-hidden");
-
-  // DISABLE SAVE BUTTON IN EDIT WAREHOUSE-COMPONENT
-  const [disableButton, setDisableButton] = useState(true);
-  const [disableButtonClass, setDisableButtonClass] = useState("disabled");
 
   // WAREHOUSE INVENTORY LISTS
   const [warehouseInventory, setWarehouseInventory] = useState([]);
@@ -48,52 +38,13 @@ function WareHouseDetailPage(props) {
     });
   }, []);
 
-  // UPDATE WAREHOUSE
-  const handleEditWarehousePost = (warehouseData) => {
-    axios
-      .patch(`${API_BASE_URL}${id}`, warehouseData)
-      .then((response) => {
-        setWarehouse(response.data);
-        setHasLoaded(true);
-      })
-      .then(() => {
-        handleEditWarehouseClass();
-        setDisableButton(true);
-        setDisableButtonClass("disabled");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  // TOGGLE CLASSES (DISPLAY : NONE/BLOCK)
-  const handleWarehouseDetailClass = () => {
-    setWarehouseDetailClass("display-hidden");
-    setEditWarehouseClass("");
-  };
-  const handleEditWarehouseClass = () => {
-    setWarehouseDetailClass("");
-    setEditWarehouseClass("display-hidden");
-  };
-
   // RENDERING
   if (!hasLoaded && !hasLoaded2) {
     return null;
   } else {
     return (
       <>
-        {/* EDIT WAREHOUSE */}
-        <EditWarehouse
-          warehouse={warehouse}
-          disableButton={disableButton}
-          disableButtonClass={disableButtonClass}
-          editWarehouseClass={editWarehouseClass}
-          setDisableButton={setDisableButton}
-          setDisableButtonClass={setDisableButtonClass}
-          handleEditWarehousePost={handleEditWarehousePost}
-          handleEditWarehouseClass={handleEditWarehouseClass}
-        />
-        <main className={`warehouseDetails ${warehouseDetailClass}`}>
+        <main className={`warehouseDetails`}>
           <section className="warehouseDetails__header">
             <div className="warehouseDetails__header-info">
               <Link to="/">
@@ -107,9 +58,10 @@ function WareHouseDetailPage(props) {
                 {warehouse.warehouse_name}
               </h1>
             </div>
-            <div
+            <Link
+              to={`/warehouses/${id}/edit`}
+              state={{ sourcePage: `/warehouses/${id}/` }}
               className="warehouseDetails__header-edit"
-              onClick={handleWarehouseDetailClass}
             >
               <img
                 src={EditButton}
@@ -117,7 +69,7 @@ function WareHouseDetailPage(props) {
                 alt="Edit Warehouse"
               />
               <span className="warehouseDetails__header-editTxt">Edit</span>
-            </div>
+            </Link>
           </section>
 
           <section className="warehouseDetails__info">

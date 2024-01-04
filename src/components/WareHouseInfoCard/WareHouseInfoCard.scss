@@ -28,54 +28,48 @@
       }
     }
   }
-  
+
   // DYNAMIC CLASS
   .edit-warehouse-display-none {
-      display: none;
-    }
+    display: none;
+  }
 }
 
 //WAREHOUSE CARD
 
 .WarehouseList {
-    &__body {
-        border-top: 1px solid #bdc5d5;
+  &__body {
+    border-top: 1px solid #bdc5d5;
 
-        @include tablet {
-            display: flex;
-            flex-wrap: nowrap;
-            box-sizing: border-box;
-        }
+    @include tablet {
+      display: flex;
+      flex-wrap: nowrap;
+      box-sizing: border-box;
+    }
 
-        &--container {
-            
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            padding: 0 24px 24px 24px;
+    &--container {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 0 24px 24px 24px;
 
-            @include tablet {
-                width: 88%;
-                padding: 16px 32px;
-            }
+      @include tablet {
+        width: 88%;
+        padding: 16px 32px;
+      }
+    }
 
+    &--subcontainer {
+      width: 50%;
+      padding-right: 16px;
 
-        }
-
-        &--subcontainer {
-            width: 50%;
-            padding-right: 16px;
-
-            @include tablet {
-                display: flex;
-                flex-direction: row;
-                padding: 0;
-                width: 50%;
-                
-            }
-
-        }
-
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        width: 50%;
+      }
+    }
 
     &--info {
       text-align: start;
@@ -89,21 +83,20 @@
 
       &--warehouse-link-container {
         text-decoration: none;
-        display:flex;
+        display: flex;
 
         @include tablet {
           display: flex;
         }
       }
-      
-       &--warehouse-link-icon {
-                height: 20px;
 
-                @include tablet {
-                    height:22px;
-                }
-            }
+      &--warehouse-link-icon {
+        height: 20px;
 
+        @include tablet {
+          height: 22px;
+        }
+      }
 
       &--header {
         @include tablet {
@@ -125,35 +118,30 @@
       }
     }
 
-        &--delete-button {
-            height: 24px;
-            background-color: white;
-            border:none;
-            padding: 0;
-        }
-
-        &--edit-button{
-            height:24px;
-            padding-left:24px;
-        }
-
-
+    &--delete-button {
+      height: 24px;
+      background-color: white;
+      border: none;
+      padding: 0;
     }
-   
+
+    &--edit-button {
+      height: 24px;
+      padding-left: 24px;
+    }
   }
 }
 
-
 .text {
-    margin: 0;
-    font-size: 13px;
-    line-height: 20px;
-    font-family: $font-regular;
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  font-family: $font-regular;
 
-    @include tablet {
-        font-size: 14px;
-        line-height: 22px;
-    }
+  @include tablet {
+    font-size: 14px;
+    line-height: 22px;
+  }
 }
 
 h4 {

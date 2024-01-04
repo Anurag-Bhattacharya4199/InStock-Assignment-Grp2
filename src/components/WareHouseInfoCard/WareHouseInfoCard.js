@@ -5,9 +5,6 @@ import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import "./WareHouseInfoCard.scss";
 
 function WareHouseInfoCard(props) {
-  const currentWarehouse = props.currentWarehouse;
-  const isWarehouseSelected = props.isWarehouseSelected;
-
   const {
     warehouse_name,
     address,
@@ -75,16 +72,16 @@ function WareHouseInfoCard(props) {
               className="WarehouseList__body--delete-icon"
             ></img>
           </button>
-          <Link className="WarehouseList__body--edit-button">
+          <Link
+            to={`/warehouses/${id}/edit`}
+            state={{ sourcePage: "/" }}
+            className="WarehouseList__body--edit-button"
+          >
             <img
               id={id}
               src={EditIcon}
               alt="edit icon"
-              className={`${props.editWarehouseClass} WarehouseList__body--edit-icon`}
-              onClick={(event) => {
-                props.getCurrentWarehouseData(event);
-                props.handleWarehouseListClass();
-              }}
+              className={` WarehouseList__body--edit-icon`}
             ></img>
           </Link>
         </div>

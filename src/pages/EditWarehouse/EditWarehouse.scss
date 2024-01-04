@@ -4,6 +4,57 @@
 .editWarehouse {
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   margin: 0px 16px;
+
+  // POP UP
+  &__confirm-edit-container,
+  &__cancel-edit-container {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    // GOING BACK TO PAGE LINK
+    .confirm-edit-content,
+    .cancel-edit-content {
+      max-width: 400px;
+      background-color: $instock-black;
+      opacity: 1;
+      color: $white;
+      padding: 16px;
+
+      // LINK
+      &__link {
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        &--button {
+          width: 80px;
+        }
+      }
+    }
+    .cancel-edit-content {
+      .cancel-edit-link {
+        .cancel-edit-button {
+          width: 80px;
+        }
+      }
+      .cancel-edit-button {
+        width: 80px;
+      }
+    }
+  } // DYNAMIC CLASS
+  .edit-confirm-pop-up-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cancel-edit-pop-up-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &__header {
     &-info {
       display: flex;

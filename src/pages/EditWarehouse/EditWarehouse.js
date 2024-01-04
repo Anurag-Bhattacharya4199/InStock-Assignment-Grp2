@@ -1,20 +1,26 @@
-import "./EditWareHouse.scss";
+import "./EditWarehouse.scss";
 import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
 import ErrorLogo from "../../assets/icons/error-24px.svg";
 import validator from "validator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 const EditWarehouse = (props) => {
+  const API_BASE_URL = "http://localhost:8080/warehouses/";
+  const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  // SET REDIRECT LINK
+  const [pageSource, setPageSource] = useState("");
   // WAREHOUSE DATA
-  const [warehouseName, setWarehouseName] = useState(
-    props.warehouse.warehouse_name
-  );
-  const [address, setAddress] = useState(props.warehouse.address);
-  const [city, setCity] = useState(props.warehouse.city);
-  const [country, setCountry] = useState(props.warehouse.country);
-  const [contactName, setContactName] = useState(props.warehouse.contact_name);
-  const [position, setPosition] = useState(props.warehouse.contact_position);
-  const [phoneNumber, setPhoneNumber] = useState(props.warehouse.contact_phone);
-  const [email, setEmail] = useState(props.warehouse.contact_email);
+  const [warehouseName, setWarehouseName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [contactName, setContactName] = useState("");
+  const [position, setPosition] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   // FORM INPUT ERROR STATE CLASESS
   const [warehouseErrorState, setWarehouseErrorState] = useState("");
   const [addressErrorState, setAddressErrorState] = useState("");
@@ -42,16 +48,55 @@ const EditWarehouse = (props) => {
     "This field is required"
   );
 
-  // RESTORE DATA
-  const handleRestoreData = () => {
-    setWarehouseName(props.warehouse.warehouse_name);
-    setAddress(props.warehouse.address);
-    setCity(props.warehouse.city);
-    setCountry(props.warehouse.country);
-    setContactName(props.warehouse.contact_name);
-    setPosition(props.warehouse.contact_position);
-    setPhoneNumber(props.warehouse.contact_phone);
-    setEmail(props.warehouse.contact_email);
+  // BUTTON DISABLE
+  const [disableButton, setDisableButton] = useState(true);
+  const [disableButtonClass, setDisableButtonClass] = useState("disabled");
+
+  // POP UP CLASS
+  const [editPopUpClass, setEditPopUpClass] = useState("");
+  const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
+  // SET RE-DIRECT PAGE LINKS
+  useEffect(() => {
+    setPageSource(location.state.sourcePage);
+  }, []);
+  // GET WAREHOUSE DATA
+  useEffect(() => {
+    axios
+      .get(`${API_BASE_URL}${id}`)
+      .then((response) => {
+        setWarehouseName(response.data.warehouse_name);
+        setAddress(response.data.address);
+        setCity(response.data.city);
+        setCountry(response.data.country);
+        setContactName(response.data.contact_name);
+        setPosition(response.data.contact_position);
+        setPhoneNumber(response.data.contact_phone);
+        setEmail(response.data.contact_email);
+      })
+
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleWarehouseEditPost = () => {
+    axios
+      .patch(`${API_BASE_URL}${id}`, {
+        warehouse_name: warehouseName,
+        address: address,
+        city: city,
+        country: country,
+        contact_name: contactName,
+        contact_position: position,
+        contact_phone: phoneNumber,
+        contact_email: email,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const hanldePhoneNumberErrorMessage = (event) => {
@@ -87,11 +132,11 @@ const EditWarehouse = (props) => {
   // ENABLE SAVE BUTTON IN EDIT WAREHOUSE COMPONENT
   const handleSaveButton = () => {
     if (validator.isMobilePhone(phoneNumber) && validator.isEmail(email)) {
-      props.setDisableButton(false);
-      props.setDisableButtonClass("");
+      setDisableButton(false);
+      setDisableButtonClass("");
     } else {
-      props.setDisableButton(true);
-      props.setDisableButtonClass("disabled");
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
       return;
     }
 
@@ -105,12 +150,12 @@ const EditWarehouse = (props) => {
       !phoneNumber ||
       !email
     ) {
-      props.setDisableButton(true);
-      props.setDisableButtonClass("disabled");
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
       return;
     } else {
-      props.setDisableButton(false);
-      props.setDisableButtonClass("");
+      setDisableButton(false);
+      setDisableButtonClass("");
     }
     // DIS/ENABLE SAVE BUTTON
   };
@@ -216,25 +261,51 @@ const EditWarehouse = (props) => {
   };
 
   return (
-    <main className={`${props.editWarehouseClass} editWarehouse `}>
+    <main className={`editWarehouse `}>
+      {/*-------------------------------*/}
+
+      {/* POP-UP */}
+      <div
+        className={`editWarehouse__confirm-edit-container ${editPopUpClass}`}
+      >
+        <div className="confirm-edit-content">
+          <h3>Warehouse edit Successfully</h3>
+          <Link to={`${pageSource}`} className="confirm-edit-content__link">
+            <button className="confirm-edit-content__link--button">Ok</button>
+          </Link>
+        </div>
+      </div>
+      <div
+        className={`editWarehouse__cancel-edit-container ${cancelEditPopUpClass}`}
+      >
+        <div className="cancel-edit-content">
+          <h3>Are you sure want to cancel?</h3>
+          <div className="cancel-edit-content__button-container">
+            <Link to={`${pageSource}`} className="cancel-edit-link">
+              <button className="cancel-edit-button">Yes</button>
+            </Link>
+            <button
+              className="cancel-edit-button"
+              type="button"
+              onClick={() => {
+                setCancelEditPopUpClass("");
+              }}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+      {/*-------------------------------*/}
       <section className="editWarehouse__header">
         <div className="editWarehouse__header-info">
-          {/* <Link to={`/warehouses/${props.id}/`}> */}
-          <img
-            src={ArroWBack}
-            alt="Go Back"
-            className="editWarehouse__header-arrowback"
-            onClick={() => {
-              if (props.currentWarehouseId) {
-                props.handleEditWarehouseClass();
-                props.setHasCurrentWarehouseLoaded(false);
-              } else {
-                handleRestoreData();
-                props.handleEditWarehouseClass();
-              }
-            }}
-          />
-          {/* </Link> */}
+          <Link to={`${pageSource}`}>
+            <img
+              src={ArroWBack}
+              alt="Go Back"
+              className="editWarehouse__header-arrowback"
+            />
+          </Link>
           <h1 className="editWarehouse__header-title">Edit Warehouse</h1>
         </div>
       </section>
@@ -426,50 +497,21 @@ const EditWarehouse = (props) => {
         <div className="editWarehouse__form-buttons">
           <button
             className="editWarehouse__form-cancelBtn"
-            onClick={() => {
-              if (props.currentWarehouseId) {
-                props.handleEditWarehouseClass();
-                props.setHasCurrentWarehouseLoaded(false);
-              } else {
-                handleRestoreData();
-                props.handleEditWarehouseClass();
-              }
-            }}
             type="button"
+            onClick={() => {
+              setCancelEditPopUpClass("cancel-edit-pop-up-display");
+            }}
           >
             Cancel
           </button>
           <button
-            disabled={props.disableButton}
-            className={`editWarehouse__form-addBtn ${props.disableButtonClass}`}
+            disabled={disableButton}
+            className={`editWarehouse__form-addBtn ${disableButtonClass}`}
             onClick={(event) => {
               event.preventDefault();
-              if (props.currentWarehouseId) {
-                props.handleEditWarehousePost({
-                  warehouse_name: warehouseName,
-                  address: address,
-                  city: city,
-                  country: country,
-                  contact_name: contactName,
-                  contact_position: position,
-                  contact_phone: phoneNumber,
-                  contact_email: email,
-                });
-                props.handleEditWarehouseClass();
-                props.setHasCurrentWarehouseLoaded(false);
-              } else {
-                props.handleEditWarehousePost({
-                  warehouse_name: warehouseName,
-                  address: address,
-                  city: city,
-                  country: country,
-                  contact_name: contactName,
-                  contact_position: position,
-                  contact_phone: phoneNumber,
-                  contact_email: email,
-                });
-                props.handleEditWarehouseClass();
-              }
+              handleWarehouseEditPost();
+              alert("Edit warehouse successfully!");
+              navigate(-1);
             }}
           >
             Save

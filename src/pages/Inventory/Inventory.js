@@ -12,6 +12,8 @@ const Inventory = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteInventoryID, setDeleteInventoryID] = useState(null);
   const [inventoryToDelete, setInventorToDelete] = useState(null);
+  const [sortedInventory, setSortedInventory] = useState([])
+
   const { id } = useParams();
 
   const API_BASE_URL = "http://localhost:8080";
@@ -30,8 +32,22 @@ const Inventory = () => {
 
   }
 
+  const fetchSortedInventoryList = () => {
+    axios
+    .get(`${API_BASE_URL}/inventories?sort_by=item_name`)
+    .then((response) => {
+      const sortedInventoryeData = response.data;
+      setSortedInventory(sortedInventoryeData)
+      console.log(sortedInventoryeData)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+  };
+
   useEffect(() => {
     fetchInventorylist();
+    fetchSortedInventoryList();
   }, []);
 
 

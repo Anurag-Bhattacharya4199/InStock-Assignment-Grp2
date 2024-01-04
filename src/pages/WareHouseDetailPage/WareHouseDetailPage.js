@@ -45,35 +45,11 @@ function WareHouseDetailPage() {
     return (
       <>
         <main className={`warehouseDetails`}>
-          <section className="warehouseDetails__header">
-            <div className="warehouseDetails__header-info">
-              <Link to="/">
-                <img
-                  src={ArroWBack}
-                  alt="Go Back"
-                  className="warehouseDetails__header-arrowback"
-                />
-              </Link>
-              <h1 className="warehouseDetails__header-title">
-                {warehouse.warehouse_name}
-              </h1>
-            </div>
-            <Link
-              to={`/warehouses/${id}/edit`}
-              state={{ sourcePage: `/warehouses/${id}/` }}
-              className="warehouseDetails__header-edit"
-            >
-              <img
-                src={EditButton}
-                className="warehouseDetails__header-editImg"
-                alt="Edit Warehouse"
-              />
-              <span className="warehouseDetails__header-editTxt">Edit</span>
-            </Link>
-          </section>
-
-       
-       
+          <SearchHeader
+            headerButton="warehouses"
+            item_id={warehouse.id}
+            title={warehouse.warehouse_name}
+          />
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">
               <h4 className="warehouseDetails__info-headers">

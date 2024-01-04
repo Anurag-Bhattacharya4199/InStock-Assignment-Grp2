@@ -8,17 +8,7 @@
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   position: relative;
   top: -75px;
-
-  @include tablet {
-    margin: $tablet-margin;
-    top: -130px;
-  }
-
-  @include desktop {
-    margin: $desktop-margin;
-    top: -200px;
-  }
-
+  
   &__header {
     &-info {
       display: flex;
@@ -131,6 +121,7 @@
 @include tablet {
   .addWarehouse {
     margin: $tablet-margin;
+    top: -130px;
 
     &__header {
       &-info {
@@ -204,5 +195,6 @@
 @include desktop {
   .addWarehouse {
     margin: $desktop-margin;
+    top: -200px;
   }
 }

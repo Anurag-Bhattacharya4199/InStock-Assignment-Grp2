@@ -3,21 +3,21 @@
 
 .addInventoryItem {
   margin: $mobile-margin;
-  border-radius: 0.313;
+  border-radius: 5px;
+  background-color: white;
   box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
 
-  &__header {
-    &-info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 0.063rem solid $slate;
-      padding: $mobile-margin;
-    }
+  position: relative;
+  top: -75px;
 
-    &-title {
-      padding-left: $mobile-margin;
-    }
+  @include tablet {
+    margin: $tablet-margin;
+    top: -130px;
+  }
+
+  @include desktop {
+    margin: $desktop-margin;
+    top: -200px;
   }
 
   &__form {
@@ -35,14 +35,14 @@
     }
 
     &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
-      height: 2.25rem;
+      height: 26px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
-      border-radius: 1.25rem;
-
+      border-radius: 20px;
       border-color: $slate;
-
-      &:active {
+      
+      &:active 
+      {
         border-color: $instock-indigo;  
       }
     }
@@ -62,13 +62,14 @@
     }
 
     &-cancelBtn, &-addBtn {
-      height: 2.25rem;
+      height: 36px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
-      border-radius: 1.25rem;
+      border-radius: 20px;
       border-color: $slate;
       width: 47%;
-      &:hover {
+      &:hover 
+      {
         cursor: pointer;
       }
     }
@@ -83,7 +84,7 @@
     }
 
     &-invalidInput {
-      border: 0.063rem solid $red;
+      border: 1px solid $red;
     }
 
     &-errorMsg {
@@ -101,7 +102,7 @@
 .p-medium {
   padding-top: $mobile-margin;
   font-weight: bold;
-  padding-bottom: 0.25rem;
+  padding-bottom: 4px;
 }
 
 .false {
@@ -137,7 +138,7 @@
       &-itemDetails {
         width: 50%;
         border-bottom: none;
-        border-right: 0.063rem solid $slate;
+        border-right: 1px solid $slate;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
@@ -151,7 +152,7 @@
       }
 
       &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
-        height: 1.75rem;
+        height: 28px;
         width: auto;
       }
 
@@ -160,7 +161,7 @@
       }
 
       &-cancelBtn, &-addBtn {
-        height: 1.75rem;
+        height: 28px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
         border-radius: 20px;

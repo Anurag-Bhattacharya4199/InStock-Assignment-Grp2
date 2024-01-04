@@ -1,7 +1,6 @@
 import "./WareHouseList.scss";
 import WareHouseInfoCard from "../WareHouseInfoCard/WareHouseInfoCard";
 import SortDefault from "../../assets/icons/sort-24px.svg";
-import EditWarehouse from "../EditWareHouse/EditWareHouse";
 import { useState } from "react";
 import axios from "axios";
 
@@ -42,9 +41,6 @@ function WareHouseList(props) {
             src={SortDefault}
             alt="sort"
           />
-      </>
-    );
-  
         </div>
         <div className="warehouseList-headers__header-container">
           <h4 className="warehouseList-headers__header-container--header">

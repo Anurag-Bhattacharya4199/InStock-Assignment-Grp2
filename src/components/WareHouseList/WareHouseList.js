@@ -1,8 +1,12 @@
 import "./WareHouseList.scss";
 import WareHouseInfoCard from "../WareHouseInfoCard/WareHouseInfoCard";
 import SortDefault from "../../assets/icons/sort-24px.svg";
+import EditWarehouse from "../EditWareHouse/EditWareHouse";
+import { useState } from "react";
+import axios from "axios";
+
 function WareHouseList(props) {
-  const { warehouses } = props;
+  const { warehouses, onSortClick } = props;
 
   return (
     <>
@@ -16,6 +20,7 @@ function WareHouseList(props) {
             className="warehouseList-headers__header-container--sort-icon"
             src={SortDefault}
             alt="sort"
+            onClick={onSortClick}
           />
         </div>
         <div className="warehouseList-headers__header-container">
@@ -37,6 +42,9 @@ function WareHouseList(props) {
             src={SortDefault}
             alt="sort"
           />
+      </>
+    );
+  
         </div>
         <div className="warehouseList-headers__header-container">
           <h4 className="warehouseList-headers__header-container--header">

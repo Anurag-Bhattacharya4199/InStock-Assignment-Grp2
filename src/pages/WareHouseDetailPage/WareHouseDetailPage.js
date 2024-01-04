@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams, Link } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import axios from "axios";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
 function WareHouseDetailPage(props) {
   let { id } = useParams();
   const API_BASE_URL = "http://localhost:8080/warehouses/";
@@ -72,12 +73,16 @@ function WareHouseDetailPage(props) {
             </Link>
           </section>
 
+       
+       
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">
               <h4 className="warehouseDetails__info-headers">
                 Warehouse Address:
               </h4>
-              <p className="p-medium">{warehouse.address}</p>
+              <p className="p-medium">
+                {warehouse.address}, {warehouse.city}, {warehouse.country}
+              </p>
             </div>
             <div className="warehouseDetails__info-contact">
               <div className="warehouseDetails__info-column warehouseDetails__info-column--left">

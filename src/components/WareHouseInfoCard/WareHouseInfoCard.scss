@@ -89,6 +89,23 @@
           display: flex;
         }
       }
+      
+       &--warehouse-link-icon {
+                height: 20px;
+                
+                @keyframes moveRight {
+                  0% {
+                    transform: translateX(0);
+                  }
+                  100% {
+                    transform: translateX(4px); 
+                  }
+                }
+              
+                /* Apply animation on hover */
+                &:hover {
+                  animation: moveRight 0.3s forwards; 
+                }
 
       &--warehouse-link-icon {
         height: 20px;
@@ -130,7 +147,6 @@
       padding-left: 24px;
     }
   }
-}
 
 .text {
   margin: 0;

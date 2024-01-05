@@ -1,13 +1,13 @@
-@import '../../styles/partials/mixins';
-@import '../../styles/partials/variables';
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/variables";
 
 // TABLET && DESKTOP HEADERS***
 .warehouseList-headers {
-    display: none;
+  display: none;
 }
 
-@include tablet {
-
+@include tablet { 
+  
     .warehouseList-headers{
         display: flex;
         justify-content: space-between;
@@ -18,7 +18,15 @@
 
         &__header-container {
             display: flex;
+            width: 25%;
+            margin-right: 8px;
 
+            @include desktop {
+                margin-right: 20px;
+
+            }
+
+        
             &--header {
                 display: flex;
                 font-weight: 600;
@@ -28,5 +36,18 @@
                 height: 16px;
             }
         }
+
+        &__action-header-container {
+            display: flex;
+            justify-content: flex-end;
+            width: 20%;
+        }
+
     }
+  // WAREHOUSE LISTS : DYNAMIC CLASS
+.display-none {
+  display: none;
 }
+  
+  }
+

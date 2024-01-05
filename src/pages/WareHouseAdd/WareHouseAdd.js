@@ -1,10 +1,10 @@
-import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./WareHouseAdd.scss";
 import { useState } from "react";
-import axios from "axios";
 import validator from "validator";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
+import ErrorIcon from "../../assets/icons/error-24px.svg";
+import { postWarehouse } from "../../utils/utils";
 
 function WareHouseAdd() {
   const [warehouseName, setWarehouseName] = useState("");
@@ -28,36 +28,6 @@ function WareHouseAdd() {
   });
 
   const navigate = useNavigate();
-
-  const postWarehouse = async (
-    warehouseNameVal,
-    streetAddressVal,
-    cityVal,
-    countryVal,
-    contactNameVal,
-    positionVal,
-    phoneNumVal,
-    emailVal
-  ) => {
-    const newWarehouse = {
-      warehouse_name: warehouseNameVal,
-      address: streetAddressVal,
-      city: cityVal,
-      country: countryVal,
-      contact_name: contactNameVal,
-      contact_position: positionVal,
-      contact_phone: phoneNumVal,
-      contact_email: emailVal,
-    };
-    console.log(newWarehouse);
-    try {
-      axios.post("http://localhost:8080/warehouses", newWarehouse, {
-        "Content-Type": "application/json",
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   const handleChangeWarehouseName = (event) => {
     const warehouseName = event.target.value;
@@ -211,6 +181,16 @@ function WareHouseAdd() {
                 value={warehouseName}
                 onChange={handleChangeWarehouseName}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.warehouseNameError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
             </article>
             <article className="addWarehouse__form-streetAddress">
               <label className="p-medium">Street Address</label>
@@ -226,6 +206,16 @@ function WareHouseAdd() {
                 value={streetAddress}
                 onChange={handleChangeStreetAddress}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.streetAddressError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
             </article>
             <article className="addWarehouse__form-city">
               <label className="p-medium">City</label>
@@ -239,6 +229,16 @@ function WareHouseAdd() {
                 value={city}
                 onChange={handleChangeCity}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.cityError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
             </article>
             <article className="addWarehouse__form-country">
               <label className="p-medium">Country</label>
@@ -252,6 +252,16 @@ function WareHouseAdd() {
                 value={country}
                 onChange={handleChangeCountry}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.countryError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
             </article>
           </div>
           <div className="addWarehouse__form-contactDetails">
@@ -270,6 +280,16 @@ function WareHouseAdd() {
                 value={contactName}
                 onChange={handleChangeContactName}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.contactNameError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
             </article>
             <article className="addWarehouse__form-position">
               <label className="p-medium">Position</label>
@@ -283,6 +303,16 @@ function WareHouseAdd() {
                 value={position}
                 onChange={handleChangePosition}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.positionError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
             </article>
             <article className="addWarehouse__form-phoneNum">
               <label className="p-medium">Phone Number</label>
@@ -296,6 +326,16 @@ function WareHouseAdd() {
                 value={phoneNum}
                 onChange={handleChangePhoneNum}
               />
+              <span
+                className={`addWarehouse__form-errorMsg ${
+                  error.phoneNumError
+                    ? "addWarehouse__form-errorMsgInvalidInput"
+                    : ""
+                }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required / Phone Number must be in correct format
+              </span>
             </article>
             <article className="addWarehouse__form-email">
               <label className="p-medium">Email</label>
@@ -310,6 +350,16 @@ function WareHouseAdd() {
                 onChange={handleChangeEmail}
               />
             </article>
+            <span
+              className={`addWarehouse__form-errorMsg ${
+                error.emailError
+                  ? "addWarehouse__form-errorMsgInvalidInput"
+                  : ""
+              }`}
+            >
+              <img src={ErrorIcon} alt="Error Icon" />
+              This field is required / Email must be in correct format
+            </span>
           </div>
         </div>
 

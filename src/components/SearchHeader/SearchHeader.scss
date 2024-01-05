@@ -2,7 +2,7 @@
 @import '../../styles/partials/variables';
 
 .main {
-    margin: $mobile-margin;
+    padding: $mobile-margin;
     border-radius: 5px;
 
     &--edit {

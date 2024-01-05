@@ -5,9 +5,6 @@ import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import "./WareHouseInfoCard.scss";
 
 function WareHouseInfoCard(props) {
-  const currentWarehouse = props.currentWarehouse;
-  const isWarehouseSelected = props.isWarehouseSelected;
-
   const {
     warehouse_name,
     address,
@@ -32,18 +29,18 @@ function WareHouseInfoCard(props) {
                 className="WarehouseList__body--info--warehouse-link-container"
                 to={`/warehouses/${id}`}
               >
-                <p className="p-medium">{warehouse_name}</p>
+                <p className="text">{warehouse_name}</p>
                 <img
                   src={Chevron}
                   alt="chevron"
-                  className="inventory-container__link--icon"
+                  className="WarehouseList__body--info--warehouse-link-icon"
                 />
               </Link>
             </div>
             <div className="WarehouseList__body--info">
               <h4 className="WarehouseList__body--info--header">ADDRESS</h4>
-              <p className="p-medium">{address}</p>
-              <p className="p-medium">
+              <p className="text">{address}</p>
+              <p className="text">
                 {city}, {country}
               </p>
             </div>
@@ -53,14 +50,14 @@ function WareHouseInfoCard(props) {
               <h4 className="WarehouseList__body--info--header">
                 CONTACT NAME
               </h4>
-              <p className="p-medium">{contact_name}</p>
+              <p className="text">{contact_name}</p>
             </div>
             <div className="WarehouseList__body--info">
               <h4 className="WarehouseList__body--info--header">
                 CONTACT INFORMATION
               </h4>
-              <p className="p-medium">{contact_phone}</p>
-              <p className="p-medium">{contact_email}</p>
+              <p className="text">{contact_phone}</p>
+              <p className="text">{contact_email}</p>
             </div>
           </div>
         </div>
@@ -75,11 +72,16 @@ function WareHouseInfoCard(props) {
               className="WarehouseList__body--delete-icon"
             ></img>
           </button>
-          <Link>
+          <Link
+            to={`/warehouses/${id}/edit`}
+            state={{ sourcePage: "/" }}
+            className="WarehouseList__body--edit-button"
+          >
             <img
+              id={id}
               src={EditIcon}
               alt="edit icon"
-              className="WarehouseList__body--edit-icon"
+              className={` WarehouseList__body--edit-icon`}
             ></img>
           </Link>
         </div>

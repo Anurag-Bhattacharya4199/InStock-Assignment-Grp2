@@ -15,6 +15,13 @@ function InventoryDetail(props) {
       <SearchHeader
         title={location.state.itemName}
         headerButton="inventories"
+        itemId={props.id}
+        itemCategory={props.itemCategory}
+        itemName={props.itemName}
+        itemDescription={props.itemDescription}
+        itemStatus={props.itemStatus}
+        warehouseName={props.warehouseName}
+        itemQuantity={props.itemQuantity}
       />
       <section className="details">
         <div className="details--left-wrapper">
@@ -32,11 +39,10 @@ function InventoryDetail(props) {
             <div className="details__status-warehouse--status">
               <h4 className="details__headers--status">STATUS:</h4>
               <p
-                className={`details--text status-container__status ${
-                  location.state.itemStatus === "In Stock"
+                className={`details--text status-container__status ${location.state.itemStatus === "In Stock"
                     ? "status-container__in-stock"
                     : "status-container__out-of-stock"
-                } `}
+                  } `}
               >
                 {location.state.itemStatus}
               </p>

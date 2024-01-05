@@ -73,7 +73,14 @@ function SearchHeader(props) {
                     to={`/${props.headerButton}/${id}/edit`}
                     className={`header-button--edit ${checkEdit}`}
                     state={{
-                        pageSource: `/`
+                        pageSource: `/`,
+                        itemId: props.itemId,
+                        itemCategory: props.itemCategory,
+                        itemName: props.itemName,
+                        itemDescription: props.itemDescription,
+                        itemStatus: props.itemStatus,
+                        warehouseName: props.warehouseName,
+                        itemQuantity: props.itemQuantity
                     }}
                 >
                     <img

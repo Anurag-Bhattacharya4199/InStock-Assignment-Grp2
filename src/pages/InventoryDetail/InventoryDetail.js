@@ -9,19 +9,21 @@ import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function InventoryDetail(props) {
   const location = useLocation();
-
+  useEffect (() => {
+    console.log("DETAIL itemDescription: ", location.state.itemDescription)
+    }, [])
   return (
     <>
       <SearchHeader
         title={location.state.itemName}
         headerButton="inventories"
-        itemId={props.id}
-        itemCategory={props.itemCategory}
-        itemName={props.itemName}
-        itemDescription={props.itemDescription}
-        itemStatus={props.itemStatus}
-        warehouseName={props.warehouseName}
-        itemQuantity={props.itemQuantity}
+        itemId={location.state.id}
+        itemCategory={location.state.itemCategory}
+        itemName={location.state.itemName}
+        itemDescription={location.state.itemDescription}
+        itemStatus={location.state.itemStatus}
+        warehouseName={location.state.warehouseName}
+        itemQuantity={location.state.itemQuantity}
       />
       <section className="details">
         <div className="details--left-wrapper">

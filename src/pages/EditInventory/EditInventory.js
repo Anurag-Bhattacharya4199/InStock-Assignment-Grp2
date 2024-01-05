@@ -12,21 +12,6 @@ function EditInventory() {
   const location = useLocation();
   const navigate = useNavigate();
   let { id } = useParams();
-  // const [itemId, setItemId] = useState(id);
-  // const [itemCategory, setItemCategory] = useState();
-  // const [itemName, setItemName] = useState();
-  // const [itemDescription, setItemDescription] = useState();
-  // const [itemStatus, setItemStatus] = useState();
-  // const [itemStatusTF, setItemStatusTF] = useState(true);
-  // const [warehouseName, setWarehouseName] = useState();
-  // const [itemQuantity, setItemQuantity] = useState();
-  // const [warehouses, setWarehouses] = useState([]);
-  // const [warehouseId, setWarehouseId] = useState();
-  // let hasLoaded3 = false;
-  // let hasLoaded4 = false;
-  // const [hasLoaded, setHasLoaded] = useState(false);
-  // const [hasLoaded2, setHasLoaded2] = useState(false);
-
   const [itemId, setItemId] = useState(location.state.itemId);
   const [itemCategory, setItemCategory] = useState(location.state.itemCategory);
   const [itemName, setItemName] = useState(location.state.itemName);
@@ -40,32 +25,6 @@ function EditInventory() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const API_BASE_URL = "http://localhost:8080/";
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`${API_BASE_URL}inventories/${itemId}`)
-  //     .then((response) => {
-  //       setWarehouseId(response.data.warehouse_id);
-  //       setItemName(response.data.item_name);
-  //       setItemDescription(response.data.description);
-  //       setItemCategory(response.data.category);
-  //       setItemStatus(response.data.status);
-  //       setItemQuantity(response.data.quantity, hasLoaded3 = true);
-
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-
-  //   axios
-  //     .get(`${API_BASE_URL}warehouses`)
-  //     .then((response) => {
-  //       setWarehouses(response.data, hasLoaded3 = true);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-
-  // }, []);
 
   useEffect(() => {
     //selects the proper default radio button
@@ -124,8 +83,24 @@ function EditInventory() {
     navigate(-1);
   };
 
- 
 
+  const fetchWarehouseList = () => {
+    axios
+      .get(`${API_BASE_URL}warehouses`)
+      .then((response) => {
+        setWarehouses(response.data);
+        setHasLoaded(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchWarehouseList(); // Fetch warehouse list when component mounts
+  }, []); // Empty dependency array to trigger effect only on mount
+
+  if (hasLoaded) {
     return (
       <main className="editInv">
         <SearchHeader title="Edit Inventory Item" />
@@ -169,7 +144,7 @@ function EditInventory() {
                 <option value="Health">Health</option>
               </select>
             </article>
-  
+
             <article className="editInv__form__content__avail">
               <h2 className="editInv__form__content__avail--title">
                 Item Availability
@@ -209,7 +184,7 @@ function EditInventory() {
                 value={itemQuantity}
                 onChange={handleChangeItemQuantity}
               />
-  
+
               <label className="p-medium">Warehouse</label>
               <select
                 name="warehouse"
@@ -239,7 +214,7 @@ function EditInventory() {
         </form>
       </main>
     )
-  
+  }
 
 }
 

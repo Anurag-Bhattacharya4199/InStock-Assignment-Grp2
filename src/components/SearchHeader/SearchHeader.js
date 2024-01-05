@@ -8,11 +8,16 @@ import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 // This header can be used for the WareHouseList component and the WareHouseInventoryList component
 function SearchHeader(props) {
     const { id } = useParams();
+
     const [checkSearch, setCheckSearch] = useState("display-none");
     const [checkEdit, setCheckEdit] = useState("display-none");
     const [checkTitle, setCheckTitle] = useState("")
     const [checkBackArrow, setCheckBackArrow] = useState("");
     const navigate = useNavigate();
+
+    useEffect (() => {
+        console.log("HEADER itemDescription: ", props.itemDescription)
+        }, [])
 
     useEffect(() => {
         if (props.addNewItem) {
@@ -73,7 +78,7 @@ function SearchHeader(props) {
                     to={`/${props.headerButton}/${id}/edit`}
                     className={`header-button--edit ${checkEdit}`}
                     state={{
-                        pageSource: `/`,
+                        sourcePage: `/`,
                         itemId: props.itemId,
                         itemCategory: props.itemCategory,
                         itemName: props.itemName,

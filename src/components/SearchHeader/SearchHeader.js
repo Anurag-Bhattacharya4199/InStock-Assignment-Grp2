@@ -67,7 +67,7 @@ function SearchHeader(props) {
 
                 </div>
                 <Link
-                    to={`/${props.headerButton}/:id/edit`}
+                    to={`/${props.headerButton}/${props.linkId}/edit`}
                     className={`header-button--edit ${checkEdit}`}
                 >
                     <img

@@ -2,10 +2,6 @@
 @use "../../styles/partials/variables" as *;
 
 .inventoryList {
-  margin: $mobile-margin;
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
-
   // TABLET && DESKTOP HEADERS***
   .inventoryList-headers {
     display: none;
@@ -16,6 +12,7 @@
       display: grid;
       // grid-template-columns: repeat(6, 1fr);
       padding: 16px 24px;
+      
 
       // display: flex;
       // justify-content: space-between;
@@ -29,6 +26,7 @@
 
         &--header {
           font-weight: 600;
+          
         }
 
         &--sort-icon {
@@ -69,6 +67,7 @@
     flex-wrap: wrap;
     padding: 16px;
     box-sizing: border-box;
+    border-top: 1px solid #bdc5d5;
 
     // INVENTORY-ITEM && CATEGORY CONTAINER
     &__inventory-and-category-container {
@@ -109,6 +108,20 @@
             height: 20px;
             width: 20px;
             display: inline;
+            
+            @keyframes moveRight {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(4px); 
+              }
+            }
+          
+            /* Apply animation on hover */
+            &:hover {
+              animation: moveRight 0.3s forwards; 
+            }
           }
         }
       }

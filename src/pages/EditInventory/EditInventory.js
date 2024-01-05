@@ -2,40 +2,57 @@ import "./EditInventory.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { editInventory } from "../../utils/utils";
+
 
 function EditInventory() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [itemId, setItemId] = useState(location.state.itemId);
-  const [itemCategory, setItemCategory] = useState(location.state.itemCategory);
-  const [itemName, setItemName] = useState(location.state.itemName);
-  const [itemDescription, setItemDescription] = useState(
-    location.state.itemDescription
-  );
-  const [itemStatus, setItemStatus] = useState(location.state.itemStatus);
+  let { id } = useParams();
+  // const [itemId, setItemId] = useState(id);
+  const [itemCategory, setItemCategory] = useState('');
+  const [itemName, setItemName] = useState('');
+  const [itemDescription, setItemDescription] = useState('');
+  const [itemStatus, setItemStatus] = useState('');
   const [itemStatusTF, setItemStatusTF] = useState(true);
-  const [warehouseName, setWarehouseName] = useState(
-    location.state.warehouseName
-  );
-  const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity);
+  const [warehouseName, setWarehouseName] = useState('');
+  const [itemQuantity, setItemQuantity] = useState('');
   const [warehouses, setWarehouses] = useState([]);
-  let { itemIdParam } = useParams();
+  const [warehouseId, setWarehouseId] = useState('');
+  
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [hasLoaded2, setHasLoaded2] = useState(false);
   const API_BASE_URL = "http://localhost:8080/";
 
   useEffect(() => {
-    //selects the proper default radio button
-    if (itemStatus === "In Stock") {
-      setItemStatusTF(true);
-    } else {
-      setItemStatusTF(false);
-    }
-  }, []);
+    fetchWarehouseList(); // Fetch warehouse list when component mounts
+    fetchInventory();
+  }, []); // Empty dependency array to trigger effect only on mount
+
+  
+
+  const fetchInventory = () => {
+    axios
+      .get(`${API_BASE_URL}inventories/${id}`)
+      .then((response) => {
+        setWarehouseId(response.data.warehouse_id);
+        setItemName(response.data.item_name);
+        setItemDescription(response.data.description);
+        setItemCategory(response.data.category);
+        setItemStatus(response.data.status);
+        setItemQuantity(response.data.quantity);
+  
+        if (response.status === 200){
+          setHasLoaded2(true)
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const [error, setError] = useState({
     itemNameError: false,
@@ -64,13 +81,13 @@ function EditInventory() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // write code here to find warehouseId from selected warehouse using filter
-    let warehouseId = warehouses.filter((wh) => {
+    let tempWarehouseId = warehouses.filter((wh) => {
       return wh.warehouse_name === warehouseName;
     })[0].id;
 
     editInventory(
-      itemId,
-      warehouseId,
+      id,
+      tempWarehouseId,
       itemName,
       itemDescription,
       itemCategory,
@@ -89,7 +106,11 @@ function EditInventory() {
       .get(`${API_BASE_URL}warehouses`)
       .then((response) => {
         setWarehouses(response.data);
-        setHasLoaded(true);
+        
+        if (response.status === 200){
+          setHasLoaded(true)
+          console.log("hasLoaded ", hasLoaded)
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -97,10 +118,15 @@ function EditInventory() {
   };
 
   useEffect(() => {
-    fetchWarehouseList(); // Fetch warehouse list when component mounts
-  }, []); // Empty dependency array to trigger effect only on mount
+    //selects the proper default radio button
+    if (itemStatus === "In Stock") {
+      setItemStatusTF(true);
+    } else {
+      setItemStatusTF(false);
+    }
+  }, []);
 
-  if (hasLoaded) {
+  // if ((hasLoaded === true) && (hasLoaded2 === true)) {
     return (
       <main className="editInv">
         <SearchHeader title="Edit Inventory Item" />
@@ -217,7 +243,9 @@ function EditInventory() {
         </form>
       </main>
     );
-  }
+  // } else{
+  //   return null;
+  // }
 }
 
 export default EditInventory;

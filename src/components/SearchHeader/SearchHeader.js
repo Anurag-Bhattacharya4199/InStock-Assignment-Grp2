@@ -2,11 +2,12 @@ import './SearchHeader.scss'
 import searchIcon from '../../assets/icons/search-24px.svg'
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import editButton from "../../assets/icons/edit-24px.svg";
-import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 
 // This header can be used for the WareHouseList component and the WareHouseInventoryList component
 function SearchHeader(props) {
+    const { id } = useParams();
     const [checkSearch, setCheckSearch] = useState("display-none");
     const [checkEdit, setCheckEdit] = useState("display-none");
     const [checkTitle, setCheckTitle] = useState("")
@@ -24,6 +25,8 @@ function SearchHeader(props) {
             setCheckEdit("");
             setCheckTitle("--edit");
         }
+
+
     }, []);
 
     return (
@@ -67,6 +70,20 @@ function SearchHeader(props) {
 
                 </div>
                 <Link
+                    to={`/${props.headerButton}/${id}/edit`}
+                    className={`header-button--edit ${checkEdit}`}
+                    state={{
+                        pageSource: `/`
+                    }}
+                >
+                    <img
+                        src={editButton}
+                        className="header-button--editImg"
+                        alt={`Edit ${props.headerButton}`}
+                    />
+                    <span className="header-button--edit--text">Edit</span>
+                </Link>
+                {/* <Link
                     to={`/${props.headerButton}/${props.linkId}/edit`}
                     className={`header-button--edit ${checkEdit}`}
                 >
@@ -76,7 +93,7 @@ function SearchHeader(props) {
                         alt={`Edit ${props.headerButton}`}
                     />
                     <span className="header-button--edit--text">Edit</span>
-                </Link>
+                </Link> */}
 
             </header>
             <div className={`divider divider--${checkBackArrow}`}></div>

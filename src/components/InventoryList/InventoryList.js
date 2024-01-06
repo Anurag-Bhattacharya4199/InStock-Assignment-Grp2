@@ -16,7 +16,7 @@ const InventoryList = (props) => {
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
   const [sortType, setSortType] = useState('');
-  const [sortInventory, setSortInventory] = useState(false);
+  const [orderBy, setOrderBy] = useState('asc');
   const [sortedInventory, setSortedInventory] = useState([]);
 
 
@@ -25,7 +25,7 @@ const InventoryList = (props) => {
 
   const fetchSortedInventoryList = () => {
     axios
-      .get(`${API_BASE_URL}/inventories?sort_by=${sortType}`)
+      .get(`${API_BASE_URL}/inventories?sort_by=${sortType}&order_by=${orderBy}`)
       .then((response) => {
         const sortedInventoryeData = response.data;
         setSortedInventory(sortedInventoryeData)
@@ -38,22 +38,22 @@ const InventoryList = (props) => {
 
 
   const handleSort = (sortBy) => {
-    // setSortInventory((prevState) => !prevState);
-    setSortType(sortBy)
+    setOrderBy((prevState) => !prevState);
     console.log(sortBy);
   
-    // if (sortInventory === true) {
-    //   setSortType(sortBy);
-    //   console.log(`Sorting by ${sortBy}`);
-    // } else {
-    //   setSortType('');
-    // }
+    if (sortType != sortBy ) {
+      setOrderBy('asc');
+      setSortType(sortBy);
+      console.log(`Sorting by ${sortBy}`);
+    } else {
+      if (orderBy === 'asc') {
+        setOrderBy('desc')
+      }else {
+        setOrderBy('asc');
+      }
+    }
   };
   
-
-  // const determineInventoryList = () => {
-  //   return sortInventory ? sortedInventory : inventoryList;
-  // };
 
   useEffect(() => {
     setSortedInventory(inventoryList)
@@ -62,7 +62,7 @@ const InventoryList = (props) => {
 
   useEffect(() => {
     fetchSortedInventoryList();
-  }, [sortType]);
+  }, [sortType, orderBy]);
 
 
   function checkWarehouseName(wh) {
@@ -145,6 +145,7 @@ const InventoryList = (props) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('warehouse_name')}
             />
           </div>
           <div

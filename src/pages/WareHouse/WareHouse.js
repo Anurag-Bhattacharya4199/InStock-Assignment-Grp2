@@ -13,8 +13,9 @@ function WareHouse() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState('');
-  const [sortedWarehouses, setSortedWarehouses] = useState([])
-  const [sortWarehouses, setSortWarehouses] = useState(false)
+  const [sortedWarehouses, setSortedWarehouses] = useState([]);
+  const [sortWarehouses, setSortWarehouses] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
 
   const { id } = useParams();
@@ -84,6 +85,11 @@ function WareHouse() {
     setDeleteWarhouseID(null);
   };
 
+  // handle search term on input 
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
+  };
+
   if (!hasLoaded) {
     return null;
   } else {
@@ -93,6 +99,7 @@ function WareHouse() {
           title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
+          onSearch={handleSearch}
         />
 
         {showDeletePopup && (

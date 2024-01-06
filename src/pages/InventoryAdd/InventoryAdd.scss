@@ -40,6 +40,7 @@
       padding-right: $mobile-margin;
       border-radius: 20px;
       border-color: $slate;
+      font-family: $font-regular;
       
       &:active 
       {
@@ -154,6 +155,7 @@
       &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
         height: 28px;
         width: auto;
+        font-family: $font-regular;
       }
 
       &-buttons {

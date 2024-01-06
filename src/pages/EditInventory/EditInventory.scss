@@ -24,7 +24,9 @@
         display: flex;
         flex-direction: column;
 
-        &--invalidInput {}
+        &--invalidInput {
+            border: 1px solid $red;
+        }
 
         &__content {
             display: flex;

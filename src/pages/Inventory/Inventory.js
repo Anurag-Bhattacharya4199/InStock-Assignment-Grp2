@@ -65,7 +65,7 @@ const Inventory = () => {
   };
 
   const handleSearch = (searchTerm) => {
-    console.log('Search term for invenory:', searchTerm);
+    // console.log('Search term for invenory:', searchTerm);
     setSearchTerm(searchTerm);
   };
 
@@ -86,9 +86,6 @@ const Inventory = () => {
     return searchFields.some((field) => field.includes(searchTerm.toLowerCase()));
   });
 
-console.log(filteredInventories);
-
-   
 
 
 

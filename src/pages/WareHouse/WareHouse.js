@@ -86,7 +86,7 @@ function WareHouse() {
   };
 
   const handleSearch = (searchTerm) => {
-    console.log('Search term for warehouse:', searchTerm);
+    // console.log('Search term for warehouse:', searchTerm);
     setSearchTerm(searchTerm);
   };
 
@@ -107,7 +107,7 @@ function WareHouse() {
      
     });
 
-    console.log(filteredWarehouses);
+    // console.log(filteredWarehouses);
   
 
   if (!hasLoaded) {

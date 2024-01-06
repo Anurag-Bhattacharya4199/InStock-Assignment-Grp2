@@ -33,7 +33,7 @@ function SearchHeader(props, onSearch) {
         }
 
 
-        console.log('Props in SearchHeader:', props);
+        // console.log('Props in SearchHeader:', props);
 
     }, []);
 

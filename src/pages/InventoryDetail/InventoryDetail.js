@@ -13,7 +13,7 @@ function InventoryDetail(props) {
     console.log("DETAIL itemDescription: ", location.state.itemDescription)
     }, [])
   return (
-    <>
+    <div className="inventoryDetails">
       <SearchHeader
         title={location.state.itemName}
         headerButton="inventories"
@@ -60,7 +60,7 @@ function InventoryDetail(props) {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

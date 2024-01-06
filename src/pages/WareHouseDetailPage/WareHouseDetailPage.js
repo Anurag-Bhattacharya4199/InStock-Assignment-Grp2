@@ -61,23 +61,28 @@ function WareHouseDetailPage() {
                 <br className="warehouseDetails__info-address--new-line"></br>
                 {warehouse.city}, <span></span>
                 {warehouse.country}
-                </p>
-              
+              </p>
             </div>
             <div className="warehouseDetails__info-contact">
               <div className="warehouseDetails__info-column warehouseDetails__info-column--left">
                 <h4 className="warehouseDetails__info-headers">
                   CONTACT NAME:
                 </h4>
-                <p className="p-medium">{warehouse.contact_name}</p>
-                <p className="p-medium">{warehouse.contact_position}</p>
+                <p className="p-medium">
+                  {warehouse.contact_name}, <span></span>
+                  <br className="warehouseDetails__info-address--new-line"></br>
+                  {warehouse.contact_position}
+                </p>
               </div>
               <div className="warehouseDetails__info-column warehouseDetails__info-column--right">
                 <h4 className="warehouseDetails__info-headers">
                   CONTACT INFORMATION:
                 </h4>
-                <p className="p-medium">{warehouse.contact_phone}</p>
-                <p className="p-medium">{warehouse.contact_email}</p>
+                <p className="p-medium">
+                  {warehouse.contact_phone}, <span></span>
+                  <br className="warehouseDetails__info-address--new-line"></br>
+                  {warehouse.contact_email}
+                </p>
               </div>
             </div>
           </section>

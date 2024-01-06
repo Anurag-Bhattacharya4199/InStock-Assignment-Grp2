@@ -7,7 +7,7 @@
   background-color: white;
   box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
   position: relative;
-  top:-75px;
+  top:-90px;
 
   &__info {
     padding: $mobile-margin;
@@ -28,7 +28,7 @@
     }
 
     &-address{
-
+      
       &--new-line{
         display:none;
         @include tablet{
@@ -46,10 +46,13 @@
 @include tablet {
   .warehouseDetails {
     margin: $tablet-margin;
-    top:-130px;
+    top:-150px;
     
     &__info {
-      padding: $tablet-margin;
+      padding-left: $tablet-margin;
+      padding-right: $tablet-margin;
+      padding-top: $mobile-margin;
+      padding-bottom: $mobile-margin;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;

@@ -5,6 +5,7 @@ import InventoryList from "../../components/InventoryList/InventoryList";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { API_BASE_URL } from "../../utils/utils";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 
 function WareHouseDetailPage() {
   let { id } = useParams();
@@ -47,6 +48,13 @@ function WareHouseDetailPage() {
     fetchWarehouseDetails();
     fetchInventoryForWarehouse();
   }, []);
+
+  const handleDeleteClick = (id, item_name) => {
+    // setShowDeletePopup(true);
+    // setDeleteInventoryID(String(id));
+    // setInventorToDelete(item_name.toString());
+    console.log(id)
+  };
 
   // RENDERING
   if (!hasLoaded && !hasLoaded2) {
@@ -96,9 +104,23 @@ function WareHouseDetailPage() {
               </div>
             </div>
           </section>
+{/* 
+          {showDeletePopup && (
+          <div className="overlay">
+            <div className="delete-popup">
+              <DeleteModal
+                inventoryName={inventoryToDelete}
+                itemType="inventory"
+                // handleCloseDeleteComponent={handleCloseDeleteComponent}
+                // handleDeleteConfirmation={handleDeleteConfirmation}
+              />
+            </div>
+          </div>
+        )} */}
           <InventoryList
             inventoryList={warehouseInventory}
             warehouseName={warehouse.warehouse_name}
+            onDeleteClick={handleDeleteClick}
           />
         </main>
       </>

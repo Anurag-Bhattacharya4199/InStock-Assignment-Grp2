@@ -74,7 +74,7 @@ function WareHouseInfoCard(props) {
           </button>
           <Link
             to={`/warehouses/${id}/edit`}
-            state={{ sourcePage: "/" }}
+            state={{ pageSource: "/" }}
             className="WarehouseList__body--edit-button"
           >
             <img

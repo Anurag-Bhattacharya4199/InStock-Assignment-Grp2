@@ -28,7 +28,6 @@ function InventoryAdd() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //console.log(itemStatus);
     if (itemStatus === "In Stock") {
       setInstock(true);
     } else {

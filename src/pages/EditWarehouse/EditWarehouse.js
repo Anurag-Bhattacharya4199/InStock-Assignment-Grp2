@@ -59,8 +59,9 @@ const EditWarehouse = (props) => {
   const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
   // SET RE-DIRECT PAGE LINKS
   useEffect(() => {
-    if(location.state.sourcePage){
-    setPageSource(location.state.pageSource);
+    console.log("EDIT: ", location.state.pageSource)
+    if (location.state.pageSource) {
+      setPageSource(location.state.pageSource);
     }
   }, []);
   // GET WAREHOUSE DATA
@@ -95,9 +96,9 @@ const EditWarehouse = (props) => {
         contact_phone: phoneNumber,
         contact_email: email,
       })
-      .then((response) => {
-        console.log(response.data);
-      })
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((error) => {
         console.error(error);
       });
@@ -271,7 +272,7 @@ const EditWarehouse = (props) => {
       {/* POP-UP */}
       <div
         className={`editWarehouse__confirm-edit-container ${editPopUpClass}`}
-      >
+      >sourcePage
         <div className="confirm-edit-content">
           <h3>Warehouse edit Successfully</h3>
           <Link to={`${pageSource}`} className="confirm-edit-content__link">
@@ -313,7 +314,10 @@ const EditWarehouse = (props) => {
           <h1 className="editWarehouse__header-title">Edit Warehouse</h1>
         </div>
       </section> */}
-      <SearchHeader title="Edit Warehouse" />
+      <SearchHeader
+        title="Edit Warehouse"
+        pageSource={location.state.pageSource}
+      />
       <form
         className="editWarehouse__form"
         onSubmit={(event) => {

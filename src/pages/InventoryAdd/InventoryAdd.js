@@ -108,7 +108,7 @@ function InventoryAdd() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let tempQuantity = setQty;
+    let tempQuantity = qty;
 
     if (isFormValid()) {
       setItemName("");

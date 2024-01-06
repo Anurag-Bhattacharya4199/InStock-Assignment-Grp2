@@ -1,6 +1,7 @@
 import "./EditInventory.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+import ErrorIcon from "../../assets/icons/error-24px.svg";
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -48,7 +49,11 @@ function EditInventory() {
   };
 
   const handleChangeItemDescription = (event) => {
-    setItemName(event.target.value);
+    setItemDescription(event.target.value);
+  };
+
+  const handleChangeCategory = (event) => {
+    setItemCategory(event.target.value);
   };
 
   const handleChangeItemQuantity = (event) => {
@@ -85,7 +90,7 @@ function EditInventory() {
       formComplete = false;
     }
 
-    if (itemQuantity === "0" && itemStatus) {
+    if (itemQuantity === "0" && itemStatusTF) {
       errorState.qtyError = true;
       formComplete = false;
     }
@@ -107,11 +112,17 @@ function EditInventory() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     // find warehouseId from selected warehouse using filter
     let tempWarehouseId = warehouses.filter((wh) => {
       return wh.warehouse_name === warehouseName;
     })[0].id;
+
+    let tempQuantity = itemQuantity;
+    if (!itemStatusTF) {
+      setItemStatus("Out of Stock");
+      setItemQuantity("0");
+      tempQuantity = "0"
+    }
 
     //editInventoryValidation
     if (isFormValid()) {
@@ -122,15 +133,15 @@ function EditInventory() {
         itemDescription,
         itemCategory,
         itemStatus,
-        itemQuantity
+        tempQuantity
       );
       console.log("isFormValid() ", isFormValid())
       alert(`Changes to ${itemName} has been saved!`)
-    navigate(-1);
-    }else{
+      navigate(-1);
+    } else {
       return;
     }
-    
+
   };
 
   const handleCancel = (event) => {
@@ -168,35 +179,55 @@ function EditInventory() {
               <label className="p-medium">Item Name</label>
               <input
                 className={`editInv__form__content__details__input 
-                ${error.warehouseNameError
+                ${error.itemNameError
                     ? "editInv__form--invalidInput"
                     : ""
                   }`}
                 placeholder={itemName}
-                name={itemName}
-                form={itemName}
+                name="itemName"
+                htmlform="itemName"
                 value={itemName}
                 onChange={handleChangeItemName}
               />
+              <span
+                className={`errorMsg ${error.itemNameError
+                  ? "errorMsg--invalid-input"
+                  : ""
+                  }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
               <label className="p-medium">Description</label>
               <textarea
                 rows={7}
                 className={`editInv__form__content__details__input--area 
-                ${error.warehouseNameError
+                ${error.descriptionError
                     ? "editInv__form--invalidInput"
                     : ""
                   }`}
                 placeholder={itemDescription}
-                name={itemDescription}
-                form={itemDescription}
+                name="description"
+                htmlform="description"
                 value={itemDescription}
                 onChange={handleChangeItemDescription}
               />
+              <span
+                className={`errorMsg ${error.descriptionError
+                  ? "errorMsg--invalid-input"
+                  : ""
+                  }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field is required
+              </span>
               <label className="p-medium">Category</label>
               <select
                 name="category"
                 className="editInv__form__content__details__input"
-                defaultValue={itemCategory}
+                //defaultValue={itemCategory}
+                value={itemCategory}
+                onChange={handleChangeCategory}
               >
                 <option value="Accessories">Accessories</option>
                 <option value="Apparel">Apparel</option>
@@ -237,15 +268,23 @@ function EditInventory() {
               </div>
               <label className={`p-medium ${itemStatusTF}`}>Quantity</label>
               <input
-                className={`editInv__form__content__details__input ${error.warehouseNameError ? "editInv__form--invalidInput" : ""
+                className={`editInv__form__content__details__input ${error.qtyError ? "editInv__form--invalidInput" : ""
                   } ${itemStatusTF}`}
                 placeholder={itemQuantity}
-                name={itemQuantity}
-                form={itemQuantity}
+                name="itemQuantity"
+                htmlform="itemQuantity"
                 value={itemQuantity}
                 onChange={handleChangeItemQuantity}
               />
-
+              <span
+                className={`errorMsg ${error.qtyError
+                    ? "errorMsg--invalid-input"
+                    : ""
+                  }`}
+              >
+                <img src={ErrorIcon} alt="Error Icon" />
+                This field must be a non-zero integer
+              </span>
               <label className="p-medium">Warehouse</label>
               <select
                 name="warehouse"
@@ -268,7 +307,7 @@ function EditInventory() {
             >
               Cancel
             </button>
-            <button className="editInv__form__buttons--add" type="submit">
+            <button className="editInv__form__buttons--add">
               Save
             </button>
           </div>

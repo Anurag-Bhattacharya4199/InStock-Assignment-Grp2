@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-import { editInventory } from "../../utils/utils";
+import { PostEditInventory, editInventoryValidation } from "../../utils/utils";
 
 
 function EditInventory() {
@@ -62,12 +62,15 @@ function EditInventory() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // write code here to find warehouseId from selected warehouse using filter
+
+    // find warehouseId from selected warehouse using filter
     let tempWarehouseId = warehouses.filter((wh) => {
       return wh.warehouse_name === warehouseName;
     })[0].id;
 
-    editInventory(
+    //editInventoryValidation
+
+    PostEditInventory(
       id,
       tempWarehouseId,
       itemName,

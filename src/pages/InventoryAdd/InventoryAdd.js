@@ -119,7 +119,7 @@ function InventoryAdd() {
       let warehouseId = warehouses.filter((wh) => {
         return wh.warehouse_name === warehouse;
       })[0].id;
-
+      
       let tempQty = qty;
 
       if (!inStock) {
@@ -127,13 +127,14 @@ function InventoryAdd() {
         setQty("0");
         tempQuantity = "0";
       }
+      
       postInventory(
         warehouseId,
         itemName,
         description,
         category,
         itemStatus,
-        qty
+        tempQuantity
       );
       alert("New Item added");
       navigate("/inventories");

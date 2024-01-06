@@ -164,7 +164,7 @@ const InventoryList = (props) => {
               <div className="inventory-container">
                 <h4 className="inventory-container__header">INVENTORY</h4>
                 <Link
-                  to={`/inventories/${item.id}/detail`}
+                  to={`/inventories/${item.id}`}
                   state={{
                     itemId: item.id,
                     itemCategory: item.category,

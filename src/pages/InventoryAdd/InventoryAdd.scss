@@ -22,7 +22,7 @@
 
   &__form {
     &-itemDetails {
-      border-bottom: 0.063rem solid $slate;
+      border-bottom: 0.063rem solid $cloud;
     }
 
     &-itemDetails, &-itemAvailability {
@@ -35,13 +35,13 @@
     }
 
     &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
-      height: 26px;
+      //height: 26px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
-      border-color: $slate;
-      
-      &:active 
+      border: 1px solid $cloud;
+      font-family: $font-regular;
+      &:active       
       {
         border-color: $instock-indigo;  
       }
@@ -138,7 +138,7 @@
       &-itemDetails {
         width: 50%;
         border-bottom: none;
-        border-right: 1px solid $slate;
+        border-right: 1px solid $cloud;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
@@ -151,9 +151,15 @@
         padding-bottom: $tablet-margin;
       }
 
-      &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
-        height: 28px;
+      &-itemNameInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
+        height: 38px;
         width: auto;
+        font-family: $font-regular;
+      }
+      &-descriptionInp{
+        width: auto;
+        font-family: $font-regular;
+        padding-top:9px;
       }
 
       &-buttons {
@@ -161,12 +167,15 @@
       }
 
       &-cancelBtn, &-addBtn {
-        height: 28px;
+        height: 36px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
         border-radius: 20px;
-        border-color: $slate;
+        border: 1px solid $cloud;
         width: auto;
+        @include tablet{
+          height: 38px;
+        }
       }
 
       &-addBtn {

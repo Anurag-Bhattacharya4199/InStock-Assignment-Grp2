@@ -11,9 +11,9 @@ const Inventory = () => {
   const [inventoryList, setInventoryList] = useState([]);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteInventoryID, setDeleteInventoryID] = useState(null);
-  const [inventoryToDelete, setInventorToDelete] = useState(null);
-
+  const [inventoryToDelete, setInventorToDelete] = useState('');
   const { id } = useParams();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const API_BASE_URL = "http://localhost:8080";
 
@@ -22,7 +22,6 @@ const Inventory = () => {
       .get(`${API_BASE_URL}/inventories`)
       .then((response) => {
         setInventoryList(response.data);
-        // console.log(inventoryList);
       })
       .catch((err) => {
         console.log(err);
@@ -40,17 +39,16 @@ const Inventory = () => {
 
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);
-    setDeleteInventoryID(String(id));
-    setInventorToDelete(item_name.toString());
+    setDeleteInventoryID(id);
+    setInventorToDelete(item_name);
     //console.log(id)
+
   };
 
   const handleDeleteConfirmation = () => {
-    // Make a DELETE request to delete the warehouse
     axios.delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
       .then(() => {
         console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
-        // Now, make another DELETE request to delete the warehouse inventory
         setShowDeletePopup(false);
         setDeleteInventoryID(null);
         fetchInventorylist();
@@ -68,6 +66,29 @@ const Inventory = () => {
     setDeleteInventoryID(null);
   };
 
+  const handleSearch = (searchTerm) => {
+    // console.log('Search term for invenory:', searchTerm);
+    setSearchTerm(searchTerm);
+  };
+
+
+  const filteredInventories = inventoryList.filter((inventory) => {
+    // Convert quantity to string and then apply toLowerCase()
+    const quantityString = JSON.stringify(inventory.quantity).toLowerCase();
+  
+    // Perform case-insensitive search on relevant fields
+    const searchFields = [
+      inventory.item_name.toLowerCase(),
+      inventory.category.toLowerCase(),
+      inventory.status.toLowerCase(),
+      quantityString,
+      inventory.warehouse_name.toLowerCase(),
+    ];
+  
+    return searchFields.some((field) => field.includes(searchTerm.toLowerCase()));
+  });
+
+
 
 
   if (!hasLoaded) {
@@ -77,7 +98,7 @@ const Inventory = () => {
 
     return (
       <section className="inventory-list">
-        <SearchHeader title="Inventory" addNewItem="Item" addURL="inventories" />
+        <SearchHeader title="Inventory" addNewItem="Item" addURL="inventories"  onSearch={handleSearch} />
 
         {showDeletePopup && (
           <div className="overlay">
@@ -87,12 +108,13 @@ const Inventory = () => {
                 itemType="inventory"
                 handleCloseDeleteComponent={handleCloseDeleteComponent}
                 handleDeleteConfirmation={handleDeleteConfirmation}
+
               />
             </div>
           </div>
         )}
 
-        <InventoryList inventoryList={inventoryList} onDeleteClick={handleDeleteClick} />
+        <InventoryList inventoryList={filteredInventories} onDeleteClick={handleDeleteClick} />
       </section>
     );
   }

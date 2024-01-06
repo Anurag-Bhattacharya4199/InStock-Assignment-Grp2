@@ -8,23 +8,10 @@
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   position: relative;
   top: -90px;
-  
-  &__header {
-    &-info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 0.063rem solid $slate;
-    }
-
-    &-title {
-      padding-left: $mobile-margin;
-    }
-  }
 
   &__form {
     &-warehouseDetails {
-      border-bottom: 0.063rem solid $slate;
+      border-bottom: 0.063rem solid $cloud;
     }
 
     &-warehouseDetails,
@@ -75,8 +62,6 @@
     &-cancelBtn,
     &-addBtn {
       height: 36px;
-      padding-left: $mobile-margin;
-      padding-right: $mobile-margin;
       border-radius: 20px;
       border-color: $slate;
       width: 47%;

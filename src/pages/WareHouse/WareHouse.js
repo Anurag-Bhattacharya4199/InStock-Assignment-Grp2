@@ -12,9 +12,11 @@ function WareHouse() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
-  const [warehouseToDelete, setWarehouseToDelete] = useState(null);
+  const [warehouseToDelete, setWarehouseToDelete] = useState('');
   const [sortedWarehouses, setSortedWarehouses] = useState([])
-  const [sortWarehouses, setSortWarehouses] = useState(false)
+  const [sortWarehouses, setSortWarehouses] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
 
   const { id } = useParams();
 
@@ -37,7 +39,6 @@ function WareHouse() {
     .then((response) => {
       const sortedWarehouseData = response.data;
       setSortedWarehouses(sortedWarehouseData)
-      // console.log(sortedWarehouseData)
     })
     .catch((error)=> {
       console.error(error)
@@ -49,17 +50,15 @@ function WareHouse() {
     fetchSortedWarehouseList();
   }, []); // Empty dependency array to trigger effect only on mount
 
-
   const handleSortClick = () => {
     setSortWarehouses(prevState => !prevState)
-    console.log(sortWarehouses)
   };
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
-    setDeleteWarhouseID(String(id));
-    setWarehouseToDelete(warehouse_name.toString());
-    //console.log(id)
+    setDeleteWarhouseID(id);
+    setWarehouseToDelete(warehouse_name);
+
   };
 
   const handleDeleteConfirmation = () => {
@@ -86,15 +85,41 @@ function WareHouse() {
     setDeleteWarhouseID(null);
   };
 
+  const handleSearch = (searchTerm) => {
+    // console.log('Search term for warehouse:', searchTerm);
+    setSearchTerm(searchTerm);
+  };
+
+    // Filter the warehouses based on the search term
+    const filteredWarehouses = warehouses.filter((warehouse) => {
+      // Perform case-insensitive search on relevant fields
+      const searchFields = [
+        warehouse.warehouse_name.toLowerCase(),
+        warehouse.address.toLowerCase(),
+        warehouse.city.toLowerCase(),
+        warehouse.country.toLowerCase(),
+        warehouse.contact_name.toLowerCase(),
+        warehouse.contact_email.toLowerCase(),
+        warehouse.contact_phone.toLowerCase(),
+      ];
+  
+      return searchFields.some((field) => field.includes(searchTerm.toLowerCase()));
+     
+    });
+
+    // console.log(filteredWarehouses);
+  
+
   if (!hasLoaded) {
     return null;
   } else {
     return (
       <div className="warehouse-list">
         <SearchHeader
-          title="Warehouse"
+          title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
+          onSearch={handleSearch}
         />
 
         {showDeletePopup && (
@@ -111,22 +136,13 @@ function WareHouse() {
         )}
 
         <WareHouseList
-          warehouses={sortWarehouses ? sortedWarehouses : warehouses}
+          warehouses={sortWarehouses ? sortedWarehouses : filteredWarehouses}
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
           onSortClick={handleSortClick}
-
         />
       </div>
     );
   }
-
-  // import { Link } from 'react-router-dom';
-
-  //         <Link to="/inventory/1">
-  //         <button type="submit">
-  //         Inventory
-  //         </button>
-  //         </Link>
 }
 export default WareHouse;

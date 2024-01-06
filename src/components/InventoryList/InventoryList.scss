@@ -10,9 +10,11 @@
   @include tablet {
     .inventoryList-headers {
       display: grid;
-      padding: 16px 32px;
-
+      padding: 0 32px;
+      height: 40px;
+      background-color: $light-grey;
       box-sizing: border-box;
+      align-content: center;
 
       &__header-container {
         display: flex;
@@ -59,7 +61,7 @@
     flex-wrap: wrap;
     padding: 16px;
     box-sizing: border-box;
-    border-top: 1px solid #bdc5d5;
+    border-bottom: 1px solid #bdc5d5;
 
     // INVENTORY-ITEM && CATEGORY CONTAINER
     &__inventory-and-category-container {
@@ -369,7 +371,7 @@
 // MEDIA - DESKTOP
 @include desktop {
   .inventoryList {
-    width: 1040px;
+    //width: 1040px;
     margin: auto;
   }
 }

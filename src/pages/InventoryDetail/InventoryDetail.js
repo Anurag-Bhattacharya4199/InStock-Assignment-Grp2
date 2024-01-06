@@ -9,12 +9,21 @@ import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function InventoryDetail(props) {
   const location = useLocation();
-
+  useEffect (() => {
+    console.log("DETAIL itemDescription: ", location.state.itemDescription)
+    }, [])
   return (
     <>
       <SearchHeader
         title={location.state.itemName}
         headerButton="inventories"
+        itemId={location.state.id}
+        itemCategory={location.state.itemCategory}
+        itemName={location.state.itemName}
+        itemDescription={location.state.itemDescription}
+        itemStatus={location.state.itemStatus}
+        warehouseName={location.state.warehouseName}
+        itemQuantity={location.state.itemQuantity}
       />
       <section className="details">
         <div className="details--left-wrapper">
@@ -32,11 +41,10 @@ function InventoryDetail(props) {
             <div className="details__status-warehouse--status">
               <h4 className="details__headers--status">STATUS:</h4>
               <p
-                className={`details--text status-container__status ${
-                  location.state.itemStatus === "In Stock"
+                className={`details--text status-container__status ${location.state.itemStatus === "In Stock"
                     ? "status-container__in-stock"
                     : "status-container__out-of-stock"
-                } `}
+                  } `}
               >
                 {location.state.itemStatus}
               </p>

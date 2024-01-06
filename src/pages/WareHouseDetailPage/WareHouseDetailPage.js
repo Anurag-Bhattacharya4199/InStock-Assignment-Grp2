@@ -49,6 +49,7 @@ function WareHouseDetailPage() {
             headerButton="warehouses"
             item_id={warehouse.id}
             title={warehouse.warehouse_name}
+            sourcePage="/"
           />
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">
@@ -56,11 +57,11 @@ function WareHouseDetailPage() {
                 Warehouse Address:
               </h4>
               <p className="p-medium">
-                {warehouse.address},
-                <p className="p-medium">
-                  {warehouse.city}, {warehouse.country}
+                {warehouse.address}, <span></span><br className="warehouseDetails__info-address--new-line"></br>
+                {warehouse.city}, <span></span>
+                {warehouse.country}
                 </p>
-              </p>
+              
             </div>
             <div className="warehouseDetails__info-contact">
               <div className="warehouseDetails__info-column warehouseDetails__info-column--left">

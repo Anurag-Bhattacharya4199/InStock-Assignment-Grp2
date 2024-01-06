@@ -2,16 +2,22 @@ import './SearchHeader.scss'
 import searchIcon from '../../assets/icons/search-24px.svg'
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import editButton from "../../assets/icons/edit-24px.svg";
-import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 
 // This header can be used for the WareHouseList component and the WareHouseInventoryList component
 function SearchHeader(props) {
+    const { id } = useParams();
+
     const [checkSearch, setCheckSearch] = useState("display-none");
     const [checkEdit, setCheckEdit] = useState("display-none");
     const [checkTitle, setCheckTitle] = useState("")
     const [checkBackArrow, setCheckBackArrow] = useState("");
     const navigate = useNavigate();
+
+    useEffect (() => {
+        console.log("HEADER itemDescription: ", props.itemDescription)
+        }, [])
 
     useEffect(() => {
         if (props.addNewItem) {
@@ -24,6 +30,8 @@ function SearchHeader(props) {
             setCheckEdit("");
             setCheckTitle("--edit");
         }
+
+
     }, []);
 
     return (
@@ -67,8 +75,18 @@ function SearchHeader(props) {
 
                 </div>
                 <Link
-                    to={`/${props.headerButton}/:id/edit`}
+                    to={`/${props.headerButton}/${id}/edit`}
                     className={`header-button--edit ${checkEdit}`}
+                    state={{
+                        sourcePage: `/`,
+                        itemId: props.itemId,
+                        itemCategory: props.itemCategory,
+                        itemName: props.itemName,
+                        itemDescription: props.itemDescription,
+                        itemStatus: props.itemStatus,
+                        warehouseName: props.warehouseName,
+                        itemQuantity: props.itemQuantity
+                    }}
                 >
                     <img
                         src={editButton}
@@ -77,6 +95,17 @@ function SearchHeader(props) {
                     />
                     <span className="header-button--edit--text">Edit</span>
                 </Link>
+                {/* <Link
+                    to={`/${props.headerButton}/${props.linkId}/edit`}
+                    className={`header-button--edit ${checkEdit}`}
+                >
+                    <img
+                        src={editButton}
+                        className="header-button--editImg"
+                        alt={`Edit ${props.headerButton}`}
+                    />
+                    <span className="header-button--edit--text">Edit</span>
+                </Link> */}
 
             </header>
             <div className={`divider divider--${checkBackArrow}`}></div>

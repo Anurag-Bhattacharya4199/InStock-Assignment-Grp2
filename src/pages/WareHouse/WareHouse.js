@@ -37,7 +37,7 @@ function WareHouse() {
     .then((response) => {
       const sortedWarehouseData = response.data;
       setSortedWarehouses(sortedWarehouseData)
-      console.log(sortedWarehouseData)
+      // console.log(sortedWarehouseData)
     })
     .catch((error)=> {
       console.error(error)

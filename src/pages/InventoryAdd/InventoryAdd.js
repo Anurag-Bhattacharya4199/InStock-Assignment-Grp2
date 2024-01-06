@@ -197,7 +197,8 @@ function InventoryAdd() {
             <article className="addInventoryItem__form-description">
               <label className="p-medium">Description</label>
               <textarea
-                className={`addInventoryItem__form-itemNameInp ${
+              rows={5}
+                className={`addInventoryItem__form-descriptionInp ${
                   error.descriptionError
                     ? "addInventoryItem__form-invalidInput"
                     : ""

@@ -13,7 +13,9 @@
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    padding: 16px 32px;
+    padding: 0 32px;
+    height: 40px;
+    background-color: $light-grey;
 
     &__header-container {
       display: flex;
@@ -39,7 +41,7 @@
 
 .WarehouseList {
   &__body {
-    border-top: 1px solid #bdc5d5;
+    border-bottom: 1px solid #bdc5d5;
 
     @include tablet {
       display: flex;

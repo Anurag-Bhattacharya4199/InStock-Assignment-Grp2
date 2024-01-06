@@ -108,6 +108,7 @@ function InventoryAdd() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let tempQuantity = setQty;
 
     if (isFormValid()) {
       setItemName("");
@@ -124,7 +125,7 @@ function InventoryAdd() {
       if (!inStock) {
         setItemStatus("Out of Stock");
         setQty("0");
-        tempQty = "0";
+        tempQuantity = "0";
       }
       postInventory(
         warehouseId,

@@ -5,14 +5,14 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-import { editInventory } from "../../utils/utils";
+import { PostEditInventory, editInventoryValidation } from "../../utils/utils";
 
 
 function EditInventory() {
   const location = useLocation();
   const navigate = useNavigate();
   let { id } = useParams();
-  const [itemId, setItemId] = useState(location.state.itemId);
+  // const [itemId, setItemId] = useState(location.state.itemId);
   const [itemCategory, setItemCategory] = useState(location.state.itemCategory);
   const [itemName, setItemName] = useState(location.state.itemName);
   const [itemDescription, setItemDescription] = useState(location.state.itemDescription);
@@ -21,7 +21,6 @@ function EditInventory() {
   const [warehouseName, setWarehouseName] = useState(location.state.warehouseName);
   const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity);
   const [warehouses, setWarehouses] = useState([]);
-  let { itemIdParam } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
   const API_BASE_URL = "http://localhost:8080/";
 
@@ -60,22 +59,74 @@ function EditInventory() {
     setWarehouseName(event.target.value);
   };
 
+  const isFormValid = () => {
+    let formComplete = true;
+
+    let errorState = {
+      itemNameError: false,
+      descriptionError: false,
+      categoryError: false,
+      qtyError: false,
+      warehouseError: false,
+    };
+
+    if (itemName.length === 0) {
+      errorState.itemNameError = true;
+      formComplete = false;
+    }
+
+    if (itemDescription.length === 0) {
+      errorState.descriptionError = true;
+      formComplete = false;
+    }
+
+    if (itemCategory.length === 0) {
+      errorState.categoryError = true;
+      formComplete = false;
+    }
+
+    if (itemQuantity === "0" && itemStatus) {
+      errorState.qtyError = true;
+      formComplete = false;
+    }
+
+    if (isNaN(parseInt(itemQuantity))) {
+      errorState.qtyError = true;
+      formComplete = false;
+    }
+
+    if (warehouseName.length === 0) {
+      errorState.warehouseError = true;
+      formComplete = false;
+    }
+
+    setError(errorState);
+
+    return formComplete;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // write code here to find warehouseId from selected warehouse using filter
+
+    // find warehouseId from selected warehouse using filter
     let tempWarehouseId = warehouses.filter((wh) => {
       return wh.warehouse_name === warehouseName;
     })[0].id;
 
-    editInventory(
-      id,
-      tempWarehouseId,
-      itemName,
-      itemDescription,
-      itemCategory,
-      itemStatus,
-      itemQuantity
-    );
+    //editInventoryValidation
+    if (isFormValid()) {
+      PostEditInventory(
+        id,
+        tempWarehouseId,
+        itemName,
+        itemDescription,
+        itemCategory,
+        itemStatus,
+        itemQuantity
+      );
+    }
+    //alert(`Changes to ${itemName} has been saved!`)
+    navigate(-1);
   };
 
   const handleCancel = (event) => {
@@ -112,7 +163,10 @@ function EditInventory() {
               </h2>
               <label className="p-medium">Item Name</label>
               <input
-                className={`editInv__form__content__details__input ${error.warehouseNameError ? "editInv__form--invalidInput" : ""
+                className={`editInv__form__content__details__input 
+                ${error.warehouseNameError
+                    ? "editInv__form--invalidInput"
+                    : ""
                   }`}
                 placeholder={itemName}
                 name={itemName}
@@ -123,7 +177,10 @@ function EditInventory() {
               <label className="p-medium">Description</label>
               <textarea
                 rows={7}
-                className={`editInv__form__content__details__input--area ${error.warehouseNameError ? "editInv__form--invalidInput" : ""
+                className={`editInv__form__content__details__input--area 
+                ${error.warehouseNameError
+                    ? "editInv__form--invalidInput"
+                    : ""
                   }`}
                 placeholder={itemDescription}
                 name={itemDescription}

@@ -44,7 +44,7 @@ function WareHouseList(props) {
         </div>
         <div className="warehouseList-headers__header-container">
           <h4 className="warehouseList-headers__header-container--header">
-            COONTACT INFORMATION
+            CONTACT INFORMATION
           </h4>
           <img
             className="warehouseList-headers__header-container--sort-icon"

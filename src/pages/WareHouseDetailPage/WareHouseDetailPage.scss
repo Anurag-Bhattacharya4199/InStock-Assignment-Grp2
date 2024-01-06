@@ -7,7 +7,7 @@
   background-color: white;
   box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
   position: relative;
-  top:-75px;
+  top:-90px;
 
   &__info {
     padding: $mobile-margin;
@@ -46,7 +46,7 @@
 @include tablet {
   .warehouseDetails {
     margin: $tablet-margin;
-    top:-130px;
+    top:-150px;
     
     &__info {
       padding: $tablet-margin;

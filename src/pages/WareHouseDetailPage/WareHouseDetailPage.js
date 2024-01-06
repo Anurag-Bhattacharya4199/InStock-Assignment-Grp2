@@ -60,8 +60,7 @@ function WareHouseDetailPage() {
                 {warehouse.address}, <span></span><br className="warehouseDetails__info-address--new-line"></br>
                 {warehouse.city}, <span></span>
                 {warehouse.country}
-                </p>
-              
+                </p>           
             </div>
             <div className="warehouseDetails__info-contact">
               <div className="warehouseDetails__info-column warehouseDetails__info-column--left">

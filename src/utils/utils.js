@@ -1,12 +1,5 @@
 import axios from "axios";
 
-
-export function ValidateEditInventory (){
-return null
-
-}
-
-
 export const PostEditInventory = async (
   itemId,
   warehouseId,

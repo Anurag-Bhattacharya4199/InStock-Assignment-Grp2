@@ -129,3 +129,14 @@
 .false{
     display:none;
 }
+
+.errorMsg {
+    display: none;
+    font-size: 13px;
+  
+
+  &--invalid-input {
+    display: inline-block;
+    color: $red;
+  }
+}

@@ -13,8 +13,8 @@ function WareHouse() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
-  const [sortedWarehouses, setSortedWarehouses] = useState([])
-  const [sortWarehouses, setSortWarehouses] = useState(false)
+  const [sortedWarehouses, setSortedWarehouses] = useState([]);
+  const [sortWarehouses, setSortWarehouses] = useState(false);
 
   const { id } = useParams();
 
@@ -33,15 +33,15 @@ function WareHouse() {
 
   const fetchSortedWarehouseList = () => {
     axios
-    .get(`${API_BASE_URL}?sort_by=warehouse_name`)
-    .then((response) => {
-      const sortedWarehouseData = response.data;
-      setSortedWarehouses(sortedWarehouseData)
-      // console.log(sortedWarehouseData)
-    })
-    .catch((error)=> {
-      console.error(error)
-    })
+      .get(`${API_BASE_URL}?sort_by=warehouse_name`)
+      .then((response) => {
+        const sortedWarehouseData = response.data;
+        setSortedWarehouses(sortedWarehouseData);
+        // console.log(sortedWarehouseData)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
@@ -49,10 +49,9 @@ function WareHouse() {
     fetchSortedWarehouseList();
   }, []); // Empty dependency array to trigger effect only on mount
 
-
   const handleSortClick = () => {
-    setSortWarehouses(prevState => !prevState)
-    console.log(sortWarehouses)
+    setSortWarehouses((prevState) => !prevState);
+    console.log(sortWarehouses);
   };
 
   const handleDeleteClick = (id, warehouse_name) => {
@@ -92,7 +91,7 @@ function WareHouse() {
     return (
       <div className="warehouse-list">
         <SearchHeader
-          title="Warehouse"
+          title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
         />
@@ -115,7 +114,6 @@ function WareHouse() {
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
           onSortClick={handleSortClick}
-
         />
       </div>
     );

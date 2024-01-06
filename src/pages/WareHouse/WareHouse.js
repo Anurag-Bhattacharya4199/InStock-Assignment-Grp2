@@ -13,8 +13,8 @@ function WareHouse() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState(null);
-  const [sortedWarehouses, setSortedWarehouses] = useState([])
-  const [sortWarehouses, setSortWarehouses] = useState(false)
+  const [sortedWarehouses, setSortedWarehouses] = useState([]);
+  const [sortWarehouses, setSortWarehouses] = useState(false);
 
   const { id } = useParams();
 
@@ -47,7 +47,6 @@ function WareHouse() {
     fetchWarehouseList(); // Fetch warehouse list when component mounts
     fetchSortedWarehouseList();
   }, []); // Empty dependency array to trigger effect only on mount
-
 
   const handleSortClick = () => {
     setSortWarehouses(prevState => !prevState)
@@ -89,7 +88,7 @@ function WareHouse() {
     return (
       <div className="warehouse-list">
         <SearchHeader
-          title="Warehouse"
+          title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
         />
@@ -112,18 +111,9 @@ function WareHouse() {
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
           onSortClick={handleSortClick}
-
         />
       </div>
     );
   }
-
-  // import { Link } from 'react-router-dom';
-
-  //         <Link to="/inventory/1">
-  //         <button type="submit">
-  //         Inventory
-  //         </button>
-  //         </Link>
 }
 export default WareHouse;

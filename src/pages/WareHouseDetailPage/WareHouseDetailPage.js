@@ -32,13 +32,16 @@ function WareHouseDetailPage() {
         console.error(error);
       });
 
-    axios.get(`${API_BASE_URL}${id}/inventories`).then((response) => {
-      setWarehouseInventory(response.data);
-      setHasLoaded2(true);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    axios
+      .get(`${API_BASE_URL}${id}/inventories`)
+      .then((response) => {
+        setWarehouseInventory(response.data);
+        setHasLoaded2(true);
+      })
+      .catch((e) => {
+        console.log(e.response.data.message);
+        alert(e.response.data.message);
+      });
   }, []);
 
   // RENDERING

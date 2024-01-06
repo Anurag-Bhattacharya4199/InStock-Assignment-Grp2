@@ -5,12 +5,26 @@ import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
+import axios from "axios";
 
-const InventoryList = (props, onDeleteClick) => {
+const InventoryList = (props) => {
+
+
+
   let { id } = useParams();
   const [checkData, setCheckData] = useState("flex");
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
+  const [sortType, setSortType] = useState('');
+  const API_BASE_URL = "http://localhost:8080";
+
+
+
+  const handleSort = (sortBy) => {
+    setSortType(sortBy); // Update the sortType state based on the selected sortBy
+    console.log(`Sorting by ${sortBy}`);
+  };
+  
 
   function checkWarehouseName(wh) {
     if (!wh) {
@@ -19,6 +33,7 @@ const InventoryList = (props, onDeleteClick) => {
       return wh;
     }
   }
+
 
   useEffect(() => {
     if (id) {
@@ -47,6 +62,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('item_name')}
             />
           </div>
           <div className="inventoryList-headers__header-container header-category">
@@ -57,6 +73,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('category')}
             />
           </div>
           <div className="inventoryList-headers__header-container header-status">
@@ -67,6 +84,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('status')}
             />
           </div>
           <div className="inventoryList-headers__header-container header-quantity">
@@ -77,6 +95,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('quantity')}
             />
           </div>
           <div style={{ display: checkData }} className="inventoryList-headers__header-container header-warehouse">

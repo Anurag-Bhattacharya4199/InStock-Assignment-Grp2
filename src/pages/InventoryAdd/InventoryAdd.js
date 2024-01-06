@@ -119,15 +119,13 @@ function InventoryAdd() {
       let warehouseId = warehouses.filter((wh) => {
         return wh.warehouse_name === warehouse;
       })[0].id;
-      
-      let tempQty = qty;
 
       if (!inStock) {
         setItemStatus("Out of Stock");
         setQty("0");
         tempQuantity = "0";
       }
-      
+
       postInventory(
         warehouseId,
         itemName,

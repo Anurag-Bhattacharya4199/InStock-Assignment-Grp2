@@ -50,7 +50,7 @@
       //  HEADER ACTIONS
       .header-actions {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
       }
     }
   }
@@ -59,7 +59,7 @@
   .inventoryList-card {
     display: flex;
     flex-wrap: wrap;
-    padding: 16px;
+    padding: 0 16px;
     box-sizing: border-box;
     border-bottom: 1px solid #bdc5d5;
 
@@ -70,6 +70,9 @@
       // INVENTORY ITEM***
       .inventory-container {
         width: 100%;
+        display: flex;
+        align-items: center;
+        //justify-content: center;
 
         &__header {
           color: $slate;
@@ -292,6 +295,8 @@
       width: 100%;
       box-sizing: border-box;
       padding-top: 16px;
+      
+      
     }
 
     // Delete Button
@@ -307,7 +312,8 @@
     @include tablet {
       .inventoryList-card__icon-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        align-content: center;
         gap: 15px;
         padding-top: 0px;
 
@@ -333,7 +339,7 @@
   // MEDIA - TABLET
   @include tablet {
     .inventoryList-card {
-      padding: 16px 32px;
+      padding: 8px 32px;
       display: grid;
     }
   }
@@ -358,6 +364,8 @@
     &--header {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
+      padding-top:0;
+      padding-bottom:0;
     }
 
     &--table {
@@ -374,4 +382,8 @@
     //width: 1040px;
     margin: auto;
   }
+}
+
+a{
+  height: 24px;
 }

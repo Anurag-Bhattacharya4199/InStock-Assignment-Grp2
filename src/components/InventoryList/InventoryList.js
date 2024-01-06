@@ -183,7 +183,7 @@ const InventoryList = (props, onDeleteClick) => {
                 <img
                   src={EditIcon}
                   alt="edit icon"
-                  className="inventoryList__icon-container--edit-button action-icon"
+                  className="inventoryList__icon-container--delete-button action-icon"
                 ></img>
               </Link>
             </div>

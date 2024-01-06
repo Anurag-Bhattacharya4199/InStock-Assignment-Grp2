@@ -14,7 +14,7 @@ function WareHouseDetailPage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasLoaded2, setHasLoaded2] = useState(false);
   const [deleteInventoryID, setDeleteInventoryID] = useState(null);
-  const [inventoryToDelete, setInventorToDelete] = useState('');
+  const [inventoryToDelete, setInventorToDelete] = useState("");
   const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   // WAREHOUSE DATA
@@ -25,38 +25,39 @@ function WareHouseDetailPage() {
 
   const fetchWarehouseDetails = () => {
     axios
-    .get(`${API_BASE_URL}${id}`)
-    .then((response) => {
-      setWarehouse(response.data);
+      .get(`${API_BASE_URL}${id}`)
+      .then((response) => {
+        setWarehouse(response.data);
 
-      // VALIDATE DATA DOWNLOAD
-      setHasLoaded(true);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
+        // VALIDATE DATA DOWNLOAD
+        setHasLoaded(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const fetchInventoryForWarehouse = () => {
-    axios.get(`${API_BASE_URL}${id}/inventories`).then((response) => {
-      setWarehouseInventory(response.data);
-      setHasLoaded2(true);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
+    axios
+      .get(`${API_BASE_URL}${id}/inventories`)
+      .then((response) => {
+        setWarehouseInventory(response.data);
+        setHasLoaded2(true);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     fetchWarehouseDetails();
     fetchInventoryForWarehouse();
-
   }, []);
 
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);
     setDeleteInventoryID(id);
-    setInventorToDelete(item_name)
+    setInventorToDelete(item_name);
   };
 
   // to  close delete component using cancel or X
@@ -65,20 +66,20 @@ function WareHouseDetailPage() {
     setDeleteInventoryID(null);
   };
 
-
   const handleDeleteConfirmation = () => {
     // Make a DELETE request to delete the warehouse
-    axios.delete(`http://localhost:8080/inventories/${deleteInventoryID}`)
+    axios
+      .delete(`http://localhost:8080/inventories/${deleteInventoryID}`)
       .then(() => {
-        console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
+        console.log(
+          `Successfully deleted inventory item with ID: ${deleteInventoryID}`
+        );
         setShowDeletePopup(false);
         setDeleteInventoryID(null);
         fetchInventoryForWarehouse();
-
       })
       .catch((error) => {
         console.error(`Error deleting inventory item: ${error}`);
-
       });
   };
 
@@ -100,7 +101,7 @@ function WareHouseDetailPage() {
               <h4 className="warehouseDetails__info-headers">
                 Warehouse Address:
               </h4>
-              <p className="p-medium">
+              <p className="info">
                 {warehouse.address}, <span></span>
                 <br className="warehouseDetails__info-address--new-line"></br>
                 {warehouse.city}, <span></span>
@@ -112,7 +113,7 @@ function WareHouseDetailPage() {
                 <h4 className="warehouseDetails__info-headers">
                   CONTACT NAME:
                 </h4>
-                <p className="p-medium">
+                <p className="info">
                   {warehouse.contact_name}, <span></span>
                   <br className="warehouseDetails__info-address--new-line"></br>
                   {warehouse.contact_position}
@@ -122,7 +123,7 @@ function WareHouseDetailPage() {
                 <h4 className="warehouseDetails__info-headers">
                   CONTACT INFORMATION:
                 </h4>
-                <p className="p-medium">
+                <p className="info">
                   {warehouse.contact_phone}, <span></span>
                   <br className="warehouseDetails__info-address--new-line"></br>
                   {warehouse.contact_email}
@@ -132,17 +133,17 @@ function WareHouseDetailPage() {
           </section>
 
           {showDeletePopup && (
-          <div className="overlay">
-            <div className="delete-popup">
-              <DeleteModal
-                inventoryName={inventoryToDelete}
-                itemType="inventory"
-                handleCloseDeleteComponent={handleCloseDeleteComponent}
-                handleDeleteConfirmation={handleDeleteConfirmation}
-              />
+            <div className="overlay">
+              <div className="delete-popup">
+                <DeleteModal
+                  inventoryName={inventoryToDelete}
+                  itemType="inventory"
+                  handleCloseDeleteComponent={handleCloseDeleteComponent}
+                  handleDeleteConfirmation={handleDeleteConfirmation}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
           <InventoryList
             inventoryList={warehouseInventory}
             warehouseName={warehouse.warehouse_name}

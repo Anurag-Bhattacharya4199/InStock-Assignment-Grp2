@@ -16,6 +16,7 @@ function WareHouse() {
   const [sortedWarehouses, setSortedWarehouses] = useState([])
   const [sortWarehouses, setSortWarehouses] = useState(false)
 
+
   const { id } = useParams();
 
   const fetchWarehouseList = () => {
@@ -37,7 +38,6 @@ function WareHouse() {
     .then((response) => {
       const sortedWarehouseData = response.data;
       setSortedWarehouses(sortedWarehouseData)
-      // console.log(sortedWarehouseData)
     })
     .catch((error)=> {
       console.error(error)
@@ -49,17 +49,15 @@ function WareHouse() {
     fetchSortedWarehouseList();
   }, []); // Empty dependency array to trigger effect only on mount
 
-
   const handleSortClick = () => {
     setSortWarehouses(prevState => !prevState)
-    console.log(sortWarehouses)
   };
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(id);
     setWarehouseToDelete(warehouse_name);
-    //console.log(id)
+
   };
 
   const handleDeleteConfirmation = () => {
@@ -92,7 +90,7 @@ function WareHouse() {
     return (
       <div className="warehouse-list">
         <SearchHeader
-          title="Warehouse"
+          title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
         />
@@ -115,18 +113,9 @@ function WareHouse() {
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
           onSortClick={handleSortClick}
-
         />
       </div>
     );
   }
-
-  // import { Link } from 'react-router-dom';
-
-  //         <Link to="/inventory/1">
-  //         <button type="submit">
-  //         Inventory
-  //         </button>
-  //         </Link>
 }
 export default WareHouse;

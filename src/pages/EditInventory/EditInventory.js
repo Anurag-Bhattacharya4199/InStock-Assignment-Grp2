@@ -124,9 +124,13 @@ function EditInventory() {
         itemStatus,
         itemQuantity
       );
-    }
-    //alert(`Changes to ${itemName} has been saved!`)
+      console.log("isFormValid() ", isFormValid())
+      alert(`Changes to ${itemName} has been saved!`)
     navigate(-1);
+    }else{
+      return;
+    }
+    
   };
 
   const handleCancel = (event) => {

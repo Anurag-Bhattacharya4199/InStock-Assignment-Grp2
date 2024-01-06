@@ -13,10 +13,29 @@ const Header = () => {
           />
         </div>
         <nav className="header-links-container">
-          <NavLink to="/" className="header-links-container__link">
+          {/* <NavLink to="/" className="header-links-container__link> */}
+          <NavLink
+            to="/"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending header-links-container__link"
+                : isActive
+                ? "active header-links-container__link "
+                : "header-links-container__link"
+            }
+          >
             warehouse
           </NavLink>
-          <NavLink to="/inventories" className="header-links-container__link">
+          <NavLink
+            to="/inventories"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending header-links-container__link"
+                : isActive
+                ? "active header-links-container__link "
+                : "header-links-container__link"
+            }
+          >
             Inventory
           </NavLink>
         </nav>

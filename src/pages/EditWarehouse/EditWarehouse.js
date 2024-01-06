@@ -57,8 +57,8 @@ const EditWarehouse = (props) => {
   const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
   // SET RE-DIRECT PAGE LINKS
   useEffect(() => {
-    if(location.state.sourcePage){
-    setPageSource(location.state.pageSource);
+    if (location.state.sourcePage) {
+      setPageSource(location.state.pageSource);
     }
   }, []);
   // GET WAREHOUSE DATA
@@ -261,7 +261,18 @@ const EditWarehouse = (props) => {
       }
     }
   };
-
+  const setPhone = () => {
+    const phoneVal = phoneNumber.split("");
+    console.log(phoneVal);
+    if (phoneVal.length === 3) {
+      const formateNumber = `+1 (${phoneVal[0]}${phoneVal[2]}${phoneVal[2]}) `;
+      setPhoneNumber(formateNumber);
+    }
+    if (phoneVal.length === 11) {
+      const formateNumber = `+1 (${phoneVal[3]}${phoneVal[4]}${phoneVal[5]}) ${phoneVal[7]}${phoneVal[8]}${phoneVal[9]}- `;
+      setPhoneNumber(formateNumber);
+    }
+  };
   return (
     <main className={`editWarehouse `}>
       {/*-------------------------------*/}
@@ -337,7 +348,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${warehouseError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 This field is required
               </span>
             </article>
@@ -358,7 +373,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${addressError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 This field is required
               </span>
             </article>
@@ -379,7 +398,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${cityError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 This field is required
               </span>
             </article>
@@ -400,7 +423,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${countryError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 This field is required
               </span>
             </article>
@@ -424,7 +451,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${contactNameError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 This field is required
               </span>
             </article>
@@ -445,7 +476,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${positionError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 This field is required
               </span>
             </article>
@@ -461,13 +496,18 @@ const EditWarehouse = (props) => {
                   setPhoneNumber(event.target.value);
                   handleInputValidation(event);
                   handleSaveButton();
+                  setPhone();
                 }}
               />
               {/* ERROR MESSAGE */}
               <span
                 className={`${phoneNumberError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 {phoneNumberErrorMessage}
               </span>
             </article>
@@ -489,7 +529,11 @@ const EditWarehouse = (props) => {
               <span
                 className={`${emailError} editWarehouse__form-warehouse_error-msg`}
               >
-                <img src={ErrorLogo} alt="input-error-logo" />
+                <img
+                  className="error-logo"
+                  src={ErrorLogo}
+                  alt="input-error-logo"
+                />
                 {emailErrorMessage}
               </span>
             </article>

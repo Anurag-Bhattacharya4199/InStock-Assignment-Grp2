@@ -4,7 +4,9 @@
 .editWarehouse {
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   margin: 0px 16px;
-
+  position: relative;
+  top: -70px;
+  background-color: #fff;
   // POP UP
   &__confirm-edit-container,
   &__cancel-edit-container {
@@ -99,8 +101,23 @@
       height: 36px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
+      border-width: 1px;
       border-radius: 20px;
       border-color: $slate;
+      // outline: none;
+    }
+
+    // WHEN ACTIVE
+    &-warehouse_nameInp:focus,
+    &-warehouse_streetaddressInp:focus,
+    &-warehouse_cityInp:focus,
+    &-warehouse_countryInp:focus,
+    &-warehouse_contactNameInp:focus,
+    &-warehouse_positionInp:focus,
+    &-warehouse_phonenumInp:focus,
+    &-warehouse_emailInp:focus {
+      border-color: $instock-indigo;
+      outline-color: $instock-indigo;
     }
 
     // DYNAMIC ERROR STATE CLASSES
@@ -119,6 +136,12 @@
       display: none;
     }
 
+    // ERROR LOGOS
+    .error-logo {
+      height: 16px;
+      width: 16px;
+    }
+
     // DYNAMIC ERROR MESSAGE CLASSES
     .warehouse-error,
     .address-error,
@@ -129,8 +152,11 @@
     .phone-number-error,
     .email-error {
       color: red;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-size: 13px;
+      padding-top: 3px;
     }
     &-buttons {
       height: 68.32px;
@@ -175,6 +201,8 @@
 
 @include tablet {
   .editWarehouse {
+    top: -93.5px;
+
     &__header {
       &-info {
         justify-content: start;
@@ -231,6 +259,7 @@
         height: 38px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
+        border-width: 1px;
         border-radius: 20px;
         border-color: $slate;
         width: auto;
@@ -239,19 +268,10 @@
       &-addBtn {
         margin-left: $tablet-margin;
       }
-      // DYNAMIC CLASS
-      // .disabled {
-      //   background-color: green;
-      // }
+      &-cancelBtn:hover {
+        color: $instock-indigo;
+        border-color: $instock-indigo;
+      }
     }
   }
-}
-
-// DYNAMIC CLASS
-.display-hidden {
-  display: none;
-}
-// DYNAMIC CLASS
-.display-none {
-  display: none;
 }

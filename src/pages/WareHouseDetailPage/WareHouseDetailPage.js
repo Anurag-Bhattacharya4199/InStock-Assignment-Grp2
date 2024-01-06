@@ -60,6 +60,29 @@ function WareHouseDetailPage() {
     console.log(inventoryToDelete)
   };
 
+  // to  close delete component using cancel or X
+  const handleCloseDeleteComponent = () => {
+    setShowDeletePopup(false);
+    setDeleteInventoryID(null);
+  };
+
+
+  // const handleDeleteConfirmation = () => {
+  //   // Make a DELETE request to delete the warehouse
+  //   axios.delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
+  //     .then(() => {
+  //       console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
+  //       setShowDeletePopup(false);
+  //       setDeleteInventoryID(null);
+  //       fetchInventoryForWarehouse();
+
+  //     })
+  //     .catch((error) => {
+  //       console.error(`Error deleting inventory item: ${error}`);
+
+  //     });
+  // };
+
   // RENDERING
   if (!hasLoaded && !hasLoaded2) {
     return null;
@@ -115,7 +138,7 @@ function WareHouseDetailPage() {
               <DeleteModal
                 inventoryName={inventoryToDelete}
                 itemType="inventory"
-                // handleCloseDeleteComponent={handleCloseDeleteComponent}
+                handleCloseDeleteComponent={handleCloseDeleteComponent}
                 // handleDeleteConfirmation={handleDeleteConfirmation}
               />
             </div>

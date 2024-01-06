@@ -47,7 +47,6 @@ const Inventory = () => {
     axios.delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
       .then(() => {
         console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
-        // Now, make another DELETE request to delete the warehouse inventory
         setShowDeletePopup(false);
         setDeleteInventoryID(null);
         fetchInventorylist();

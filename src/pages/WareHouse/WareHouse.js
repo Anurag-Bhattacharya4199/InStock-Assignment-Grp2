@@ -13,7 +13,7 @@ function WareHouse() {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
   const [warehouseToDelete, setWarehouseToDelete] = useState('');
-  const [sortedWarehouses, setSortedWarehouses] = useState([]);
+  const [sortedWarehouses, setSortedWarehouses] = useState([])
   const [sortWarehouses, setSortWarehouses] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -85,10 +85,30 @@ function WareHouse() {
     setDeleteWarhouseID(null);
   };
 
-  // handle search term on input 
-  const handleSearch = (searchTerm) => {
+  const handleWarehouseSearch = (searchTerm) => {
+    console.log('Search term for warehouse:', searchTerm);
     setSearchTerm(searchTerm);
   };
+
+    // Filter the warehouses based on the search term
+    const filteredWarehouses = warehouses.filter((warehouse) => {
+      // Perform case-insensitive search on relevant fields
+      const searchFields = [
+        warehouse.warehouse_name.toLowerCase(),
+        warehouse.address.toLowerCase(),
+        warehouse.city.toLowerCase(),
+        warehouse.country.toLowerCase(),
+        warehouse.contact_name.toLowerCase(),
+        warehouse.contact_email.toLowerCase(),
+        warehouse.contact_phone.toLowerCase(),
+      ];
+  
+      return searchFields.some((field) => field.includes(searchTerm.toLowerCase()));
+     
+    });
+
+    console.log(filteredWarehouses);
+  
 
   if (!hasLoaded) {
     return null;
@@ -99,7 +119,7 @@ function WareHouse() {
           title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
-          onSearch={handleSearch}
+          onSearch={handleWarehouseSearch}
         />
 
         {showDeletePopup && (
@@ -116,7 +136,7 @@ function WareHouse() {
         )}
 
         <WareHouseList
-          warehouses={sortWarehouses ? sortedWarehouses : warehouses}
+          warehouses={sortWarehouses ? sortedWarehouses : filteredWarehouses}
           onDeleteClick={handleDeleteClick}
           fetchWarehouseList={fetchWarehouseList}
           onSortClick={handleSortClick}

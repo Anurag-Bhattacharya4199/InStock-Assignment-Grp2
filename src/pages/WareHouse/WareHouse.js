@@ -33,15 +33,14 @@ function WareHouse() {
 
   const fetchSortedWarehouseList = () => {
     axios
-      .get(`${API_BASE_URL}?sort_by=warehouse_name`)
-      .then((response) => {
-        const sortedWarehouseData = response.data;
-        setSortedWarehouses(sortedWarehouseData);
-        // console.log(sortedWarehouseData)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    .get(`${API_BASE_URL}?sort_by=warehouse_name`)
+    .then((response) => {
+      const sortedWarehouseData = response.data;
+      setSortedWarehouses(sortedWarehouseData)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
   };
 
   useEffect(() => {
@@ -50,15 +49,13 @@ function WareHouse() {
   }, []); // Empty dependency array to trigger effect only on mount
 
   const handleSortClick = () => {
-    setSortWarehouses((prevState) => !prevState);
-    console.log(sortWarehouses);
+    setSortWarehouses(prevState => !prevState)
   };
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(String(id));
     setWarehouseToDelete(warehouse_name.toString());
-    //console.log(id)
   };
 
   const handleDeleteConfirmation = () => {
@@ -118,13 +115,5 @@ function WareHouse() {
       </div>
     );
   }
-
-  // import { Link } from 'react-router-dom';
-
-  //         <Link to="/inventory/1">
-  //         <button type="submit">
-  //         Inventory
-  //         </button>
-  //         </Link>
 }
 export default WareHouse;

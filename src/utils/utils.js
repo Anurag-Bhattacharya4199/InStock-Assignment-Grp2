@@ -25,7 +25,6 @@ export const PostEditInventory = async (
     status: itemStatus,
     quantity: itemQuantity,
   };
-  console.log(editItem);
   try {
     axios.patch(`http://localhost:8080/inventories/${editItem.id}`, editItem);
   } catch (e) {
@@ -57,7 +56,6 @@ export const postWarehouse = async (
     contact_phone: phoneNumVal,
     contact_email: emailVal,
   };
-  console.log(newWarehouse);
   try {
     axios.post(API_BASE_URL, newWarehouse, postHeader);
   } catch (e) {

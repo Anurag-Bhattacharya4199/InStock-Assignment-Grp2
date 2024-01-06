@@ -21,7 +21,6 @@ const Inventory = () => {
       .get(`${API_BASE_URL}/inventories`)
       .then((response) => {
         setInventoryList(response.data);
-        // console.log(inventoryList);
       })
       .catch((err) => {
         console.log(err);
@@ -39,7 +38,6 @@ const Inventory = () => {
     setShowDeletePopup(true);
     setDeleteInventoryID(String(id));
     setInventorToDelete(item_name.toString());
-    //console.log(id)
   };
 
   const handleDeleteConfirmation = () => {

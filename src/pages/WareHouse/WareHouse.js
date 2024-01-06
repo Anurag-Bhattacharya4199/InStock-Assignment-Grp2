@@ -37,7 +37,6 @@ function WareHouse() {
     .then((response) => {
       const sortedWarehouseData = response.data;
       setSortedWarehouses(sortedWarehouseData)
-      // console.log(sortedWarehouseData)
     })
     .catch((error)=> {
       console.error(error)
@@ -52,14 +51,12 @@ function WareHouse() {
 
   const handleSortClick = () => {
     setSortWarehouses(prevState => !prevState)
-    console.log(sortWarehouses)
   };
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(String(id));
     setWarehouseToDelete(warehouse_name.toString());
-    //console.log(id)
   };
 
   const handleDeleteConfirmation = () => {

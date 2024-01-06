@@ -96,9 +96,6 @@ const EditWarehouse = (props) => {
         contact_phone: phoneNumber,
         contact_email: email,
       })
-      // .then((response) => {
-      //   console.log(response.data);
-      // })
       .catch((error) => {
         console.error(error);
       });

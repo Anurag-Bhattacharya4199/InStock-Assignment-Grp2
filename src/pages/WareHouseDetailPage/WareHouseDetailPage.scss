@@ -32,7 +32,7 @@
     }
 
     &-address{
-      
+      padding-top: 0;
       &--new-line{
         display:none;
         @include tablet{
@@ -51,7 +51,7 @@
 @include tablet {
   .warehouseDetails {
     margin: $tablet-margin;
-    top:-150px;
+    top:-112px;
     
     &__info {
       padding-left: $tablet-margin;

@@ -15,6 +15,8 @@ function WareHouseAdd() {
   const [position, setPosition] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [email, setEmail] = useState("");
+  // PHONE NUMBER MAX-CHARACTER LENGTH
+  const [maxCharater, setMaxCharacter] = useState(10);
 
   const [error, setError] = useState({
     warehouseNameError: false,
@@ -28,6 +30,27 @@ function WareHouseAdd() {
   });
 
   const navigate = useNavigate();
+
+  const handlePhoneNumberFormate = () => {
+    const phoneNumberArray = phoneNum.split("");
+
+    // IF ONLY NUMBER IN VALUE
+    if (!phoneNumberArray.includes("(" || ")" || "+" || " " || "0")) {
+      setMaxCharacter(10);
+      if (phoneNumberArray.length === 10) {
+        const formateNumber = `+1 (${phoneNumberArray[0]}${phoneNumberArray[1]}${phoneNumberArray[2]}) ${phoneNumberArray[3]}${phoneNumberArray[4]}${phoneNumberArray[5]}-${phoneNumberArray[6]}${phoneNumberArray[7]}${phoneNumberArray[8]}${phoneNumberArray[9]}`;
+        setPhoneNum(formateNumber);
+      }
+      return;
+    }
+
+    // IF NON-NUMBER IN VALUE
+    if (phoneNumberArray.includes("(" || ")" || "+" || " " || "-")) {
+      setMaxCharacter(17);
+
+      return;
+    }
+  };
 
   const handleChangeWarehouseName = (event) => {
     const warehouseName = event.target.value;
@@ -113,7 +136,14 @@ function WareHouseAdd() {
       formComplete = false;
     }
 
-    if (!validator.isMobilePhone(phoneNum)) {
+    if (phoneNum.length === 0) {
+      errorState.phoneNumError = true;
+      formComplete = false;
+    }
+
+    const phoneRegex = /\+1\s\(\d\d\d\)\s\d\d\d-\d\d\d\d/;
+    // VALIDATE PHONE-NUMBER
+    if (!phoneNum.match(phoneRegex)) {
       errorState.phoneNumError = true;
       formComplete = false;
     }
@@ -321,10 +351,14 @@ function WareHouseAdd() {
                   error.phoneNumError ? "addWarehouse__form-invalidInput" : ""
                 }`}
                 placeholder="Phone Number"
+                maxLength={maxCharater}
                 name="phoneNum"
                 form="phoneNum"
                 value={phoneNum}
                 onChange={handleChangePhoneNum}
+                onKeyUp={(event) => {
+                  handlePhoneNumberFormate();
+                }}
               />
               <span
                 className={`addWarehouse__form-errorMsg ${

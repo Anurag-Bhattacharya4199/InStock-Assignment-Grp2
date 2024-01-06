@@ -26,6 +26,16 @@
       justify-content: space-between;
       padding-top: 2rem;
     }
+
+    &-address{
+
+      &--new-line{
+        display:none;
+        @include tablet{
+          display:flex;
+        }
+      }
+    }
   }
 }
 

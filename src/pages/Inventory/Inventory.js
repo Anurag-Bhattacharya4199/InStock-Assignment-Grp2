@@ -69,6 +69,25 @@ const Inventory = () => {
     setSearchTerm(searchTerm);
   };
 
+
+  const filteredInventories = inventoryList.filter((inventory) => {
+    // Convert quantity to string and then apply toLowerCase()
+    const quantityString = JSON.stringify(inventory.quantity).toLowerCase();
+  
+    // Perform case-insensitive search on relevant fields
+    const searchFields = [
+      inventory.item_name.toLowerCase(),
+      inventory.category.toLowerCase(),
+      inventory.status.toLowerCase(),
+      quantityString,
+      inventory.warehouse_name.toLowerCase(),
+    ];
+  
+    return searchFields.some((field) => field.includes(searchTerm.toLowerCase()));
+  });
+
+console.log(filteredInventories);
+
    
 
 
@@ -96,7 +115,7 @@ const Inventory = () => {
           </div>
         )}
 
-        <InventoryList inventoryList={inventoryList} onDeleteClick={handleDeleteClick} />
+        <InventoryList inventoryList={filteredInventories} onDeleteClick={handleDeleteClick} />
       </section>
     );
   }

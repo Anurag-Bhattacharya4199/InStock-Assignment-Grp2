@@ -39,6 +39,7 @@ function SearchHeader(props) {
     const handleSearchInputChange = (event) => {
         const searchTerm = event.target.value;
         props.onSearch(searchTerm); 
+        console.log(searchTerm)
       };
 
     return (

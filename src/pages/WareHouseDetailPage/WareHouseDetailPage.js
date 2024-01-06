@@ -35,6 +35,9 @@ function WareHouseDetailPage() {
     axios.get(`${API_BASE_URL}${id}/inventories`).then((response) => {
       setWarehouseInventory(response.data);
       setHasLoaded2(true);
+    })
+    .catch((error) => {
+      console.error(error);
     });
   }, []);
 

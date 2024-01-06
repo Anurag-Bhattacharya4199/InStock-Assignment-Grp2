@@ -57,7 +57,8 @@ function WareHouseDetailPage() {
                 Warehouse Address:
               </h4>
               <p className="p-medium">
-                {warehouse.address}, <span></span><br className="warehouseDetails__info-address--new-line"></br>
+                {warehouse.address}, <span></span>
+                <br className="warehouseDetails__info-address--new-line"></br>
                 {warehouse.city}, <span></span>
                 {warehouse.country}
                 </p>

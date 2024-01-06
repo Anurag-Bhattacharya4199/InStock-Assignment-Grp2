@@ -177,7 +177,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Warehouse Name"
                 name="warehouseName"
-                for="warehouseName"
+                form="warehouseName"
                 value={warehouseName}
                 onChange={handleChangeWarehouseName}
               />
@@ -202,7 +202,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Street Address"
                 name="streetAddress"
-                for="streetAddress"
+                form="streetAddress"
                 value={streetAddress}
                 onChange={handleChangeStreetAddress}
               />
@@ -225,7 +225,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="City"
                 name="city"
-                for="city"
+                form="city"
                 value={city}
                 onChange={handleChangeCity}
               />
@@ -248,7 +248,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Country"
                 name="country"
-                for="country"
+                form="country"
                 value={country}
                 onChange={handleChangeCountry}
               />
@@ -276,7 +276,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Contact Name"
                 name="contactName"
-                for="contactName"
+                form="contactName"
                 value={contactName}
                 onChange={handleChangeContactName}
               />
@@ -299,7 +299,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Position"
                 name="position"
-                for="position"
+                form="position"
                 value={position}
                 onChange={handleChangePosition}
               />
@@ -322,7 +322,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Phone Number"
                 name="phoneNum"
-                for="phoneNum"
+                form="phoneNum"
                 value={phoneNum}
                 onChange={handleChangePhoneNum}
               />
@@ -345,7 +345,7 @@ function WareHouseAdd() {
                 }`}
                 placeholder="Email"
                 name="email"
-                for="email"
+                form="email"
                 value={email}
                 onChange={handleChangeEmail}
               />

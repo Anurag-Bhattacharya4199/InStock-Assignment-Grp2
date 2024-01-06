@@ -5,6 +5,8 @@ import validator from "validator";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
+
 const EditWarehouse = (props) => {
   const API_BASE_URL = "http://localhost:8080/warehouses/";
   const { id } = useParams();
@@ -299,7 +301,7 @@ const EditWarehouse = (props) => {
         </div>
       </div>
       {/*-------------------------------*/}
-      <section className="editWarehouse__header">
+      {/* <section className="editWarehouse__header">
         <div className="editWarehouse__header-info">
           <Link to={`${pageSource}`}>
             <img
@@ -310,7 +312,8 @@ const EditWarehouse = (props) => {
           </Link>
           <h1 className="editWarehouse__header-title">Edit Warehouse</h1>
         </div>
-      </section>
+      </section> */}
+      <SearchHeader title="Edit Warehouse" />
       <form
         className="editWarehouse__form"
         onSubmit={(event) => {

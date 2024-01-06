@@ -177,7 +177,7 @@ function InventoryAdd() {
                 }`}
                 placeholder="Item Name"
                 name="itemName"
-                htmlFor="itemName"
+                htmlform="itemName"
                 value={itemName}
                 onChange={handleChangeItemName}
               />
@@ -202,7 +202,7 @@ function InventoryAdd() {
                 }`}
                 placeholder="Please enter a brief item description..."
                 name="description"
-                htmlFor="description"
+                htmlform="description"
                 value={description}
                 onChange={handleChangeDescription}
               ></textarea>
@@ -227,7 +227,7 @@ function InventoryAdd() {
                 }`}
                 placeholder="Please Select"
                 name="category"
-                htmlFor="category"
+                htmlform="category"
                 value={category}
                 onChange={handleChangeCategory}
               >
@@ -261,7 +261,7 @@ function InventoryAdd() {
                     className="addInventoryItem__form-inStockInp"
                     id="In Stock"
                     name="status"
-                    htmlFor="status"
+                    htmlform="status"
                     value="In Stock"
                     defaultChecked
                     onClick={() => setItemStatus("In Stock")}
@@ -274,7 +274,7 @@ function InventoryAdd() {
                     className="addInventoryItem__form-outofStockInp"
                     id="Out of Stock"
                     name="status"
-                    htmlFor="status"
+                    htmlform="status"
                     value="Out of Stock"
                     onClick={() => setItemStatus("Out of Stock")}
                   />
@@ -290,7 +290,7 @@ function InventoryAdd() {
                 }`}
                 placeholder={qty}
                 name="qty"
-                htmlFor="qty"
+                htmlform="qty"
                 value={qty}
                 onChange={handleChangeQty}
               />

@@ -22,7 +22,7 @@
 
   &__form {
     &-itemDetails {
-      border-bottom: 0.063rem solid $slate;
+      border-bottom: 0.063rem solid $cloud;
     }
 
     &-itemDetails, &-itemAvailability {
@@ -39,10 +39,9 @@
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
-      border-color: $slate;
+      border: 1px solid $slate;
       font-family: $font-regular;
-      
-      &:active 
+      &:active       
       {
         border-color: $instock-indigo;  
       }
@@ -163,7 +162,7 @@
       }
 
       &-cancelBtn, &-addBtn {
-        height: 28px;
+        height: 38px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
         border-radius: 20px;

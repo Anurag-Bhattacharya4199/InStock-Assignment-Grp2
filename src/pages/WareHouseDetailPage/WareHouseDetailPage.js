@@ -49,7 +49,7 @@ function WareHouseDetailPage() {
             headerButton="warehouses"
             item_id={warehouse.id}
             title={warehouse.warehouse_name}
-            sourcePage="/"
+            pageSource={`/warehouses/${id}`}
           />
           <section className="warehouseDetails__info">
             <div className="warehouseDetails__info-address">

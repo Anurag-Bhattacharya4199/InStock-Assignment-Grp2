@@ -5,6 +5,8 @@ import validator from "validator";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import SearchHeader from "../../components/SearchHeader/SearchHeader";
+
 const EditWarehouse = (props) => {
   const API_BASE_URL = "http://localhost:8080/warehouses/";
   const { id } = useParams();
@@ -57,8 +59,9 @@ const EditWarehouse = (props) => {
   const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
   // SET RE-DIRECT PAGE LINKS
   useEffect(() => {
-    if(location.state.sourcePage){
-    setPageSource(location.state.pageSource);
+    console.log("EDIT: ", location.state.pageSource)
+    if (location.state.pageSource) {
+      setPageSource(location.state.pageSource);
     }
   }, []);
   // GET WAREHOUSE DATA
@@ -93,9 +96,9 @@ const EditWarehouse = (props) => {
         contact_phone: phoneNumber,
         contact_email: email,
       })
-      .then((response) => {
-        console.log(response.data);
-      })
+      // .then((response) => {
+      //   console.log(response.data);
+      // })
       .catch((error) => {
         console.error(error);
       });
@@ -269,7 +272,7 @@ const EditWarehouse = (props) => {
       {/* POP-UP */}
       <div
         className={`editWarehouse__confirm-edit-container ${editPopUpClass}`}
-      >
+      >sourcePage
         <div className="confirm-edit-content">
           <h3>Warehouse edit Successfully</h3>
           <Link to={`${pageSource}`} className="confirm-edit-content__link">
@@ -299,7 +302,7 @@ const EditWarehouse = (props) => {
         </div>
       </div>
       {/*-------------------------------*/}
-      <section className="editWarehouse__header">
+      {/* <section className="editWarehouse__header">
         <div className="editWarehouse__header-info">
           <Link to={`${pageSource}`}>
             <img
@@ -310,7 +313,11 @@ const EditWarehouse = (props) => {
           </Link>
           <h1 className="editWarehouse__header-title">Edit Warehouse</h1>
         </div>
-      </section>
+      </section> */}
+      <SearchHeader
+        title="Edit Warehouse"
+        pageSource={location.state.pageSource}
+      />
       <form
         className="editWarehouse__form"
         onSubmit={(event) => {

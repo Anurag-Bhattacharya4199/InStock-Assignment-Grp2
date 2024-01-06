@@ -120,13 +120,12 @@ function InventoryAdd() {
         return wh.warehouse_name === warehouse;
       })[0].id;
 
-      
       if (!inStock) {
         setItemStatus("Out of Stock");
         setQty("0");
-        tempQuantity = "0"
+        tempQuantity = "0";
       }
-      
+
       postInventory(
         warehouseId,
         itemName,

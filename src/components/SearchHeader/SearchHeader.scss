@@ -34,7 +34,7 @@
     }
 
     &__content {
-        margin: $mobile-margin;
+        margin: $mobile-margin 0 0 0;
 
         @include tablet {
             display: flex;
@@ -130,6 +130,8 @@
     &--edit {
         border-radius: 50%;
         background-color: $instock-indigo;
+        justify-content: center;
+        align-items: center;
         height: 2rem;
         width: 2rem;
         text-align: center;
@@ -156,7 +158,7 @@
 
     &--editImg {
         filter: brightness(0) invert(1);
-        margin-top: 0.25rem;
+        height: 20px;
 
         @include tablet {
             margin-top: 0;

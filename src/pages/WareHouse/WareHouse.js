@@ -85,7 +85,7 @@ function WareHouse() {
     setDeleteWarhouseID(null);
   };
 
-  const handleWarehouseSearch = (searchTerm) => {
+  const handleSearch = (searchTerm) => {
     console.log('Search term for warehouse:', searchTerm);
     setSearchTerm(searchTerm);
   };
@@ -119,7 +119,7 @@ function WareHouse() {
           title="Warehouses"
           addNewItem="Warehouse"
           addURL="warehouses"
-          onSearch={handleWarehouseSearch}
+          onSearch={handleSearch}
         />
 
         {showDeletePopup && (

@@ -13,6 +13,7 @@ const Inventory = () => {
   const [deleteInventoryID, setDeleteInventoryID] = useState(null);
   const [inventoryToDelete, setInventorToDelete] = useState('');
   const { id } = useParams();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const API_BASE_URL = "http://localhost:8080";
 
@@ -63,6 +64,13 @@ const Inventory = () => {
     setDeleteInventoryID(null);
   };
 
+  const handleSearch = (searchTerm) => {
+    console.log('Search term for invenory:', searchTerm);
+    setSearchTerm(searchTerm);
+  };
+
+   
+
 
 
   if (!hasLoaded) {
@@ -72,7 +80,7 @@ const Inventory = () => {
 
     return (
       <section className="inventory-list">
-        <SearchHeader title="Inventory" addNewItem="Item" addURL="inventories" />
+        <SearchHeader title="Inventory" addNewItem="Item" addURL="inventories"  onSearch={handleSearch} />
 
         {showDeletePopup && (
           <div className="overlay">
@@ -82,6 +90,7 @@ const Inventory = () => {
                 itemType="inventory"
                 handleCloseDeleteComponent={handleCloseDeleteComponent}
                 handleDeleteConfirmation={handleDeleteConfirmation}
+
               />
             </div>
           </div>

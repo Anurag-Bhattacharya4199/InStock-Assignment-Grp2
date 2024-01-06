@@ -12,7 +12,7 @@ function WareHouse() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
-  const [warehouseToDelete, setWarehouseToDelete] = useState(null);
+  const [warehouseToDelete, setWarehouseToDelete] = useState('');
   const [sortedWarehouses, setSortedWarehouses] = useState([])
   const [sortWarehouses, setSortWarehouses] = useState(false)
 
@@ -57,8 +57,8 @@ function WareHouse() {
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
-    setDeleteWarhouseID(String(id));
-    setWarehouseToDelete(warehouse_name.toString());
+    setDeleteWarhouseID(id);
+    setWarehouseToDelete(warehouse_name);
     //console.log(id)
   };
 

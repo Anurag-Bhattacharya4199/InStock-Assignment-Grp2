@@ -55,9 +55,7 @@ function WareHouseDetailPage() {
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);
     setDeleteInventoryID(id);
-    setInventorToDelete(item_name);
-    console.log(deleteInventoryID)
-    console.log(inventoryToDelete)
+    setInventorToDelete(item_name)
   };
 
   // to  close delete component using cancel or X
@@ -67,21 +65,21 @@ function WareHouseDetailPage() {
   };
 
 
-  // const handleDeleteConfirmation = () => {
-  //   // Make a DELETE request to delete the warehouse
-  //   axios.delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
-  //     .then(() => {
-  //       console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
-  //       setShowDeletePopup(false);
-  //       setDeleteInventoryID(null);
-  //       fetchInventoryForWarehouse();
+  const handleDeleteConfirmation = () => {
+    // Make a DELETE request to delete the warehouse
+    axios.delete(`http://localhost:8080/inventories/${deleteInventoryID}`)
+      .then(() => {
+        console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
+        setShowDeletePopup(false);
+        setDeleteInventoryID(null);
+        fetchInventoryForWarehouse();
 
-  //     })
-  //     .catch((error) => {
-  //       console.error(`Error deleting inventory item: ${error}`);
+      })
+      .catch((error) => {
+        console.error(`Error deleting inventory item: ${error}`);
 
-  //     });
-  // };
+      });
+  };
 
   // RENDERING
   if (!hasLoaded && !hasLoaded2) {
@@ -139,7 +137,7 @@ function WareHouseDetailPage() {
                 inventoryName={inventoryToDelete}
                 itemType="inventory"
                 handleCloseDeleteComponent={handleCloseDeleteComponent}
-                // handleDeleteConfirmation={handleDeleteConfirmation}
+                handleDeleteConfirmation={handleDeleteConfirmation}
               />
             </div>
           </div>

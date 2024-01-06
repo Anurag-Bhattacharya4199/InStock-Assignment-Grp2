@@ -8,7 +8,7 @@ import SortDefault from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
 
 const InventoryList = (props) => {
-
+  const { inventoryList, onDeleteClick } = props;
 
 
   let { id } = useParams();
@@ -16,15 +16,47 @@ const InventoryList = (props) => {
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
   const [sortType, setSortType] = useState('');
+  const [sortInventory, setSortInventory] = useState(false);
+  const [sortedInventory, setSortedInventory] = useState([])
+
   const API_BASE_URL = "http://localhost:8080";
 
+  const fetchSortedInventoryList = () => {
+    axios
+      .get(`${API_BASE_URL}/inventories?sort_by=${sortType}`)
+      .then((response) => {
+        const sortedInventoryeData = response.data;
+        setSortedInventory(sortedInventoryeData)
+        console.log(sortedInventoryeData)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  };
 
 
   const handleSort = (sortBy) => {
-    setSortType(sortBy); // Update the sortType state based on the selected sortBy
-    console.log(`Sorting by ${sortBy}`);
+    setSortInventory((prevState) => !prevState);
+    console.log(sortInventory);
+  
+    if (sortInventory === true) {
+      setSortType(sortBy);
+      console.log(`Sorting by ${sortBy}`);
+    } else {
+      setSortType('');
+    }
   };
   
+
+  const determineInventoryList = () => {
+    return sortInventory ? sortedInventory : inventoryList;
+  };
+
+
+  useEffect(() => {
+    fetchSortedInventoryList();
+  }, [sortType]);
+
 
   function checkWarehouseName(wh) {
     if (!wh) {
@@ -117,8 +149,9 @@ const InventoryList = (props) => {
             </h4>
           </div>
         </div>
-        {props.inventoryList.map((item) => (
-          <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
+        {sortInventory
+          ? sortedInventory.map((item) => (
+            <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
             {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
             <div className="inventoryList-card__inventory-and-category-container">
               <div className="inventory-container">
@@ -207,10 +240,102 @@ const InventoryList = (props) => {
               </Link>
             </div>
           </div>
-        ))}
+            ))
+          : inventoryList.map((item) => (
+            <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
+            {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
+            <div className="inventoryList-card__inventory-and-category-container">
+              <div className="inventory-container">
+                <h4 className="inventory-container__header">INVENTORY</h4>
+                <Link
+                  to={`/inventories/${item.id}/detail`}
+                  state={{
+                    itemId: item.id,
+                    itemCategory: item.category,
+                    itemName: item.item_name,
+                    itemDescription: item.description,
+                    itemStatus: item.status,
+                    warehouseName: checkWarehouseName(item.warehouse_name),
+                    itemQuantity: item.quantity
+                  }}
+                  className="inventory-container__link"
+                >
+                  <p className="p-medium inventory-container__link--inventory-item">
+                    {item.item_name}
+                  </p>
+                  <img
+                    src={Chevron}
+                    alt="chevron"
+                    className="inventory-container__link--icon"
+                  />
+                </Link>
+              </div>
+              <div className="category-container">
+                <h4 className="category-container__header">CATEGORY</h4>
+                <p className="p-medium category-container__category">
+                  {item.category}
+                </p>
+              </div>
+            </div>
+            {/* STATUS, QUANTITY && WAREHOUSE CONTAINER */}
+            <div className={`inventoryList-card__status-quatity-warehouse-container ${columnTable}`}>
+              <div className="status-container">
+                <h4 className="status-container__header">STATUS</h4>
+                <p
+                  className={`p-medium status-container__status ${item.status === "In Stock"
+                    ? "status-container__in-stock"
+                    : "status-container__out-of-stock"
+                    } `}
+                >
+                  {item.status}
+                </p>
+              </div>
+              <div className="quantity-container">
+                <h4 className="quantity-container__header">QTY</h4>
+                <p className="p-medium quantity-container__quantity">
+                  {item.quantity}
+                </p>
+              </div>
+              <div style={{ display: checkData }} className="int-warehouse-container">
+                <h4 className="int-warehouse-container__header">WAREHOUSE</h4>
+                <p className="p-medium int-warehouse-container__warehouse-name">
+                  {item.warehouse_name}
+                </p>
+              </div>
+            </div>
+            {/* ICONS CONTAINER */}
+            <div className="inventoryList-card__icon-container">
+              <button className="inventoryList-card__delete-button" onClick={() => props.onDeleteClick(item.id, item.item_name)}>
+                <img
+                  src={DeleteButton}
+                  alt="delete icon"
+                  className="inventoryList__icon-container--delete-button action-icon"
+                ></img>
+              </button>
+              <Link to={`/inventories/${item.id}/edit`}
+                state={{
+                  itemId: item.id,
+                  itemCategory: item.category,
+                  itemName: item.item_name,
+                  itemDescription: item.description,
+                  itemStatus: item.status,
+                  warehouseName: checkWarehouseName(item.warehouse_name),
+                  itemQuantity: item.quantity
+                }}
+              >
+                <img
+                  src={EditIcon}
+                  alt="edit icon"
+                  className="inventoryList__icon-container--edit-button action-icon"
+                ></img>
+              </Link>
+            </div>
+          </div>
+            ))}
       </div>
     </>
   );
 };
 
+ 
 export default InventoryList;

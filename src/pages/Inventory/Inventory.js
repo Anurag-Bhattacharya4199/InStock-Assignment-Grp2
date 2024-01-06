@@ -13,7 +13,6 @@ const Inventory = () => {
   const [deleteInventoryID, setDeleteInventoryID] = useState(null);
   const [inventoryToDelete, setInventorToDelete] = useState(null);
 
-
   const { id } = useParams();
 
   const API_BASE_URL = "http://localhost:8080";

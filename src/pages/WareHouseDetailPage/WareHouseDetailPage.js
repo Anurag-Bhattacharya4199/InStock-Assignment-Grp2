@@ -19,19 +19,21 @@ function WareHouseDetailPage() {
   // WAREHOUSE INVENTORY LISTS
   const [warehouseInventory, setWarehouseInventory] = useState([]);
 
-  useEffect(() => {
+  const fetchWarehouseDetails = () => {
     axios
-      .get(`${API_BASE_URL}${id}`)
-      .then((response) => {
-        setWarehouse(response.data);
+    .get(`${API_BASE_URL}${id}`)
+    .then((response) => {
+      setWarehouse(response.data);
 
-        // VALIDATE DATA DOWNLOAD
-        setHasLoaded(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      // VALIDATE DATA DOWNLOAD
+      setHasLoaded(true);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
+  const fetchInventoryForWarehouse = () => {
     axios.get(`${API_BASE_URL}${id}/inventories`).then((response) => {
       setWarehouseInventory(response.data);
       setHasLoaded2(true);
@@ -39,6 +41,11 @@ function WareHouseDetailPage() {
     .catch((error) => {
       console.error(error);
     });
+  }
+
+  useEffect(() => {
+    fetchWarehouseDetails();
+    fetchInventoryForWarehouse();
   }, []);
 
   // RENDERING

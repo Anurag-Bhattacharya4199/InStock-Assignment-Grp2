@@ -2,31 +2,29 @@ import "./EditInventory.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import { editInventory } from "../../utils/utils";
+
 
 function EditInventory() {
   const location = useLocation();
   const navigate = useNavigate();
+  let { id } = useParams();
   const [itemId, setItemId] = useState(location.state.itemId);
   const [itemCategory, setItemCategory] = useState(location.state.itemCategory);
   const [itemName, setItemName] = useState(location.state.itemName);
-  const [itemDescription, setItemDescription] = useState(
-    location.state.itemDescription
-  );
+  const [itemDescription, setItemDescription] = useState(location.state.itemDescription);
   const [itemStatus, setItemStatus] = useState(location.state.itemStatus);
   const [itemStatusTF, setItemStatusTF] = useState(true);
-  const [warehouseName, setWarehouseName] = useState(
-    location.state.warehouseName
-  );
+  const [warehouseName, setWarehouseName] = useState(location.state.warehouseName);
   const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity);
   const [warehouses, setWarehouses] = useState([]);
   let { itemIdParam } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
   const API_BASE_URL = "http://localhost:8080/";
+
 
   useEffect(() => {
     //selects the proper default radio button
@@ -35,7 +33,8 @@ function EditInventory() {
     } else {
       setItemStatusTF(false);
     }
-  }, []);
+  }, [itemStatus]);
+
 
   const [error, setError] = useState({
     itemNameError: false,
@@ -64,13 +63,13 @@ function EditInventory() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // write code here to find warehouseId from selected warehouse using filter
-    let warehouseId = warehouses.filter((wh) => {
+    let tempWarehouseId = warehouses.filter((wh) => {
       return wh.warehouse_name === warehouseName;
     })[0].id;
 
     editInventory(
-      itemId,
-      warehouseId,
+      id,
+      tempWarehouseId,
       itemName,
       itemDescription,
       itemCategory,
@@ -83,6 +82,7 @@ function EditInventory() {
     event.preventDefault();
     navigate(-1);
   };
+
 
   const fetchWarehouseList = () => {
     axios
@@ -112,9 +112,8 @@ function EditInventory() {
               </h2>
               <label className="p-medium">Item Name</label>
               <input
-                className={`editInv__form__content__details__input ${
-                  error.warehouseNameError ? "editInv__form--invalidInput" : ""
-                }`}
+                className={`editInv__form__content__details__input ${error.warehouseNameError ? "editInv__form--invalidInput" : ""
+                  }`}
                 placeholder={itemName}
                 name={itemName}
                 form={itemName}
@@ -124,9 +123,8 @@ function EditInventory() {
               <label className="p-medium">Description</label>
               <textarea
                 rows={7}
-                className={`editInv__form__content__details__input--area ${
-                  error.warehouseNameError ? "editInv__form--invalidInput" : ""
-                }`}
+                className={`editInv__form__content__details__input--area ${error.warehouseNameError ? "editInv__form--invalidInput" : ""
+                  }`}
                 placeholder={itemDescription}
                 name={itemDescription}
                 form={itemDescription}
@@ -178,9 +176,8 @@ function EditInventory() {
               </div>
               <label className={`p-medium ${itemStatusTF}`}>Quantity</label>
               <input
-                className={`editInv__form__content__details__input ${
-                  error.warehouseNameError ? "editInv__form--invalidInput" : ""
-                } ${itemStatusTF}`}
+                className={`editInv__form__content__details__input ${error.warehouseNameError ? "editInv__form--invalidInput" : ""
+                  } ${itemStatusTF}`}
                 placeholder={itemQuantity}
                 name={itemQuantity}
                 form={itemQuantity}
@@ -216,8 +213,9 @@ function EditInventory() {
           </div>
         </form>
       </main>
-    );
+    )
   }
+
 }
 
 export default EditInventory;

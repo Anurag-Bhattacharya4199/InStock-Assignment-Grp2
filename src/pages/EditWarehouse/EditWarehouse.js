@@ -11,7 +11,7 @@ const EditWarehouse = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   // SET REDIRECT LINK
-  const [pageSource, setPageSource] = useState("");
+  const [pageSource, setPageSource] = useState("/");
   // WAREHOUSE DATA
   const [warehouseName, setWarehouseName] = useState("");
   const [address, setAddress] = useState("");
@@ -57,7 +57,9 @@ const EditWarehouse = (props) => {
   const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
   // SET RE-DIRECT PAGE LINKS
   useEffect(() => {
-    setPageSource(location.state.sourcePage);
+    if(location.state.sourcePage){
+    setPageSource(location.state.pageSource);
+    }
   }, []);
   // GET WAREHOUSE DATA
   useEffect(() => {

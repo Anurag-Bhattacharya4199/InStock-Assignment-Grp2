@@ -28,7 +28,7 @@
     }
 
     &-address{
-
+      
       &--new-line{
         display:none;
         @include tablet{
@@ -49,7 +49,10 @@
     top:-150px;
     
     &__info {
-      padding: $tablet-margin;
+      padding-left: $tablet-margin;
+      padding-right: $tablet-margin;
+      padding-top: $mobile-margin;
+      padding-bottom: $mobile-margin;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;

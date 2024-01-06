@@ -11,7 +11,7 @@ function InventoryDetail(props) {
   const location = useLocation();
 
   return (
-    <>
+    <div className="inventoryDetails">
       <SearchHeader
         title={location.state.itemName}
         headerButton="inventories"
@@ -52,7 +52,7 @@ function InventoryDetail(props) {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

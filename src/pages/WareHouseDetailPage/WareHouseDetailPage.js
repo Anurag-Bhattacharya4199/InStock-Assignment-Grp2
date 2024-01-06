@@ -56,10 +56,7 @@ function WareHouseDetailPage() {
                 Warehouse Address:
               </h4>
               <p className="p-medium">
-                {warehouse.address},
-                <p className="p-medium">
-                  {warehouse.city}, {warehouse.country}
-                </p>
+                {warehouse.address}, {warehouse.city}, {warehouse.country}
               </p>
             </div>
             <div className="warehouseDetails__info-contact">

@@ -13,11 +13,9 @@ function SearchHeader(props) {
     const [checkEdit, setCheckEdit] = useState("display-none");
     const [checkTitle, setCheckTitle] = useState("")
     const [checkBackArrow, setCheckBackArrow] = useState("");
+    const [pageSource, setPageSource] = useState("..")
     const navigate = useNavigate();
 
-    useEffect (() => {
-        console.log("HEADER itemDescription: ", props.itemDescription)
-        }, [])
 
     useEffect(() => {
         if (props.addNewItem) {
@@ -30,15 +28,16 @@ function SearchHeader(props) {
             setCheckEdit("");
             setCheckTitle("--edit");
         }
-
-
+        if (props.pageSource) {
+            setPageSource(pageSource)
+        }
     }, []);
 
     return (
         <>
             <header className={`main${checkTitle}`}>
                 <div className='main__title--wrapper'>
-                    <Link to={'..'}
+                    <Link to={pageSource}
                         className={`main__title--arrow ${checkBackArrow}`}
                         onClick={(e) => {
                             e.preventDefault();
@@ -78,7 +77,7 @@ function SearchHeader(props) {
                     to={`/${props.headerButton}/${id}/edit`}
                     className={`header-button--edit ${checkEdit}`}
                     state={{
-                        sourcePage: `/`,
+                        pageSource: props.pageSource,
                         itemId: props.itemId,
                         itemCategory: props.itemCategory,
                         itemName: props.itemName,
@@ -95,18 +94,6 @@ function SearchHeader(props) {
                     />
                     <span className="header-button--edit--text">Edit</span>
                 </Link>
-                {/* <Link
-                    to={`/${props.headerButton}/${props.linkId}/edit`}
-                    className={`header-button--edit ${checkEdit}`}
-                >
-                    <img
-                        src={editButton}
-                        className="header-button--editImg"
-                        alt={`Edit ${props.headerButton}`}
-                    />
-                    <span className="header-button--edit--text">Edit</span>
-                </Link> */}
-
             </header>
             <div className={`divider divider--${checkBackArrow}`}></div>
         </>

@@ -11,7 +11,7 @@ const Inventory = () => {
   const [inventoryList, setInventoryList] = useState([]);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteInventoryID, setDeleteInventoryID] = useState(null);
-  const [inventoryToDelete, setInventorToDelete] = useState(null);
+  const [inventoryToDelete, setInventorToDelete] = useState('');
   const { id } = useParams();
 
   const API_BASE_URL = "http://localhost:8080";
@@ -21,7 +21,6 @@ const Inventory = () => {
       .get(`${API_BASE_URL}/inventories`)
       .then((response) => {
         setInventoryList(response.data);
-        // console.log(inventoryList);
       })
       .catch((err) => {
         console.log(err);
@@ -37,17 +36,16 @@ const Inventory = () => {
 
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);
-    setDeleteInventoryID(String(id));
-    setInventorToDelete(item_name.toString());
+    setDeleteInventoryID(id);
+    setInventorToDelete(item_name);
     //console.log(id)
+
   };
 
   const handleDeleteConfirmation = () => {
-    // Make a DELETE request to delete the warehouse
     axios.delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
       .then(() => {
         console.log(`Successfully deleted inventory item with ID: ${deleteInventoryID}`);
-        // Now, make another DELETE request to delete the warehouse inventory
         setShowDeletePopup(false);
         setDeleteInventoryID(null);
         fetchInventorylist();

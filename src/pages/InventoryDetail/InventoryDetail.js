@@ -9,9 +9,7 @@ import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
 function InventoryDetail(props) {
   const location = useLocation();
-  useEffect (() => {
-    console.log("DETAIL itemDescription: ", location.state.itemDescription)
-    }, [])
+
   return (
     <div className="inventoryDetails">
       <SearchHeader

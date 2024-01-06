@@ -72,7 +72,7 @@
   }
   &__content {
     @include mixins.desktop {
-      max-width: 1040px;
+      //max-width: 1040px;
       margin: auto;
     }
   }

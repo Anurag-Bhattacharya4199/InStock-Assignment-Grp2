@@ -2,11 +2,15 @@
 @import "../../styles/partials/variables";
 
 .editWarehouse {
+  margin: $mobile-margin;
+  border-radius: 5px;
+  background-color: #fff;
   box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   margin: 0px 16px;
   position: relative;
   top: -70px;
   background-color: #fff;
+ 
   // POP UP
   &__confirm-edit-container,
   &__cancel-edit-container {
@@ -170,8 +174,7 @@
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
-      border-color: $slate;
-      border-width: 1px;
+      border: 1px solid $cloud;
       width: 47%;
       outline: none;
     }
@@ -207,6 +210,7 @@
 @include tablet {
   .editWarehouse {
     top: -93.5px;
+    
 
     &__header {
       &-info {
@@ -230,7 +234,7 @@
       &-warehouseDetails {
         width: 50%;
         border-bottom: none;
-        border-right: 1px solid $slate;
+        border-right: 1px solid $cloud;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
@@ -253,6 +257,7 @@
       &-warehouse_emailInp {
         height: 38px;
         width: auto;
+        border: 1px solid $cloud;
       }
 
       &-buttons {
@@ -264,8 +269,8 @@
         height: 38px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
-        border-width: 1px;
         border-radius: 20px;
+        border: 1px solid $cloud;
         width: auto;
         outline: none;
       }
@@ -276,4 +281,20 @@
       }
     }
   }
+}
+
+@include desktop {
+  .editWarehouse {
+    margin: $desktop-margin;
+    top: -200px;
+  }
+}
+
+// DYNAMIC CLASS
+.display-hidden {
+  display: none;
+}
+// DYNAMIC CLASS
+.display-none {
+  display: none;
 }

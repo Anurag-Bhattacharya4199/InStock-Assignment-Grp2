@@ -5,6 +5,12 @@
     padding: $mobile-margin;
     border-radius: 5px;
 
+    @include tablet {
+        padding: $tablet-margin;
+        display: flex;
+        justify-content: space-between;
+    }
+
     &--edit {
         display: flex;
         align-items: center;
@@ -17,17 +23,23 @@
         font-family: $font-regular;
         margin: 0;
 
-        &--wrapper{
-            display:flex;
+        &--wrapper {
+            display: flex;
+
         }
 
-        &--arrow{
+        &--arrow {
             padding: 8px;
         }
     }
 
     &__content {
-        margin: $mobile-margin;
+        margin: $mobile-margin 0 0 0;
+
+        @include tablet {
+            display: flex;
+            margin: 0;
+        }
 
         &__input {
             display: flex;
@@ -37,6 +49,14 @@
                 height: 36px;
                 border: 1px solid $slate;
                 border-radius: 2rem;
+
+                @include tablet {
+                    width: 200px;
+                }
+
+                @include desktop {
+                    width: 260px;
+                }
             }
 
             &--box::placeholder {
@@ -65,20 +85,39 @@
             margin: 16px 0;
             width: 100%;
 
-            &:hover{
+            &:hover {
                 cursor: pointer;
+            }
+
+            @include tablet {
+                margin: 0;
+                height: 38px;
+                width: 200px;
+            }
+
+            @include desktop {
+                height: 39px;
+            }
+
+            &--wrapper {
+
+                @include tablet {
+                    margin-left: 16px;
+
+                }
+
             }
         }
     }
 }
 
-.divider{
+.divider {
     width: 100%;
     height: 1px;
     background-color: $cloud;
 
-    @include tablet{
-        &--display-none{
+    @include tablet {
+        &--display-none {
             display: none;
         }
     }
@@ -86,25 +125,28 @@
 }
 
 .header-button {
-display: flex;
+    display: flex;
+
     &--edit {
         border-radius: 50%;
         background-color: $instock-indigo;
+        justify-content: center;
+        align-items: center;
         height: 2rem;
         width: 2rem;
         text-align: center;
         text-decoration: none;
         display: flex;
 
-        @include tablet{
+        @include tablet {
             height: auto;
-        width: auto;
-        border-radius: 1.5rem;
-        padding: 0.25rem 1rem;
-        display: flex;
+            width: auto;
+            border-radius: 1.5rem;
+            padding: 0.25rem 1rem;
+            display: flex;
         }
 
-        &--text{
+        &--text {
             display: none;
 
             @include tablet {
@@ -116,11 +158,11 @@ display: flex;
 
     &--editImg {
         filter: brightness(0) invert(1);
-        margin-top: 0.25rem;
+        height: 20px;
 
-        @include tablet{
+        @include tablet {
             margin-top: 0;
-        margin-right: 0.25rem;
+            margin-right: 0.25rem;
         }
     }
 }

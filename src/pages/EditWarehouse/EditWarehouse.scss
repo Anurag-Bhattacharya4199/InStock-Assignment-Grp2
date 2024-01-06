@@ -46,12 +46,8 @@
         width: 80px;
       }
     }
-  } // DYNAMIC CLASS
-  .edit-confirm-pop-up-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
+
   .cancel-edit-pop-up-display {
     display: flex;
     justify-content: center;
@@ -175,16 +171,25 @@
       padding-right: $mobile-margin;
       border-radius: 20px;
       border-color: $slate;
+      border-width: 1px;
       width: 47%;
+      outline: none;
     }
 
     &-cancelBtn {
       background-color: $white;
     }
-
+    &-cancelBtn:hover {
+      color: $instock-indigo;
+      border-color: $instock-indigo;
+    }
     &-addBtn {
       background-color: $instock-indigo;
       color: $white;
+    }
+    &-addBtn:hover {
+      background-color: $graphite;
+      background-color: $graphite;
     }
     // DYNAMIC CLASS
     .disabled {
@@ -261,15 +266,12 @@
         padding-right: $mobile-margin;
         border-width: 1px;
         border-radius: 20px;
-        border-color: $slate;
         width: auto;
+        outline: none;
       }
 
       &-addBtn {
         margin-left: $tablet-margin;
-      }
-      &-cancelBtn:hover {
-        color: $instock-indigo;
         border-color: $instock-indigo;
       }
     }

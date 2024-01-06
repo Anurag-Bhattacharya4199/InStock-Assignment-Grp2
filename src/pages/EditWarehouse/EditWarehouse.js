@@ -55,6 +55,8 @@ const EditWarehouse = (props) => {
   // POP UP CLASS
   const [editPopUpClass, setEditPopUpClass] = useState("");
   const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
+  // PHONE NUMBER MAX-CHARACTER LENGTH
+  const [maxCharater, setMaxCharacter] = useState(10);
   // SET RE-DIRECT PAGE LINKS
   useEffect(() => {
     if (location.state.sourcePage) {
@@ -223,25 +225,6 @@ const EditWarehouse = (props) => {
       }
     }
 
-    if (event.target.id === "phone-number") {
-      let eventVal = event.target.value;
-      // CHECK PHONE-NUMBER VALUE
-      if (!eventVal) {
-        setPhoneNumberError("phone-number-error");
-        setPhoneNumberErrorState("phone-number-error-state");
-      }
-      if (eventVal) {
-        // VALIDATE PHONE NUMBER
-        if (validator.isMobilePhone(eventVal)) {
-          setPhoneNumberError("");
-          setPhoneNumberErrorState("");
-        } else {
-          setPhoneNumberError("phone-number-error");
-          setPhoneNumberErrorState("phone-number-error-state");
-        }
-      }
-    }
-
     if (event.target.id === "email") {
       let eventVal = event.target.value;
       // CHECK PHONE-NUMBER VALUE
@@ -261,18 +244,49 @@ const EditWarehouse = (props) => {
       }
     }
   };
-  const setPhone = () => {
-    const phoneVal = phoneNumber.split("");
-    console.log(phoneVal);
-    if (phoneVal.length === 3) {
-      const formateNumber = `+1 (${phoneVal[0]}${phoneVal[2]}${phoneVal[2]}) `;
-      setPhoneNumber(formateNumber);
-    }
-    if (phoneVal.length === 11) {
-      const formateNumber = `+1 (${phoneVal[3]}${phoneVal[4]}${phoneVal[5]}) ${phoneVal[7]}${phoneVal[8]}${phoneVal[9]}- `;
-      setPhoneNumber(formateNumber);
+
+  const validatePhoneNumber = (event) => {
+    if (event.target.id === "phone-number") {
+      let eventVal = event.target.value;
+      // CHECK PHONE-NUMBER VALUE
+      if (!eventVal) {
+        setPhoneNumberError("phone-number-error");
+        setPhoneNumberErrorState("phone-number-error-state");
+      }
+      if (eventVal) {
+        // VALIDATE PHONE NUMBER
+        const phoneRegex = /\+1\s\(\d\d\d\)\s\d\d\d-\d\d\d\d/;
+        if (phoneNumber.match(phoneRegex)) {
+          setPhoneNumberError("");
+          setPhoneNumberErrorState("");
+        } else {
+          setPhoneNumberError("phone-number-error");
+          setPhoneNumberErrorState("phone-number-error-state");
+        }
+      }
     }
   };
+  const handlePhoneNumberFormate = () => {
+    const phoneNumberArray = phoneNumber.split("");
+
+    // IF ONLY NUMBER IN VALUE
+    if (!phoneNumberArray.includes("(" || ")" || "+" || " " || "0")) {
+      setMaxCharacter(10);
+      if (phoneNumberArray.length === 10) {
+        const formateNumber = `+1 (${phoneNumberArray[0]}${phoneNumberArray[1]}${phoneNumberArray[2]}) ${phoneNumberArray[3]}${phoneNumberArray[4]}${phoneNumberArray[5]}-${phoneNumberArray[6]}${phoneNumberArray[7]}${phoneNumberArray[8]}${phoneNumberArray[9]}`;
+        setPhoneNumber(formateNumber);
+      }
+      return;
+    }
+
+    // IF NON-NUMBER IN VALUE
+    if (phoneNumberArray.includes("(" || ")" || "+" || " " || "-")) {
+      setMaxCharacter(17);
+
+      return;
+    }
+  };
+
   return (
     <main className={`editWarehouse `}>
       {/*-------------------------------*/}
@@ -490,13 +504,17 @@ const EditWarehouse = (props) => {
                 id="phone-number"
                 className={`${phoneNumberErrorState} editWarehouse__form-warehouse_phonenumInp`}
                 value={phoneNumber}
+                maxLength={maxCharater}
                 placeholder="Phone Number"
                 onChange={(event) => {
                   hanldePhoneNumberErrorMessage(event);
                   setPhoneNumber(event.target.value);
                   handleInputValidation(event);
                   handleSaveButton();
-                  setPhone();
+                }}
+                onKeyUp={(event) => {
+                  handlePhoneNumberFormate();
+                  validatePhoneNumber(event);
                 }}
               />
               {/* ERROR MESSAGE */}

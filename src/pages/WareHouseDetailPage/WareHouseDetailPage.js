@@ -13,6 +13,9 @@ function WareHouseDetailPage() {
   // TRUTHY CHECK
   const [hasLoaded, setHasLoaded] = useState(false);
   const [hasLoaded2, setHasLoaded2] = useState(false);
+  const [deleteInventoryID, setDeleteInventoryID] = useState(null);
+  const [inventoryToDelete, setInventorToDelete] = useState('');
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   // WAREHOUSE DATA
   const [warehouse, setWarehouse] = useState("");
@@ -50,10 +53,11 @@ function WareHouseDetailPage() {
   }, []);
 
   const handleDeleteClick = (id, item_name) => {
-    // setShowDeletePopup(true);
-    // setDeleteInventoryID(String(id));
-    // setInventorToDelete(item_name.toString());
-    console.log(id)
+    setShowDeletePopup(true);
+    setDeleteInventoryID(id);
+    setInventorToDelete(item_name);
+    console.log(deleteInventoryID)
+    console.log(inventoryToDelete)
   };
 
   // RENDERING
@@ -104,7 +108,7 @@ function WareHouseDetailPage() {
               </div>
             </div>
           </section>
-{/* 
+
           {showDeletePopup && (
           <div className="overlay">
             <div className="delete-popup">
@@ -116,7 +120,7 @@ function WareHouseDetailPage() {
               />
             </div>
           </div>
-        )} */}
+        )}
           <InventoryList
             inventoryList={warehouseInventory}
             warehouseName={warehouse.warehouse_name}

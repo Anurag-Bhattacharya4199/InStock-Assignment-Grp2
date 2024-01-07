@@ -28,24 +28,24 @@ function WareHouse() {
   };
 
   useEffect(() => {
-    fetchWarehouseList(); // Fetch warehouse list when component mounts
-  }, []); // Empty dependency array to trigger effect only on mount
+    fetchWarehouseList(); 
+  }, []);
 
+  //Display delete modal on click
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(id);
     setWarehouseToDelete(warehouse_name);
   };
 
+   // Make a DELETE request to delete the warehouse and close delete Modal
   const handleDeleteConfirmation = () => {
-    // Make a DELETE request to delete the warehouse
     axios
       .delete(`${API_BASE_URL}/warehouses/${deleteWarehouseID}`)
       .then(() => {
         console.log(
           `Successfully deleted warehouse with ID: ${deleteWarehouseID}`
         );
-        // Now, make another DELETE request to delete the warehouse inventory
         setShowDeletePopup(false);
         setDeleteWarhouseID(null);
         fetchWarehouseList();
@@ -55,12 +55,13 @@ function WareHouse() {
       });
   };
 
-  // to  close delete component using cancel or X
+  //Close delete modal using cancel or X
   const handleCloseDeleteComponent = () => {
     setShowDeletePopup(false);
     setDeleteWarhouseID(null);
   };
 
+  // Set input as search term
   const handleSearch = (searchTerm) => {
     setSearchTerm(searchTerm);
   };

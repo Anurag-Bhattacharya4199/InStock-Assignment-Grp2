@@ -35,9 +35,46 @@
     }
   }
 
-  // DYNAMIC CLASS
-  .edit-warehouse-display-none {
-    display: none;
+  .WarehouseList {
+    &__body {
+      display: flex;
+      flex-wrap: nowrap;
+      box-sizing: border-box;
+
+      &--container {
+        width: 88%;
+        padding: 16px 32px;
+      }
+
+      &--subcontainer {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        width: 50%;
+      }
+
+      &--info {
+        width: 50%;
+        padding: 0;
+        align-items: center;
+
+        &--header {
+          display: none;
+        }
+      }
+
+      &--icon-container {
+        justify-content: flex-end;
+        width: 12%;
+        padding: 0 32px 0 0;
+        align-items: center;
+      }
+    }
+
+    .text {
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
 }
 
@@ -47,61 +84,26 @@
   &__body {
     border-bottom: 1px solid #bdc5d5;
 
-    @include tablet {
-      display: flex;
-      flex-wrap: nowrap;
-      box-sizing: border-box;
-    }
-
     &--container {
       display: flex;
       justify-content: flex-start;
       width: 100%;
       padding: 0 24px 24px 24px;
-
-      @include tablet {
-        width: 88%;
-        padding: 16px 32px;
-      }
     }
 
     &--subcontainer {
       width: 50%;
       padding-right: 16px;
-
-      @include tablet {
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-        width: 50%;
-      }
     }
 
     &--info {
       text-align: start;
       padding-top: 24px;
 
-      &--header{
-        @include tablet {
-          display: none;
-        }
-      }
-
-      @include tablet {
-        width: 50%;
-        padding: 0;
-        align-items: center;
-      }
-
       &--warehouse-link-container {
         text-decoration: none;
         display: flex;
-
-        @include tablet {
-          display: flex;
-        }
       }
-
 
     &--warehouse-link-icon {
       height: 23px;
@@ -126,13 +128,6 @@
       display: flex;
       justify-content: space-between;
       padding: 0 24px 24px 24px;
-
-      @include tablet {
-        justify-content: flex-end;
-        width: 12%;
-        padding: 0 32px 0 0;
-        align-items: center;
-      }
     }
 
     &--delete-button {
@@ -157,11 +152,6 @@
     font-size: 13px;
     line-height: 20px;
     font-family: $font-regular;
-
-    @include tablet {
-      font-size: 14px;
-      line-height: 22px;
-    }
   }
 
   h4 {

@@ -5,12 +5,65 @@ import DeleteButton from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
+import axios from "axios";
 
-const InventoryList = (props, onDeleteClick) => {
+const InventoryList = (props) => {
+  const { inventoryList, onDeleteClick } = props;
+
+
   let { id } = useParams();
   const [checkData, setCheckData] = useState("flex");
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
+  const [sortType, setSortType] = useState('');
+  const [orderBy, setOrderBy] = useState('asc');
+  const [sortedInventory, setSortedInventory] = useState([]);
+
+
+
+  const API_BASE_URL = "http://localhost:8080";
+
+  const fetchSortedInventoryList = () => {
+    axios
+      .get(`${API_BASE_URL}/inventories?sort_by=${sortType}&order_by=${orderBy}`)
+      .then((response) => {
+        const sortedInventoryeData = response.data;
+        setSortedInventory(sortedInventoryeData)
+        console.log(sortedInventoryeData)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  };
+
+
+  const handleSort = (sortBy) => {
+    setOrderBy((prevState) => !prevState);
+    console.log(sortBy);
+  
+    if (sortType !== sortBy ) {
+      setOrderBy('asc');
+      setSortType(sortBy);
+      console.log(`Sorting by ${sortBy}`);
+    } else {
+      if (orderBy === 'asc') {
+        setOrderBy('desc')
+      }else {
+        setOrderBy('asc');
+      }
+    }
+  };
+  
+
+  useEffect(() => {
+    setSortedInventory(inventoryList)
+
+  }, [inventoryList])
+
+  useEffect(() => {
+    fetchSortedInventoryList();
+  }, [sortType, orderBy]);
+
 
   function checkWarehouseName(wh) {
     if (!wh) {
@@ -19,6 +72,7 @@ const InventoryList = (props, onDeleteClick) => {
       return wh;
     }
   }
+
 
   useEffect(() => {
     if (id) {
@@ -47,6 +101,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('item_name')}
             />
           </div>
           <div className="inventoryList-headers__header-container header-category">
@@ -57,6 +112,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('category')}
             />
           </div>
           <div className="inventoryList-headers__header-container header-status">
@@ -67,6 +123,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('status')}
             />
           </div>
           <div className="inventoryList-headers__header-container header-quantity">
@@ -77,6 +134,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('quantity')}
             />
           </div>
           <div style={{ display: checkData }} className="inventoryList-headers__header-container header-warehouse">
@@ -87,6 +145,7 @@ const InventoryList = (props, onDeleteClick) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
+              onClick={() => handleSort('warehouse_name')}
             />
           </div>
           <div
@@ -98,8 +157,8 @@ const InventoryList = (props, onDeleteClick) => {
             </h4>
           </div>
         </div>
-        {props.inventoryList.map((item) => (
-          <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
+        {sortedInventory.map((item) => (
+            <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
             {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
             <div className="inventoryList-card__inventory-and-category-container">
               <div className="inventory-container">
@@ -188,10 +247,12 @@ const InventoryList = (props, onDeleteClick) => {
               </Link>
             </div>
           </div>
-        ))}
+            ))}
+
       </div>
     </>
   );
 };
 
+ 
 export default InventoryList;

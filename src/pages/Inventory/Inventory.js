@@ -30,9 +30,11 @@ const Inventory = () => {
 
   }
 
+
   useEffect(() => {
     fetchInventorylist();
   }, []);
+
 
 
   const handleDeleteClick = (id, item_name) => {

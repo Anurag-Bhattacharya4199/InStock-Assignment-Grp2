@@ -85,7 +85,7 @@ function InventoryDetail() {
               <div className="details__status-warehouse--status">
                 <h4 className="details__headers--status">STATUS:</h4>
                 <p
-                  className={`details--text status-container__status ${inventoryList.status} === "In Stock"
+                  className={`details--text status-container__status ${inventoryList.status === "In Stock"
                     ? "status-container__in-stock"
                     : "status-container__out-of-stock"
                     } `}

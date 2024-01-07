@@ -1,12 +1,12 @@
 import "./EditWarehouse.scss";
 import validator from "validator";
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 import EditWarehouseForm from "../../components/EditWarehouseForm/EditWarehouseForm";
+import { API_BASE_URL } from "../../utils/utils";
 const EditWarehouse = (props) => {
-  const API_BASE_URL = "http://localhost:8080/warehouses/";
   const { id } = useParams();
   const location = useLocation();
   // SET REDIRECT LINK
@@ -64,7 +64,7 @@ const EditWarehouse = (props) => {
   // GET WAREHOUSE DATA
   useEffect(() => {
     axios
-      .get(`${API_BASE_URL}${id}`)
+      .get(`${API_BASE_URL}/warehouses/${id}`)
       .then((response) => {
         setWarehouseName(response.data.warehouse_name);
         setAddress(response.data.address);
@@ -83,7 +83,7 @@ const EditWarehouse = (props) => {
 
   const handleWarehouseEditPost = () => {
     axios
-      .patch(`${API_BASE_URL}${id}`, {
+      .patch(`${API_BASE_URL}/warehouses/${id}`, {
         warehouse_name: warehouseName,
         address: address,
         city: city,

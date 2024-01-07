@@ -1,13 +1,10 @@
 import "./EditInventory.scss";
-import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
-import editIcon from "../../assets/icons/edit-24px.svg";
 import ErrorIcon from "../../assets/icons/error-24px.svg";
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-import { PostEditInventory, editInventoryValidation } from "../../utils/utils";
-
+import { PatchEditInventory } from "../../utils/utils";
 
 function EditInventory() {
   const location = useLocation();
@@ -16,15 +13,18 @@ function EditInventory() {
   // const [itemId, setItemId] = useState(location.state.itemId);
   const [itemCategory, setItemCategory] = useState(location.state.itemCategory);
   const [itemName, setItemName] = useState(location.state.itemName);
-  const [itemDescription, setItemDescription] = useState(location.state.itemDescription);
+  const [itemDescription, setItemDescription] = useState(
+    location.state.itemDescription
+  );
   const [itemStatus, setItemStatus] = useState(location.state.itemStatus);
   const [itemStatusTF, setItemStatusTF] = useState(true);
-  const [warehouseName, setWarehouseName] = useState(location.state.warehouseName);
+  const [warehouseName, setWarehouseName] = useState(
+    location.state.warehouseName
+  );
   const [itemQuantity, setItemQuantity] = useState(location.state.itemQuantity);
   const [warehouses, setWarehouses] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const API_BASE_URL = "http://localhost:8080/";
-
 
   useEffect(() => {
     //selects the proper default radio button
@@ -34,7 +34,6 @@ function EditInventory() {
       setItemStatusTF(false);
     }
   }, [itemStatus]);
-
 
   const [error, setError] = useState({
     itemNameError: false,
@@ -121,12 +120,12 @@ function EditInventory() {
     if (!itemStatusTF) {
       setItemStatus("Out of Stock");
       setItemQuantity("0");
-      tempQuantity = "0"
+      tempQuantity = "0";
     }
 
     //editInventoryValidation
     if (isFormValid()) {
-      PostEditInventory(
+      PatchEditInventory(
         id,
         tempWarehouseId,
         itemName,
@@ -135,20 +134,18 @@ function EditInventory() {
         itemStatus,
         tempQuantity
       );
-      console.log("isFormValid() ", isFormValid())
-      alert(`Changes to ${itemName} has been saved!`)
+      console.log("isFormValid() ", isFormValid());
+      alert(`Changes to ${itemName} has been saved!`);
       navigate(-1);
     } else {
       return;
     }
-
   };
 
   const handleCancel = (event) => {
     event.preventDefault();
     navigate(-1);
   };
-
 
   const fetchWarehouseList = () => {
     axios
@@ -179,10 +176,7 @@ function EditInventory() {
               <label className="p-medium">Item Name</label>
               <input
                 className={`editInv__form__content__details__input 
-                ${error.itemNameError
-                    ? "editInv__form--invalidInput"
-                    : ""
-                  }`}
+                ${error.itemNameError ? "editInv__form--invalidInput" : ""}`}
                 placeholder={itemName}
                 name="itemName"
                 htmlform="itemName"
@@ -190,10 +184,9 @@ function EditInventory() {
                 onChange={handleChangeItemName}
               />
               <span
-                className={`errorMsg ${error.itemNameError
-                  ? "errorMsg--invalid-input"
-                  : ""
-                  }`}
+                className={`errorMsg ${
+                  error.itemNameError ? "errorMsg--invalid-input" : ""
+                }`}
               >
                 <img src={ErrorIcon} alt="Error Icon" />
                 This field is required
@@ -202,10 +195,7 @@ function EditInventory() {
               <textarea
                 rows={7}
                 className={`editInv__form__content__details__input--area 
-                ${error.descriptionError
-                    ? "editInv__form--invalidInput"
-                    : ""
-                  }`}
+                ${error.descriptionError ? "editInv__form--invalidInput" : ""}`}
                 placeholder={itemDescription}
                 name="description"
                 htmlform="description"
@@ -213,10 +203,9 @@ function EditInventory() {
                 onChange={handleChangeItemDescription}
               />
               <span
-                className={`errorMsg ${error.descriptionError
-                  ? "errorMsg--invalid-input"
-                  : ""
-                  }`}
+                className={`errorMsg ${
+                  error.descriptionError ? "errorMsg--invalid-input" : ""
+                }`}
               >
                 <img src={ErrorIcon} alt="Error Icon" />
                 This field is required
@@ -268,8 +257,9 @@ function EditInventory() {
               </div>
               <label className={`p-medium ${itemStatusTF}`}>Quantity</label>
               <input
-                className={`editInv__form__content__details__input ${error.qtyError ? "editInv__form--invalidInput" : ""
-                  } ${itemStatusTF}`}
+                className={`editInv__form__content__details__input ${
+                  error.qtyError ? "editInv__form--invalidInput" : ""
+                } ${itemStatusTF}`}
                 placeholder={itemQuantity}
                 name="itemQuantity"
                 htmlform="itemQuantity"
@@ -277,10 +267,9 @@ function EditInventory() {
                 onChange={handleChangeItemQuantity}
               />
               <span
-                className={`errorMsg ${error.qtyError
-                    ? "errorMsg--invalid-input"
-                    : ""
-                  }`}
+                className={`errorMsg ${
+                  error.qtyError ? "errorMsg--invalid-input" : ""
+                }`}
               >
                 <img src={ErrorIcon} alt="Error Icon" />
                 This field must be a non-zero integer
@@ -307,15 +296,12 @@ function EditInventory() {
             >
               Cancel
             </button>
-            <button className="editInv__form__buttons--add">
-              Save
-            </button>
+            <button className="editInv__form__buttons--add">Save</button>
           </div>
         </form>
       </main>
-    )
+    );
   }
-
 }
 
 export default EditInventory;

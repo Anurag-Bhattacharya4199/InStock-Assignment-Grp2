@@ -3,23 +3,20 @@ import axios from "axios";
 import "./WareHouse.scss";
 import WareHouseList from "../../components/WareHouseList/WareHouseList";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-import { useParams } from "react-router-dom";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import { API_BASE_URL } from "../../utils/utils";
 
 function WareHouse() {
-  const API_BASE_URL = "http://localhost:8080/warehouses";
   const [warehouses, setWarehouses] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [deleteWarehouseID, setDeleteWarhouseID] = useState(null);
-  const [warehouseToDelete, setWarehouseToDelete] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const { id } = useParams();
+  const [warehouseToDelete, setWarehouseToDelete] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchWarehouseList = () => {
     axios
-      .get(API_BASE_URL)
+      .get(`${API_BASE_URL}/warehouses`)
       .then((response) => {
         const warehouseData = response.data;
         setWarehouses(warehouseData);
@@ -30,23 +27,20 @@ function WareHouse() {
       });
   };
 
-
   useEffect(() => {
     fetchWarehouseList(); // Fetch warehouse list when component mounts
   }, []); // Empty dependency array to trigger effect only on mount
-
 
   const handleDeleteClick = (id, warehouse_name) => {
     setShowDeletePopup(true);
     setDeleteWarhouseID(id);
     setWarehouseToDelete(warehouse_name);
-
   };
 
   const handleDeleteConfirmation = () => {
     // Make a DELETE request to delete the warehouse
     axios
-      .delete(`${API_BASE_URL}/${deleteWarehouseID}`)
+      .delete(`${API_BASE_URL}/warehouses/${deleteWarehouseID}`)
       .then(() => {
         console.log(
           `Successfully deleted warehouse with ID: ${deleteWarehouseID}`
@@ -72,25 +66,25 @@ function WareHouse() {
     setSearchTerm(searchTerm);
   };
 
-    // Filter the warehouses based on the search term
-    const filteredWarehouses = warehouses.filter((warehouse) => {
-      // Perform case-insensitive search on relevant fields
-      const searchFields = [
-        warehouse.warehouse_name.toLowerCase(),
-        warehouse.address.toLowerCase(),
-        warehouse.city.toLowerCase(),
-        warehouse.country.toLowerCase(),
-        warehouse.contact_name.toLowerCase(),
-        warehouse.contact_email.toLowerCase(),
-        warehouse.contact_phone.toLowerCase(),
-      ];
-  
-      return searchFields.some((field) => field.includes(searchTerm.toLowerCase()));
-     
-    });
+  // Filter the warehouses based on the search term
+  const filteredWarehouses = warehouses.filter((warehouse) => {
+    // Perform case-insensitive search on relevant fields
+    const searchFields = [
+      warehouse.warehouse_name.toLowerCase(),
+      warehouse.address.toLowerCase(),
+      warehouse.city.toLowerCase(),
+      warehouse.country.toLowerCase(),
+      warehouse.contact_name.toLowerCase(),
+      warehouse.contact_email.toLowerCase(),
+      warehouse.contact_phone.toLowerCase(),
+    ];
 
-    // console.log(filteredWarehouses);
-  
+    return searchFields.some((field) =>
+      field.includes(searchTerm.toLowerCase())
+    );
+  });
+
+  // console.log(filteredWarehouses);
 
   if (!hasLoaded) {
     return null;

@@ -8,9 +8,18 @@
   box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
 
   position: relative;
-  top: -65px;
-}
+  top: -77px;
 
+  @include tablet {
+    margin: $tablet-margin;
+    top: -137px;
+  }
+
+  @include desktop {
+    margin: $desktop-margin;
+    top: -200px;
+  }
+}
 .details {
     display: flex;
     flex-direction: column;

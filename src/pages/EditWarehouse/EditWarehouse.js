@@ -317,7 +317,7 @@ const EditWarehouse = (props) => {
   return (
     <main className={`editWarehouse `}>
       {/* POP-UP */}
-
+{/* 
       <div
         className={`editWarehouse__confirm-edit-container ${editPopUpClass}`}
       >sourcePage
@@ -327,7 +327,8 @@ const EditWarehouse = (props) => {
             <button className="confirm-edit-content__link--button">Ok</button>
           </Link>
         </div>
-      </div> 
+      </div>  */}
+
       <div
         className={`editWarehouse__cancel-edit-container ${cancelEditPopUpClass}`}
         onClick={(event) => {

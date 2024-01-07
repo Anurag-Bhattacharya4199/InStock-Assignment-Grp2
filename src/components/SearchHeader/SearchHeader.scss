@@ -6,9 +6,15 @@
     border-radius: 5px;
 
     @include tablet {
-        padding: $tablet-margin;
+        padding: $mobile-margin;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
+    }
+
+    @include desktop {
+        padding: $mobile-margin;
     }
 
     &--edit {
@@ -25,12 +31,18 @@
 
         &--wrapper {
             display: flex;
+            margin: $mobile-margin 0 0 0;
 
+            @include tablet{
+                margin: $mobile-margin 0;
+            }
         }
 
         &--arrow {
             padding: 8px;
         }
+
+
     }
 
     &__content {

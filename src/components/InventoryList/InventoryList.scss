@@ -37,7 +37,7 @@
       }
       // HEADER STATUS
       .header-status {
-        padding-left: 30px;
+        padding-left: 45px;
       }
       // HEADER QUANTITY
       .header-quantity {
@@ -52,7 +52,7 @@
       //  HEADER ACTIONS
       .header-actions {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
       }
     }
   }
@@ -65,8 +65,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #bdc5d5;
 
-    @include tablet{
-
+    @include tablet {
     }
 
     // INVENTORY-ITEM && CATEGORY CONTAINER
@@ -79,7 +78,6 @@
         display: flex;
         align-items: flex-start;
         flex-direction: column;
-        
 
         &__header {
           color: $slate;
@@ -135,7 +133,6 @@
 
       // CATEGORY***
       .category-container {
-        
         padding-top: 16px;
 
         &__header {
@@ -144,7 +141,7 @@
         }
 
         @include tablet {
-          display:flex;
+          display: flex;
           align-items: center;
           &__header {
             display: none;
@@ -189,8 +186,6 @@
         &__header {
           color: $slate;
           margin: $mobile-margin 0 4px 0;
-
-         
         }
 
         // MEDIA - TABLET
@@ -207,12 +202,12 @@
           max-width: 65px;
           border-radius: 20px;
           padding: 4px 8px;
-          margin:0;
+          margin: 0;
           text-align: center;
         }
 
         @include tablet {
-          display:flex;
+          display: flex;
           align-items: center;
           &__in-stock {
             max-width: 61px;
@@ -232,7 +227,7 @@
         @include tablet {
           &__out-of-stock {
             max-width: 86px;
-            margin:0;
+            margin: 0;
           }
         }
 
@@ -251,7 +246,6 @@
           margin: 0;
         }
 
-
         &__quantity {
           color: $instock-black;
           font-weight: 400;
@@ -260,13 +254,13 @@
         }
 
         @include tablet {
-          display:flex;
+          display: flex;
           align-items: center;
 
           &__header {
             display: none;
           }
-          
+
           &__quantity {
             padding-left: 50px;
           }
@@ -287,7 +281,7 @@
 
         &__header {
           color: $slate;
-          margin:0;
+          margin: 0;
         }
 
         // MEDIA - TABLET
@@ -324,8 +318,6 @@
       box-sizing: border-box;
       padding-top: 16px;
       align-items: center;
-      
-      
     }
 
     // Delete Button
@@ -336,13 +328,11 @@
       margin: 0;
       line-height: 0;
 
-
-      @include tablet{
+      @include tablet {
         padding: 0;
       }
       &:hover {
         cursor: pointer;
-
       }
     }
 
@@ -350,7 +340,7 @@
     @include tablet {
       .inventoryList-card__icon-container {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-content: center;
         gap: 15px;
         padding-top: 0px;
@@ -402,8 +392,8 @@
     &--header {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      padding-top:0;
-      padding-bottom:0;
+      padding-top: 0;
+      padding-bottom: 0;
     }
 
     &--table {
@@ -417,11 +407,11 @@
 // MEDIA - DESKTOP
 @include desktop {
   .inventoryList {
-    //width: 1040px;
+    width: 1020px;
     margin: auto;
   }
 }
 
-a{
+a {
   height: 24px;
 }

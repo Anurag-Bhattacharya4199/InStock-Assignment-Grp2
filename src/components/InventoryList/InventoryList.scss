@@ -63,6 +63,10 @@
     box-sizing: border-box;
     border-bottom: 1px solid #bdc5d5;
 
+    @include tablet{
+
+    }
+
     // INVENTORY-ITEM && CATEGORY CONTAINER
     &__inventory-and-category-container {
       flex: 50%;
@@ -71,14 +75,17 @@
       .inventory-container {
         width: 100%;
         display: flex;
-        align-items: center;
-        //justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        
 
         &__header {
           color: $slate;
+          margin: $mobile-margin 0 0 0;
         }
 
         @include tablet {
+          justify-content: center;
           &__header {
             display: none;
           }
@@ -98,7 +105,8 @@
           &--inventory-item {
             font-weight: 600;
             padding-right: 2px;
-            padding-top: 0;
+            padding-top: 4px;
+            margin: 0;
           }
 
           &--icon {
@@ -125,13 +133,17 @@
 
       // CATEGORY***
       .category-container {
+        
         padding-top: 16px;
 
         &__header {
           color: $slate;
+          margin: 0;
         }
 
         @include tablet {
+          display:flex;
+          align-items: center;
           &__header {
             display: none;
           }
@@ -140,7 +152,8 @@
         &__category {
           color: $instock-black;
           font-weight: 600;
-          padding-top: 0;
+          padding-top: 4px;
+          margin: 0;
         }
 
         @include tablet {
@@ -173,6 +186,9 @@
       .status-container {
         &__header {
           color: $slate;
+          margin: $mobile-margin 0 4px 0;
+
+         
         }
 
         // MEDIA - TABLET
@@ -188,11 +204,14 @@
           background-color: rgba(21, 132, 99, 0.07);
           max-width: 65px;
           border-radius: 20px;
-          padding: 4px;
+          padding: 4px 8px;
+          margin:0;
           text-align: center;
         }
 
         @include tablet {
+          display:flex;
+          align-items: center;
           &__in-stock {
             max-width: 61px;
           }
@@ -204,13 +223,14 @@
           background-color: rgba(201, 69, 21, 0.07);
           max-width: 95px;
           border-radius: 20px;
-          padding: 4px;
+          padding: 4px 8px;
           text-align: center;
         }
 
         @include tablet {
           &__out-of-stock {
             max-width: 86px;
+            margin:0;
           }
         }
 
@@ -226,22 +246,25 @@
 
         &__header {
           color: $slate;
+          margin: 0;
         }
 
-        // MEDIA - TABLET
-        @include tablet {
-          &__header {
-            display: none;
-          }
-        }
 
         &__quantity {
           color: $instock-black;
           font-weight: 400;
-          padding-top: 0;
+          padding-top: 4px;
+          margin: 0;
         }
 
         @include tablet {
+          display:flex;
+          align-items: center;
+
+          &__header {
+            display: none;
+          }
+          
           &__quantity {
             padding-left: 50px;
           }
@@ -262,6 +285,7 @@
 
         &__header {
           color: $slate;
+          margin:0;
         }
 
         // MEDIA - TABLET
@@ -274,7 +298,8 @@
         &__warehouse-name {
           color: $instock-black;
           font-weight: 400;
-          padding-top: 0;
+          padding-top: 4px;
+          margin: 0;
         }
       }
 
@@ -283,6 +308,7 @@
         .int-warehouse-container {
           padding-left: 24px;
           padding-top: 0px;
+          justify-content: center;
         }
       }
     }
@@ -295,6 +321,7 @@
       width: 100%;
       box-sizing: border-box;
       padding-top: 16px;
+      align-items: center;
       
       
     }
@@ -303,9 +330,13 @@
     .inventoryList-card__delete-button {
       background-color: white;
       border: none;
-      padding: 0;
+      padding: 0 0 $tablet-gutter 0;
       margin: 0;
       line-height: 0;
+
+      @include tablet{
+        padding: 0;
+      }
     }
 
     // MEDIA - TABLET
@@ -339,7 +370,7 @@
   // MEDIA - TABLET
   @include tablet {
     .inventoryList-card {
-      padding: 8px 32px;
+      padding: $mobile-margin $tablet-margin;
       display: grid;
     }
   }

@@ -1,20 +1,16 @@
-@use "../../styles/partials/fonts";
-@use "../../styles/partials/global";
-@use "../../styles/partials/mixins";
-@use "../../styles/partials/variables";
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 .header {
-  background-color: variables.$graphite;
+  background-color: $graphite;
   padding: 24px 16px;
-  height: 150px;
+  height:152px;
 
-  @include mixins.tablet {
-    height: 100px;
-    height: 150px;
+  @include tablet {
+    height: 138px;
   }
-  @include mixins.desktop {
-    height: 125px;
-  }
-
+ 
   &__content {
     .header-logo-container {
       display: flex;
@@ -29,15 +25,15 @@
     .header-links-container {
       display: flex;
       justify-content: space-between;
-      padding-top: 16px;
+      padding-top: $tablet-gutter;
       gap: 16px;
 
-      @include mixins.tablet {
+      @include tablet {
         padding-top: 0;
       }
 
       &__link {
-        color: variables.$cloud;
+        color: $cloud;
         border-radius: 20px;
         padding: 0px 16px;
         width: 100%;
@@ -51,23 +47,20 @@
       }
 
       &__link {
-        @include mixins.tablet {
+        @include tablet {
           font-size: 14px;
         }
       }
       .active {
-        background-color: variables.$instock-black;
-        color: #fff;
+        background-color: $instock-black;
       }
       &__link:hover {
-        background-color: variables.$instock-black;
+        background-color: $instock-black;
       }
     }
   }
   &__content {
     @include mixins.tablet {
-      box-sizing: border-box;
-      width: 100%;
       display: flex;
       justify-content: space-between;
       padding: 0 32px 32px 32px;
@@ -75,7 +68,7 @@
   }
   &__content {
     @include mixins.desktop {
-      max-width: 1020px;
+      //max-width: 1040px;
       margin: auto;
     }
   }

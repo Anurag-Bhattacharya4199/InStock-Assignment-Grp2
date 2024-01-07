@@ -10,7 +10,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
     }
 
     @include desktop {
@@ -41,8 +40,6 @@
         &--arrow {
             padding: 8px;
         }
-
-
     }
 
     &__content {
@@ -71,8 +68,6 @@
                     width: 260px;
                 }
             }
-
-         
 
             &--box:focus {
                 outline-color: $instock-indigo;
@@ -114,9 +109,7 @@
 
                 @include tablet {
                     margin-left: 16px;
-
                 }
-
             }
         }
     }
@@ -132,7 +125,6 @@
             display: none;
         }
     }
-
 }
 
 .header-button {
@@ -159,7 +151,7 @@
 
         &--text {
             display: none;
-
+            
             @include tablet {
                 display: inline;
                 color: $white;

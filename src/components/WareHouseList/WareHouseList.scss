@@ -6,8 +6,7 @@
   display: none;
 }
 
-@include tablet { 
-  
+@include tablet {
     .warehouseList-headers{
         display: flex;
         justify-content: space-between;
@@ -23,10 +22,8 @@
 
             @include desktop {
                 margin-right: 20px;
-
             }
 
-        
             &--header {
                 display: flex;
                 font-weight: 600;
@@ -43,11 +40,9 @@
             justify-content: flex-end;
             width: 20%;
         }
-
     }
   // WAREHOUSE LISTS : DYNAMIC CLASS
 .display-none {
   display: none;
 }
-  
-  }
+}

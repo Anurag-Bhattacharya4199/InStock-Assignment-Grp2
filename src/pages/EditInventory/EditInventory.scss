@@ -12,7 +12,6 @@
   @include tablet {
     margin: $tablet-margin;
     top: -137px;
-    // width: 100%;
   }
 
   @include desktop {
@@ -91,9 +90,6 @@
 
           &--in-stock {
             padding-right: 30%;
-          }
-
-          &--out-of-stock {
           }
         }
       }

@@ -10,7 +10,6 @@
         padding-left: 36px;
     }
 
-
     &__exit {
         align-self: flex-end;
         background-color: white;
@@ -25,10 +24,8 @@
     }
 
     &__body {
-
         @include tablet {
             margin: 16px 78px 16px 0;
-
         }
     }
 
@@ -57,7 +54,6 @@
                 width: 10%;
                 padding: 3px 0;
             }
-
         }
 
         &--delete {
@@ -76,8 +72,5 @@
                 margin:0 36px 0 16px;
             }
         }
-
     }
-
-
 }

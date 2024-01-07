@@ -1,13 +1,9 @@
 import "./InventoryDetail.scss";
-import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
-import editIcon from "../../assets/icons/edit-24px.svg";
-import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useLocation } from "react-router-dom";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
 
-function InventoryDetail(props) {
+function InventoryDetail() {
   const location = useLocation();
 
   return (
@@ -39,10 +35,11 @@ function InventoryDetail(props) {
             <div className="details__status-warehouse--status">
               <h4 className="details__headers--status">STATUS:</h4>
               <p
-                className={`details--text status-container__status ${location.state.itemStatus === "In Stock"
+                className={`details--text status-container__status ${
+                  location.state.itemStatus === "In Stock"
                     ? "status-container__in-stock"
                     : "status-container__out-of-stock"
-                  } `}
+                } `}
               >
                 {location.state.itemStatus}
               </p>

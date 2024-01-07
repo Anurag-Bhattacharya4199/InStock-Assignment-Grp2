@@ -23,7 +23,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setWarehouseName(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}

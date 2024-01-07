@@ -84,8 +84,6 @@ function WareHouse() {
     );
   });
 
-  // console.log(filteredWarehouses);
-
   if (!hasLoaded) {
     return null;
   } else {

@@ -273,6 +273,10 @@
         border: 1px solid $cloud;
         width: auto;
         outline: none;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       &-addBtn {

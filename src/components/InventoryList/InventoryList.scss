@@ -402,8 +402,8 @@
     &--header {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      padding-top: 0;
-      padding-bottom: 0;
+      padding-top:0;
+      padding-bottom:0;
     }
 
     &--table {
@@ -415,19 +415,13 @@
 }
 
 // MEDIA - DESKTOP
-@include tablet {
-  .inventoryList {
-    width: 100%;
-  }
-}
-// MEDIA - DESKTOP
 @include desktop {
   .inventoryList {
-    width: 1020px;
+    //width: 1040px;
     margin: auto;
   }
 }
 
-a {
+a{
   height: 24px;
 }

@@ -35,6 +35,9 @@
       padding-top: 0;
       &--new-line{
         display:none;
+        @include tablet{
+          display:flex;
+        }
       }
     }
   }
@@ -67,9 +70,6 @@
 
       &-address {
         flex: 50%;
-        &--new-line {
-          display: flex;
-        }
       }
 
       &-column {
@@ -100,4 +100,9 @@
       }
     }
   }
+}
+
+// DYNAMIC CLASS
+.display-hidden {
+  display: none;
 }

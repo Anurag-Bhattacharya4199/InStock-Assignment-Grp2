@@ -17,7 +17,7 @@
 
   @include desktop {
     margin: $desktop-margin;
-    top: -200px;
+    top: -229px;
   }
 }
 .details {
@@ -25,7 +25,17 @@
     flex-direction: column;
     margin: $tablet-margin;
 
+    @include tablet {
+        flex-direction: row;
+    }
+
     &__headers{
+        //padding-top: $mobile-margin;
+
+
+        &--description{
+
+        }
         &--category{
             padding-top: $mobile-margin;
         }
@@ -36,15 +46,31 @@
         &--warehouse{
             padding-top: $mobile-margin;
         }
+
     }
 
     &--text{
         margin-top: 0;
     }
 
+    &--left-wrapper {
+        
+        
+        @include tablet {
+            padding-right: $tablet-margin;
+            width: 45%;
+        }
+    }
+
     &--right-wrapper {
         display:flex;
         flex-direction: row;
+
+        @include tablet {
+            border-left: 1px solid $cloud;
+            padding-left: $tablet-margin;
+
+        }
     }
 
     &__status-warehouse {
@@ -65,6 +91,13 @@
       color: $slate;
     }
 
+    // MEDIA - TABLET
+    @include tablet {
+      &__header {
+        display: none;
+      }
+    }
+
     // DYNAMIC CLASSES - IF IN STOCK**
     &__in-stock {
       color: $green;
@@ -73,6 +106,12 @@
       border-radius: 20px;
       padding: 4px;
       text-align: center;
+    }
+
+    @include tablet {
+      &__in-stock {
+        max-width: 61px;
+      }
     }
 
     // DYNAMIC CLASSES - IF OUT OF STOCK**
@@ -84,46 +123,11 @@
       padding: 4px;
       text-align: center;
     }
-  }
 
-@include tablet {
-  .inventoryDetails {
-    margin: $tablet-margin;
-    top: -150px;
-  }
-
-  .details {
-    flex-direction: row;
-
-    &--left-wrapper {
-      padding-right: $tablet-margin;
-      width: 45%;
+    @include tablet {
+      &__out-of-stock {
+        max-width: 86px;
+      }
     }
 
-    &--right-wrapper {
-      border-left: 1px solid $cloud;
-      padding-left: $tablet-margin;
-    }
   }
-
-  .status-container {
-    &__header {
-      display: none;
-    }
-
-    &__in-stock {
-      max-width: 61px;
-    }
-
-    &__out-of-stock {
-      max-width: 86px;
-    }
-  }
-}
-
-@include desktop {
-  .inventoryDetails {
-    margin: $desktop-margin;
-    top: -200px;
-  }
-}

@@ -1,6 +1,6 @@
 import "./WareHouseDetailPage.scss";
 import React, { useState, useEffect } from "react";
-import { useParams, useSearchParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
@@ -52,7 +52,7 @@ function WareHouseDetailPage() {
   useEffect(() => {
     fetchWarehouseDetails();
     fetchInventoryForWarehouse();
-  }, []);
+  });
 
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);

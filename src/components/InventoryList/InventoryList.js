@@ -6,64 +6,55 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import Chevron from "../../assets/icons/chevron_right-24px.svg";
 import SortDefault from "../../assets/icons/sort-24px.svg";
 import axios from "axios";
+import { API_BASE_URL } from "../../utils/utils";
 
 const InventoryList = (props) => {
-  const { inventoryList, onDeleteClick } = props;
-
+  const { inventoryList } = props;
 
   let { id } = useParams();
   const [checkData, setCheckData] = useState("flex");
   const [columnHeader, setColumnHeader] = useState("six-columns--header");
   const [columnTable, setColmunTable] = useState("six-columns--table");
-  const [sortType, setSortType] = useState('');
-  const [orderBy, setOrderBy] = useState('asc');
+  const [sortType, setSortType] = useState("");
+  const [orderBy, setOrderBy] = useState("asc");
   const [sortedInventory, setSortedInventory] = useState([]);
-
-
-
-  const API_BASE_URL = "http://localhost:8080";
 
   const fetchSortedInventoryList = () => {
     axios
-      .get(`${API_BASE_URL}/inventories?sort_by=${sortType}&order_by=${orderBy}`)
+      .get(
+        `${API_BASE_URL}/inventories?sort_by=${sortType}&order_by=${orderBy}`
+      )
       .then((response) => {
         const sortedInventoryeData = response.data;
-        setSortedInventory(sortedInventoryeData)
-        console.log(sortedInventoryeData)
+        setSortedInventory(sortedInventoryeData);
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   };
-
 
   const handleSort = (sortBy) => {
     setOrderBy((prevState) => !prevState);
-    console.log(sortBy);
-  
-    if (sortType !== sortBy ) {
-      setOrderBy('asc');
+
+    if (sortType !== sortBy) {
+      setOrderBy("asc");
       setSortType(sortBy);
-      console.log(`Sorting by ${sortBy}`);
     } else {
-      if (orderBy === 'asc') {
-        setOrderBy('desc')
-      }else {
-        setOrderBy('asc');
+      if (orderBy === "asc") {
+        setOrderBy("desc");
+      } else {
+        setOrderBy("asc");
       }
     }
   };
-  
 
   useEffect(() => {
-    setSortedInventory(inventoryList)
-
-  }, [inventoryList])
+    setSortedInventory(inventoryList);
+  }, [inventoryList]);
 
   useEffect(() => {
     fetchSortedInventoryList();
   }, [sortType, orderBy]);
-
 
   function checkWarehouseName(wh) {
     if (!wh) {
@@ -73,16 +64,15 @@ const InventoryList = (props) => {
     }
   }
 
-
   useEffect(() => {
     if (id) {
       setCheckData("none");
-      setColumnHeader("five-columns--header")
-      setColmunTable("five-columns--table")
+      setColumnHeader("five-columns--header");
+      setColmunTable("five-columns--table");
     } else {
       setCheckData("flex");
-      setColumnHeader("six-columns--header")
-      setColmunTable("six-columns--table")
+      setColumnHeader("six-columns--header");
+      setColmunTable("six-columns--table");
     }
   }, []);
 
@@ -101,7 +91,7 @@ const InventoryList = (props) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
-              onClick={() => handleSort('item_name')}
+              onClick={() => handleSort("item_name")}
             />
           </div>
           <div className="inventoryList-headers__header-container header-category">
@@ -112,7 +102,7 @@ const InventoryList = (props) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
-              onClick={() => handleSort('category')}
+              onClick={() => handleSort("category")}
             />
           </div>
           <div className="inventoryList-headers__header-container header-status">
@@ -123,7 +113,7 @@ const InventoryList = (props) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
-              onClick={() => handleSort('status')}
+              onClick={() => handleSort("status")}
             />
           </div>
           <div className="inventoryList-headers__header-container header-quantity">
@@ -134,10 +124,13 @@ const InventoryList = (props) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
-              onClick={() => handleSort('quantity')}
+              onClick={() => handleSort("quantity")}
             />
           </div>
-          <div style={{ display: checkData }} className="inventoryList-headers__header-container header-warehouse">
+          <div
+            style={{ display: checkData }}
+            className="inventoryList-headers__header-container header-warehouse"
+          >
             <h4 className="inventoryList-headers__header-container--header">
               WAREHOUSE
             </h4>
@@ -145,7 +138,7 @@ const InventoryList = (props) => {
               className="inventoryList-headers__header-container--sort-icon"
               src={SortDefault}
               alt="sort"
-              onClick={() => handleSort('warehouse_name')}
+              onClick={() => handleSort("warehouse_name")}
             />
           </div>
           <div
@@ -158,7 +151,7 @@ const InventoryList = (props) => {
           </div>
         </div>
         {sortedInventory.map((item) => (
-            <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
+          <div key={item.id} className={`inventoryList-card ${columnHeader}`}>
             {/* INVENTORY ITEM &&  CATEGORY CONTAINER */}
             <div className="inventoryList-card__inventory-and-category-container">
               <div className="inventory-container">
@@ -172,7 +165,7 @@ const InventoryList = (props) => {
                     itemDescription: item.description,
                     itemStatus: item.status,
                     warehouseName: checkWarehouseName(item.warehouse_name),
-                    itemQuantity: item.quantity
+                    itemQuantity: item.quantity,
                   }}
                   className="inventory-container__link"
                 >
@@ -194,14 +187,17 @@ const InventoryList = (props) => {
               </div>
             </div>
             {/* STATUS, QUANTITY && WAREHOUSE CONTAINER */}
-            <div className={`inventoryList-card__status-quatity-warehouse-container ${columnTable}`}>
+            <div
+              className={`inventoryList-card__status-quatity-warehouse-container ${columnTable}`}
+            >
               <div className="status-container">
                 <h4 className="status-container__header">STATUS</h4>
                 <p
-                  className={`p-medium status-container__status ${item.status === "In Stock"
-                    ? "status-container__in-stock"
-                    : "status-container__out-of-stock"
-                    } `}
+                  className={`p-medium status-container__status ${
+                    item.status === "In Stock"
+                      ? "status-container__in-stock"
+                      : "status-container__out-of-stock"
+                  } `}
                 >
                   {item.status}
                 </p>
@@ -212,7 +208,10 @@ const InventoryList = (props) => {
                   {item.quantity}
                 </p>
               </div>
-              <div style={{ display: checkData }} className="int-warehouse-container">
+              <div
+                style={{ display: checkData }}
+                className="int-warehouse-container"
+              >
                 <h4 className="int-warehouse-container__header">WAREHOUSE</h4>
                 <p className="p-medium int-warehouse-container__warehouse-name">
                   {item.warehouse_name}
@@ -221,14 +220,18 @@ const InventoryList = (props) => {
             </div>
             {/* ICONS CONTAINER */}
             <div className="inventoryList-card__icon-container">
-              <button className="inventoryList-card__delete-button" onClick={() => props.onDeleteClick(item.id, item.item_name)}>
+              <button
+                className="inventoryList-card__delete-button"
+                onClick={() => props.onDeleteClick(item.id, item.item_name)}
+              >
                 <img
                   src={DeleteButton}
                   alt="delete icon"
                   className="inventoryList__icon-container--delete-button action-icon"
                 ></img>
               </button>
-              <Link to={`/inventories/${item.id}/edit`}
+              <Link
+                to={`/inventories/${item.id}/edit`}
                 state={{
                   itemId: item.id,
                   itemCategory: item.category,
@@ -236,7 +239,7 @@ const InventoryList = (props) => {
                   itemDescription: item.description,
                   itemStatus: item.status,
                   warehouseName: checkWarehouseName(item.warehouse_name),
-                  itemQuantity: item.quantity
+                  itemQuantity: item.quantity,
                 }}
               >
                 <img
@@ -247,12 +250,10 @@ const InventoryList = (props) => {
               </Link>
             </div>
           </div>
-            ))}
-
+        ))}
       </div>
     </>
   );
 };
 
- 
 export default InventoryList;

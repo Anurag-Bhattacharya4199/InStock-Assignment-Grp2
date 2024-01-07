@@ -291,7 +291,7 @@ const EditWarehouse = (props) => {
       {/*-------------------------------*/}
 
       {/* POP-UP */}
-      <div
+      {/* <div
         className={`editWarehouse__confirm-edit-container ${editPopUpClass}`}
       >sourcePage
         <div className="confirm-edit-content">
@@ -300,7 +300,7 @@ const EditWarehouse = (props) => {
             <button className="confirm-edit-content__link--button">Ok</button>
           </Link>
         </div>
-      </div>
+      </div> */}
       <div
         className={`editWarehouse__cancel-edit-container ${cancelEditPopUpClass}`}
       >

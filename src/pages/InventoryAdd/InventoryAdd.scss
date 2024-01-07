@@ -5,7 +5,7 @@
   margin: $mobile-margin;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
 
   position: relative;
   top: -80px;
@@ -16,8 +16,9 @@
   }
 
   @include desktop {
-    margin: $desktop-margin;
     top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
   }
 
   &__form {
@@ -25,25 +26,34 @@
       border-bottom: 0.063rem solid $cloud;
     }
 
-    &-itemDetails, &-itemAvailability {
+    &-itemDetails,
+    &-itemAvailability {
       padding: $mobile-margin;
     }
 
-    &-itemName, &-description, &-category, &-status, &-qty, &-warehouse {
+    &-itemName,
+    &-description,
+    &-category,
+    &-status,
+    &-qty,
+    &-warehouse {
       display: flex;
       flex-direction: column;
     }
 
-    &-itemNameInp, &-descriptionInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
+    &-itemNameInp,
+    &-descriptionInp,
+    &-categoryOptions,
+    &-qtyInput,
+    &-warehouseOptions {
       //height: 26px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
       border: 1px solid $cloud;
       font-family: $font-regular;
-      &:active       
-      {
-        border-color: $instock-indigo;  
+      &:active {
+        border-color: $instock-indigo;
       }
     }
 
@@ -61,15 +71,15 @@
       padding: $mobile-margin;
     }
 
-    &-cancelBtn, &-addBtn {
+    &-cancelBtn,
+    &-addBtn {
       height: 36px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
       border-color: $slate;
       width: 47%;
-      &:hover 
-      {
+      &:hover {
         cursor: pointer;
       }
     }
@@ -109,14 +119,14 @@
   display: none;
 }
 
-.true{
+.true {
   display: flex;
 }
 
 @include tablet {
   .addInventoryItem {
     margin: $tablet-margin;
-    &__header{
+    &__header {
       &-info {
         justify-content: start;
         padding-left: $tablet-margin;
@@ -151,29 +161,33 @@
         padding-bottom: $tablet-margin;
       }
 
-      &-itemNameInp, &-categoryOptions, &-qtyInput, &-warehouseOptions {
+      &-itemNameInp,
+      &-categoryOptions,
+      &-qtyInput,
+      &-warehouseOptions {
         height: 38px;
         width: auto;
         font-family: $font-regular;
       }
-      &-descriptionInp{
+      &-descriptionInp {
         width: auto;
         font-family: $font-regular;
-        padding-top:9px;
+        padding-top: 9px;
       }
 
       &-buttons {
         justify-content: flex-end;
       }
 
-      &-cancelBtn, &-addBtn {
+      &-cancelBtn,
+      &-addBtn {
         height: 36px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
         border-radius: 20px;
         border: 1px solid $cloud;
         width: auto;
-        @include tablet{
+        @include tablet {
           height: 38px;
         }
       }

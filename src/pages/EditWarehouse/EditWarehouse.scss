@@ -233,6 +233,7 @@
 
 @include tablet {
   .editWarehouse {
+    margin: 0px 32px;
     top: -105px;
     &__header {
       &-info {
@@ -311,8 +312,9 @@
 
 @include desktop {
   .editWarehouse {
-    margin: $desktop-margin;
     top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
   }
 }
 

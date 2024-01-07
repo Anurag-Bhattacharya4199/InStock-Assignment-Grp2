@@ -48,7 +48,7 @@
       &:active {
         border-color: $instock-indigo;
       }
-}
+    }
 
     &-buttons {
       overflow: hidden;
@@ -181,5 +181,7 @@
   .addWarehouse {
     margin: $desktop-margin;
     top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
   }
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const PostEditInventory = async (
+export const PatchEditInventory = async (
   itemId,
   warehouseId,
   itemName,
@@ -19,7 +19,7 @@ export const PostEditInventory = async (
     quantity: itemQuantity,
   };
   try {
-    axios.patch(`http://localhost:8080/inventories/${editItem.id}`, editItem);
+    axios.patch(`${API_BASE_URL}/inventories/${editItem.id}`, editItem);
   } catch (e) {
     console.log(e);
   }
@@ -50,7 +50,7 @@ export const postWarehouse = async (
     contact_email: emailVal,
   };
   try {
-    axios.post(API_BASE_URL, newWarehouse, postHeader);
+    axios.post(`${API_BASE_URL}/warehouses`, newWarehouse, postHeader);
   } catch (e) {
     console.log(e);
   }
@@ -74,7 +74,7 @@ export const postInventory = async (
   };
 
   try {
-    axios.post("http://localhost:8080/inventories", newItem, {
+    axios.post(`${API_BASE_URL}/inventories`, newItem, {
       "Content-Type": "application/json",
     });
   } catch (e) {
@@ -82,4 +82,4 @@ export const postInventory = async (
   }
 };
 
-export const API_BASE_URL = "http://localhost:8080/warehouses/";
+export const API_BASE_URL = "http://localhost:8080";

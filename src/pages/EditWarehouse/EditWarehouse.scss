@@ -10,9 +10,8 @@
   position: relative;
   top: -70px;
   background-color: #fff;
- 
+
   // POP UP
-  &__confirm-edit-container,
   &__cancel-edit-container {
     display: none;
     width: 100vw;
@@ -20,20 +19,28 @@
     position: fixed;
     top: 0;
     left: 0;
+    background-color: $slate;
+    opacity: 0.8;
 
     // GOING BACK TO PAGE LINK
-    .confirm-edit-content,
     .cancel-edit-content {
-      max-width: 400px;
+      max-width: 600px;
+      height: 100px;
       background-color: $instock-black;
       opacity: 1;
       color: $white;
       padding: 16px;
+      opacity: 1;
 
+      &__button-container {
+        display: flex;
+        gap: 2px;
+      }
       // LINK
-      &__link {
+      .cancel-edit-link {
         display: flex;
         justify-content: center;
+        gap: 5px;
         text-decoration: none;
         &--button {
           width: 80px;
@@ -42,12 +49,28 @@
     }
     .cancel-edit-content {
       .cancel-edit-link {
-        .cancel-edit-button {
+        .cancel-yes-button {
           width: 80px;
+          height: 38px;
+          border-radius: 20px;
+          outline-width: 0px;
+          border-width: 1px;
+        }
+        .cancel-yes-button:hover {
+          background-color: red;
+          color: $white;
         }
       }
-      .cancel-edit-button {
+      .cancel-no-button {
         width: 80px;
+        height: 38px;
+        border-radius: 20px;
+        outline-width: 0px;
+        border-width: 1px;
+      }
+      .cancel-no-button:hover {
+        background-color: $instock-indigo;
+        color: $white;
       }
     }
   }
@@ -196,7 +219,8 @@
     }
     // DYNAMIC CLASS
     .disabled {
-      background-color: gray;
+      background-color: $slate;
+      border-color: $slate;
     }
   }
 }
@@ -210,7 +234,6 @@
 @include tablet {
   .editWarehouse {
     top: -93.5px;
-    
 
     &__header {
       &-info {
@@ -273,6 +296,10 @@
         border: 1px solid $cloud;
         width: auto;
         outline: none;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
 
       &-addBtn {

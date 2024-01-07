@@ -27,6 +27,8 @@
 
         &--sort-icon {
           height: 16px;
+
+          cursor: pointer;
         }
       }
       // CATEGORY
@@ -306,6 +308,10 @@
       padding: 0;
       margin: 0;
       line-height: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     // MEDIA - TABLET

@@ -25,7 +25,7 @@ function WareHouseDetailPage() {
 
   const fetchWarehouseDetails = () => {
     axios
-      .get(`${API_BASE_URL}${id}`)
+      .get(`${API_BASE_URL}/warehouses/${id}`)
       .then((response) => {
         setWarehouse(response.data);
 
@@ -39,7 +39,7 @@ function WareHouseDetailPage() {
 
   const fetchInventoryForWarehouse = () => {
     axios
-      .get(`${API_BASE_URL}${id}/inventories`)
+      .get(`${API_BASE_URL}/warehouses/${id}/inventories`)
       .then((response) => {
         setWarehouseInventory(response.data);
         setHasLoaded2(true);
@@ -69,7 +69,7 @@ function WareHouseDetailPage() {
   const handleDeleteConfirmation = () => {
     // Make a DELETE request to delete the warehouse
     axios
-      .delete(`http://localhost:8080/inventories/${deleteInventoryID}`)
+      .delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
       .then(() => {
         console.log(
           `Successfully deleted inventory item with ID: ${deleteInventoryID}`

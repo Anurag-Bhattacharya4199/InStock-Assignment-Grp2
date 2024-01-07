@@ -5,12 +5,12 @@
 .header {
   background-color: $graphite;
   padding: 24px 16px;
-  height:152px;
+  height: 152px;
 
   @include tablet {
     height: 138px;
   }
- 
+
   &__content {
     .header-logo-container {
       display: flex;
@@ -51,11 +51,14 @@
           font-size: 14px;
         }
       }
-      .active {
+      .active-warehouse,
+      .active-inventory {
         background-color: $instock-black;
+        color: #fff;
       }
       &__link:hover {
         background-color: $instock-black;
+        color: #fff;
       }
     }
   }
@@ -68,6 +71,7 @@
   }
   &__content {
     @include desktop {
+      width: 1020px;
       margin: auto;
     }
   }

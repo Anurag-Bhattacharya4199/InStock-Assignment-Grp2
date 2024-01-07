@@ -148,7 +148,7 @@ function InventoryAdd() {
 
   const fetchWarehouseList = () => {
     axios
-      .get(API_BASE_URL)
+    .get(`${API_BASE_URL}/warehouses`)
       .then((response) => {
         const warehouseData = response.data;
         setWarehouses(warehouseData);

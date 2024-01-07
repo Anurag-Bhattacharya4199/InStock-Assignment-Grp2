@@ -39,7 +39,7 @@ function SearchHeader(props) {
 
   return (
     <>
-      <header className={`main${checkTitle}`}>
+      <header className={`main ${checkTitle}`}>
         <div className="main__title--wrapper">
           <Link
             to={pageSource}

@@ -5,14 +5,14 @@
   margin: $mobile-margin;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0px 3px 5px 0 rgba(19,24,44,0.1);
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
   position: relative;
-  top:-77px;
+  top: -77px;
 
   &__info {
     padding: $mobile-margin;
     border-bottom: 1px solid $cloud;
-    
+
     &-headers {
       color: $slate;
       margin-bottom: 0;
@@ -27,16 +27,17 @@
       padding-top: 2rem;
     }
 
-    &-column--left, &-column--right {
+    &-column--left,
+    &-column--right {
       width: 50%;
     }
 
-    &-address{
+    &-address {
       padding-top: 0;
-      &--new-line{
-        display:none;
-        @include tablet{
-          display:flex;
+      &--new-line {
+        display: none;
+        @include tablet {
+          display: flex;
         }
       }
     }
@@ -51,8 +52,8 @@
 @include tablet {
   .warehouseDetails {
     margin: $tablet-margin;
-    top:-137px;
-    
+    top: -137px;
+
     &__info {
       padding-left: $tablet-margin;
       padding-right: $tablet-margin;
@@ -86,8 +87,9 @@
 
 @include desktop {
   .warehouseDetails {
-    margin: $desktop-margin;
     top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
     &__info {
       &-column {
         &--left {

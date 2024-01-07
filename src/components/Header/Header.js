@@ -1,7 +1,27 @@
 import brandLogo1 from "../../assets/logos/InStock-Logo_1x.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./Header.scss";
 const Header = () => {
+  let location = useLocation();
+
+  const getActiveWarehouseClass = () => {
+    // ACTIVE WAREHOUSE CLASS
+    if (location.pathname === "/") {
+      return "active-warehouse";
+    }
+    // ACTIVE WAREHOUSE CLASS
+    if (location.pathname.split("/").includes("warehouses")) {
+      return "active-warehouse";
+    }
+  };
+
+  const getActiveInventoryClass = () => {
+    // ACTIVE INVENTORY CLASS
+    if (location.pathname.split("/").includes("inventories")) {
+      return "active-inventory";
+    }
+  };
+
   return (
     <div className="header">
       <div className="header__content">
@@ -13,28 +33,16 @@ const Header = () => {
           />
         </div>
         <nav className="header-links-container">
-          {/* <NavLink to="/" className="header-links-container__link> */}
           <NavLink
             to="/"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? "pending header-links-container__link"
-                : isActive
-                ? "active header-links-container__link "
-                : "header-links-container__link"
-            }
+            className={` ${getActiveWarehouseClass()}
+            header-links-container__link`}
           >
             warehouse
           </NavLink>
           <NavLink
             to="/inventories"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? "pending header-links-container__link"
-                : isActive
-                ? "active header-links-container__link "
-                : "header-links-container__link"
-            }
+            className={` ${getActiveInventoryClass()}   header-links-container__link`}
           >
             Inventory
           </NavLink>

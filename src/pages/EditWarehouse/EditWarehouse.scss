@@ -233,7 +233,7 @@
 
 @include tablet {
   .editWarehouse {
-    top: -93.5px;
+    top: -105px;
 
     &__header {
       &-info {
@@ -313,7 +313,7 @@
 @include desktop {
   .editWarehouse {
     margin: $desktop-margin;
-    top: -200px;
+    top: -229px;
   }
 }
 

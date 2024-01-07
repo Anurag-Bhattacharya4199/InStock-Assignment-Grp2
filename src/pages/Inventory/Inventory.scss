@@ -11,12 +11,12 @@
 
     @include tablet {
         margin: $tablet-margin;
-        top:-150px;
+        top:-137px;
     }
 
     @include desktop {
         margin: $desktop-margin;
-        top: -200px;
+        top: -228px;
     }
 }
 

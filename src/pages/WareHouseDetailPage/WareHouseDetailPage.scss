@@ -51,7 +51,7 @@
 @include tablet {
   .warehouseDetails {
     margin: $tablet-margin;
-    top:-112px;
+    top:-137px;
     
     &__info {
       padding-left: $tablet-margin;
@@ -87,7 +87,7 @@
 @include desktop {
   .warehouseDetails {
     margin: $desktop-margin;
-    top: -200px;
+    top: -229px;
     &__info {
       &-column {
         &--left {

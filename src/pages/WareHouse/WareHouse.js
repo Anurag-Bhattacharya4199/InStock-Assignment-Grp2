@@ -62,7 +62,6 @@ function WareHouse() {
   };
 
   const handleSearch = (searchTerm) => {
-    // console.log('Search term for warehouse:', searchTerm);
     setSearchTerm(searchTerm);
   };
 
@@ -83,8 +82,6 @@ function WareHouse() {
       field.includes(searchTerm.toLowerCase())
     );
   });
-
-  // console.log(filteredWarehouses);
 
   if (!hasLoaded) {
     return null;

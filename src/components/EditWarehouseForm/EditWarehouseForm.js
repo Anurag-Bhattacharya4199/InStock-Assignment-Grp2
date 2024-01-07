@@ -23,7 +23,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setWarehouseName(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -48,7 +47,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setAddress(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -73,7 +71,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setCity(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -98,7 +95,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setCountry(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -126,7 +122,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setContactName(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -151,7 +146,6 @@ const EditWarehouseForm = (props) => {
               onChange={(event) => {
                 props.setPosition(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -178,12 +172,10 @@ const EditWarehouseForm = (props) => {
                 props.hanldePhoneNumberErrorMessage(event);
                 props.setPhoneNumber(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
               onKeyUp={(event) => {
                 props.handlePhoneNumberFormate();
                 props.validatePhoneNumber(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}
@@ -209,7 +201,6 @@ const EditWarehouseForm = (props) => {
                 props.hanldeEmailErrorMessage(event);
                 props.setEmail(event.target.value);
                 props.handleInputValidation(event);
-                // handleSaveButton();
               }}
             />
             {/* ERROR MESSAGE */}

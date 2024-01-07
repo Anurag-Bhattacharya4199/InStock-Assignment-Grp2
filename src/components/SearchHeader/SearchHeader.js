@@ -8,7 +8,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 // This header can be used for the WareHouseList component and the WareHouseInventoryList component
 function SearchHeader(props) {
   const { id } = useParams();
-
   const [checkSearch, setCheckSearch] = useState("display-none");
   const [checkEdit, setCheckEdit] = useState("display-none");
   const [checkTitle, setCheckTitle] = useState("");
@@ -31,7 +30,6 @@ function SearchHeader(props) {
       setPageSource(pageSource);
     }
 
-    // console.log('Props in SearchHeader:', props);
   }, []);
 
   const handleSearchInputChange = (event) => {

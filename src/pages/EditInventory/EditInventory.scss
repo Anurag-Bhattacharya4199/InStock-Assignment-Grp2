@@ -74,7 +74,6 @@
             &__avail {
                 display: flex;
                 flex-direction: column;
-
                 padding: $mobile-margin;
 
                 @include tablet {
@@ -100,9 +99,8 @@
             }
         }
         &__buttons{
-            width:auto;
             display: flex;
-            justify-content: space-evenly;
+            justify-content: flex-end;
             background-color: $light-grey;
             padding: $mobile-margin 0;
             
@@ -112,8 +110,13 @@
                 padding-right: $mobile-margin;
                 border-radius: 20px;
                 border: 1px solid $cloud;
-                width: 139px;
+                width: auto;
                 background-color: $white;
+                margin-right: $mobile-margin ;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
             &--add{
                 background-color: $instock-indigo;
@@ -123,9 +126,6 @@
     }
 }
 
-.true{
-
-}
 .false{
     display:none;
 }
@@ -134,9 +134,8 @@
     display: none;
     font-size: 13px;
   
-
   &--invalid-input {
     display: inline-block;
     color: $red;
   }
-}
+} 

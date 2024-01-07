@@ -1,9 +1,14 @@
-import './DeleteModal.scss';
-import close from '../../assets/icons/close-24px.svg';
+import "./DeleteModal.scss";
+import close from "../../assets/icons/close-24px.svg";
 
-function DeleteModal({ handleCloseDeleteComponent, warehouseName, handleDeleteConfirmation, inventoryName,
-    itemType }) {
-
+function DeleteModal({
+  handleCloseDeleteComponent,
+  warehouseName,
+  handleDeleteConfirmation,
+  inventoryName,
+  itemType,
+}) {
+  
     // Close the delete component on cancel and x
     const handleCancel = () => {
         handleCloseDeleteComponent(); 
@@ -45,4 +50,4 @@ function DeleteModal({ handleCloseDeleteComponent, warehouseName, handleDeleteCo
     )
 }
 
-export default DeleteModal
+export default DeleteModal;

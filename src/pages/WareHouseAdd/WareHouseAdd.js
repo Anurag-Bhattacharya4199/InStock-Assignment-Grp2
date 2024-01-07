@@ -47,7 +47,6 @@ function WareHouseAdd() {
     // IF NON-NUMBER IN VALUE
     if (phoneNumberArray.includes("(" || ")" || "+" || " " || "-")) {
       setMaxCharacter(17);
-
       return;
     }
   };
@@ -356,7 +355,7 @@ function WareHouseAdd() {
                 form="phoneNum"
                 value={phoneNum}
                 onChange={handleChangePhoneNum}
-                onKeyUp={(event) => {
+                onKeyUp={() => {
                   handlePhoneNumberFormate();
                 }}
               />

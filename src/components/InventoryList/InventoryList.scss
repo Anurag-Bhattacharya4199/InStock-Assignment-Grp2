@@ -65,9 +65,6 @@
     box-sizing: border-box;
     border-bottom: 1px solid #bdc5d5;
 
-    @include tablet {
-    }
-
     // INVENTORY-ITEM && CATEGORY CONTAINER
     &__inventory-and-category-container {
       flex: 50%;

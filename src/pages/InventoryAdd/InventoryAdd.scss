@@ -46,7 +46,6 @@
     &-categoryOptions,
     &-qtyInput,
     &-warehouseOptions {
-      //height: 26px;
       padding-left: $mobile-margin;
       padding-right: $mobile-margin;
       border-radius: 20px;
@@ -125,17 +124,6 @@
 
 @include tablet {
   .addInventoryItem {
-    &__header {
-      &-info {
-        justify-content: start;
-        padding-left: $tablet-margin;
-      }
-
-      &-title {
-        padding-left: $tablet-margin;
-      }
-    }
-
     &__form {
       padding-top: $tablet-margin;
       &-mainInfo {
@@ -197,9 +185,3 @@
     }
   }
 }
-
-// @include desktop {
-//   .addInventoryItem {
-//     margin: $desktop-margin;
-//   }
-// }

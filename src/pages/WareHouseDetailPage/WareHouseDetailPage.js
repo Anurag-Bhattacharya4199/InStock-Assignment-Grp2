@@ -52,7 +52,7 @@ function WareHouseDetailPage() {
   useEffect(() => {
     fetchWarehouseDetails();
     fetchInventoryForWarehouse();
-  }, []);
+  });
 
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);

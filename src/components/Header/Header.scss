@@ -63,14 +63,14 @@
     }
   }
   &__content {
-    @include mixins.tablet {
+    @include tablet {
       display: flex;
       justify-content: space-between;
       padding: 0 32px 32px 32px;
     }
   }
   &__content {
-    @include mixins.desktop {
+    @include desktop {
       //max-width: 1040px;
       margin: auto;
     }

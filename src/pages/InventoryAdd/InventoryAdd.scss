@@ -116,7 +116,16 @@
 @include tablet {
   .addInventoryItem {
     margin: $tablet-margin;
-    top: -150px;
+    &__header{
+      &-info {
+        justify-content: start;
+        padding-left: $tablet-margin;
+      }
+
+      &-title {
+        padding-left: $tablet-margin;
+      }
+    }
 
     &__form {
       padding-top: $tablet-margin;
@@ -147,7 +156,6 @@
         width: auto;
         font-family: $font-regular;
       }
-      
       &-descriptionInp{
         width: auto;
         font-family: $font-regular;
@@ -159,12 +167,15 @@
       }
 
       &-cancelBtn, &-addBtn {
-        height: 38px;
+        height: 36px;
         padding-left: $mobile-margin;
         padding-right: $mobile-margin;
         border-radius: 20px;
         border: 1px solid $cloud;
         width: auto;
+        @include tablet{
+          height: 38px;
+        }
       }
 
       &-addBtn {
@@ -177,6 +188,5 @@
 @include desktop {
   .addInventoryItem {
     margin: $desktop-margin;
-    top: -200px;
   }
 }

@@ -6,6 +6,11 @@
     flex-direction: column;
     color: $instock-black;
 
+    @include tablet {
+        padding-left: 36px;
+    }
+
+
     &__exit {
         align-self: flex-end;
         background-color: white;
@@ -19,11 +24,25 @@
         font-family: $font-bold;
     }
 
+    &__body {
+
+        @include tablet {
+            margin: 16px 78px 16px 0;
+
+        }
+    }
+
     &__buttons {
         align-items: center;
         padding-top: 300px;
         width: 100%;
         display: flex;
+
+        @include tablet  {
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 0 20px 0;
+        }
 
         &--cancel {
             font-family: $font-regular;
@@ -33,6 +52,12 @@
             margin-left:16px;
             width: 45%;
             padding: 6px 0;
+
+            @include tablet {
+                width: 10%;
+                padding: 3px 0;
+            }
+
         }
 
         &--delete {
@@ -44,33 +69,15 @@
             margin-left:16px;
             width:45%;
             padding: 6px 0;
-        }
-    }
-}
 
-@include tablet {
-    .DeleteWarehouseCard {
-        padding-left: 36px;
-
-        &__body {
-            margin: 16px 78px 16px 0;
-        }
-
-        &__buttons {
-            display: flex;
-            justify-content: flex-end;
-            padding: 0 0 20px 0;
-
-            &--cancel {
-                width: 10%;
-                padding: 3px 0;
-            }
-
-            &--delete {
+            @include tablet {
                 width: 10%;
                 padding: 3px 0;
                 margin:0 36px 0 16px;
             }
         }
+
     }
+
+
 }

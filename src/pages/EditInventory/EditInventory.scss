@@ -114,6 +114,10 @@
                 border: 1px solid $cloud;
                 width: 139px;
                 background-color: $white;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
             &--add{
                 background-color: $instock-indigo;

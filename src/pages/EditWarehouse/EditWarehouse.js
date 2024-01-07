@@ -1,17 +1,14 @@
 import "./EditWarehouse.scss";
-import ArroWBack from "../../assets/icons/arrow_back-24px.svg";
-import ErrorLogo from "../../assets/icons/error-24px.svg";
 import validator from "validator";
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-
+import EditWarehouseForm from "../../components/EditWarehouseForm/EditWarehouseForm";
 const EditWarehouse = (props) => {
   const API_BASE_URL = "http://localhost:8080/warehouses/";
   const { id } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
   // SET REDIRECT LINK
   const [pageSource, setPageSource] = useState("/");
   // WAREHOUSE DATA
@@ -51,11 +48,10 @@ const EditWarehouse = (props) => {
   );
 
   // BUTTON DISABLE
-  const [disableButton, setDisableButton] = useState(true);
-  const [disableButtonClass, setDisableButtonClass] = useState("disabled");
+  const [disableButton, setDisableButton] = useState(false);
+  const [disableButtonClass, setDisableButtonClass] = useState("");
 
   // POP UP CLASS
-  const [editPopUpClass, setEditPopUpClass] = useState("");
   const [cancelEditPopUpClass, setCancelEditPopUpClass] = useState("");
   // PHONE NUMBER MAX-CHARACTER LENGTH
   const [maxCharater, setMaxCharacter] = useState(10);
@@ -133,35 +129,67 @@ const EditWarehouse = (props) => {
   };
 
   // ENABLE SAVE BUTTON IN EDIT WAREHOUSE COMPONENT
-  const handleSaveButton = () => {
-    if (validator.isMobilePhone(phoneNumber) && validator.isEmail(email)) {
-      setDisableButton(false);
-      setDisableButtonClass("");
-    } else {
+  useEffect(() => {
+    const phoneRegex = /\+1\s\(\d\d\d\)\s\d\d\d-\d\d\d\d/;
+    console.log("yes");
+    if (!phoneNumber.match(phoneRegex)) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      console.log("yes");
+      return;
+    }
+    if (!validator.isEmail(email)) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      console.log("yes");
+      return;
+    }
+    if (!warehouseName) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      console.log("warehouse name");
+      return;
+    }
+    if (!address) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      return;
+    }
+    if (!city) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      return;
+    }
+    if (!country) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      return;
+    }
+    if (!contactName) {
+      setDisableButton(true);
+      setDisableButtonClass("disabled");
+      return;
+    }
+    if (!position) {
       setDisableButton(true);
       setDisableButtonClass("disabled");
       return;
     }
 
-    if (
-      !warehouseName ||
-      !address ||
-      !country ||
-      !city ||
-      !contactName ||
-      !position ||
-      !phoneNumber ||
-      !email
-    ) {
-      setDisableButton(true);
-      setDisableButtonClass("disabled");
-      return;
-    } else {
-      setDisableButton(false);
-      setDisableButtonClass("");
-    }
-    // DIS/ENABLE SAVE BUTTON
-  };
+    // ENABLE BUTTON
+    setDisableButton(false);
+    setDisableButtonClass("");
+  }, [
+    warehouseName,
+    address,
+    city,
+    country,
+    contactName,
+    position,
+    phoneNumber,
+    email,
+  ]);
+
   // VALIDATE INPUT
   const handleInputValidation = (event) => {
     if (event.target.id === "warehouse-name") {
@@ -288,30 +316,24 @@ const EditWarehouse = (props) => {
 
   return (
     <main className={`editWarehouse `}>
-      {/*-------------------------------*/}
-
       {/* POP-UP */}
       <div
-        className={`editWarehouse__confirm-edit-container ${editPopUpClass}`}
-      >sourcePage
-        <div className="confirm-edit-content">
-          <h3>Warehouse edit Successfully</h3>
-          <Link to={`${pageSource}`} className="confirm-edit-content__link">
-            <button className="confirm-edit-content__link--button">Ok</button>
-          </Link>
-        </div>
-      </div>
-      <div
         className={`editWarehouse__cancel-edit-container ${cancelEditPopUpClass}`}
+        onClick={(event) => {
+          event.stopPropagation();
+          setCancelEditPopUpClass("");
+        }}
       >
         <div className="cancel-edit-content">
-          <h3>Are you sure want to cancel?</h3>
+          <h3 className="cancel-edit-content__header">
+            Are you sure want to cancel?
+          </h3>
           <div className="cancel-edit-content__button-container">
             <Link to={`${pageSource}`} className="cancel-edit-link">
-              <button className="cancel-edit-button">Yes</button>
+              <button className="cancel-yes-button">Yes</button>
             </Link>
             <button
-              className="cancel-edit-button"
+              className="cancel-no-button"
               type="button"
               onClick={() => {
                 setCancelEditPopUpClass("");
@@ -323,268 +345,56 @@ const EditWarehouse = (props) => {
         </div>
       </div>
       {/*-------------------------------*/}
-      {/* <section className="editWarehouse__header">
-        <div className="editWarehouse__header-info">
-          <Link to={`${pageSource}`}>
-            <img
-              src={ArroWBack}
-              alt="Go Back"
-              className="editWarehouse__header-arrowback"
-            />
-          </Link>
-          <h1 className="editWarehouse__header-title">Edit Warehouse</h1>
-        </div>
-      </section> */}
       <SearchHeader
         title="Edit Warehouse"
         pageSource={location.state.pageSource}
       />
-      <form
-        className="editWarehouse__form"
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}
-      >
-        <div className="editWarehouse__form-mainInfo">
-          <div className="editWarehouse__form-warehouseDetails">
-            <h2 className="editWarehouse__form-header">Warehouse Details</h2>
-            <article className="editWarehouse__form-warehouseName">
-              <label className="p-medium">Warehouse Name</label>
-              <input
-                id="warehouse-name"
-                className={`${warehouseErrorState} editWarehouse__form-warehouse_nameInp`}
-                value={warehouseName}
-                placeholder="Warehouse Name"
-                onChange={(event) => {
-                  setWarehouseName(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${warehouseError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                This field is required
-              </span>
-            </article>
-            <article className="editWarehouse__form-streetAddress">
-              <label className="p-medium">Street Address</label>
-              <input
-                id="address"
-                className={`${addressErrorState} editWarehouse__form-warehouse_streetaddressInp`}
-                value={address}
-                placeholder="Street Address"
-                onChange={(event) => {
-                  setAddress(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${addressError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                This field is required
-              </span>
-            </article>
-            <article className="editWarehouse__form-city">
-              <label className="p-medium">City</label>
-              <input
-                id="city"
-                className={`${cityErrorState} editWarehouse__form-warehouse_cityInp`}
-                value={city}
-                placeholder="City"
-                onChange={(event) => {
-                  setCity(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${cityError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                This field is required
-              </span>
-            </article>
-            <article className="editWarehouse__form-country">
-              <label className="p-medium">Country</label>
-              <input
-                id="country"
-                className={`${countryErrorState} editWarehouse__form-warehouse_countryInp`}
-                value={country}
-                placeholder="Country"
-                onChange={(event) => {
-                  setCountry(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${countryError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                This field is required
-              </span>
-            </article>
-          </div>
-          <div className="editWarehouse__form-contactDetails">
-            <h2 className="editWarehouse__form-header">Contact Details</h2>
-            <article className="editWarehouse__form-contactName">
-              <label className="p-medium">Contact Name</label>
-              <input
-                id="contact-name"
-                className={`${contactNameErrorState} editWarehouse__form-warehouse_contactNameInp`}
-                value={contactName}
-                placeholder="Contact Name"
-                onChange={(event) => {
-                  setContactName(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${contactNameError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                This field is required
-              </span>
-            </article>
-            <article className="editWarehouse__form-position">
-              <label className="p-medium">Position</label>
-              <input
-                id="position"
-                className={`${positionErrorState} editWarehouse__form-warehouse_positionInp`}
-                value={position}
-                placeholder="position"
-                onChange={(event) => {
-                  setPosition(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${positionError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                This field is required
-              </span>
-            </article>
-            <article className="editWarehouse__form-phoneNum">
-              <label className="p-medium">Phone Number</label>
-              <input
-                id="phone-number"
-                className={`${phoneNumberErrorState} editWarehouse__form-warehouse_phonenumInp`}
-                value={phoneNumber}
-                maxLength={maxCharater}
-                placeholder="Phone Number"
-                onChange={(event) => {
-                  hanldePhoneNumberErrorMessage(event);
-                  setPhoneNumber(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-                onKeyUp={(event) => {
-                  handlePhoneNumberFormate();
-                  validatePhoneNumber(event);
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${phoneNumberError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                {phoneNumberErrorMessage}
-              </span>
-            </article>
-            <article className="editWarehouse__form-email">
-              <label className="p-medium">Email</label>
-              <input
-                id="email"
-                className={`${emailErrorState} editWarehouse__form-warehouse_emailInp`}
-                value={email}
-                placeholder="Email"
-                onChange={(event) => {
-                  hanldeEmailErrorMessage(event);
-                  setEmail(event.target.value);
-                  handleInputValidation(event);
-                  handleSaveButton();
-                }}
-              />
-              {/* ERROR MESSAGE */}
-              <span
-                className={`${emailError} editWarehouse__form-warehouse_error-msg`}
-              >
-                <img
-                  className="error-logo"
-                  src={ErrorLogo}
-                  alt="input-error-logo"
-                />
-                {emailErrorMessage}
-              </span>
-            </article>
-          </div>
-        </div>
-
-        <div className="editWarehouse__form-buttons">
-          <button
-            className="editWarehouse__form-cancelBtn"
-            type="button"
-            onClick={() => {
-              setCancelEditPopUpClass("cancel-edit-pop-up-display");
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            disabled={disableButton}
-            className={`editWarehouse__form-addBtn ${disableButtonClass}`}
-            onClick={(event) => {
-              event.preventDefault();
-              handleWarehouseEditPost();
-              alert("Edit warehouse successfully!");
-              navigate(-1);
-            }}
-          >
-            Save
-          </button>
-        </div>
-      </form>
+      <EditWarehouseForm
+        warehouseName={warehouseName}
+        address={address}
+        city={city}
+        country={country}
+        contactName={contactName}
+        position={position}
+        phoneNumber={phoneNumber}
+        email={email}
+        setWarehouseName={setWarehouseName}
+        setAddress={setAddress}
+        setCity={setCity}
+        setCountry={setCountry}
+        setContactName={setContactName}
+        setPosition={setPosition}
+        setPhoneNumber={setPhoneNumber}
+        setEmail={setEmail}
+        warehouseError={warehouseError}
+        addressError={addressError}
+        cityError={cityError}
+        countryError={countryError}
+        positionError={positionError}
+        contactNameError={contactNameError}
+        phoneNumberError={phoneNumberError}
+        emailError={emailError}
+        warehouseErrorState={warehouseErrorState}
+        addressErrorState={addressErrorState}
+        cityErrorState={cityErrorState}
+        countryErrorState={countryErrorState}
+        contactNameErrorState={contactNameErrorState}
+        positionErrorState={positionErrorState}
+        phoneNumberErrorState={phoneNumberErrorState}
+        emailErrorState={emailErrorState}
+        phoneNumberErrorMessage={phoneNumberErrorMessage}
+        emailErrorMessage={emailErrorMessage}
+        validatePhoneNumber={validatePhoneNumber}
+        handlePhoneNumberFormate={handlePhoneNumberFormate}
+        handleInputValidation={handleInputValidation}
+        hanldePhoneNumberErrorMessage={hanldePhoneNumberErrorMessage}
+        hanldeEmailErrorMessage={hanldeEmailErrorMessage}
+        handleWarehouseEditPost={handleWarehouseEditPost}
+        disableButton={disableButton}
+        disableButtonClass={disableButtonClass}
+        maxCharater={maxCharater}
+        setCancelEditPopUpClass={setCancelEditPopUpClass}
+      />
     </main>
   );
 };

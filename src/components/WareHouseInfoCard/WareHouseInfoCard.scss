@@ -27,6 +27,10 @@
 
       &--sort-icon {
         height: 16px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -115,6 +119,7 @@
       /* Apply animation on hover */
       &:hover {
         animation: moveRight 0.3s forwards;
+        cursor: pointer;
       }
     }
 
@@ -136,6 +141,10 @@
       background-color: white;
       border: none;
       padding: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &--edit-button {

@@ -27,6 +27,8 @@
 
         &--sort-icon {
           height: 16px;
+
+          cursor: pointer;
         }
       }
       // CATEGORY
@@ -334,8 +336,13 @@
       margin: 0;
       line-height: 0;
 
+
       @include tablet{
         padding: 0;
+      }
+      &:hover {
+        cursor: pointer;
+
       }
     }
 

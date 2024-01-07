@@ -1,11 +1,51 @@
 import "./WareHouseList.scss";
 import WareHouseInfoCard from "../WareHouseInfoCard/WareHouseInfoCard";
 import SortDefault from "../../assets/icons/sort-24px.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../utils/utils";
 
 function WareHouseList(props) {
-  const { warehouses, onSortClick } = props;
+  const { warehouses } = props;
+  const [sortType, setSortType] = useState("");
+  const [orderBy, setOrderBy] = useState("asc");
+  const [sortedWarehouses, setSortedWarehouses] = useState([]);
+
+  const fetchSortedWarehouseList = () => {
+    axios
+      .get(`${API_BASE_URL}/warehouses?sort_by=${sortType}&order_by=${orderBy}`)
+      .then((response) => {
+        const sortedWarehouseData = response.data;
+        setSortedWarehouses(sortedWarehouseData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleSort = (sortBy) => {
+    setOrderBy((prevState) => !prevState);
+
+    if (sortType !== sortBy) {
+      setOrderBy("asc");
+      setSortType(sortBy);
+      console.log(`Sorting by ${sortBy}`);
+    } else {
+      if (orderBy === "asc") {
+        setOrderBy("desc");
+      } else {
+        setOrderBy("asc");
+      }
+    }
+  };
+
+  useEffect(() => {
+    setSortedWarehouses(warehouses);
+  }, [warehouses]);
+
+  useEffect(() => {
+    fetchSortedWarehouseList();
+  }, [sortType, orderBy]);
 
   return (
     <>
@@ -19,7 +59,7 @@ function WareHouseList(props) {
             className="warehouseList-headers__header-container--sort-icon"
             src={SortDefault}
             alt="sort"
-            onClick={onSortClick}
+            onClick={() => handleSort("warehouse_name")}
           />
         </div>
         <div className="warehouseList-headers__header-container">
@@ -30,6 +70,7 @@ function WareHouseList(props) {
             className="warehouseList-headers__header-container--sort-icon"
             src={SortDefault}
             alt="sort"
+            onClick={() => handleSort("city")}
           />
         </div>
         <div className="warehouseList-headers__header-container">
@@ -40,6 +81,7 @@ function WareHouseList(props) {
             className="warehouseList-headers__header-container--sort-icon"
             src={SortDefault}
             alt="sort"
+            onClick={() => handleSort("contact_name")}
           />
         </div>
         <div className="warehouseList-headers__header-container">
@@ -50,6 +92,7 @@ function WareHouseList(props) {
             className="warehouseList-headers__header-container--sort-icon"
             src={SortDefault}
             alt="sort"
+            onClick={() => handleSort("contact_email")}
           />
         </div>
         <div
@@ -63,7 +106,7 @@ function WareHouseList(props) {
       </div>
 
       <div className={`$ WarehouseList`}>
-        {warehouses.map((item) => (
+        {sortedWarehouses.map((item) => (
           <WareHouseInfoCard
             key={item.id}
             warehouse_name={item.warehouse_name}

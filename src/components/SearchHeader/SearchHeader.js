@@ -5,7 +5,7 @@ import editButton from "../../assets/icons/edit-24px.svg";
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
-// This header can be used for the WareHouseList component and the WareHouseInventoryList component
+// This header is used for all pages 
 function SearchHeader(props) {
   const { id } = useParams();
 
@@ -31,9 +31,9 @@ function SearchHeader(props) {
       setPageSource(pageSource);
     }
 
-    // console.log('Props in SearchHeader:', props);
   }, []);
 
+  // Set search term to user input
   const handleSearchInputChange = (event) => {
     const searchTerm = event.target.value;
     props.onSearch(searchTerm);

@@ -4,10 +4,12 @@ import close from '../../assets/icons/close-24px.svg';
 function DeleteModal({ handleCloseDeleteComponent, warehouseName, handleDeleteConfirmation, inventoryName,
     itemType }) {
 
+    // Close the delete component on cancel and x
     const handleCancel = () => {
-        handleCloseDeleteComponent(); // Close the delete component on cancel and x
+        handleCloseDeleteComponent(); 
     };
 
+    //delete item based on origin page (inventory item or warehouse)
     const handleDelete = () => {
         handleDeleteConfirmation(itemType === 'warehouse' ? warehouseName : inventoryName, itemType);
     };

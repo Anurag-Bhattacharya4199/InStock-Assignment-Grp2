@@ -30,12 +30,14 @@ const Inventory = () => {
     fetchInventorylist();
   }, []);
 
+  //Display Delete Modal
   const handleDeleteClick = (id, item_name) => {
     setShowDeletePopup(true);
     setDeleteInventoryID(id);
     setInventorToDelete(item_name);
   };
 
+  //Delete inventory Item and close Delete Modal
   const handleDeleteConfirmation = () => {
     axios
       .delete(`${API_BASE_URL}/inventories/${deleteInventoryID}`)
@@ -52,7 +54,7 @@ const Inventory = () => {
       });
   };
 
-  // to  close delete component using cancel or X
+  //Close delete component using cancel or X
   const handleCloseDeleteComponent = () => {
     setShowDeletePopup(false);
     setDeleteInventoryID(null);

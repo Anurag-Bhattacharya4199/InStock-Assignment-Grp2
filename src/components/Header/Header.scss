@@ -71,7 +71,7 @@
   }
   &__content {
     @include desktop {
-      max-width: 1020px;
+      width: 1020px;
       margin: auto;
     }
   }

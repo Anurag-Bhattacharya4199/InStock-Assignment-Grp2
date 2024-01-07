@@ -131,23 +131,19 @@ const EditWarehouse = (props) => {
   // ENABLE SAVE BUTTON IN EDIT WAREHOUSE COMPONENT
   useEffect(() => {
     const phoneRegex = /\+1\s\(\d\d\d\)\s\d\d\d-\d\d\d\d/;
-    console.log("yes");
     if (!phoneNumber.match(phoneRegex)) {
       setDisableButton(true);
       setDisableButtonClass("disabled");
-      console.log("yes");
       return;
     }
     if (!validator.isEmail(email)) {
       setDisableButton(true);
       setDisableButtonClass("disabled");
-      console.log("yes");
       return;
     }
     if (!warehouseName) {
       setDisableButton(true);
       setDisableButtonClass("disabled");
-      console.log("warehouse name");
       return;
     }
     if (!address) {

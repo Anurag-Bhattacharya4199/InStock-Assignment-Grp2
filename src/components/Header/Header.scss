@@ -51,11 +51,14 @@
           font-size: 14px;
         }
       }
-      .active {
+      .active-warehouse,
+      .active-inventory {
         background-color: $instock-black;
+        color: #fff;
       }
       &__link:hover {
         background-color: $instock-black;
+        color: #fff;
       }
     }
   }

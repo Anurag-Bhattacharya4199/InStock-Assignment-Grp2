@@ -25,13 +25,16 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__content">
-        <div className="header-logo-container">
-          <img
+        <NavLink
+            to="/"
+            className="header-logo-container"
+          >
+            <img
             className="header-logo-container__logo"
             src={brandLogo1}
             alt="instock-logo"
           />
-        </div>
+          </NavLink>
         <nav className="header-links-container">
           <NavLink
             to="/"

@@ -125,7 +125,6 @@
 
 @include tablet {
   .addInventoryItem {
-    margin: $tablet-margin;
     &__header {
       &-info {
         justify-content: start;
@@ -199,8 +198,8 @@
   }
 }
 
-@include desktop {
-  .addInventoryItem {
-    margin: $desktop-margin;
-  }
-}
+// @include desktop {
+//   .addInventoryItem {
+//     margin: $desktop-margin;
+//   }
+// }

@@ -7,12 +7,10 @@ const Header = () => {
   const getActiveWarehouseClass = () => {
     // ACTIVE WAREHOUSE CLASS
     if (location.pathname === "/") {
-      console.log(location.pathname);
       return "active-warehouse";
     }
     // ACTIVE WAREHOUSE CLASS
     if (location.pathname.split("/").includes("warehouses")) {
-      console.log(location.pathname);
       return "active-warehouse";
     }
   };
@@ -20,7 +18,6 @@ const Header = () => {
   const getActiveInventoryClass = () => {
     // ACTIVE INVENTORY CLASS
     if (location.pathname.split("/").includes("inventories")) {
-      console.log(location.pathname);
       return "active-inventory";
     }
   };

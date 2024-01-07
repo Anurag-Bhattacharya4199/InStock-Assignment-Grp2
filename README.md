@@ -12,6 +12,7 @@ Steps to Run Our Full Application
 3) Now that Server Application is running, The Client Application can be found from GitHub Repo: https://github.com/Anurag-Bhattacharya4199/InStock-Assignment-Grp2
 4) To Run Client Application:
    1) To install all packages, run npm i or npm install
-   2) To run Client Application, run command "npm start"
+   2) Don't forget additional packages, such as "validator"
+   3) To run Client Application, run command "npm start"
 
 5) Web Application should be running on a browser

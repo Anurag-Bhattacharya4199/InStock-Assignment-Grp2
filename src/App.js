@@ -1,4 +1,3 @@
-//import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import WareHouseDetailPage from "./pages/WareHouseDetailPage/WareHouseDetailPage";
 import WareHouse from "./pages/WareHouse/WareHouse";

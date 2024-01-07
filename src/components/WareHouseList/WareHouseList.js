@@ -29,7 +29,6 @@ function WareHouseList(props) {
     if (sortType !== sortBy) {
       setOrderBy("asc");
       setSortType(sortBy);
-      console.log(`Sorting by ${sortBy}`);
     } else {
       if (orderBy === "asc") {
         setOrderBy("desc");

@@ -10,7 +10,6 @@ function EditInventory() {
   const location = useLocation();
   const navigate = useNavigate();
   let { id } = useParams();
-  // const [itemId, setItemId] = useState(location.state.itemId);
   const [itemCategory, setItemCategory] = useState(location.state.itemCategory);
   const [itemName, setItemName] = useState(location.state.itemName);
   const [itemDescription, setItemDescription] = useState(
@@ -116,6 +115,8 @@ function EditInventory() {
       return wh.warehouse_name === warehouseName;
     })[0].id;
 
+    // state variables are too slow, so we use tempQuantity 
+    // to send the updated value faster
     let tempQuantity = itemQuantity;
     if (!itemStatusTF) {
       setItemStatus("Out of Stock");
@@ -134,9 +135,20 @@ function EditInventory() {
         itemStatus,
         tempQuantity
       );
-      console.log("isFormValid() ", isFormValid());
       alert(`Changes to ${itemName} has been saved!`);
-      navigate(-1);
+      navigate(-1,
+        {
+          state:{
+            itemId: id,
+            itemCategory: itemCategory,
+            itemName: itemName,
+            itemDescription: itemDescription,
+            itemStatus: itemStatus,
+            warehouseName: warehouseName,
+            itemQuantity: tempQuantity,
+          }
+        }
+        );
     } else {
       return;
     }
@@ -214,7 +226,6 @@ function EditInventory() {
               <select
                 name="category"
                 className="editInv__form__content__details__input"
-                //defaultValue={itemCategory}
                 value={itemCategory}
                 onChange={handleChangeCategory}
               >

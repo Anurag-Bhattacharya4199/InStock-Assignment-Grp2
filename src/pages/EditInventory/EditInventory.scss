@@ -9,17 +9,6 @@
     position: relative;
     top:-90px;
 
-    @include tablet {
-        margin: $tablet-margin;
-        top:-150px;
-    }
-
-    @include desktop {
-        margin: $desktop-margin;
-        top: -200px;
-    }
-
-
     &__form {
         display: flex;
         flex-direction: column;
@@ -33,23 +22,12 @@
             width: 100%;
             flex-direction: column;
 
-            @include tablet {
-                flex-direction: row;
-            }
-
             &__details {
                 display: flex;
                 flex-direction: column;
                 border-bottom: solid 1px $cloud;
                 
                 padding: $mobile-margin;
-
-
-                @include tablet {
-                    border: none;
-                    border-right: solid 1px $cloud;
-                    width: 48%;
-                }
 
                 &--title {
                     margin-bottom: 0;
@@ -74,12 +52,7 @@
             &__avail {
                 display: flex;
                 flex-direction: column;
-
                 padding: $mobile-margin;
-
-                @include tablet {
-                    width: 48%;
-                }
 
                 &--title {
                     margin-bottom: 0;
@@ -93,9 +66,6 @@
                     &--in-stock {
                         padding-right: 30%;
                     }
-
-                    &--out-of-stock {}
-
                 }
             }
         }
@@ -127,9 +97,6 @@
     }
 }
 
-.true{
-
-}
 .false{
     display:none;
 }
@@ -137,10 +104,39 @@
 .errorMsg {
     display: none;
     font-size: 13px;
-  
+    
+    &--invalid-input {
+        display: inline-block;
+        color: $red;
+    }
+}
 
-  &--invalid-input {
-    display: inline-block;
-    color: $red;
-  }
+@include tablet {
+    .editInv {
+        margin: $tablet-margin;
+        top:-150px;
+
+        &__form {
+            &__content {
+                flex-direction: row;
+
+                &__details {
+                    border: none;
+                    border-right: solid 1px $cloud;
+                    width: 48%;
+                }
+
+                &__avail {
+                    width: 48%;
+                }
+            }
+        }
+    }
+}
+
+@include desktop {
+    .editInv {
+        margin: $desktop-margin;
+        top: -200px;
+    }
 }

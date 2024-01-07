@@ -9,20 +9,6 @@
     box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
     position: relative;
     top:-65px;
-
-    
-
-    @include tablet {
-        margin: $tablet-margin;
-        top:-150px;
-    }
-
-    @include desktop {
-        margin: $desktop-margin;
-        top: -200px;
-
-
-    }
 }
 
 .overlay {
@@ -34,12 +20,7 @@
     background-color: white;
     z-index: 1000;
 
-    @include tablet {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
 }
- 
 
 .delete-popup {
     width: 90vw;
@@ -47,8 +28,19 @@
     position: fixed;
     top: 0;
     left: 0;
+}
 
-    @include tablet {
+@include tablet {
+    .warehouse-list {
+        margin: $tablet-margin;
+        top:-150px;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.5);;
+    }
+
+    .delete-popup {
         top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -58,10 +50,16 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         z-index: 1100;
         width: 80%;
+    }
+}
 
+@include desktop {
+    .warehouse-list {
+        margin: $desktop-margin;
+        top: -200px;
     }
 
-    @include desktop{
+    .delete-popup {
         width: 50%;
         top: 40%;
     }

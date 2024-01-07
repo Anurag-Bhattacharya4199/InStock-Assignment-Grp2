@@ -41,7 +41,7 @@ const InventoryList = (props) => {
     setOrderBy((prevState) => !prevState);
     console.log(sortBy);
   
-    if (sortType != sortBy ) {
+    if (sortType !== sortBy ) {
       setOrderBy('asc');
       setSortType(sortBy);
       console.log(`Sorting by ${sortBy}`);

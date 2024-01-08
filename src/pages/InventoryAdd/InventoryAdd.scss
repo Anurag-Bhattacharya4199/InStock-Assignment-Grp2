@@ -1,0 +1,206 @@
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
+
+.addInventoryItem {
+  margin: $mobile-margin;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+
+  position: relative;
+  top: -80px;
+
+  @include tablet {
+    margin: $tablet-margin;
+    top: -137px;
+  }
+
+  @include desktop {
+    top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
+  }
+
+  &__form {
+    &-itemDetails {
+      border-bottom: 0.063rem solid $cloud;
+    }
+
+    &-itemDetails,
+    &-itemAvailability {
+      padding: $mobile-margin;
+    }
+
+    &-itemName,
+    &-description,
+    &-category,
+    &-status,
+    &-qty,
+    &-warehouse {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-itemNameInp,
+    &-descriptionInp,
+    &-categoryOptions,
+    &-qtyInput,
+    &-warehouseOptions {
+      padding-left: $mobile-margin;
+      padding-right: $mobile-margin;
+      border-radius: 20px;
+      border: 1px solid $cloud;
+      font-family: $font-regular;
+
+      &:focus {
+          outline: 0;  
+          border:2px solid $instock-indigo;
+      }
+    }
+
+    &-statusOptions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-buttons {
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $light-grey;
+      padding: $mobile-margin;
+    }
+
+    &-cancelBtn,
+    &-addBtn {
+      height: 36px;
+      padding-left: $mobile-margin;
+      padding-right: $mobile-margin;
+      border-radius: 20px;
+      border-color: $slate;
+      width: 47%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-cancelBtn {
+      background-color: $white;
+    }
+
+    &-addBtn {
+      background-color: $instock-indigo;
+      color: $white;
+    }
+
+    &-invalidInput {
+      border: 1px solid $red;
+    }
+
+    &-errorMsg {
+      display: none;
+      font-size: 13px;
+    }
+
+    &-errorMsgInvalidInput {
+      // display: inline-block;
+      color: $red;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-top: 5px;
+
+
+    }
+
+    &-header {
+      margin-top: 0;
+    }
+
+  }
+}
+
+.p-medium {
+  padding-top: $mobile-margin;
+  font-weight: bold;
+  padding-bottom: 4px;
+}
+
+.false {
+  display: none;
+}
+
+.true {
+  display: flex;
+}
+
+@include tablet {
+  .addInventoryItem {
+    &__form {
+      padding-top: $tablet-margin;
+
+      &-mainInfo {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: $tablet-margin;
+      }
+
+      &-itemDetails {
+        width: 50%;
+        border-bottom: none;
+        border-right: 1px solid $cloud;
+        padding-left: $tablet-margin;
+        padding-right: $tablet-margin;
+        padding-bottom: $tablet-margin;
+        padding-top: 0;
+      }
+
+      &-itemAvailability {
+        width: 50%;
+        padding-left: $tablet-margin;
+        padding-right: $tablet-margin;
+        padding-bottom: $tablet-margin;
+        padding-top: 0;
+      }
+
+      &-itemNameInp,
+      &-categoryOptions,
+      &-qtyInput,
+      &-warehouseOptions {
+        height: 38px;
+        width: auto;
+        font-family: $font-regular;
+      }
+
+      &-descriptionInp {
+        width: auto;
+        font-family: $font-regular;
+        padding-top: 9px;
+      }
+
+      &-buttons {
+        justify-content: flex-end;
+      }
+
+      &-cancelBtn,
+      &-addBtn {
+        height: 36px;
+        padding-left: $mobile-margin;
+        padding-right: $mobile-margin;
+        border-radius: 20px;
+        border: 1px solid $cloud;
+        width: auto;
+
+        @include tablet {
+          height: 38px;
+        }
+      }
+
+      &-addBtn {
+        margin-left: $tablet-margin;
+      }
+    }
+  }
+}

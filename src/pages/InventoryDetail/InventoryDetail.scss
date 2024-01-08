@@ -1,0 +1,123 @@
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/_variables";
+
+.inventoryDetails {
+  margin: $mobile-margin;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+
+  position: relative;
+  top: -77px;
+
+  @include tablet {
+    margin: $tablet-margin;
+    top: -137px;
+  }
+
+  @include desktop {
+    margin: $desktop-margin;
+    top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
+  }
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  margin: $tablet-margin;
+
+  @include tablet {
+    flex-direction: row;
+    padding-bottom: $tablet-margin;
+  }
+
+  &__headers {
+    &--category {
+      margin-bottom: 4px;
+    }
+
+    &--status {
+      margin-bottom: 4px;
+    }
+    &--warehouse {
+      margin-bottom: 4px;
+    }
+  }
+
+  &--text {
+    margin-top: 0;
+  }
+
+  &--left-wrapper {
+    @include tablet {
+      padding-right: $tablet-margin;
+      width: 45%;
+    }
+  }
+
+  &--right-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    @include tablet {
+      border-left: 1px solid $cloud;
+      padding-left: $tablet-margin;
+    }
+  }
+
+  &__status-warehouse {
+    display: flex;
+    flex-direction: column;
+    padding-right: $tablet-margin;
+  }
+
+  &__quantity {
+    padding-left: $desktop-column;
+  }
+}
+
+.status-container {
+  &__header {
+    color: $slate;
+  }
+
+  // MEDIA - TABLET
+  @include tablet {
+    &__header {
+      display: none;
+    }
+  }
+
+  // DYNAMIC CLASSES - IF IN STOCK**
+  &__in-stock {
+    color: $green;
+    background-color: rgba(21, 132, 99, 0.07);
+    max-width: 65px;
+    border-radius: 20px;
+    padding: 4px;
+    text-align: center;
+  }
+
+  @include tablet {
+    &__in-stock {
+      max-width: 61px;
+    }
+  }
+
+  // DYNAMIC CLASSES - IF OUT OF STOCK**
+  &__out-of-stock {
+    color: $red;
+    background-color: rgba(201, 69, 21, 0.07);
+    max-width: 95px;
+    border-radius: 20px;
+    padding: 4px;
+    text-align: center;
+  }
+
+  @include tablet {
+    &__out-of-stock {
+      max-width: 86px;
+    }
+  }
+}

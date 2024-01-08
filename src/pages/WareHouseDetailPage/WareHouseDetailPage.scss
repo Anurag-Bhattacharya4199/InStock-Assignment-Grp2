@@ -1,0 +1,110 @@
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
+
+.warehouseDetails {
+  margin: $mobile-margin;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+  position: relative;
+  top: -77px;
+
+  &__info {
+    padding: $mobile-margin;
+    border-bottom: 1px solid $cloud;
+
+    &-headers {
+      color: $slate;
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+
+    &-contact {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+
+    &-column--left,
+    &-column--right {
+      width: 50%;
+    }
+
+    &-address {
+      padding-top: 0;
+      &--new-line {
+        display: none;
+        @include tablet {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+.info {
+  margin: 0;
+  font-size: 13px;
+}
+
+@include tablet {
+  .warehouseDetails {
+    margin: $tablet-margin;
+    top: -137px;
+
+    &__info {
+      padding-left: $tablet-margin;
+      padding-right: $tablet-margin;
+      padding-top: $mobile-margin;
+      padding-bottom: $mobile-margin;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: none;
+
+      &-contact {
+        padding-top: 0;
+        flex: 70%;
+      }
+
+      &-address {
+        flex: 50%;
+      }
+
+      &-column {
+        padding: 0 $tablet-margin;
+
+        &--left {
+          padding-left: $tablet-margin;
+          border-left: 1px solid $cloud;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .warehouseDetails {
+    top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
+    &__info {
+      &-column {
+        &--left {
+          padding-left: $desktop-margin;
+        }
+
+        &--right {
+          margin-right: $tablet-margin;
+        }
+      }
+    }
+  }
+}
+
+// DYNAMIC CLASS
+.display-hidden {
+  display: none;
+}

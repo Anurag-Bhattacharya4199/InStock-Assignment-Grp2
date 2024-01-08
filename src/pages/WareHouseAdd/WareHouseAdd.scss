@@ -1,0 +1,193 @@
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/variables";
+
+.addWarehouse {
+  margin: $mobile-margin;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+  position: relative;
+  top: -80px;
+
+  &__form {
+    &-warehouseDetails {
+      border-bottom: 0.063rem solid $cloud;
+    }
+
+    &-warehouseDetails,
+    &-contactDetails {
+      padding: $mobile-margin;
+    }
+
+    &-warehouseName,
+    &-streetAddress,
+    &-city,
+    &-country,
+    &-contactName,
+    &-position,
+    &-phoneNum,
+    &-email {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-warehouse_nameInp,
+    &-warehouse_streetaddressInp,
+    &-warehouse_cityInp,
+    &-warehouse_countryInp,
+    &-warehouse_contactNameInp,
+    &-warehouse_positionInp,
+    &-warehouse_phonenumInp,
+    &-warehouse_emailInp {
+      height: 36px;
+      padding-left: $mobile-margin;
+      padding-right: $mobile-margin;
+      border-radius: 20px;
+      border: 1px solid $cloud;
+
+      &:focus {
+        outline: 0;
+        border:2px solid $instock-indigo;
+      }
+    }
+
+    &-buttons {
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $light-grey;
+      padding: $mobile-margin;
+    }
+
+    &-cancelBtn,
+    &-addBtn {
+      height: 36px;
+      border-radius: 20px;
+      border: 1px solid $cloud;
+      width: 47%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-cancelBtn {
+      background-color: $white;
+    }
+
+    &-addBtn {
+      background-color: $instock-indigo;
+      color: $white;
+    }
+
+    &-invalidInput {
+      border: 0.063rem solid $red;
+      outline-width: 0;
+    }
+
+    &-errorMsg {
+      display: none;
+      font-size: 13px;
+    }
+
+    &-errorMsgInvalidInput {
+      color: $red;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-top: 5px;
+
+    }
+  }
+}
+
+.p-medium {
+  padding-top: $mobile-margin;
+  font-weight: bold;
+  padding-bottom: 0.25rem;
+}
+
+@include tablet {
+  .addWarehouse {
+    margin: $tablet-margin;
+    top: -137px;
+
+    &__header {
+      &-info {
+        justify-content: start;
+        padding-left: $tablet-margin;
+      }
+
+      &-title {
+        padding-left: $tablet-margin;
+      }
+    }
+
+    &__form {
+      padding-top: $tablet-margin;
+
+      &-mainInfo {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: $tablet-margin;
+      }
+
+      &-warehouseDetails {
+        width: 50%;
+        border-bottom: none;
+        border-right: 1px solid $cloud;
+        padding-left: $tablet-margin;
+        padding-right: $tablet-margin;
+        padding-bottom: $tablet-margin;
+      }
+
+      &-contactDetails {
+        width: 50%;
+        padding-left: $tablet-margin;
+        padding-right: $tablet-margin;
+        padding-bottom: $tablet-margin;
+      }
+
+      &-warehouse_nameInp,
+      &-warehouse_streetaddressInp,
+      &-warehouse_cityInp,
+      &-warehouse_countryInp,
+      &-warehouse_contactNameInp,
+      &-warehouse_positionInp,
+      &-warehouse_phonenumInp,
+      &-warehouse_emailInp {
+        height: 38px;
+        width: auto;
+
+      }
+
+      &-buttons {
+        justify-content: flex-end;
+      }
+
+      &-cancelBtn,
+      &-addBtn {
+        height: 38px;
+        padding-left: $mobile-margin;
+        padding-right: $mobile-margin;
+        border-radius: 1.25rem;
+        border-color: 0.063rem solid $slate;
+        width: auto;
+      }
+
+      &-addBtn {
+        margin-left: $tablet-margin;
+      }
+    }
+  }
+}
+
+@include desktop {
+  .addWarehouse {
+    margin: $desktop-margin;
+    top: -229px;
+    width: 1020px;
+    margin: $desktop-margin auto;
+  }
+}

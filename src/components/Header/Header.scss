@@ -1,0 +1,78 @@
+@use "../../styles/partials/fonts" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.header {
+  background-color: $graphite;
+  padding: 24px 16px;
+  height: 152px;
+
+  @include tablet {
+    height: 138px;
+  }
+
+  &__content {
+    .header-logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__logo {
+        height: 28px;
+      }
+    }
+
+    .header-links-container {
+      display: flex;
+      justify-content: space-between;
+      padding-top: $tablet-gutter;
+      gap: 16px;
+
+      @include tablet {
+        padding-top: 0;
+      }
+
+      &__link {
+        color: $cloud;
+        border-radius: 20px;
+        padding: 0px 16px;
+        width: 100%;
+        height: 36px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        text-transform: capitalize;
+        text-decoration: none;
+      }
+
+      &__link {
+        @include tablet {
+          font-size: 14px;
+        }
+      }
+      .active-warehouse,
+      .active-inventory {
+        background-color: $instock-black;
+        color: #fff;
+      }
+      &__link:hover {
+        background-color: $instock-black;
+        color: #fff;
+      }
+    }
+  }
+  &__content {
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 32px 32px 32px;
+    }
+  }
+  &__content {
+    @include desktop {
+      width: 1020px;
+      margin: auto;
+    }
+  }
+}

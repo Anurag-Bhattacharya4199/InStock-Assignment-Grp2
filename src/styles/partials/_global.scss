@@ -1,0 +1,108 @@
+@use './variables' as *;
+@use './mixins' as *;
+@use 'fonts';
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-regular;
+    color: $instock-black;
+
+}
+
+html{
+    overflow: hidden;
+    @include tablet{
+        overflow:auto;
+    }
+}
+body{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    @include tablet{
+        overflow:none;
+    }
+}
+
+//Page Header
+h1 {
+    font-size: 28px;
+    line-height: 36px;
+    font-family: $font-bold;
+
+    @include tablet {
+        font-size: 32px;
+        line-height: 40px;
+        font-family: $font-bold;
+    }
+}
+
+// Subheader
+h2 {
+    font-size: 20px;
+    line-height: 28px;
+    font-family: $font-bold;
+
+    @include tablet {
+        font-size: 24px;
+        line-height: 32px;
+        font-family: $font-bold;
+    }
+}
+
+// Labels, Links & Buttons
+h3,
+label,
+link,
+button {
+    font-size: 13px;
+    line-height: 20px;
+    font-family: $font-bold;
+    text-decoration: none;
+
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+// Table Header
+h4 {
+    font-size: 11px;
+    line-height: 16px;
+    font-family: $font-regular;
+
+    @include tablet {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+
+h5,
+.p-medium {
+    font-size: 13px;
+    line-height: 20px;
+    font-family: $font-regular;
+
+    @include tablet {
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+h6,
+.p-small {
+    font-size: 11px;
+    line-height: 16px;
+    font-family: $font-regular;
+
+    @include tablet {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}

@@ -1,0 +1,154 @@
+@import "../../styles/partials/_mixins.scss";
+@import "../../styles/partials/_variables";
+
+.editInv {
+  margin: $mobile-margin;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 3px 5px 0 rgba(19, 24, 44, 0.1);
+  position: relative;
+  top: -80px;
+
+  @include tablet {
+    margin: $tablet-margin;
+    top: -137px;
+  }
+
+  @include desktop {
+    top: -229px;
+    width: 1020px;
+    margin: 124px auto;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &--invalidInput {
+      border: 1px solid $red;
+    }
+
+    &__content {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+
+      @include tablet {
+        flex-direction: row;
+        margin: $tablet-margin 0;
+      }
+
+      &__details {
+        display: flex;
+        flex-direction: column;
+        border-bottom: solid 1px $cloud;
+        padding: $mobile-margin;
+
+        @include tablet {
+          border: none;
+          border-right: solid 1px $cloud;
+          width: 48%;
+          padding:0 $tablet-margin
+          
+        }
+
+        &--title {
+          margin: 0;
+        }
+
+        &__input {
+          height: 36px;
+          padding: 0 $mobile-margin;
+          border-radius: 20px;
+          border: 1px solid $cloud;
+          &:focus {
+            outline: 0;  
+            border:2px solid $instock-indigo;
+        }
+
+          &--area {
+            padding: calc($mobile-margin/2) $mobile-margin;
+            border-radius: 20px;
+            border: 1px solid $cloud;
+            font-family: $font-regular;
+            resize: none;
+
+            &:focus {
+              outline: 0;  
+              border:2px solid $instock-indigo;
+          }
+          }
+        }
+      }
+
+      &__avail {
+        display: flex;
+        flex-direction: column;
+        padding: $mobile-margin;
+
+        @include tablet {
+          width: 48%;
+          padding:0 $tablet-margin;
+        }
+
+        &--title {
+          margin: 0;
+        }
+
+        &__stock-status {
+          display: flex;
+          align-items: center;
+          height: 38px;
+
+          &--in-stock {
+            padding-right: 30%;
+          }
+        }
+      }
+    }
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      background-color: $light-grey;
+      padding: $mobile-margin 0;
+
+      &--cancel,
+      &--add {
+        height: 38px;
+        padding-left: $mobile-margin;
+        padding-right: $mobile-margin;
+        border-radius: 20px;
+        border: 1px solid $cloud;
+        width: auto;
+        background-color: $white;
+        margin-right: $mobile-margin;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      &--add {
+        background-color: $instock-indigo;
+        color: $white;
+      }
+    }
+  }
+}
+
+.false {
+  display: none;
+}
+
+.errorMsg {
+  display: none;
+  font-size: 13px;
+
+  &--invalid-input {
+    // display: inline-block;
+    color: $red;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 5px;
+  }
+}

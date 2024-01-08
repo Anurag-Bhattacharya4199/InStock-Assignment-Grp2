@@ -1,0 +1,414 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.inventoryList {
+  // TABLET && DESKTOP HEADERS***
+  .inventoryList-headers {
+    display: none;
+  }
+
+  @include tablet {
+    .inventoryList-headers {
+      display: grid;
+      padding: 0 32px;
+      height: 40px;
+      background-color: $light-grey;
+      box-sizing: border-box;
+      align-content: center;
+
+      &__header-container {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+
+        &--header {
+          font-weight: 600;
+        }
+
+        &--sort-icon {
+          height: 16px;
+
+          cursor: pointer;
+        }
+      }
+      // CATEGORY
+      .header-category {
+        padding-left: 35px;
+      }
+      // HEADER STATUS
+      .header-status {
+        padding-left: 45px;
+      }
+      // HEADER QUANTITY
+      .header-quantity {
+        padding-left: 50px;
+      }
+
+      // HEADER WAREHOUSE
+      .header-warehouse {
+        padding-left: 24px;
+      }
+
+      //  HEADER ACTIONS
+      .header-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  // INVENTORY-LIST CARD***
+  .inventoryList-card {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #bdc5d5;
+
+    // INVENTORY-ITEM && CATEGORY CONTAINER
+    &__inventory-and-category-container {
+      flex: 50%;
+
+      // INVENTORY ITEM***
+      .inventory-container {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+
+        &__header {
+          color: $slate;
+          margin: $mobile-margin 0 0 0;
+        }
+
+        @include tablet {
+          justify-content: center;
+          &__header {
+            display: none;
+          }
+        }
+
+        &__link {
+          text-decoration: none;
+          color: $instock-indigo;
+          display: flex;
+          align-items: center;
+          background-color: $white;
+          border: none;
+          &:hover {
+            cursor: pointer;
+          }
+
+          &--inventory-item {
+            font-weight: 600;
+            padding-right: 2px;
+            padding-top: 4px;
+            margin: 0;
+          }
+
+          &--icon {
+            height: 20px;
+            width: 20px;
+            display: inline;
+
+            @keyframes moveRight {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(4px);
+              }
+            }
+
+            /* Apply animation on hover */
+            &:hover {
+              animation: moveRight 0.3s forwards;
+            }
+          }
+        }
+      }
+
+      // CATEGORY***
+      .category-container {
+        padding-top: 16px;
+
+        &__header {
+          color: $slate;
+          margin: 0;
+        }
+
+        @include tablet {
+          display: flex;
+          align-items: center;
+          &__header {
+            display: none;
+          }
+        }
+
+        &__category {
+          color: $instock-black;
+          font-weight: 600;
+          padding-top: 4px;
+          margin: 0;
+        }
+
+        @include tablet {
+          &__category {
+            padding-left: 35px;
+          }
+        }
+      }
+
+      @include tablet {
+        .category-container {
+          padding-top: 0px;
+          width: 100%;
+        }
+      }
+    }
+
+    @include tablet {
+      &__inventory-and-category-container {
+        flex: unset;
+        grid-column: 1 / span 2;
+        display: flex;
+      }
+    }
+
+    // STATUS, QUANTITY & WAREHOUSE CONTAINER***
+    &__status-quatity-warehouse-container {
+      flex: 50%;
+
+      .status-container {
+        &__header {
+          color: $slate;
+          margin: $mobile-margin 0 4px 0;
+        }
+
+        // MEDIA - TABLET
+        @include tablet {
+          &__header {
+            display: none;
+          }
+        }
+
+        // DYNAMIC CLASSES - IF IN STOCK**
+        &__in-stock {
+          color: $green;
+          background-color: rgba(21, 132, 99, 0.07);
+          max-width: 65px;
+          border-radius: 20px;
+          padding: 4px 8px;
+          margin: 0;
+          text-align: center;
+        }
+
+        @include tablet {
+          display: flex;
+          align-items: center;
+          &__in-stock {
+            max-width: 61px;
+          }
+        }
+
+        // DYNAMIC CLASSES - IF OUT OF STOCK**
+        &__out-of-stock {
+          color: $red;
+          background-color: rgba(201, 69, 21, 0.07);
+          max-width: 95px;
+          border-radius: 20px;
+          padding: 4px 8px;
+          text-align: center;
+        }
+
+        @include tablet {
+          &__out-of-stock {
+            max-width: 86px;
+            margin: 0;
+          }
+        }
+
+        @include tablet {
+          &__status {
+            margin-left: 20px;
+          }
+        }
+      }
+
+      .quantity-container {
+        padding-top: 16px;
+
+        &__header {
+          color: $slate;
+          margin: 0;
+        }
+
+        &__quantity {
+          color: $instock-black;
+          font-weight: 400;
+          padding-top: 4px;
+          margin: 0;
+        }
+
+        @include tablet {
+          display: flex;
+          align-items: center;
+
+          &__header {
+            display: none;
+          }
+
+          &__quantity {
+            padding-left: 50px;
+          }
+        }
+      }
+
+      @include tablet {
+        .quantity-container {
+          padding-top: 0px;
+        }
+      }
+
+      .int-warehouse-container {
+        padding-top: 16px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &__header {
+          color: $slate;
+          margin: 0;
+        }
+
+        // MEDIA - TABLET
+        @include tablet {
+          &__header {
+            display: none;
+          }
+        }
+
+        &__warehouse-name {
+          color: $instock-black;
+          font-weight: 400;
+          padding-top: 4px;
+          margin: 0;
+        }
+      }
+
+      // MEDIA - TABLET
+      @include tablet {
+        .int-warehouse-container {
+          padding-left: 24px;
+          padding-top: 0px;
+          justify-content: center;
+        }
+      }
+    }
+
+    // INVENTORY-LIST ICONS***
+    .inventoryList-card__icon-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      box-sizing: border-box;
+      padding-top: 16px;
+      align-items: center;
+    }
+
+    // Delete Button
+    .inventoryList-card__delete-button {
+      background-color: white;
+      border: none;
+      padding: 0 0 $tablet-gutter 0;
+      margin: 0;
+      line-height: 0;
+
+      @include tablet {
+        padding: 0;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    // MEDIA - TABLET
+    @include tablet {
+      .inventoryList-card__icon-container {
+        display: flex;
+        justify-content: flex-end;
+        align-content: center;
+        gap: 15px;
+        padding-top: 0px;
+
+        // ICONS
+        .action-icon {
+          height: 24px;
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .inventoryList-card:hover {
+    background-color: $light-grey;
+    .inventory-container__link {
+      background-color: $light-grey;
+    }
+    .inventoryList-card__delete-button {
+      background-color: $light-grey;
+    }
+  }
+
+  // MEDIA - TABLET
+  @include tablet {
+    .inventoryList-card {
+      padding: $mobile-margin $tablet-margin;
+      display: grid;
+    }
+  }
+}
+
+// MEDIA - TABLET
+@include tablet {
+  .five-columns {
+    &--header {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    &--table {
+      grid-column: 3 / span 2;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .six-columns {
+    &--header {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    &--table {
+      grid-column: 3 / span 3;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// MEDIA - DESKTOP
+@include desktop {
+  .inventoryList {
+    width: 1020px;
+    margin: auto;
+  }
+}
+
+a {
+  height: 24px;
+}

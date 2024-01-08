@@ -51,8 +51,10 @@
       border-radius: 20px;
       border: 1px solid $cloud;
       font-family: $font-regular;
-      &:active {
-        border-color: $instock-indigo;
+
+      &:focus {
+          outline: 0;  
+          border:2px solid $instock-indigo;
       }
     }
 
@@ -78,6 +80,7 @@
       border-radius: 20px;
       border-color: $slate;
       width: 47%;
+
       &:hover {
         cursor: pointer;
       }
@@ -102,9 +105,20 @@
     }
 
     &-errorMsgInvalidInput {
-      display: inline-block;
+      // display: inline-block;
       color: $red;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-top: 5px;
+
+
     }
+
+    &-header {
+      margin-top: 0;
+    }
+
   }
 }
 
@@ -126,6 +140,7 @@
   .addInventoryItem {
     &__form {
       padding-top: $tablet-margin;
+
       &-mainInfo {
         display: flex;
         justify-content: space-between;
@@ -139,6 +154,7 @@
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
+        padding-top: 0;
       }
 
       &-itemAvailability {
@@ -146,6 +162,7 @@
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
+        padding-top: 0;
       }
 
       &-itemNameInp,
@@ -156,6 +173,7 @@
         width: auto;
         font-family: $font-regular;
       }
+
       &-descriptionInp {
         width: auto;
         font-family: $font-regular;
@@ -174,6 +192,7 @@
         border-radius: 20px;
         border: 1px solid $cloud;
         width: auto;
+
         @include tablet {
           height: 38px;
         }

@@ -35,23 +35,25 @@
 
       @include tablet {
         flex-direction: row;
+        margin: $tablet-margin 0;
       }
 
       &__details {
         display: flex;
         flex-direction: column;
         border-bottom: solid 1px $cloud;
-
         padding: $mobile-margin;
 
         @include tablet {
           border: none;
           border-right: solid 1px $cloud;
           width: 48%;
+          padding:0 $tablet-margin
+          
         }
 
         &--title {
-          margin-bottom: 0;
+          margin: 0;
         }
 
         &__input {
@@ -59,6 +61,10 @@
           padding: 0 $mobile-margin;
           border-radius: 20px;
           border: 1px solid $cloud;
+          &:focus {
+            outline: 0;  
+            border:2px solid $instock-indigo;
+        }
 
           &--area {
             padding: calc($mobile-margin/2) $mobile-margin;
@@ -66,6 +72,11 @@
             border: 1px solid $cloud;
             font-family: $font-regular;
             resize: none;
+
+            &:focus {
+              outline: 0;  
+              border:2px solid $instock-indigo;
+          }
           }
         }
       }
@@ -77,10 +88,11 @@
 
         @include tablet {
           width: 48%;
+          padding:0 $tablet-margin;
         }
 
         &--title {
-          margin-bottom: 0;
+          margin: 0;
         }
 
         &__stock-status {
@@ -132,7 +144,11 @@
   font-size: 13px;
 
   &--invalid-input {
-    display: inline-block;
+    // display: inline-block;
     color: $red;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 5px;
   }
 }

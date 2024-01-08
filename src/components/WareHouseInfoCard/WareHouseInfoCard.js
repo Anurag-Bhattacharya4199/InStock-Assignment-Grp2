@@ -29,7 +29,7 @@ function WareHouseInfoCard(props) {
                 className="WarehouseList__body--info--warehouse-link-container"
                 to={`/warehouses/${id}`}
               >
-                <p className="text">{warehouse_name}</p>
+                <p className="text--name">{warehouse_name}</p>
                 <img
                   src={Chevron}
                   alt="chevron"

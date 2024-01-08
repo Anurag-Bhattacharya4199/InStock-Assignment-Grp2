@@ -29,18 +29,19 @@
 
   @include tablet {
     flex-direction: row;
+    padding-bottom: $tablet-margin;
   }
 
   &__headers {
     &--category {
-      padding-top: $mobile-margin;
+      margin-bottom: 4px;
     }
 
     &--status {
-      padding-top: $mobile-margin;
+      margin-bottom: 4px;
     }
     &--warehouse {
-      padding-top: $mobile-margin;
+      margin-bottom: 4px;
     }
   }
 

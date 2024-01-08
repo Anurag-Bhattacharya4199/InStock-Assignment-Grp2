@@ -247,6 +247,10 @@
     }
 
     &__form {
+
+      &-header {
+        margin: 0;
+      }
       padding-top: $tablet-margin;
       &-mainInfo {
         display: flex;
@@ -260,14 +264,16 @@
         border-right: 1px solid $cloud;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
-        padding-bottom: $tablet-margin;
+        padding-bottom: 0;
+        padding-top: 0;
       }
 
       &-contactDetails {
         width: 50%;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
-        padding-bottom: $tablet-margin;
+        padding-bottom: 0;
+        padding-top: 0;
       }
 
       &-warehouse_nameInp,

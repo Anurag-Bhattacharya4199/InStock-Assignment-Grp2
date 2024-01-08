@@ -168,7 +168,7 @@ function InventoryAdd() {
       <form className="addInventoryItem__form" onSubmit={handleSubmit}>
         <div className="addInventoryItem__form-mainInfo">
           <div className="addInventoryItem__form-itemDetails">
-            <h2>Item Details</h2>
+            <h2 className="addInventoryItem__form-header">Item Details</h2>
             <article className="addInventoryItem__form-itemName">
               <label className="p-medium">Item Name</label>
               <input

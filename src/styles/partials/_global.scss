@@ -10,6 +10,22 @@ body {
     box-sizing: border-box;
     font-family: $font-regular;
     color: $instock-black;
+
+}
+
+html{
+    overflow: hidden;
+    @include tablet{
+        overflow:auto;
+    }
+}
+body{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    @include tablet{
+        overflow:none;
+    }
 }
 
 //Page Header
@@ -66,18 +82,6 @@ h4 {
     }
 }
 
-
-p,
-.p-large {
-    font-size: 15px;
-    line-height: 26px;
-    font-family: $font-regular;
-
-    @include tablet {
-        font-size: 16px;
-        line-height: 28px;
-    }
-}
 
 h5,
 .p-medium {

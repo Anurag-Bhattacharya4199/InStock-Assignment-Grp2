@@ -45,8 +45,9 @@
       border-radius: 20px;
       border: 1px solid $cloud;
 
-      &:active {
-        border-color: $instock-indigo;
+      &:focus {
+        outline: 0;
+        border:2px solid $instock-indigo;
       }
     }
 
@@ -63,7 +64,7 @@
     &-addBtn {
       height: 36px;
       border-radius: 20px;
-      border-color: $slate;
+      border: 1px solid $cloud;
       width: 47%;
 
       &:hover {
@@ -91,8 +92,12 @@
     }
 
     &-errorMsgInvalidInput {
-      display: inline-block;
       color: $red;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-top: 5px;
+
     }
   }
 }
@@ -131,7 +136,7 @@
       &-warehouseDetails {
         width: 50%;
         border-bottom: none;
-        border-right: 1px solid $slate;
+        border-right: 1px solid $cloud;
         padding-left: $tablet-margin;
         padding-right: $tablet-margin;
         padding-bottom: $tablet-margin;
@@ -154,6 +159,7 @@
       &-warehouse_emailInp {
         height: 38px;
         width: auto;
+
       }
 
       &-buttons {
